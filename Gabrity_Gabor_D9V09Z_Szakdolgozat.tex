@@ -1,0 +1,191 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[magyar]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\title{Ellenfél alapú támadások (FGSM, PGD) implementációja\\
+konvolúciós neurális hálózatokhoz\\
+interaktív tesztkörnyezetben}
+\author{Gabrity Gábor\\Neptun kód: D9V09Z}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\begin{abstract}
+A mesterséges intelligencia rohamos fejlődésével párhuzamosan kritikus kérdéssé vált a modellek biztonsága
+és megbízhatósága. Kutatások kimutatták, hogy a modern konvolúciós neurális hálózati architektúrák
+sebezhetőek az ellenfél alapú támadásokkal szemben, mint például az FGSM (Fast Gradient Sign Method) és a
+PGD (Projected Gradient Descent). Ezek az algoritmusok a bemeneti adatot képesek olyan módon -- az emberi szem számára
+szinte észrevétlenül -- módosítani, hogy a nagy megbízhatóságú modelleket is megtévesztik.
+
+Szakdolgozatom célja egy olyan interaktív tesztkörnyezet fejlesztése, amely grafikus felhasználói felületen keresztül
+teszi lehetővé ezen biztonsági rések vizuális elemzését. A projekt fókuszában az AI Red Teaming módszertan áll: a
+fejlesztő vagy biztonsági szakember a szoftver segítségével szisztematikusan ,,támadja'' a választott
+képfelismerő modellt, hogy feltárja annak gyenge pontjait.
+
+A keretrendszer több elismert támadási algoritmust implementál, köztük a gyors, egylépéses FGSM-et és a robusztusabb,
+iteratív PGD-t. A felhasználó számára lehetőség nyílik mind általános tévesztés (non-targeted), mind specifikus
+célosztályra irányuló (targeted) támadások végrehajtására, miközben interaktív módon, csúszkák segítségével
+szabályozhatja a perturbáció mértékét és az iterációk számát.
+
+Az alkalmazás hármas vizuális megjelenítést alkalmaz: megjeleníti az eredeti képet, a generált zajt (perturbációt)
+és a végső, támadott képet, miközben mutatja a modell predikcióinak változását. A rendszer kiegészülhet egy
+modellvédelmi modullal is, amely különböző képfeldolgozási szűrők -- például homályosítás -- segítségével
+próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezőképességét.
+\end{abstract}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Ellenfél alapú támadások}
+
+A mély neurális hálózatok -- különösen a képfelismerésben alkalmazott konvolúciós architektúrák -- rendkívül
+érzékenyek a bemeneti adatok apró, célzott módosításaira. Az ilyen módosításokat \textit{ellenfél alapú
+perturbációknak} (adversarial perturbations) nevezzük, az ezeket előállító eljárásokat pedig \textit{ellenfél
+alapú támadásoknak} (adversarial attacks)~\cite{goodfellow2015explaining}.
+
+A támadások alapelve a következő: adott egy $f$ osztályozó modell, egy $x$ eredeti bemenet és annak helyes
+$y$ címkéje. A cél egy olyan $x_{\mathrm{adv}}$ módosított bemenet előállítása, amelyre
+$f(x_{\mathrm{adv}}) \neq y$, miközben a perturbáció $\delta = x_{\mathrm{adv}} - x$ valamilyen norma
+szerint kicsi marad: $\|\delta\|_p \leq \epsilon$. A gyakorlatban leggyakrabban az $\ell_\infty$ normát
+alkalmazzák, amely a pixelenkénti maximális eltérést korlátozza.
+
+A következő alfejezetekben a két legelterjedtebb gradiens alapú támadási módszert mutatom be részletesen.
+
+\subsection{FGSM (Fast Gradient Sign Method)}
+
+Az FGSM algoritmust Goodfellow és társai javasolták 2015-ben~\cite{goodfellow2015explaining}. Az eljárás
+egyetlen lépésben állítja elő a perturbációt a veszteségfüggvény bemenetre vonatkozó gradiensének
+előjelét felhasználva.
+
+\subsubsection{Matematikai háttér}
+
+Legyen $J(\theta, x, y)$ a modell veszteségfüggvénye (például keresztentrópia), ahol $\theta$ a hálózat
+tanult paraméterei, $x$ a bemeneti kép és $y$ az eredeti címke. Az FGSM a veszteségfüggvény
+$x$-re vonatkozó gradiensét számítja ki visszaterjesztéssel (backpropagation), majd a perturbációt
+a gradiens előjelének $\epsilon$-szorosával képezi:
+\[
+  x_{\mathrm{adv}} = x + \epsilon \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x, y)\bigr)
+\]
+
+A $\mathrm{sign}(\cdot)$ függvény elemenként az előjelet adja vissza ($-1$, $0$ vagy $+1$), így a
+perturbáció minden pixel esetén pontosan $\pm\epsilon$ lesz. Ez biztosítja, hogy a módosítás az
+$\ell_\infty$ norma szerint pontosan $\epsilon$ nagyságú.
+
+\subsubsection{Az algoritmus lépései}
+
+\begin{enumerate}
+  \item Előreterjesztés (forward pass): a modell kiszámítja az $x$ bemenethez tartozó predikciót és a
+        veszteségfüggvény $J(\theta, x, y)$ értékét.
+  \item Visszaterjesztés (backward pass): kiszámítjuk a gradienst $\nabla_x J(\theta, x, y)$.
+  \item Perturbáció előállítása: $\delta = \epsilon \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x, y)\bigr)$.
+  \item Támadott kép: $x_{\mathrm{adv}} = \mathrm{clip}(x + \delta,\; 0,\; 1)$, ahol a $\mathrm{clip}$
+        függvény biztosítja, hogy a pixelértékek a $[0, 1]$ tartományban maradjanak.
+\end{enumerate}
+
+\subsubsection{Célzott változat}
+
+Az alapváltozat (\textit{non-targeted}) a helyes osztály veszteségét maximalizálja. A \textit{targeted}
+változatban egy $y_{\mathrm{target}}$ célosztályt adunk meg, és a perturbációt úgy állítjuk elő, hogy a
+modell ebbe az osztályba sorolja a képet:
+\[
+  x_{\mathrm{adv}} = x - \epsilon \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x, y_{\mathrm{target}})\bigr)
+\]
+Az előjel megfordul, mert ebben az esetben a célosztályhoz tartozó veszteséget \textit{minimalizáljuk}.
+
+\subsubsection{Előnyök és korlátok}
+
+Az FGSM fő előnye a sebessége: egyetlen gradiens-számítás elegendő. Hátránya, hogy egyetlen nagy lépést tesz,
+így kisebb $\epsilon$ értékek mellett gyakran kevésbé hatékony, mint az iteratív módszerek. Emellett a
+perturbáció iránya nem feltétlenül optimális, csupán a gradiens előjelét követi.
+
+\subsection{PGD (Projected Gradient Descent)}
+
+A PGD algoritmust Madry és társai vezették be 2018-ban~\cite{madry2018towards} az FGSM iteratív
+általánosításaként. A módszert a szakirodalom gyakran a ,,legerősebb elsőrendű támadásnak'' tekinti
+az $\ell_\infty$ korlátos perturbációk között.
+
+\subsubsection{Matematikai háttér}
+
+A PGD a következő iteratív frissítési szabályt alkalmazza, $t = 0, 1, \ldots, T-1$ lépésben:
+\[
+  x^{(t+1)} = \Pi_{\mathcal{B}_\epsilon(x)} \Bigl(
+    x^{(t)} + \alpha \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x^{(t)}, y)\bigr)
+  \Bigr)
+\]
+ahol:
+\begin{itemize}
+  \item $\alpha$ a lépésnagyság (step size), jellemzően $\alpha < \epsilon$,
+  \item $T$ az iterációk száma,
+  \item $\Pi_{\mathcal{B}_\epsilon(x)}$ a projekciós operátor, amely a módosított mintát visszavetíti
+        az eredeti $x$ körüli $\epsilon$ sugarú $\ell_\infty$ gömbbe:
+        \[
+          \Pi_{\mathcal{B}_\epsilon(x)}(z) = \mathrm{clip}(z,\; x - \epsilon,\; x + \epsilon)
+        \]
+\end{itemize}
+
+\subsubsection{Az algoritmus lépései}
+
+\begin{enumerate}
+  \item Kezdeti pont megválasztása: $x^{(0)}$ lehet maga az eredeti $x$, vagy egy véletlen pont az
+        $\mathcal{B}_\epsilon(x)$ környezetből (random restart).
+  \item Iteráció ($t = 0, \ldots, T-1$):
+    \begin{enumerate}
+      \item Előreterjesztés és veszteségszámítás az aktuális $x^{(t)}$ pontra.
+      \item Gradiens számítása: $g^{(t)} = \nabla_x J(\theta, x^{(t)}, y)$.
+      \item Lépés a gradiens irányába: $\hat{x}^{(t+1)} = x^{(t)} + \alpha \cdot \mathrm{sign}(g^{(t)})$.
+      \item Projekció: $x^{(t+1)} = \Pi_{\mathcal{B}_\epsilon(x)}(\hat{x}^{(t+1)})$.
+      \item Pixelértékek vágása a $[0, 1]$ tartományba.
+    \end{enumerate}
+  \item A végső támadott kép: $x_{\mathrm{adv}} = x^{(T)}$.
+\end{enumerate}
+
+\subsubsection{Célzott változat}
+
+A targeted PGD a célzott FGSM-hez hasonlóan a célosztály veszteségét minimalizálja:
+\[
+  x^{(t+1)} = \Pi_{\mathcal{B}_\epsilon(x)} \Bigl(
+    x^{(t)} - \alpha \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x^{(t)}, y_{\mathrm{target}})\bigr)
+  \Bigr)
+\]
+
+\subsubsection{Hiperparaméterek hatása}
+
+A PGD viselkedését három fő hiperparaméter határozza meg:
+\begin{itemize}
+  \item $\epsilon$: a megengedett maximális perturbáció. Nagyobb $\epsilon$ erősebb támadást tesz lehetővé,
+        de a módosítás emberi szemmel is láthatóvá válhat.
+  \item $\alpha$: a lépésnagyság. Túl kis $\alpha$ lassú konvergenciát eredményez, túl nagy $\alpha$ pedig
+        instabilitáshoz vezethet. Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2.5 \cdot \epsilon / T$.
+  \item $T$: az iterációk száma. Több iteráció általában erősebb támadást eredményez, de növeli a
+        számítási költséget.
+\end{itemize}
+
+\subsubsection{Előnyök és korlátok}
+
+A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti
+a lokális optimumot. A random restart technikával kombinálva különösen hatékony. Hátránya, hogy
+$T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége.
+\newpage
+
+\begin{thebibliography}{9}
+\bibitem{goodfellow2015explaining}
+Ian J. Goodfellow, Jonathon Shlens, Christian Szegedy.
+\textit{Explaining and Harnessing Adversarial Examples}.
+arXiv:1412.6572, 2015.
+
+\bibitem{madry2018towards}
+Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, Adrian Vladu.
+\textit{Towards Deep Learning Models Resistant to Adversarial Attacks}.
+arXiv:1706.06083, 2018.
+\end{thebibliography}
+
+\end{document}
