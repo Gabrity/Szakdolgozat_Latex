@@ -1,0 +1,35 @@
+
+SZAKDOLGOZAT FORMAI KÖVETELMÉNYEI
+
+A szakdolgozatnak mind külső megjelenésében, mind tartalmában méltónak kell lennie annak jelentőségéhez.
+
+Szakdolgozat és diplomamunka latex sablonhoz Cserép Máté naprakész javaslatait ajánljuk.
+
+Alaki követelmények:
+
+    Lap: A4-es méret, színe fehér
+    Betűméret: 12 pont
+    Sorok: sorkizárt igazítás, 1,5-es sortávolság
+    Margó: - belső: 2,5 cm - külső: 2,5 cm - alsó: 2,5 cm - felső: 2,5 cm
+    Oldalszám: az oldalszámozást a tartalomjegyzéktől kezdve az irodalomjegyzékkel bezárólag folyamatosan kell végezni. Jelölése arab számokkal történik (a tartalomjegyzék oldalainak az oldalszámát nem szokás feltüntetni).
+    A dolgozat fő fejezetei (1. szintű címsorok) új oldalon kezdődjenek.
+    A szakdolgozat a hallgató önálló munkája, melyben be kell tartani a hivatkozások és idézések standard szabályait.
+
+Javasoljuk ennek a sablonnak a használatát (mikor elkezdi a szakdolgozat készítését), ami már minden szükséges beállítást tartalmaz.
+
+A dolgozat felépítése:
+
+    Belső fedőlap
+    Témabejelentő
+    Nyilatkozat MI eszköz felhasználásáról_0 (amennyiben .zip fájlként tölti fel a dolgozatot, külön fájlként is csatolhatja)
+    Tartalomjegyzék
+    Bevezetés
+    Felhasználói dokumentáció
+    Fejlesztői dokumentáció
+    Irodalomjegyzék (ha a téma szükségessé teszi): A szakdolgozatnak tartalmaznia kell azon forrásmunkákra való hivatkozásokat, amelyeket a hallgató a megoldás során felhasznált.
+    A könyvek idézésének formája a következő:
+    [<hivatkozási azonosítója>] <szerző neve>: <a könyv címe>, <a kiadó neve>, <a kiadás éve>, [<terjedelme>], <ISBN szám>. Például: [2] Jan Sommerville: Software Engineering, Addison Wesley, 1988, [742], ISBN-0201- 42765-6.
+    Folyóiratcikk idézésének formája a következő:
+    [<hivatkozási azonosítója>] <szerző neve>: <a cikk címe>, <a folyóirat címe>, <Vol. száma>, <évszám>, [terjedelme].
+    Hálózaton elérhető forrásmunka esetén a „link” megadása után adjuk meg az elérés dátumát!
+    Mellékletek

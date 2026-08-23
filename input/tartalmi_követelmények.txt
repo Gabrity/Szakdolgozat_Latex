@@ -1,0 +1,28 @@
+
+SZAKDOLGOZAT TARTALMA
+
+A szakdolgozat tartalma egy gyakorlati jellegű feladat informatikai eszközökkel (program) való megoldása. A szakdolgozatban kitűzött feladatnak olyan komplexitásúnak kell lennie, hogy azt egy átlagos képességű hallgató 20 kreditnek megfelelő 600 munkaórában elvégezhesse. Ha a feladat mérete indokolja, akkor több hallgató is dolgozhat ugyanazon a témán. Ilyenkor a dolgozatban egyértelműen szerepelni kell annak, hogy hogyan osztották fel egymás között a munkát, és melyik rész kinek az eredménye. A védésen a hallgatónak elsősorban a saját maga által végzett eredményt kell bemutatnia. Annyiban térjen ki a többi szerző eredményére, hogy a megoldott feladat ily módon érthető legyen. 
+
+A szakdolgozatnak a következő, önálló fejezetként elkészített részeket mindenképp tartalmaznia kell:
+
+    Bevezetés, mely tartalmazza
+
+    a témaválasztás indoklását, 
+    és a megoldandó feladat rövid, közérthető leírását.
+
+​​​2. Felhasználói dokumentáció, mely tartalmazza
+
+    a megoldott probléma rövid megfogalmazását,
+    a felhasznált módszerek rövid leírását,
+    a program használatához szükséges összes információt.
+
+    Fejlesztői dokumentáció, mely tartalmazza
+
+    a probléma részletes specifikációját,
+    a felhasznált módszerek leírását, a használt fogalmak definícióját,
+    a szoftver logikai és fizikai szerkezetének leírását (architektúráját, komponens szerkezetét), a szoftverben megvalósított modellt: például UML modell vagy modulfelbontás, és/vagy adatkapcsolati (adatbázis) modellt vagy adatszerkezeti modellt, esetlegesen a felhasználói felület tervét,
+    a tesztelési tervet és a tesztelés eredményeit.
+
+A programtervező informatikus képzésben részt vevő hallgatók számára ajánljuk Németh Gábor Áprád, Gludovátz Attila és Gombos Gergő: Általános tanácsok szakdolgozat és diplomamunka készítéséhez című művét. Javasoljuk az elolvasását a munka elkezdése előtt.
+
+Javasoljuk korábbi dolgozatok áttekintését is: ezen az oldalon érdemes rákeresni a dolgozatok adataira és itt lehet konkrétan a dolgozatot letölteni.
