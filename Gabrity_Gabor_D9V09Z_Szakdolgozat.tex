@@ -6,6 +6,7 @@
 \usepackage{amssymb}
 \usepackage{geometry}
 \geometry{margin=2.5cm}
+\usepackage{setspace}
 
 \title{Ellenfél alapú támadások (FGSM, PGD) implementációja\\
 konvolúciós neurális hálózatokhoz\\
@@ -14,6 +15,8 @@ interaktív tesztkörnyezetben}
 \date{\today}
 
 \begin{document}
+\onehalfspacing
+\pagestyle{empty}
 
 \maketitle
 \newpage
@@ -64,6 +67,9 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 \end{abstract}
 \newpage
 
+\pagenumbering{arabic}
+\pagestyle{plain}
+\thispagestyle{empty}
 \tableofcontents
 \newpage
 
