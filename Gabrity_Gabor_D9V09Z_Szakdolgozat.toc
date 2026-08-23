@@ -1,12 +1,93 @@
-\select@language {magyar} \contentsline {section}{\numberline {1}Ellenfél alapú támadások}{4}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.1}FGSM (Fast Gradient Sign Method)}{4}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.1.1}Matematikai háttér}{4}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.1.2}Az algoritmus lépései}{4}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.1.3}Célzott változat}{4}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.1.4}Előnyök és korlátok}{5}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.2}PGD (Projected Gradient Descent)}{5}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.2.1}Matematikai háttér}{5}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.2.2}Az algoritmus lépései}{5}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.2.3}Célzott változat}{5}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.2.4}Hiperparaméterek hatása}{6}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {1.2.5}Előnyök és korlátok}{6}{}%
+\select@language {magyar} \contentsline {section}{\numberline {1}Bevezetés}{7}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.1}Motiváció és a témaválasztás indoklása}{7}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.2}A megoldandó feladat rövid, közérthető leírása}{7}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.3}A dolgozat célja és hozzájárulásai}{7}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.4}A dolgozat felépítése}{7}{}%
+\select@language {magyar} \contentsline {section}{\numberline {2}Felhasználói dokumentáció}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1}A megoldott probléma rövid megfogalmazása}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2}A felhasznált módszerek rövid áttekintése}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.2.1}FGSM (Fast Gradient Sign Method) röviden}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.2.2}PGD (Projected Gradient Descent) röviden}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.2.3}Non-targeted és targeted támadási módok}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.3}Rendszerkövetelmények}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4}Telepítés és első indítás}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.5}A grafikus felhasználói felület bemutatása}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.5.1}Modell kiválasztása és kép betöltése}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.5.2}Támadási paraméterek beállítása ($\epsilon $, iterációszám, célosztály)}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.5.3}Az eredeti, a perturbáció és a támadott kép megjelenítése}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.5.4}Predikciók és konfidenciák leolvasása}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.6}Tipikus felhasználási forgatókönyvek}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.6.1}Non-targeted támadás végrehajtása}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.6.2}Targeted támadás egy adott célosztályra}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.6.3}Védekezési modul használata (szűrők alkalmazása)}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.7}Hibaüzenetek és gyakori problémák}{8}{}%
+\select@language {magyar} \contentsline {section}{\numberline {3}Fejlesztői dokumentáció}{9}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1}A probléma részletes specifikációja}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.1.1}Funkcionális követelmények}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.1.2}Nem funkcionális követelmények}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.1.3}Használati esetek}{9}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2}Elméleti háttér és a használt fogalmak definíciója}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.1}Konvolúciós neurális hálózatok rövid áttekintése}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.2}Veszteségfüggvény, gradiens és backpropagation}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.3}Perturbáció, $\ell _\infty $ norma, ellenfél alapú példa}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.2.4}AI Red Teaming módszertan}{9}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3}Ellenfél alapú támadások áttekintése}{9}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.4}FGSM (Fast Gradient Sign Method)}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.4.1}Matematikai háttér}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.4.2}Az algoritmus lépései}{10}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.4.3}Célzott változat}{10}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.4.4}Előnyök és korlátok}{10}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.5}PGD (Projected Gradient Descent)}{10}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.5.1}Matematikai háttér}{10}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.5.2}Az algoritmus lépései}{11}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.5.3}Célzott változat}{11}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.5.4}Hiperparaméterek hatása}{11}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.5.5}Előnyök és korlátok}{11}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.6}Kapcsolódó munkák és további támadási módszerek}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.6.1}Iteratív FGSM (BIM) és Momentum-alapú változatok}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.6.2}Carlini--Wagner és DeepFool támadások}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.6.3}Transzferálhatóság és fekete dobozos támadások}{12}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.7}Védekezési stratégiák áttekintése}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.7.1}Ellenfél alapú tanítás (adversarial training)}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.7.2}Bemenet-előfeldolgozáson alapuló védekezés (szűrők, homályosítás)}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.7.3}Detekció-alapú megközelítések}{12}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.8}A rendszer architektúrája}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.8.1}Komponensek és modulfelbontás}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.8.2}Adatfolyam a betöltéstől a támadott képig}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.8.3}A GUI és a támadási motor kapcsolata}{12}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.9}A felhasznált technológiák}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.9.1}Python és tudományos csomagok (NumPy, Matplotlib)}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.9.2}Mélytanulási keretrendszer (PyTorch/TensorFlow)}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.9.3}Grafikus felület (pl. Tkinter, PyQt vagy Streamlit)}{12}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.10}Az egyes komponensek megvalósítása}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.10.1}Modellbetöltés és előfeldolgozás}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.10.2}FGSM támadás implementációja}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.10.3}PGD támadás implementációja}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.10.4}Targeted és non-targeted mód kezelése}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.10.5}Perturbáció megjelenítése és képnormalizálás}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.10.6}Interaktív paraméterezés (csúszkák, célosztály választás)}{12}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {3.10.7}Védekezési modul (képfeldolgozási szűrők)}{12}{}%
+\select@language {magyar} \contentsline {section}{\numberline {4}Tesztelés}{13}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1}Tesztelési terv}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.1.1}Tesztelési célok és lefedettség}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.1.2}Teszt adatkészletek és modellek kiválasztása}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.1.3}Mérési metrikák (támadási sikerráta, $\ell _\infty $ eltérés, konfidencia)}{13}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2}Egységtesztek}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.2.1}FGSM modul tesztjei}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.2.2}PGD modul tesztjei}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.2.3}Segédfüggvények és képvágás tesztjei}{13}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3}Integrációs tesztek}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.3.1}GUI és támadási motor összekötése}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.3.2}Modellbetöltés és teljes támadási folyamat}{13}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{13}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.5}Teszteredmények és értelmezésük}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.5.1}FGSM eredmények különböző $\epsilon $ értékekre}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.5.2}PGD eredmények különböző iterációszámokra}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.5.3}Targeted vs. non-targeted összehasonlítás}{13}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.5.4}A védekezési modul hatásának mérése}{13}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.6}A tesztelés korlátai}{13}{}%
+\select@language {magyar} \contentsline {section}{\numberline {5}Összefoglalás}{14}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1}Elért eredmények}{14}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.2}Következtetések}{14}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3}Továbbfejlesztési lehetőségek}{14}{}%
+\select@language {magyar} \contentsline {section}{Mellékletek}{15}{}%
