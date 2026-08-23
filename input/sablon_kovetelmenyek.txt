@@ -1,0 +1,4838 @@
+                  Eötvös Loránd Tudományegyetem
+                          Informatikai Kar
+                        Komputeralgebra tanszék
+
+
+
+
+     Zero Knowledge Proof (ZKP) alapú
+
+hitelesítési rendszer implementálása TOTP
+
+                  kétlépcs®s azonosítással
+
+
+
+
+ Témavezet®:                       Szerz®:
+
+ Nagy Ádám                         Szabó Bence Dániel
+ Mérnökhallgató                    Programtervez® Informatikus BSc
+
+
+
+
+                         Budapest, 2026
+Nyilatkozat
+
+
+
+   Alulírott   Szabó Bence Dániel (Neptun kód: EL1QUI), az Eötvös Loránd
+
+Tudományegyetem Informatikai Karának hallgatója kijelentem, hogy ezt a szakdol-
+
+gozatot saját magam készítettem, és abban csak a megadott forrásokat használtam
+
+fel. Minden olyan részt, amelyet szó szerint vagy azonos tartalommal, de átfogal-
+
+mazva más forrásból átvettem, egyértelm¶en, a forrás megadásával megjelöltem.
+
+   A dolgozat bírálója által hátrányos értékeléssel nem járó exkluzív elektronikus
+
+hozzáférését a benyújtástól számított két évig nem kérem.
+
+
+
+
+    Budapest, 2026. április 30
+
+                                       Szabó Bence Dániel s.k.
+
+                                       hallgató aláírása
+Összefoglaló
+
+
+
+   A dolgozat egy zéró tudású bizonyításon (ZKP) alapuló, biztonságos valós idej¶
+
+cseveg®alkalmazás tervezését és megvalósítását mutatja be. A rendszer a Schnorr-
+
+protokollt alkalmazza, amely lehet®vé teszi, hogy a felhasználó a jelszó felfedése
+
+nélkül bizonyítsa személyazonosságát  így a szerveren soha nem tárolódik jelszó.
+
+A hibrid architektúra REST API-t (hitelesítés, TOTP 2FA) és WebSocket-et (valós
+
+idej¶ üzenetküldés) ötvöz, Go szerver és JavaScript kliens implementációval.
+
+
+Kulcsszavak: zéró tudású bizonyítás, Schnorr-protokoll, WebSocket, Go, kétfakto-
+
+ros azonosítás
+Abstract
+
+
+
+   This thesis presents the design and implementation of a secure real-time chat app-
+
+lication based on Zero Knowledge Proof (ZKP) authentication. The system employs
+
+the Schnorr protocol, enabling users to prove their identity without ever transmitting
+
+passwords to the server. The hybrid architecture combines a REST API (authenti-
+
+cation, TOTP 2FA) with WebSocket (real-time messaging), implemented with a Go
+
+server and a JavaScript client.
+
+
+Keywords: zero knowledge proof, Schnorr protocol, WebSocket, Go, two-factor
+
+authentication
+Tartalomjegyzék
+
+
+
+
+Nyilatkozat                                                                                1
+
+
+Összefoglaló                                                                               2
+
+
+Abstract                                                                                   3
+
+
+Rövidítésjegyzék                                                                           8
+
+
+1. Bevezetés                                                                               9
+
+  1.1.   Motiváció  A jelszó-alapú hitelesítés problémái . . . . . . . . . . . .          9
+
+  1.2.   A dolgozat célja . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      9
+
+  1.3.   A dolgozat felépítése    . . . . . . . . . . . . . . . . . . . . . . . . . . .   10
+
+
+
+
+I. Felhasználói dokumentáció                                                              11
+2. A zéró tudású bizonyítás alapgondolata                                                 12
+
+  2.1.   Mi az a zéró tudású bizonyítás?      . . . . . . . . . . . . . . . . . . . . .   12
+
+  2.2.   Hogyan alkalmazható a ZKP hitelesítésre?         . . . . . . . . . . . . . . .   14
+
+  2.3.   Miért biztonságosabb, mint a jelszóküldés? . . . . . . . . . . . . . . .         14
+
+
+
+3. Az alkalmazás bemutatása                                                               16
+
+  3.1.   Rendszerkövetelmények és els® indítás . . . . . . . . . . . . . . . . . .        16
+
+         3.1.1.   Üzemeltet®i oldal (backend)     . . . . . . . . . . . . . . . . . . .   16
+
+         3.1.2.   Felhasználói oldal (frontend) . . . . . . . . . . . . . . . . . . .     17
+
+  3.2.   Funkcionalitás áttekintése     . . . . . . . . . . . . . . . . . . . . . . . .   17
+
+  3.3.   Regisztráció . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     18
+
+  3.4.   Bejelentkezés    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   18
+
+  3.5.   Kétfaktoros azonosítás (TOTP) beállítása és használata . . . . . . . .           19
+
+  3.6.   Csevegés  valós idej¶ üzenetküldés        . . . . . . . . . . . . . . . . . .   20
+                                TARTALOMJEGYZÉK
+
+
+
+
+  3.7.   Jelszóvisszaállítás recovery kulccsal     . . . . . . . . . . . . . . . . . . .   21
+
+  3.8.   Hibaüzenetek és teend®k . . . . . . . . . . . . . . . . . . . . . . . . .         22
+
+
+
+
+II. Fejleszt®i dokumentáció                                                                23
+4. Elméleti alapok                                                                         24
+
+  4.1.   Véges testek és moduláris aritmetika        . . . . . . . . . . . . . . . . . .   24
+
+  4.2.   Ciklikus csoportok és generátorelemek         . . . . . . . . . . . . . . . . .   25
+
+  4.3.   A Diszkrét Logaritmus Probléma (DLP) és annak aszimmetriája . . .                 25
+
+  4.4.   A Schnorr-protokoll . . . . . . . . . . . . . . . . . . . . . . . . . . . .       26
+
+         4.4.1.   A protokoll áttekintése . . . . . . . . . . . . . . . . . . . . . .      26
+
+         4.4.2.   Rendszerparaméterek . . . . . . . . . . . . . . . . . . . . . . .        26
+
+         4.4.3.   A protokoll lépései   . . . . . . . . . . . . . . . . . . . . . . . .    27
+
+         4.4.4.   Ellen®rzés (Verication)     . . . . . . . . . . . . . . . . . . . . .   27
+
+         4.4.5.   Biztonsági tulajdonságok . . . . . . . . . . . . . . . . . . . . .       28
+
+  4.5.   Szakirodalmi áttekintés  ZKP-alapú hitelesítés . . . . . . . . . . . .           28
+
+         4.5.1.   Hagyományos jelszó-alapú hitelesítés sebezhet®ségei . . . . . .          28
+
+         4.5.2.   ZKP hitelesítési architektúrák az irodalomban . . . . . . . . .          29
+
+         4.5.3.   PAKE protokollcsalád       . . . . . . . . . . . . . . . . . . . . . .   30
+
+         4.5.4.   ZKP-alapú jelszó-visszaállítás és kulcskezelés . . . . . . . . . .       31
+
+         4.5.5.   A Schnorr-protokoll választásának indoklása        . . . . . . . . . .   32
+
+
+
+5. Használt technológiák                                                                   34
+
+  5.1.   Go 1.24    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    34
+
+         5.1.1.   gorilla/websocket . . . . . . . . . . . . . . . . . . . . . . . . .      34
+
+         5.1.2.   chi/v5 HTTP router      . . . . . . . . . . . . . . . . . . . . . . .    35
+
+         5.1.3.   SQLite (modernc.org/sqlite, tiszta Go)       . . . . . . . . . . . . .   35
+
+         5.1.4.   JWT (HMAC-SHA256)            . . . . . . . . . . . . . . . . . . . . .   35
+
+         5.1.5.   pquerna/otp (TOTP) . . . . . . . . . . . . . . . . . . . . . . .         36
+
+  5.2.   Kliens-oldali technológiák     . . . . . . . . . . . . . . . . . . . . . . . .    36
+
+
+
+6. Komponensek felépítése és kapcsolataik                                                  37
+
+  6.1.   Architektúra áttekintés . . . . . . . . . . . . . . . . . . . . . . . . . .       37
+
+  6.2.   Adatmodell     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    38
+
+  6.3.   A hibrid kommunikációs réteg (REST + WebSocket)               . . . . . . . . .   40
+                                TARTALOMJEGYZÉK
+
+
+
+
+         6.3.1.   A HTTP REST API szerepe . . . . . . . . . . . . . . . . . . .           41
+
+         6.3.2.   A WebSocket csatorna      . . . . . . . . . . . . . . . . . . . . . .   41
+
+  6.4.   Biztonsági megfontolások . . . . . . . . . . . . . . . . . . . . . . . . .       43
+
+  6.5.   Telepítési architektúra    . . . . . . . . . . . . . . . . . . . . . . . . . .   43
+
+  6.6.   Modulstruktúra . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       44
+
+  6.7.   Rendszerdiagramok . . . . . . . . . . . . . . . . . . . . . . . . . . . .        45
+
+
+
+7. Az egyes komponensek m¶ködése                                                          46
+
+  7.1.   ZKP regisztráció és bejelentkezés      . . . . . . . . . . . . . . . . . . . .   46
+
+         7.1.1.   Regisztráció (US-01)    . . . . . . . . . . . . . . . . . . . . . . .   46
+
+         7.1.2.   Bejelentkezés  Challenge (US-02) . . . . . . . . . . . . . . .         47
+
+         7.1.3.   Bejelentkezés  Proof Verify (US-03) . . . . . . . . . . . . . .        47
+
+         7.1.4.   Hibakezelés és biztonság (US-15)      . . . . . . . . . . . . . . . .   48
+
+         7.1.5.   A Schnorr-ellen®rzés implementációja . . . . . . . . . . . . . .        49
+
+  7.2.   TOTP kétfaktoros azonosítás        . . . . . . . . . . . . . . . . . . . . . .   49
+
+         7.2.1.   TOTP beállítás (US-04)      . . . . . . . . . . . . . . . . . . . . .   51
+
+         7.2.2.   TOTP ellen®rzés (US-05)       . . . . . . . . . . . . . . . . . . . .   51
+
+         7.2.3.   TOTP kikapcsolás (US-14) . . . . . . . . . . . . . . . . . . . .        52
+
+  7.3.   Chat funkció . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     52
+
+         7.3.1.   Hub architektúra    . . . . . . . . . . . . . . . . . . . . . . . . .   52
+
+         7.3.2.   WebSocket kapcsolat és hitelesítés (US-16) . . . . . . . . . . .        53
+
+         7.3.3.   Felhasználók listázása (US-11) . . . . . . . . . . . . . . . . . .      54
+
+         7.3.4.   Üzenet küldése és fogadása (US-06, US-07) . . . . . . . . . . .         54
+
+         7.3.5.   Korábbi üzenetek (US-12)      . . . . . . . . . . . . . . . . . . . .   55
+
+         7.3.6.   Oine üzenetek (US-17) . . . . . . . . . . . . . . . . . . . . .        55
+
+         7.3.7.   Kliens-oldali chat modul . . . . . . . . . . . . . . . . . . . . .      56
+
+  7.4.   Jelszóvisszaállítás és session kezelés   . . . . . . . . . . . . . . . . . . .   56
+
+         7.4.1.   Recovery key generálás (US-13)      . . . . . . . . . . . . . . . . .   56
+
+         7.4.2.   Jelszóvisszaállítás (US-08, US-09) . . . . . . . . . . . . . . . .      57
+
+         7.4.3.   Kijelentkezés (US-10) . . . . . . . . . . . . . . . . . . . . . . .     58
+
+         7.4.4.   Token lejárat és session kezelés (US-18) . . . . . . . . . . . . .      58
+
+  7.5.   Alternatív telepítés: Docker konténer      . . . . . . . . . . . . . . . . . .   58
+
+         7.5.1.   Image felépítése . . . . . . . . . . . . . . . . . . . . . . . . . .    59
+
+         7.5.2.   Perzisztencia és konguráció . . . . . . . . . . . . . . . . . . .      60
+                                 TARTALOMJEGYZÉK
+
+
+
+
+          7.5.3.   Orkesztráció Docker Compose-szal         . . . . . . . . . . . . . . .   61
+
+          7.5.4.   Futtatási workow      . . . . . . . . . . . . . . . . . . . . . . . .   62
+
+
+
+8. Tesztelés                                                                                63
+
+   8.1.   A tesztpiramis alkalmazása . . . . . . . . . . . . . . . . . . . . . . . .        63
+
+   8.2.   1. réteg: Egységtesztek   . . . . . . . . . . . . . . . . . . . . . . . . . .     64
+
+          8.2.1.   Mock repository és service-szint¶ hibaág-tesztek . . . . . . . .         65
+
+          8.2.2.   Crypto egységtesztek . . . . . . . . . . . . . . . . . . . . . . .       66
+
+          8.2.3.   Middleware és envelope tesztek       . . . . . . . . . . . . . . . . .   67
+
+   8.3.   2. réteg: Integrációs tesztek     . . . . . . . . . . . . . . . . . . . . . . .   68
+
+          8.3.1.   ZKP authentikációs folyamat        . . . . . . . . . . . . . . . . . .   68
+
+          8.3.2.   Repository és HTTP handler tesztek         . . . . . . . . . . . . . .   71
+
+          8.3.3.   WebSocket tesztek      . . . . . . . . . . . . . . . . . . . . . . . .   75
+
+   8.4.   3. réteg: End-to-end tesztek      . . . . . . . . . . . . . . . . . . . . . . .   76
+
+   8.5.   Tesztelési összefoglaló . . . . . . . . . . . . . . . . . . . . . . . . . . .     78
+
+
+
+9. Összefoglalás                                                                            79
+
+   9.1.   Elért eredmények . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        79
+
+   9.2.   Korlátok . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      80
+
+   9.3.   Jöv®beli fejlesztési lehet®ségek . . . . . . . . . . . . . . . . . . . . . .      80
+Rövidítésjegyzék
+
+
+
+ 2FA      Two-Factor Authentication  kétfaktoros azonosítás
+
+ API      Application Programming Interface  alkalmazásprogramozási
+
+          felület
+
+ BigInt   Tetsz®leges pontosságú egész szám típus (JavaScript)
+
+ CORS     Cross-Origin   Resource   Sharing      kereszt-eredet¶   er®forrás-
+
+          megosztás
+
+ DLP      Discrete Logarithm Problem  diszkrét logaritmus probléma
+
+ E2EE     End-to-End Encryption  végpontok közötti titkosítás
+
+ HMAC     Hash-based Message Authentication Code
+
+ HOTP     HMAC-Based One-Time Password
+
+ IIFE     Immediately Invoked Function Expression (JavaScript minta)
+
+ JWT      JSON Web Token  JSON alapú hitelesítési token
+
+ KDF      Key Derivation Function  kulcsszármaztató függvény
+
+ NIZK     Non-Interactive Zero-Knowledge  nem-interaktív zéró tudású
+
+          bizonyítás
+
+ PAKE     Password-Authenticated Key Exchange
+
+ PBKDF2   Password-Based Key Derivation Function 2
+
+ REST     Representational State Transfer
+
+ TOTP     Time-Based One-Time Password  id®alapú egyszeri jelszó
+
+ TTL      Time To Live  élettartam
+
+ WS       WebSocket
+
+ XSS      Cross-Site Scripting
+
+ ZKP      Zero Knowledge Proof  zéró tudású bizonyítás
+
+
+
+
+                                    5
+1. fejezet
+
+
+
+Bevezetés
+
+
+
+1.1. Motiváció  A jelszó-alapú hitelesítés problé-
+     mái
+   A webes szolgáltatások túlnyomó többsége ma is felhasználónévjelszó párra épü-
+
+l® hitelesítést használ. A módszer egyszer¶, de két visszatér® gyenge pontja van. Az
+
+egyik a felhasználó oldalán: a gyenge vagy több oldalon újrafelhasznált jelszavakat
+
+egy er®s szerveroldali hash-algoritmus sem védi meg. A másik a szerver oldalán: a
+
+bejelentkezés pillanatában a jelszó legalább rövid id®re megjelenik a szerveren, és
+
+egy sikeres szervertörés során közvetlenül kikerülhet.
+
+   Erre   a   problémára   kínálnak   megoldást   a   zéró tudású bizonyítások   (Zero
+
+Knowledge Proofs, ZKP) [1]: olyan kriptográai eljárások, amelyekkel a felhasz-
+
+náló matematikailag igazolja, hogy ismeri a jelszavát, anélkül hogy azt bármilyen
+
+formában elküldené. A szerver így úgy tud meggy®z®dni a felhasználó személyazo-
+
+nosságáról, hogy magát a jelszót soha nem látja.
+
+
+
+
+1.2. A dolgozat célja
+   A dolgozat egy m¶köd® cseveg®alkalmazás megtervezését és megvalósítását do-
+
+kumentálja. A rendszer a Schnorr-protokollon [2] alapuló zéró tudású bizonyítással
+
+azonosítja a felhasználókat, és az alábbi f® funkciókat nyújtja:
+
+
+
+    ZKP-alapú regisztráció és bejelentkezés  a szerveren soha nem tároló-
+     dik jelszó, kizárólag egy nyilvános kriptográai kulcs.
+
+
+
+
+                                          6
+                                      1. Bevezetés
+
+
+
+
+    TOTP kétfaktoros azonosítás  az RFC 6238 szabvány szerinti id®alapú
+      egyszeri jelszó [3], amely további védelmi réteget biztosít.
+
+
+    Valós idej¶ csevegés  WebSocket alapú, alacsony késleltetés¶ üzenetküldés
+      jelenlétjelzéssel.
+
+
+    Jelszóvisszaállítás recovery kulccsal  a jelszóvisszaállítás is ZKP-alapú,
+      így a kliens a recovery kulcsot sem fedi fel.
+
+
+
+
+1.3. A dolgozat felépítése
+   A szakdolgozat felhasználói és fejleszt®i dokumentációra oszlik:
+
+
+I. rész  Felhasználói dokumentáció (13. fejezet): Ez a rész az olvasónak
+
+nem feltételez mély technikai hátteret. Bemutatja a zéró tudású bizonyítás alapgon-
+
+dolatát közérthet® formában, majd ismerteti az alkalmazás funkcióit a felhasználó
+
+szemszögéb®l.
+
+
+
+    A 2. fejezet a zéró tudású bizonyítás intuitív magyarázatát adja, analógiákkal
+      szemléltetve a m¶ködést.
+
+
+    Ezt követ®en a 3. fejezetben a felhasználó szemszögéb®l tekintem át a rendszer
+      funkcióit: regisztráció, bejelentkezés, csevegés és jelszóvisszaállítás.
+
+
+
+
+II. rész  Fejleszt®i dokumentáció (49. fejezet): Ez a rész a rendszer technikai
+
+részleteivel foglalkozik.
+
+
+
+    A 4. fejezet a matematikai alapokat és a Schnorr-protokollt tárgyalja, majd
+      szakirodalmi áttekintéssel helyezi kontextusba a ZKP-alapú hitelesítést.
+
+
+    A felhasznált technológiákat és a választás indoklását a 5. fejezet ismerteti.
+
+    A 6. fejezet a rendszer architektúráját és komponenseit mutatja be, a 7. fejezet
+      pedig az egyes komponensek részletes implementációját írja le.
+
+
+    Végül a 8. fejezet a tesztelési stratégiát és eredményeket tartalmazza, a 9.
+      fejezet pedig összegzi a munkát és a továbbfejlesztési irányokat.
+
+
+
+
+                                            7
+         I. rész
+
+
+
+Felhasználói dokumentáció
+
+
+
+
+            8
+2. fejezet
+
+
+
+A zéró tudású bizonyítás
+
+alapgondolata
+
+
+
+   A dolgozatban bemutatott alkalmazás biztonsága egyetlen kriptográai alapelvre
+
+épül: a zéró tudású bizonyításra (Zero Knowledge Proof, ZKP). A fejezet a fogalom
+
+intuitív magyarázatát adja, technikai részletek nélkül.
+
+
+
+
+2.1. Mi az a zéró tudású bizonyítás?
+   A zéró tudású bizonyítás egy olyan módszer, amellyel valaki be tudja bizonyí-
+
+tani, hogy ismer egy titkot, anélkül hogy magát a titkot felfedné. Els® hallásra ez
+
+paradoxonnak t¶nhet: hogyan gy®zhet meg valakit arról, hogy tud valamit, ha nem
+
+árulja el, mit tud? A válasz a matematikában rejlik: a bizonyító és az ellen®rz® fél
+
+egy kérdés-válasz párbeszédet folytat, amelynek végén az ellen®rz® meggy®z®dhet
+
+az állítás igazságáról, de a titokból semmilyen információt nem szerez.
+
+
+
+Ali baba barlangja.      Az egyik legismertebb analógia a ZKP m¶ködésének szem-
+
+léltetésére az úgynevezett   Ali baba barlangja   gondolatkísérlet. Képzeljünk el egy
+
+körkörös barlangot, amelynek a bejáratánál az út kétfelé ágazik (A és B irány),
+
+majd a hátsó részen egy zárt ajtó választja el a két ágat. Az ajtó csak egy titkos
+
+varázsszóval nyitható.
+
+   A bizonyító (Anna) azt állítja, hogy ismeri a varázsszót. Az ellen®rz® (Béla) meg
+
+akar gy®z®dni err®l, anélkül hogy meghallaná a szót. A játék a következ®képpen
+
+zajlik:
+
+
+
+
+                                          9
+                       2. A zéró tudású bizonyítás alapgondolata
+
+
+
+
+  1. Béla a barlang bejáratánál marad, nem lát be.
+
+
+  2. Anna besétál a barlangba, és véletlenszer¶en az A vagy B ágat választja.
+
+
+  3. Béla bekiált, hogy melyik ágon szeretné látni kijönni Annát (A vagy B).
+
+
+  4. Ha Anna tud átjutni az ajtón (mert ismeri a varázsszót), mindig teljesíteni
+
+        tudja Béla kérését. Ha nem ismeri a szót, csak 50% eséllyel találja el véletlenül
+
+        a helyes oldalt.
+
+
+  5. Ha ezt a játékot sokszor megismétlik, és Anna             minden     alkalommal a kért olda-
+
+        lon jön ki, Béla szinte biztossá válhat abban, hogy Anna ismeri a varázsszót,
+
+        miközben ® maga semmit nem tudott meg a szó tartalmáról.
+
+
+
+      Ez a gondolatkísérlet a ZKP három alapvet® tulajdonságát szemlélteti. A              teljes-
+ség   azt mondja ki, hogy Anna, ha valóban ismeri a titkot, mindig meg tudja gy®zni
+
+Bélát. A   megbízhatóság    az ellenkez® irányból fogja meg a kérdést: a titkot nem is-
+
+mer® Anna csak 50% eséllyel találja el a helyes oldalt, így a játék ismétlésével a
+
+csalás valószín¶sége tetsz®legesen kicsivé tehet® (bár az 1-et sosem éri el). Végül a
+
+zéró tudás   tulajdonság garantálja, hogy Béla a játék végén semmit nem tud meg a
+
+varázsszóról, csak azt, hogy Anna ismeri.
+
+
+
+                                          Titkos ajtó
+
+
+                                         2. Gyere B-n ki!
+                             A ág                  3. kijön B-n
+                                                               B   ág
+                             Anna
+                           (Bizonyító)
+
+
+
+
+                                            Bejárat
+                                  1. Anna bemegy
+                                                                   Béla
+                                                               (Ellen®rz®)
+
+      2.1. ábra. Az Ali Baba barlangja  felülnézeti vázlat. 1. Anna (Bizonyító)
+véletlenszer¶en választ egy ágat és bemegy, 2. Béla (Ellen®rz®) bekiáltja a kívánt
+       kijárati ágat, 3. Anna, ismerve a varázsszót, mindig a kért oldalon lép ki.
+
+
+
+
+                                                 10
+                        2. A zéró tudású bizonyítás alapgondolata
+
+
+
+
+2.2. Hogyan alkalmazható a ZKP hitelesítésre?
+   A hagyományos bejelentkezési rendszerekben a felhasználó elküldi a jelszavát a
+
+szerver felé, amely összehasonlítja a tárolt változattal. Ez azt jelenti, hogy a jelszó
+
+(ha csak egy pillanatra is) megjelenik a szerveren. A ZKP-alapú hitelesítés ezt a
+
+lépést kiváltja: a felhasználó jelszava helyett egy matematikai bizonyítást küld, amely
+
+igazolja, hogy ismeri a jelszót.
+
+   A folyamat a gyakorlatban a következ®képpen zajlik:
+
+
+
+  1.   Regisztráció: A felhasználó kiválaszt egy jelszót, de nem küldi el a szervernek.
+
+       Helyette a böngész® a jelszóból egy matematikai kulcspárt számol: egy         titkos
+       kulcsot   (amelyet csak a felhasználó ismer) és egy   nyilvános kulcsot   (amelyet a
+
+       szerver tárol). A nyilvános kulcsból a jelszó nem fejthet® vissza.
+
+
+  2.   Bejelentkezés: A szerver egy véletlenszer¶ kihívást (feladványt) küld a fel-
+
+       használónak. A felhasználó böngész®je a titkos kulcs segítségével kiszámítja a
+
+       helyes választ, és visszaküldi. A szerver a nyilvános kulccsal ellen®rzi, hogy a
+
+       válasz helyes-e.
+
+
+  3.   Eredmény: Ha a válasz helyes, a szerver elfogadja a bejelentkezést. Ha nem,
+
+       elutasítja. A jelszó (és a bel®le származó titkos kulcs) egyetlen pillanatra sem
+
+       jelent meg a szerveren.
+
+
+
+   Ez a folyamat megfelel a barlangos analógia logikájának: a szerver feltesz egy
+
+kérdést (melyik oldalon gyere ki?), a felhasználó válaszol (átmegy az ajtón), és a
+
+szerver meggy®z®dik az eredményr®l, anélkül, hogy megtudná a varázsszót (jelszót).
+
+
+
+
+2.3. Miért biztonságosabb, mint a jelszóküldés?
+   A ZKP-alapú hitelesítés több szempontból is er®sebb védelmet nyújt, mint a
+
+hagyományos módszer:
+
+
+
+    A szerver nem látja a jelszót. Még ha egy támadó feltöri a szervert, sem ta-
+       lál jelszavakat vagy jelszó-hasheket, kizárólag nyilvános kulcsokat, amelyekb®l
+
+       a jelszó nem állítható helyre.
+
+
+
+
+                                            11
+                    2. A zéró tudású bizonyítás alapgondolata
+
+
+
+
+    A hálózati forgalom lehallgatása sem segít. A kommunikáció során nem
+      a jelszó utazik, hanem egy egyszeri matematikai bizonyítás, amely egy másik
+
+      bejelentkezéshez nem használható fel újra.
+
+
+    Matematikailag bizonyított biztonság. A ZKP biztonságát nehéz mate-
+      matikai problémák garantálják: formálisan bizonyítható, hogy hatékony algo-
+
+      ritmus nem képes a titkot kinyerni a bizonyítási folyamatból. A ZKP mint
+
+      általános módszer különböz® nehéz problémákra építhet®; a dolgozatban be-
+
+      mutatott Schnorr-protokoll konkrétan a diszkrét logaritmus problémát (DLP)
+
+      alkalmazza, amely az egyik legjobban tanulmányozott ilyen nehézségi feltéte-
+
+      lezés.
+
+
+
+   A ZKP-alapú hitelesítés tehát a titok megosztása helyett csak a titok   ismeretét
+bizonyítja.
+
+
+
+
+                                        12
+3. fejezet
+
+
+
+Az alkalmazás bemutatása
+
+
+
+   A cseveg®alkalmazás felhasználói útja a regisztrációnál kezd®dik, és a valós ide-
+
+j¶ üzenetváltásig tart. A fejezet ezt az utat járja végig: minden alfejezet egy-egy
+
+funkciót mutat be a felhasználó szemszögéb®l.
+
+
+
+
+3.1. Rendszerkövetelmények és els® indítás
+3.1.1. Üzemeltet®i oldal (backend)
+   A szerver üzemeltetéséhez az alábbi szoftverkörnyezet szükséges:
+
+
+
+    Go 1.24 vagy újabb verzió. A szerver operációs rendszert®l függetlenül fut
+     (Linux, macOS, Windows).
+
+
+    make build eszköz (opcionális; a go run ./cmd/server paranccsal helyettesít-
+     het®).
+
+
+    Hálózat: A szerver alapértelmezetten a localhost:8080 porton hallgat; küls®
+     eléréshez a megfelel® t¶zfalszabály szükséges.
+
+
+
+A szerver indítása:
+
+
+  1. A forráskód könyvtárában futtatni kell a go   mod tidy parancsot a függ®ségek
+     letöltéséhez.
+
+
+  2. A szerver a make   run (vagy go run ./cmd/server) paranccsal indítható el.
+
+
+
+
+                                        13
+                           3. Az alkalmazás bemutatása
+
+
+
+
+  3. Az els® indításkor a szerver automatikusan el®állítja a 2048 bites Schnorr-
+
+     csoportparamétereket (ez akár egy percig is eltarthat). A paraméterek a
+
+     params.json fájlba ment®dnek, és a következ® indításkor onnan tölt®dnek
+     be.
+
+
+
+
+3.1.2. Felhasználói oldal (frontend)
+   A webalkalmazás eléréséhez kizárólag egy modern böngész® szükséges; semmilyen
+
+telepítés nem szükséges a felhasználó gépén. Támogatott böngész®k (a JavaScript
+
+BigInt és Web Crypto API-t igényelik):
+
+
+
+    Google Chrome 67+, Mozilla Firefox 68+, Microsoft Edge 79+, Safari 14+.
+
+
+Az alkalmazás megnyitása:
+
+
+  1. A böngész®ben meg kell nyitni a http://localhost:8080 címet (vagy a szer-
+
+     ver publikus elérési útját).
+
+
+  2. A rendszer küls® függ®ség (adatbázis-szerver, Docker stb.) nélkül azonnal hasz-
+
+     nálható: regisztrálás után a chat funkció rögtön elérhet®.
+
+
+
+
+3.2. Funkcionalitás áttekintése
+   Az alkalmazás egy böngész®ben futó valós idej¶ cseveg®rendszer, amely az alábbi
+
+f® funkciókat kínálja:
+
+
+
+    Regisztráció  felhasználói ók létrehozása, recovery kulcs generálásával.
+
+    Bejelentkezés  zéró tudású bizonyításon alapuló, biztonságos belépés.
+
+    Kétfaktoros azonosítás (2FA)  opcionális, id®alapú egyszeri jelszó
+     (TOTP) a még magasabb biztonság érdekében.
+
+
+    Valós idej¶ csevegés  azonnali üzenetküldés más felhasználóknak, onli-
+     ne/oine jelzéssel.
+
+
+    Jelszóvisszaállítás  recovery kulccsal végrehajtható biztonságos jelszócse-
+     re.
+
+
+
+
+                                         14
+                           3. Az alkalmazás bemutatása
+
+
+
+
+3.3. Regisztráció
+   A regisztrációs folyamat a felhasználó számára egyszer¶ és ismer®s:
+
+
+
+  1. A felhasználó megadja a kívánt felhasználónevet és jelszót a regisztrációs
+
+     ¶rlapon.
+
+
+  2. A rendszer rövid feldolgozás után visszajelez, hogy a regisztráció sikeres volt.
+
+
+  3. Megjelenik egy   recovery kulcs: egy hosszú, véletlenszer¶ karaktersorozat,
+
+     amely a jelszó elvesztése esetén szolgál biztonsági mentésként.
+
+
+  4. A felhasználónak el kell mentenie ezt a kulcsot egy biztonságos helyre (pl.
+
+     jelszókezel®, papír), mivel ez az egyetlen módja a ók visszaállításának, ha
+
+     elfelejti a jelszavát. A rendszer ezt a kulcsot nem tárolja és kés®bb nem jeleníti
+
+     meg újra.
+
+
+
+   A háttérben a böngész® a jelszóból kriptográai kulcsokat számol, és kizárólag a
+
+nyilvános komponenst küldi el a szervernek. A felhasználó ebb®l semmit nem észlel,
+
+a folyamat ugyanolyan gyors és egyszer¶, mint bármely más webes regisztráció.
+
+
+
+
+3.1. ábra. Sikeres regisztráció  a rendszer megjeleníti a recovery kulcsot, amelyet
+                         a felhasználónak el kell mentenie
+
+
+
+
+3.4. Bejelentkezés
+   A bejelentkezés a következ® képpen történik:
+
+
+
+  1. A felhasználó beírja a felhasználónevét és jelszavát.
+
+
+  2. A Bejelentkezés gombra kattint.
+
+
+
+
+                                         15
+                             3. Az alkalmazás bemutatása
+
+
+
+
+  3. A böngész® automatikusan végrehajtja a háttérben a kriptográai bizonyítást,
+
+     ami mindössze egy-két másodpercet vesz igénybe.
+
+
+  4. Sikeres hitelesítés esetén a felhasználó közvetlenül a cseveg®felületre kerül.
+
+
+
+   A felhasználó számára láthatatlan, de a háttérben egy háromlépéses matematikai
+
+párbeszéd zajlik a böngész® és a szerver között: a szerver egy véletlenszer¶ feladványt
+
+ad, a böngész® a jelszóból származó titkos kulccsal megoldja, és a szerver ellen®rzi
+
+a választ. A jelszó közben egyetlen pillanatra sem hagyja el a böngész®t.
+
+   Ha a bejelentkezés sikertelen (pl. hibás jelszó), a rendszer hibaüzenetet jelenít
+
+meg. Öt sikertelen kísérlet után a ók 15 percre zárolódik, hogy a brute-force táma-
+
+dásoknak ne legyen esélye.
+
+
+
+
+ 3.2. ábra. A bejelentkezési felület  a felhasználó a megszokott módon adja meg
+                                  nevét és jelszavát
+
+
+
+
+3.5. Kétfaktoros azonosítás (TOTP) beállítása és
+     használata
+   A felhasználók opcionálisan bekapcsolhatják a kétfaktoros azonosítást (2FA),
+
+amely egy második védelmi réteget biztosít a bejelentkezéshez.
+
+
+
+Beállítás:
+
+
+  1. A cseveg®felületen a felhasználó megnyitja a beállítások menüt.
+
+
+  2. A Kétfaktoros azonosítás bekapcsolása opcióra kattintva megjelenik egy QR-
+
+     kód.
+
+
+
+
+                                          16
+                              3. Az alkalmazás bemutatása
+
+
+
+
+   3. A   felhasználó   egy   autentikátor   alkalmazással   (pl.   Google   Authenticator,
+
+      Authy) beolvassa a QR-kódot.
+
+
+   4. Meger®sítésként meg kell adnia az alkalmazás által generált els® 6 jegy¶ kódot.
+
+
+
+Használat bejelentkezéskor:          Ha a 2FA aktív, a felhasználónevét és jelszavát
+
+követ®en egy további lépés jelenik meg: a rendszer bekéri az autentikátor alkalmazás
+
+által generált aktuális 6 jegy¶ kódot. Csak a helyes kód megadása után engedélyezi
+
+a belépést.
+
+
+
+Kikapcsolás:     A 2FA a beállítások menüben bármikor kikapcsolható. Biztonsági
+
+okokból ehhez meg kell adni az érvényes 6 jegy¶ TOTP kódot.
+
+
+
+
+3.6. Csevegés  valós idej¶ üzenetküldés
+   A sikeres bejelentkezés után a felhasználó a cseveg®felületre kerül, amely a kö-
+
+vetkez® elemekb®l áll:
+
+
+
+    Felhasználólista (oldalsáv): Az összes regisztrált felhasználó megjelenik,
+      mellettük jelzéssel, hogy éppen online (zöld) vagy oine (szürke) állapotban
+
+      vannak. Az állapotjelz®k valós id®ben frissülnek.
+
+
+    Beszélgetési ablak: Egy felhasználóra kattintva megjelenik a vele folytatott
+      beszélgetés. A küldött és fogadott üzenetek vizuálisan elkülönülnek (eltér® szín
+
+      és elhelyezés).
+
+
+    Üzenetküldés: A szövegbeviteli mez®be írva és az Enter billenty¶vel vagy
+      a küldés gombbal az üzenet azonnal megjelenik a címzettnél.
+
+
+
+   Az üzenetek valós id®ben érkeznek, így nincs szükség az oldal frissítésére. Ha a
+
+címzett éppen oine, az üzenetet a rendszer eltárolja, és a következ® bejelentkezéskor
+
+automatikusan kézbesíti. A korábbi üzenetek visszagörgethet® el®zmény formájában
+
+is elérhet®k.
+
+   Ha a hálózati kapcsolat megszakad, a rendszer automatikusan megpróbál újra-
+
+csatlakozni a háttérben.
+
+
+
+
+                                             17
+                            3. Az alkalmazás bemutatása
+
+
+
+
+3.3. ábra. A cseveg®felület két felhasználó böngész®jében  a bal oldali panelen a
+                           felhasználólista online jelzéssel
+
+
+
+
+3.7. Jelszóvisszaállítás recovery kulccsal
+   Ha a felhasználó elfelejti a jelszavát, a regisztrációkor kapott recovery kulccsal
+
+állíthatja helyre hozzáférését:
+
+
+
+  1. A bejelentkezési oldalon az Elfelejtett jelszó linkre kattint.
+
+
+  2. Megadja a felhasználónevét és a recovery kulcsot.
+
+
+  3. A rendszer a háttérben ugyanazt a kriptográai bizonyítási eljárást hajtja
+
+      végre, mint a normál bejelentkezésnél, ezúttal a recovery kulccsal.
+
+
+  4. Sikeres ellen®rzés után a felhasználó megadhat egy új jelszót.
+
+
+  5. A rendszer generál egy új recovery kulcsot is, amelyet a felhasználónak újra el
+
+      kell mentenie. A korábbi recovery kulcs érvénytelenné válik.
+
+
+
+   A jelszóvisszaállítás során is érvényesül a ókzárolás: öt sikertelen kísérlet után
+
+a ók ideiglenesen nem elérhet®.
+
+
+
+
+                                          18
+                           3. Az alkalmazás bemutatása
+
+
+
+
+ 3.4. ábra. Sikeres jelszóvisszaállítás  a rendszer új recovery kulcsot generál,
+                 amelyet a felhasználónak újra el kell mentenie
+
+
+
+
+3.8. Hibaüzenetek és teend®k
+  A rendszer használata során a felhasználó az alábbi hibaüzenetekkel találkozhat:
+
+
+   Hibás felhasználónév vagy jelszó  A megadott jelszó nem egyezik a
+    regisztrálttal. Érdemes ellen®rizni a begépelt jelszót, különös gyelmet fordítva
+
+    a kis- és nagybet¶kre.
+
+
+   A ók ideiglenesen zárolva  Öt egymást követ® sikertelen bejelentkezési
+    kísérlet után a ók 15 percre zárolódik. Meg kell várni a zárolás feloldását, majd
+
+    újra kell próbálni. Ha a jelszó nem jut a felhasználó eszébe, a jelszóvisszaállítás
+
+    funkció használható.
+
+
+   Érvénytelen TOTP kód  A megadott 6 jegy¶ kód helytelen vagy lejárt.
+    Az autentikátor alkalmazás által generált kódok 30 másodpercenként változ-
+
+    nak, ezért a legfrissebb kódot kell megadni.
+
+
+   Érvénytelen recovery kulcs  A jelszóvisszaállításhoz megadott recovery
+    kulcs nem egyezik a tárolttal. Fontos meggy®z®dni arról, hogy a legutóbb ka-
+
+    pott recovery kulcsot használja a felhasználó (a jelszóvisszaállítás után mindig
+
+    új kulcs generálódik).
+
+
+   A kapcsolat megszakadt  A hálózati kapcsolat elveszett a szerver felé.
+    A rendszer automatikusan megpróbál újracsatlakozni. Ha a probléma tartósan
+
+    fennáll, ellen®rizni kell az internetkapcsolatot és a szerver elérhet®ségét.
+
+
+   A munkamenet lejárt  A bejelentkezési token érvényessége lejárt, és
+    az automatikus frissítés nem sikerült. A rendszer átirányít a bejelentkezési
+
+    oldalra, ahol újra be kell jelentkezni.
+
+
+
+
+                                         19
+        II. rész
+
+
+
+Fejleszt®i dokumentáció
+
+
+
+
+           20
+4. fejezet
+
+
+
+Elméleti alapok
+
+
+
+   A Schnorr-protokoll biztonsági garanciái algebrai struktúrákon és egy számítás-
+
+elméleti nehézségi feltételezésen nyugszanak. A fejezet a véges testekt®l indul, eljut
+
+a ciklikus csoportokon át a diszkrét logaritmus problémáig, majd a szakirodalmi át-
+
+tekintéssel zárul, amely a dolgozatban alkalmazott megoldást kontextusba helyezi.
+
+
+
+
+4.1. Véges testek és moduláris aritmetika
+   A modern aszimmetrikus kriptográai primitívek jelent®s része véges matemati-
+
+kai struktúrák felett operál. Kiindulópontként tekintsük az n modulusú egész ma-
+
+radékosztályok halmazát: Zn = {0, 1, . . . , n − 1}, amelyen az összeadás és a szorzás
+
+modulo n értend® [4]. Az összeadás mindig elvégezhet®, így (Zn , +) minden n-re
+
+Abel-csoport. A szorzásra nézve azonban Zn általában nem test: egy a ∈ Zn elem-
+
+nek pontosan akkor létezik multiplikatív inverze, ha gcd(a, n) = 1.
+
+   Kriptográai szempontból kiemelked® szerepe van a prím modulusú esetnek.
+
+Ha p prím, akkor Zp minden nullától különböz® eleme invertálható, ezért (Zp , +, ·)
+
+véges test, amelyet Fp -vel is jelölünk [5]. A testtulajdonság (azaz minden nullától
+
+különböz® elem szorzásra nézve is invertálható) pontosan prím modulusnál áll fenn.
+
+A továbbiakban p mindig prímszámot jelöl.
+
+                                                                      ∗    ∗
+   A Fp test nem nulla elemeib®l álló multiplikatív csoport, amelyet Fp = Zp -gal
+
+jelölök, formálisan:
+
+
+
+                  Z∗p = {a ∈ Zp | gcd(a, p) = 1} = {1, 2, . . . , p − 1}.        (4.1)
+
+
+
+                      ∗
+Ezen csoport rendje |Zp | = φ(p) = p − 1, ahol φ az Euler-féle totient-függvény [5].
+
+
+
+
+                                            21
+                                    4. Elméleti alapok
+
+
+
+
+4.2. Ciklikus csoportok és generátorelemek
+       A hitelesítési protokoll paraméterei egy megfelel® tulajdonságokkal rendelkez®,
+
+                                                                               ∗
+véges ciklikus csoport megválasztását követelik meg. A Schnorr-protokollban a Zp
+
+csoport egy q prím rend¶ részcsoportját, G-t alkalmazzuk, ahol q valódi osztója a
+
+(p − 1)-nek (q | p − 1, q < p − 1). A Z∗p csoport rendje |Z∗p | = p − 1, ami (p = 3
+                                                           ∗
+kivételével) nem prímszám; ezért a protokoll nem a teljes Zp -ot, hanem annak egy
+
+q prím rend¶ G részcsoportját használja.
+       A ciklikus csoport deníciójából adódóan létezik benne legalább egy g ∈ G elem,
+
+az úgynevezett generátor, amelynek ismételt csoportm¶veletbe vonásával (multipli-
+
+katív jelölés esetén hatványozásával) a csoport minden eleme el®állítható. A generált
+
+részcsoport a következ®képpen írható fel [4]:
+
+
+
+                                G = ⟨g⟩ = {g k | k ∈ Zq }.                        (4.2)
+
+
+
+Az elem g rendje pontosan q (azaz ord(g) = q ), és a részcsoport elemszáma |G| = q
+
+[5].
+
+
+
+
+4.3. A Diszkrét Logaritmus Probléma (DLP) és an-
+     nak aszimmetriája
+       A protokollok elméleti biztonsága olyan egyirányú (trapdoor nélküli) aszimmetri-
+
+át mutató matematikai problémákon alapul, amelyeknél az el®refelé történ® számí-
+
+tás hatékony (polinom idej¶), míg az inverz m¶velet kiszámítása jelenlegi ismereteink
+
+szerint exponenciális komplexitású. A Schnorr-protokoll esetében ez az alapozó ne-
+
+héz probléma a Diszkrét Logaritmus Probléma (Discrete Logarithm Problem, DLP).
+
+       Legyen G egy q prím rend¶ ciklikus csoport, és legyen g     ∈ G a csoport egy
+generátoreleme. A DLP a következ®képpen deniálható [6]: Adott G, a generátor g ,
+
+valamint egy véletlenszer¶en választott csoportelem h ∈ G. Keressük azt az egyedi
+
+x ∈ Zq kitev®t (amely a protokollban a titkos kulcs szerepét tölti be), amelyre
+teljesül a következ® egyenl®ség:
+                                         h = gx.                                  (4.3)
+
+
+       A moduláris hatványozás, azaz a nyilvános h kulcs kiszámítása az x titkos kulcs
+
+és a g generátor ismeretében hatékonyan elvégezhet® például a gyors hatványozás
+
+
+
+
+                                            22
+                                    4. Elméleti alapok
+
+
+
+
+(square-and-multiply) algoritmusával [7].
+
+   Ezzel szemben, ha a csoport paramétereit megfelel®en nagy méret¶re válasz-
+
+tom (kell®en nagy p prímszám esetén), az inverz m¶velet, vagyis az x      = logg (h)
+érték meghatározása számításelméletileg nehéz. Nem ismert olyan klasszikus szá-
+
+mítógépen futtatható algoritmus, amely polinom id® alatt képes lenne megoldani
+
+a problémát egy általános, kell®en nagy prím rend¶ csoport esetén [6]. Ez a szá-
+
+mítási aszimmetria biztosítja a Schnorr-protokoll zero-knowledge tulajdonságát és
+
+hamisíthatatlanságát: a bizonyító (Prover) használhatja az x titkos kulcsot, miköz-
+
+ben a hitelesít® (Verier) vagy egy passzív meggyel® a publikusan elérhet® h és g
+
+elemekb®l nem képes azt ésszer¶ id®n belül visszanyerni.
+
+
+
+
+4.4. A Schnorr-protokoll
+   A Schnorr-féle azonosítási protokoll [2] a fentiekben bevezetett algebrai struktú-
+
+rákra és a diszkrét logaritmus probléma számítási aszimmetriájára épül.
+
+
+
+
+4.4.1. A protokoll áttekintése
+   A Schnorr-protokoll egy hárommenetes, interaktív, zéró tudású azonosítási séma,
+
+amely a diszkrét logaritmus problémán alapul. A protokollban két szerepl® vesz részt:
+
+
+
+    Bizonyító (P ): A felhasználó, aki a titkos kulcs (x) birtokában bizonyítja
+     személyazonosságát.
+
+
+    Hitelesít® (V ): A szerver, amely a nyilvános kulcs (y ) felhasználásával ellen-
+     ®rzi a bizonyítást.
+
+
+
+
+4.4.2. Rendszerparaméterek
+   A rendszer paraméterei nyilvánosan elérhet®k és a következ®k:
+
+
+    Egy nagy p prímszám (a modulus).
+
+    Egy q prím, amely osztója a (p − 1)-nek.
+
+    Egy g ∈ Z∗p elem, amelynek rendje pontosan q (azaz g a G részcsoport gene-
+                           ∗
+     rátora, nem a teljes Zp -é).
+
+
+
+
+                                           23
+                                     4. Elméleti alapok
+
+
+
+
+     A felhasználó titkos kulcsa egy véletlenszer¶en választott x ∈ {1, 2, . . . , q − 1}
+
+egész szám. A hozzá tartozó nyilvános kulcs:
+
+
+
+                                       y = gx     mod p.                            (4.4)
+
+
+
+
+4.4.3. A protokoll lépései
+     A három menet a következ®képpen írható le:
+
+
+1.   Elkötelez®dés      (Commitment): A bizonyító választ egy véletlen             k ∈
+{1, 2, . . . , q − 1} értéket és kiszámítja:
+
+                                       t = gk     mod p.                            (4.5)
+
+
+
+A t értéket elküldi a hitelesít®nek.
+
+
+2. Kihívás (Challenge): A hitelesít® generál egy véletlenszer¶ c ∈ {0, 1, . . . , 2l −1}
+
+kihívás értéket (ahol l a biztonsági paraméter), és elküldi a bizonyítónak. A kihívás
+
+értékét a szerver rövid ideig rögzíti egy memóriabeli tárolóban (ChallengeStore),
+
+lejárati id®vel (TTL) ellátva.
+
+
+3. Válasz (Response): A bizonyító kiszámítja:
+
+
+                                   s = (k − c · x)      mod q                       (4.6)
+
+
+
+és elküldi az s értéket a hitelesít®nek.
+
+
+
+
+4.4.4. Ellen®rzés (Verication)
+     A hitelesít® a következ® egyenl®ség teljesülését vizsgálja:
+
+
+
+                                    gs · yc ≡ t      (mod p).                       (4.7)
+
+
+
+     Ez azért helyes, mert:
+
+
+
+                               g s · y c = g k−cx · g xc = g k = t.                 (4.8)
+
+
+
+     Sikeres ellen®rzés esetén a hitelesít® elfogadja a bizonyítást, és a rendszer egy
+
+JWT tokent [8] állít ki a kliensnek.
+
+
+
+
+                                                24
+                                   4. Elméleti alapok
+
+
+
+
+4.4.5. Biztonsági tulajdonságok
+   A Schnorr-protokoll a következ® biztonsági garanciákat nyújtja [2, 1]:
+
+
+
+    Teljesség: Amennyiben a bizonyító ismeri a helyes titkos kulcsot, a hitelesít®
+      mindig elfogadja a bizonyítást.
+
+
+    Megbízhatóság: Egy x titkos kulcsot nem ismer® támadó csak elhanyagol-
+      hatóan kis valószín¶séggel képes érvényes választ generálni.
+
+
+    Zéró tudás: Az interakció során a hitelesít® semmilyen, az x titkos kulcsra
+      vonatkozó információt nem szerez meg, hiszen a protokoll szimulálható a titkos
+
+      kulcs ismerete nélkül.
+
+
+
+   Az implementáció során a rendszer kiegészít® biztonsági intézkedéseket is al-
+
+kalmaz: kérésszám-korlátozást (rate limiting) és ókzárolást az ismételt sikertelen
+
+bejelentkezési kísérletek ellen.
+
+
+
+
+4.5. Szakirodalmi áttekintés  ZKP-alapú hitelesí-
+     tés
+   A ZKP-alapú hitelesítés nem új kutatási terület: az elmúlt évtizedben számos
+
+megközelítés született, a gráf-izomorzmustól a zk-SNARK-okon át a rácsalapú
+
+konstrukciókig. Az alábbi áttekintés kontextusba helyezi a dolgozatban alkalmazott
+
+Schnorr-protokollt, és bemutatja a terület jelenlegi állapotát meghatározó alternatív
+
+megoldásokat.
+
+
+
+
+4.5.1. Hagyományos jelszó-alapú hitelesítés sebezhet®ségei
+   A jelszó-alapú hitelesítés legsúlyosabb támadási formája az oine szótártáma-
+
+dás: a támadó passzívan lehallgatja a hitelesítési forgalmat, majd a megszerzett el-
+
+len®rz® értékekre (verier) szótárból származó jelszó-jelölteket próbál ki. A PAKE-
+
+protokollokkal szemben alapelvárás, hogy az egyetlen megvalósítható támadás az
+
+online   kísérletezés legyen, amelynek sikere felülr®l becsülhet® a próbálkozások szá-
+
+mával és a szótár méretével [9]. Ennek formális kerete Toorani dolgozatában a BPR-
+
+modell, amely megkülönböztethet®ségi játékként deniálja a PAKE-biztonságot: a
+
+
+
+
+                                          25
+                                    4. Elméleti alapok
+
+
+
+
+támadó el®nye a valódi és a véletlen session-kulcs megkülönböztetésében nem lehet
+
+nagyobb az online találgatási valószín¶ségnél [9].
+
+   A zéró tudású bizonyítások ebben a modellben azért kínálnak el®relépést, mert a
+
+bizonyító fél   sosem   osztja meg titkos adatát az ellen®rz®vel: a ZKP konstrukcióiból
+
+formálisan igazolható, hogy az interakció során a titkos kulcsra vonatkozó informá-
+
+ció nem szivárog ki, ami közvetlenül csökkenti a szerver-oldali kompromittálás és
+
+adatszivárgás hatásait [10].
+
+
+
+
+4.5.2. ZKP hitelesítési architektúrák az irodalomban
+   Az elmúlt évtizedben több kutatócsoport kísérelt meg ZKP-alapú hitelesítési
+
+rendszereket konkrét kontextusokhoz (IoT, webes portálok, mobil 2FA) szabni. A
+
+bibliometriai áttekintések közül Pathak és szerz®társai munkája ad jó képet a terü-
+
+let szerkezetér®l: kiemelik többek között a J-PAKE optimalizált változatait (RO-J-
+
+PAKE, CRS-J-PAKE), amelyek két zéró tudású bizonyítással kevesebbet használnak
+
+az eredetinél, valamint a SeDiCi 2.0-t, amely kifejezetten mobil és felh®alapú kör-
+
+nyezetekhez kínál kétfaktoros ZKP-hitelesítést [11].
+
+   Az architektúra-szint¶ megközelítések közös vázát Chen és szerz®társai az IoT-
+
+alkalmazások áttekintésében foglalták össze. A tipikus rendszer három fázisból épül
+
+fel: az inicializálás el®állítja a nyilvános kulcsokat, a regisztráció tárolja a hashelt jel-
+
+szót vagy a nyilvános kulcsot, a hitelesítés pedig kihívás-válasz alapú. A FiatShamir
+
+heurisztika ebben a modellben kulcsszerepet kap, mivel az interaktív bizonyítások
+
+nem-interaktívvá alakításával csökkenti a hálózati kommunikációt, ami különösen
+
+fontos tulajdonság nagy késleltetés¶ IoT-környezetben [12]. Egy ilyen konkrét IoT-
+
+konstrukciót mutatnak be Dwivedi és szerz®társai: náluk a protokoll egy algoritmus-
+
+hármas (KeyGen, Prover, Verier) köré épül, a regisztráció pedig PAKE-alapú el-
+
+járással számolja ki a szerverhez érkez® nyilvános paramétert, úgy hogy a jelszó
+
+egyszer¶ szövegként sosem kerül a szerverre [13].
+
+   A gyakorlati teljesítmény kérdésére a zk-SNARK-alapú captive portál-hitelesítés
+
+Thiyagarajan rendszere ad mérési referenciát: a szerver kihívást küld, a kliens pedig
+
+lokálisan tárolt titkos kulccsal bizonyítást számol. 1000 párhuzamos felhasználónál
+
+az átlagos ellen®rzési id® 0,18 másodperc, a sikerességi arány 97,5 % volt [14]. Ez
+
+nagyságrendileg lassabb, mint a Schnorr-protokoll szerver-oldali két-három modulá-
+
+ris hatványozása, ám valós rendszerben is b®ven alkalmazható, cserébe kényelmesebb
+
+
+
+
+                                             26
+                                      4. Elméleti alapok
+
+
+
+
+interakciós modellt (egyetlen kör) ad.
+
+    Más matematikai alapokra épít® megoldás Saluja és Bhatia gráf-izomorzmuson
+
+alapuló sémája, amelyben minden kriptográai számítás (titkos kulcs, gráfok konst-
+
+rukciója) a böngész®ben zajlik: a bizonyító egy véletlenszer¶en permutált gráfot
+
+küld, a szerver bitenkénti kihívásokat ad, és csak az izomorzmus ismeretében ad-
+
+                                                              −10
+ható helyes válasz. Tíz iteráció után a csalás valószín¶sége 2    alá kerül [15]. Asimi
+
+és szerz®társai SAVP rendszere ehhez képest más úton jár: a statikus jelszót nem ki-
+
+váltja, hanem   virtuális jelszóvá   alakítja egy dinamikus rotációs algoritmussal, amely
+
+a jelszót és egy felhasználóhoz kötött véletlen sót kiszámíthatatlan származtatott
+
+értékké kombinál, a kölcsönös hitelesítés pedig nonce-alapú kihívás-cserével történik
+
+[16].
+
+
+
+
+4.5.3. PAKE protokollcsalád
+    A jelszó-alapú hitelesített kulcscsere (Password-Authenticated Key Exchange,
+
+PAKE) protokollcsalád szorosan kapcsolódik a ZKP-alapú hitelesítéshez, mivel szá-
+
+mos PAKE-variáns zéró tudású bizonyítási primitívekre épül. Ennek egyik legszebb
+
+példája a J-PAKE (     Password-Authenticated Key Exchange by Juggling        ), amely a
+
+Schnorr-féle nem-interaktív zéró tudású bizonyítást (NIZK) használja épít®elem-
+
+ként. Biztonságát a Döntési DieHellman (DDH) feltételezésre vezeti vissza, és
+
+két körben valósítja meg a kulcscserét: a felek efemer nyilvános kulcsokat és a hoz-
+
+zájuk tartozó NIZK-eket cserélnek, amelyeket a közös session-kulcs származtatása
+
+el®tt mindkét félnek ellen®riznie kell [17]. A dolgozatban választott Schnorr-protokoll
+
+ugyanabba a családba illeszkedik, csak más alkalmazási céllal (hitelesítés, nem
+
+kulcscsere).
+
+    A PAKE-variánsok széles összehasonlítására jó kiindulópont Vazquez Sandoval és
+
+szerz®társai PakeMail munkája, amely magát az SPAKE2 protokollt használja  a
+
+felek vakított (blinded) DieHellman tagokat cserélnek, majd MAC-alapú kulcs-
+
+meger®sítést (key conrmation) végeznek , a dolgozatuk második felében pedig
+
+hét PAKE-protokollt (SPAKE2, PFS-SPAKE2, OPAQUE, J-PAKE, KV-SPOKE,
+
+RLWE-PAK, RLWE-PPK) vetnek össze a körök száma, a kulcs-meger®sítés tá-
+
+mogatása, a forward secrecy és a nehézségi feltételezés szerint, beleértve rácsalapú
+
+(lattice-based), poszt-kvantum kompatibilis jelölteket is [18].
+
+    A klasszikus megközelítést Kobara és Imai Pretty-Simple PAKE protokollja kép-
+
+
+
+
+                                              27
+                                 4. Elméleti alapok
+
+
+
+
+viseli: a DDH-nehézségre épített titkosító amplikációval (secrecy amplication) a
+
+véletlen kitev®k elfedik a jelszót, és így a lehallgatott forgalomból nem vezethet®
+
+vissza. A kölcsönös hitelesítést kulcsolt hash-függvénnyel és külön tagekkel végzik
+
+a kliens és a szerver felé [19]. Egy újabb, másik problémára optimalizált változat
+
+Fomichev és szerz®társai FastZIP rendszere, amelyben a fPAKE (        fuzzy PAKE    ) az
+
+EKE-re (Encrypted Key Exchange) épül: alacsony entrópiájú titkokból (tipikusan
+
+4060 bites bemenetb®l) párhuzamos PAKE-példányokkal állít el® magas entrópiá-
+
+jú kulcsot. A szerz®k elemzése szerint aktív támadó munkamenetenként legfeljebb
+
+egyetlen tippelésre korlátozódik, a 90 % fölötti hasonlósági küszöb esetén pedig az
+
+                             −20
+oine támadás valószín¶sége 2    alá esik [20].
+
+
+
+
+4.5.4. ZKP-alapú jelszó-visszaállítás és kulcskezelés
+   Egy ZKP-alapú hitelesítési rendszer sajátos kihívása a jelszóvisszaállítás, hiszen
+
+a szerver deníció szerint nem rendelkezik a felhasználó titkos adataival. Az irodalom
+
+több iránya is foglalkozott ezzel a problémával, javarészt az   Oblivious PRF   primitív
+
+(OPRF,   feledékeny álvéletlen függvény   ) köré építve.
+
+   A dolgozatban választott second verier megoldás (recovery-verier) egy egy-
+
+szer¶, szerver-állapotot nem igényl® változat; a szakirodalom ennél nomabb konst-
+
+rukciókat is ismer. Little és szerz®társai egy részlegesen feledékeny PRF-re épül®
+
+ók-helyreállítási protokollt mutatnak be, amelyben additív homomorf titkosítás
+
+gondoskodik arról, hogy sem a kliens, sem a szerver ne lássa a PRF köztes álla-
+
+potait; a szótártámadások ellen memória-igényes, lassú hash-függvény véd [21]. Ezt
+
+általánosítja a jelszóvédett kulcs-visszakeresés (  Password-Protected Key Retrieval   ,
+
+PPKR) problémája, amelyet Faller és szerz®társai vizsgáltak: a cél, hogy a felhasz-
+
+náló kizárólag a jelszavával tudjon magas entrópiájú kulcsot letölteni a szerverr®l,
+
+miközben a szerver sem a kulcshoz, sem a jelszóhoz nem fér hozzá. OPRF-alapú pro-
+
+tokolljuk Lev-3 biztonsági szintje még teljesen kompromittált hardveres biztonsági
+
+modul (HSM) esetén is védett marad, mert a támadónak felhasználónként egyedi
+
+oine támadást kellene végrehajtania [22].
+
+   A szerver-oldali jelszó-házirend ZKP-keretben nehezebb kérdés, mert a szerver
+
+nem látja a jelszót, de mégis érvényesítenie kell a szabályokat. Zhang és szerz®társai
+
+B-OPRF (  Blocklisted Oblivious PRF   ) keretrendszere erre ad választ: az augmented
+
+PAKE (aPAKE) protokollokba ágyazva tiltólistán sz¶ri a gyakori jelszavakat úgy,
+
+
+
+
+                                            28
+                                 4. Elméleti alapok
+
+
+
+
+hogy közben nem ismeri meg a felhasználó jelszavát (a regisztrációs fázis 1500 ele-
+
+m¶ klaszter-tiltólistával 1,42 másodperc alatt fut le) [23]. Poszt-kvantum irányban
+
+Nguyen és szerz®társai zero-knowledge password policy check (ZKPPC) konstruk-
+
+ciója a Short Integer Solution (SIS) rácsproblémát és Stern-típusú protokollokat
+
+használ: 52 párhuzamos iterációval éri el a megkívánt zéró tudás biztonsági szintet,
+
+anélkül hogy a jelszó vagy annak szerkezete bármikor felfedésre kerülne [24].
+
+
+
+
+4.5.5. A Schnorr-protokoll választásának indoklása
+   A fenti áttekintés jól mutatja, hogy a ZKP-alapú hitelesítés területén b®séges a
+
+választék. A dolgozat kontextusában mégis a Schnorr-protokoll mellett döntöttem,
+
+és az alábbiakban ezt a döntést indokolom.
+
+   Van Laer és szerz®társai egy olyan kliens-szerver hitelesítési rendszert tervez-
+
+tek, amelyben a Schnorr-féle azonosítási sémát a Fiat-Shamir heurisztikával nem-
+
+interaktív formára alakították, és memóriaigényes (memory-hard) hash függvénnyel
+
+(scrypt) kombinálták a szótártámadások elleni védelemhez. A moduláris felépí-
+
+tés (JavaScript kliens könyvtár és Java szerver könyvtár, JSON-alapú bizonyítás-
+
+objektumok cseréjével) jól demonstrálja a Schnorr-protokoll webes környezetbe való
+
+integrálhatóságát [25].
+
+   Major és szerz®társai egy káosz-alapú rendszerbe ágyazva alkalmazták a Schnorr-
+
+féle nem-interaktív zéró tudású bizonyítást, 2048 bites DSA csoportparaméterekkel.
+
+A szerver-oldali ellen®rzés két moduláris hatványozást és egy kriptográai hash függ-
+
+vény kiértékelését igényli, ami kell®en hatékony a valós idej¶ hitelesítéshez [26].
+
+   Érdemes megemlíteni az alternatív ZKP-megközelítéseket is: Povsic kvadratikus
+
+reziduumokon alapuló protokollt tervezett, amelyet EAP (Extensible Authentication
+
+Protocol) módszerként specikált. A szerz® kiemeli, hogy a kulcsnyújtás (key-
+
+stretching) ZKP-rendszereknél sajátos kihívást jelent, mivel a tárolt nyilvános érték
+
+közvetlenül szükséges az ellen®rzéshez [27]. Ez az észrevétel rávilágít a Schnorr-
+
+protokoll el®nyére: a kliens-oldali PBKDF2 kulcsszármaztatás természetesen illesz-
+
+kedik a protokollba, mivel a szerver kizárólag a származtatott nyilvános kulcsot
+
+         x
+(y = g       mod p) tárolja.
+   A Schnorr-protokoll mellett több gyakorlati szempont is szólt. A legfontosabb,
+
+hogy a hárommenetes interakció (commitment, challenge, response) közvetlenül
+
+leképezhet® három HTTP kérés-válasz párra: ez a zk-SNARK-alapú vagy gráf-
+
+
+
+
+                                          29
+                                 4. Elméleti alapok
+
+
+
+
+izomorzmus-alapú rendszereknél jóval egyszer¶bb REST API végpont-struktúrát
+
+eredményez. A kliens oldalán sincs szükség speciális hardverre, mivel a szükséges
+
+kriptográai m¶veletek (a moduláris hatványozás és a hash-számítás) a modern bön-
+
+gész®k beépített BigInt és Web Crypto API-jaival elvégezhet®k. A protokoll klasszi-
+
+kus biztonsága ráadásul a jól tanulmányozott diszkrét logaritmus probléma nehéz-
+
+ségére vezethet® vissza [2, 6], és, ahogy a dolgozatban is látható lesz, természetesen
+
+kombinálható PBKDF2 kulcsszármaztatással és TOTP kétfaktoros azonosítással.
+
+
+
+
+                                         30
+5. fejezet
+
+
+
+Használt technológiák
+
+
+
+   A rendszer fejlesztése során több technológiai döntést kellett meghoznom  a
+
+szervernyelvt®l az adatbázis-megoldáson át a kliens-oldali kriptográai eszközökig.
+
+A fejezet az egyes rétegeket külön alfejezetekben veszi végig, mindig a választás
+
+indokával együtt.
+
+
+
+
+5.1. Go 1.24
+   A szerver-oldali logika a Go programozási nyelv [28] 1.24-es verziójával készült.
+
+A nyelv er®s típusrendszere, beépített párhuzamossági primitívjei (goroutine-ok,
+
+channel-ek) és átfogó standard könyvtára különösen jól illik a WebSocket-alapú valós
+
+idej¶ rendszerhez: a goroutine-ok minden WebSocket kapcsolatot külön könny¶sú-
+
+lyú szálban kezelnek, így több ezer egyidej¶ kapcsolat is hatékonyan kiszolgálható. A
+
+crypto/rand és math/big csomagokkal a Schnorr-protokoll kriptográai m¶veletei
+küls® függ®ség nélkül megvalósíthatók, a fordító egyetlen statikusan linkelt binárist
+
+állít el®, a beépített testing csomag pedig külön keretrendszer nélkül támogatja
+
+mind az egység-, mind az integrációs teszteket.
+
+
+
+
+5.1.1. gorilla/websocket
+   A gorilla/websocket [29] egy széles körben használt, jól tesztelt WebSocket imp-
+
+lementáció Go nyelven. A könyvtár teljes kör¶en támogatja a WebSocket protokollt
+
+[30]: a bináris és szöveges üzenetek mellett a ping/pong kereteket és a kapcsolatbon-
+
+tási kódokat is. A rendszerben a WebSocket szerver biztosítja a kétirányú valós idej¶
+
+üzenetküldést a kliens és a szerver között, a jelenlét-állapotok (presence) broadcast-
+
+
+
+
+                                         31
+                                5. Használt technológiák
+
+
+
+
+alapú szórását az aktív kliensek felé, valamint a 30 másodpercenkénti ping-et, amely
+
+a kapcsolatot életben tartja.
+
+
+
+
+5.1.2. chi/v5 HTTP router
+   A chi/v5 [31] egy könny¶súlyú, idiomatikus HTTP router Go-hoz, amely a stan-
+
+dard net/http csomagra épül. A népszer¶bb Gin vagy Echo alternatívákkal szem-
+
+ben nem hoz magával saját kontextus-kezelést vagy válasz-írót, kizárólag a standard
+
+könyvtár interfészeire épít: bármely http.Handler kompatibilis middleware (hitele-
+
+sítés, CORS, naplózás) változtatás nélkül beilleszthet® a láncba. URL-paramétereket
+
+és csoportosított útvonalakat is támogat, a rendszerben ez kezeli az összes REST
+
+API végpontot: a ZKP hitelesítési, TOTP, felhasználókezelési és chat-el®zmény ké-
+
+réseket.
+
+
+
+
+5.1.3. SQLite (modernc.org/sqlite, tiszta Go)
+   Az adatok tartós tárolásához a rendszer SQLite relációs adatbázist [32] használ,
+
+a modernc.org/sqlite [33] tiszta Go implementáción keresztül. A tiszta Go imple-
+
+mentáció CGo-mentes fordítást tesz lehet®vé, ami egyszer¶bb keresztfordítást (cross-
+
+compilation) és telepítést eredményez. Az adatbázis egyetlen fájlként (zkp-chat.db)
+
+a szerver mellett él, külön adatbázis-szerver nélkül, ami illeszkedik a rendszer kül-
+
+s® függ®ség nélküli tervezési elvéhez. A tesztkörnyezet ugyanezt a könyvtárat in-
+
+memory módban (:memory:) használja, így a tesztek gyorsak és izoláltak maradnak.
+
+
+
+
+5.1.4. JWT (HMAC-SHA256)
+   A session kezelés JSON Web Tokeneken [8] alapul, HMAC-SHA256 (HS256) alá-
+
+írással. A szerver a sikeres hitelesítés után állít ki tokent, amely a felhasználó azonosí-
+
+tóját (sub claim) és az érvényességi id®t tartalmazza. Az állapotmentes token-modell
+
+illeszkedik a REST API architektúrához: a szerver nem tart fenn session-állapotot.
+
+A 2 órás érvényességi id® egyensúly a biztonság és a felhasználói kényelem között, a
+
+kliens pedig a lejárat el®tt automatikusan frissíti a tokent, így a felhasználónak nem
+
+kell újra bejelentkeznie.
+
+
+
+
+                                            32
+                               5. Használt technológiák
+
+
+
+
+5.1.5. pquerna/otp (TOTP)
+   A kétfaktoros azonosítás az RFC 6238 [3] szerinti TOTP (Time-Based One-Time
+
+Password) mechanizmust alkalmazza. A pquerna/otp [34] Go könyvtár lefedi a teljes
+
+szükséges funkcionalitást: a TOTP titkos kulcs generálását, a mobilalkalmazással
+
+beolvasható QR-kód el®állítását (base64 PNG formátumban), valamint az id®alapú
+
+kódok 30 másodperces ablakkal történ® validálását.
+
+
+
+
+5.2. Kliens-oldali technológiák
+   A kliens-oldali logika Vanilla JavaScript-ben készült, keretrendszer (React, Vue
+
+stb.) nélkül, IIFE (Immediately Invoked Function Expression) modul mintával.
+
+A projekt fókusza a kriptográai hitelesítés és nem a frontend architektúra, a
+
+keretrendszer-mentesség pedig kiváltja a build-lépést és csökkenti a komplexitást.
+
+   A   kliens-oldali   kriptográa   a   böngész®   natív   képességeire   támaszkodik:   a
+
+JavaScript beépített BigInt típusa végzi a Schnorr-protokollhoz szükséges moduláris
+
+hatványozást nagy egészekkel, a Web Crypto API subtle.deriveBits metódusa pe-
+
+dig a felhasználó jelszavából származtatja a titkos kulcsot PBKDF2SHA256-tal. A
+
+valós idej¶ kapcsolatot a böngész® natív WebSocket API-ja biztosítja, automatikus
+
+újracsatlakozási logikával kiegészítve. Az üzenetek megjelenítésekor a escapeHtml
+
+segédfüggvény el®zi meg a cross-site scripting (XSS) támadásokat.
+
+
+
+
+                                            33
+6. fejezet
+
+
+
+Komponensek felépítése és
+
+kapcsolataik
+
+
+
+   A rendszer tervezésekor az volt a f® szempont, hogy a kriptográai hitelesítés és a
+
+valós idej¶ csevegés igényeit egyetlen, önállóan futtatható alkalmazásban egyesítsem.
+
+Ebb®l alakult ki a háromréteg¶ architektúra, amelynek komponenseit és a tervezési
+
+döntések hátterét a fejezet a továbbiakban részletezi.
+
+
+
+
+6.1. Architektúra áttekintés
+   Az architektúra három rétegre épül:
+
+
+  1.   Kliens réteg: Vanilla JavaScript alapú webalkalmazás (IIFE modul mintá-
+
+       val), amely végrehajtja a kliens-oldali kriptográai m¶veleteket (PBKDF2
+
+       SHA256 kulcsszármaztatás, salt és verier generálás, commitment és response
+
+       számítás BigInt aritmetikával) és kezeli a felhasználói felületet.
+
+
+  2.   Alkalmazás réteg: Go 1.24 nyelven írt szerver, amely két f® alrendszert tar-
+
+       talmaz:
+
+
+          HTTP REST API (chi/v5 [31] router)  hitelesítés, TOTP, felhasználó-
+            kezelés, chat el®zmények.
+
+
+          WebSocket szerver (gorilla/websocket [29])  valós idej¶ üzenettovábbí-
+            tás és jelenlét-kezelés.
+
+
+  3.   Adat réteg: SQLite [32] relációs adatbázis (modernc.org/sqlite [33], tiszta
+
+       Go implementáció, CGo nélkül) a felhasználók és üzenetek tárolásához, vala-
+
+
+
+
+                                           34
+                       6. Komponensek felépítése és kapcsolataik
+
+
+
+
+     mint memóriabeli (in-memory) tárolók a rövid életciklusú állapotok kezelésére
+
+     (challenge értékek, TOTP pending tokenek).
+
+
+
+
+                                        Kliens réteg
+              Vanilla JavaScript (IIFE)  BigInt, PBKDF2, WebSocket API
+
+               REST                                                   WebSocket
+
+                                    Alkalmazás réteg
+        Go 1.24  REST API (chi/v5) + WebSocket szerver (gorilla/websocket)
+
+                                               SQL / Map
+
+                                        Adat réteg
+SQLite (modernc.org/sqlite) + In-memory tárolók (ChallengeStore, PendingTOTPStore)
+
+                  6.1. ábra. A rendszer háromréteg¶ architektúrája
+
+
+
+
+6.2. Adatmodell
+   A rendszer az alábbi f® adatentitásokat kezeli:
+
+
+
+    Users tábla: felhasználónév (username), salt, verier (y = g x mod p), TOTP
+                                                        x
+     titkos kulcs (opcionális), recovery verier (yr = g r mod p, a jelszóvisszaállí-
+
+     táshoz), sikertelen belépési kísérletek száma (failed_attempts), ókzárolás
+
+     id®pontja (locked_until).
+
+
+    Messages         tábla:   feladó    azonosító     (sender_id),   címzett     azonosító
+
+     (receiver_id),      szöveges   tartalom     (content),    id®bélyeg   (created_at),
+
+     kézbesítési állapot (delivered).
+
+
+
+   A challenge értékek és a TOTP pending tokenek nem az adatbázisban, hanem
+
+memóriabeli   sync.RWMutex-védett Go map struktúrákban tárolódnak, háttérszál
+segítségével végzett automatikus TTL-alapú lejáratkezeléssel.
+
+   Az adatbázis felépítését a 6.2. ábra szemlélteti.
+
+
+
+
+                                            35
+                      6. Komponensek felépítése és kapcsolataik
+
+
+
+
+                                           USERS
+
+          INTEGER    id                         PK
+
+          TEXT       username                   UK   NOT NULL, UNIQUE
+
+          TEXT       salt                            NOT NULL
+
+          TEXT       verifier                        NOT NULL (y = g^x mod p)
+
+          TEXT       totp_secret                     NULL (opcionalis)
+
+          TEXT       recovery_verifier               NOT NULL (y_r = g^x_r mod p)
+
+          INTEGER    failed_attempts                 DEFAULT 0
+
+          DATETIME   locked_until                    NULL
+
+
+
+                            kuldi (sender_id)    kapja (receiver_id)
+
+
+
+
+                                         MESSAGES
+
+                     INTEGER        id                PK
+
+                     INTEGER        sender_id         FK     NOT NULL
+
+                     INTEGER        receiver_id       FK     NOT NULL
+
+                     TEXT           content                  NOT NULL
+
+                     DATETIME       created_at               NOT NULL
+
+                     BOOLEAN        delivered                DEFAULT 0
+
+
+
+
+6.2. ábra. Az adatbázis ER diagramja  a Users és Messages táblák kapcsolata
+
+
+
+ Az alábbi táblázatok részletezik az egyes adatbázis-táblák mez®szerkezetét.
+
+
+
+
+                                                                 36
+                    6. Komponensek felépítése és kapcsolataik
+
+
+
+
+  Mez®                      Típus              Leírás
+  id                        INTEGER            Automatikusan növekv® els®dleges
+                            (PK)               kulcs
+  username                  TEXT               Egyedi felhasználónév
+                            (UNIQUE)
+  salt                      TEXT               32 byte-os véletlenszer¶ salt (hex)
+  verifier                  TEXT
+                                                                      x
+                                               Nyilvános kulcs: y = g mod p (hex)
+  totp_secret               TEXT               TOTP titkos kulcs (ha 2FA aktív)
+                            (NULL)
+  recovery_verifier         TEXT               Recovery     nyilvános   kulcs:   yr   =
+                                                xr
+                                               g   mod p
+  failed_attempts           INTEGER            Sikertelen   belépések    száma    (ala-
+                                               pért.: 0)
+  locked_until              DATETIME           Fiókzárolás lejárati id®pontja
+                            (NULL)
+
+                    6.1. táblázat. A users tábla mez®szerkezete
+
+
+
+
+    Mez®            Típus             Leírás
+    id              INTEGER           Automatikusan növekv® els®dleges kulcs
+                    (PK)
+    sender_id       INTEGER           Feladó felhasználó azonosítója
+                    (FK)
+    receiver_id     INTEGER           Címzett felhasználó azonosítója
+                    (FK)
+    content         TEXT              Az üzenet szöveges tartalma
+    created_at      DATETIME          Az üzenet létrehozásának id®bélyege
+    delivered       BOOLEAN           Kézbesítési állapot (0: várakozik, 1: kéz-
+                                      besítve)
+
+                  6.2. táblázat. A messages tábla mez®szerkezete
+
+
+
+
+6.3. A hibrid kommunikációs réteg (REST +
+     WebSocket)
+   A rendszer két különálló kommunikációs csatornát alkalmaz: REST API-t a hi-
+
+telesítéshez, WebSocketet az üzenetváltáshoz. A szétválasztás oka, hogy a két fel-
+
+adat természete eltér: a hitelesítés kérés-válasz alapú és állapotmentes (stateless),
+
+míg a csevegés folyamatos, állapottartó (stateful) kapcsolatot igényel. A REST API
+
+izolált, jól tesztelhet® végpontokat biztosít a Schnorr-protokoll egyes lépéseihez, a
+
+WebSocket csatorna pedig kizárólag a már hitelesített felhasználók valós idej¶ üze-
+
+neteiért felel, így az implementáció egyik felét sem terheli a másik feladat állapot-
+
+kezelése.
+
+
+
+
+                                         37
+                       6. Komponensek felépítése és kapcsolataik
+
+
+
+
+6.3.1. A HTTP REST API szerepe
+   A HTTP REST API kizárólag a rendszer belépési pontjaként funkcionál. Kérés-
+
+válasz alapú, állapotmentes protokoll lévén kiválóan illeszkedik a Schnorr-protokoll
+
+lépéseinek leképezéséhez. Az autentikációs folyamat a következ® HTTP végpontokon
+
+keresztül valósul meg:
+
+
+
+    GET /api/auth/params  a Schnorr-csoport nyilvános paramétereinek (p, q ,
+       g ) lekérése.
+
+    POST /api/auth/register  regisztráció (felhasználónév, salt, verier, re-
+       covery verier).
+
+
+    POST /api/auth/login/init  a Schnorr-protokoll els® fázisa (salt és chal-
+       lenge visszaadása).
+
+
+    POST /api/auth/login/verify  a protokoll záró fázisa (commitment és
+       response ellen®rzése).
+
+
+    POST /api/auth/recovery/init  jelszóvisszaállítás els® fázisa.
+
+    POST /api/auth/recovery/reset  jelszóvisszaállítás végrehajtása.
+
+    POST /api/auth/refresh  JWT token frissítése.
+
+   Sikeres kriptográai ellen®rzés esetén a REST API egy JWT tokent állít ki 2 órás
+
+érvényességgel, amely a kés®bbi kommunikáció felhatalmazási eszközeként szolgál.
+
+
+
+
+6.3.2. A WebSocket csatorna
+   A tényleges üzenetváltáshoz a WebSocket protokoll [30] nyújtja a szükséges ala-
+
+csony késleltetés¶, kétirányú kommunikációs csatornát. A folyamat a hitelesítést
+
+követ®en:
+
+
+
+  1.   Kapcsolatfelvétel:       A   kliens   WebSocket   handshake-et   kezdeményez   a
+
+       /ws?token=<JWT> végponton, ahol a JWT tokent query paraméterként to-
+       vábbítja.
+
+
+  2.   Validáció: A szerver ellen®rzi a token HMAC-SHA256 aláírását és érvényes-
+
+       ségi idejét. Sikeres validáció esetén a protokollváltás megtörténik.
+
+
+
+
+                                             38
+                     6. Komponensek felépítése és kapcsolataik
+
+
+
+
+3.   Üzenettovábbítás: A kliensek közötti üzenetek JSON envelope formátum-
+
+     ban utaznak. A szerver (Hub) a beérkez® adatcsomagot értelmezi, a címzettet
+
+     azonosítja, és a megfelel® aktív kapcsolatra továbbítja.
+
+
+4.   Kézbesítés vagy tárolás: Amennyiben a címzett aktív, a szerver azonnal
+
+     továbbítja az üzenetet. Inaktív állapot esetén az üzenet az adatbázisba kerül
+
+     delivered = 0 állapottal, és a címzett következ® csatlakozásakor a rendszer
+     automatikusan kézbesíti.
+
+
+
+A rendszer felépítését a 6.3. ábra szemlélteti.
+
+
+                                                Kliens Alkalmazás
+
+
+                             1. Autentikáció                           2. Valós idejű Chat
+                             (POST kérések)                              (JWT Tokennel)
+
+
+                                               Kommunikációs Réteg
+
+                              HTTP REST API                             WebSocket Szerver
+                        (Statikus, Állapotmentes)                   (Valós idejű, Állapottartó)
+
+
+
+
+                 Kihívás (c) mentése      Publikus kulcs (y)            Offline üzenetek
+                     és olvasása              lekérése                  írása és olvasása
+
+
+                                           Adatréteg
+
+
+
+                  In-memory tárolók                            SQLite Adatbázis
+               Challenge, TOTP pending                         Users, Messages
+
+
+
+
+ 6.3. ábra. A hibrid kommunikációs réteg (REST API és WebSocket) logikai
+                                               felépítése
+
+
+
+A teljes hitelesítési és kommunikációs szekvenciát a 6.4. ábra mutatja be.
+
+
+
+
+                                                     39
+                                 6. Komponensek felépítése és kapcsolataik
+
+
+
+
+                  Kliens                                                 REST API                                   In-memory Store   WebSocket Szerver
+
+
+
+
+                                                                  1. FÁZIS: Állapotmentes azonosítás (HTTP)
+
+
+                           POST /api/auth/login/init (Felhasználónév, t)
+                    1
+
+                                                                                Mentés: kihívás (c) 5 perces lejárattal
+                                                                            2
+
+                                         Válasz: kihívás (c)
+                                                                            3
+
+                        POST /api/auth/login/verify (Felhasználónév, s)
+                    4
+
+                                                                                    kihívás (c) kiolvasása és validálása
+                                                                            5
+
+                                                                                ZKP matematikai ellenőrzés futtatása
+
+
+                             Sikeres azonosítás (JWT Token kiállítása)
+                                                                            6
+
+
+
+
+                                                               2. FÁZIS: Állapottartó kommunikáció (WebSocket)
+
+
+                                                                     WS Handshake (JWT Token átadása)
+                    7
+
+                                                                                                                                                  JWT Token aláírásának validálása
+
+
+                                                                 Kapcsolat felépítve (101 Switching Protocols)
+                                                                                                                                             8
+
+                                                                 Titkosított JSON üzenet küldése (Címzett: B)
+                    9
+
+                                                                                                                                                  Címzett aktív kapcsolatának keresése
+
+
+                                                                   Üzenet továbbítása (vagy DB-be mentés)
+                                                                                                                                             10
+
+
+
+
+                  Kliens                                                 REST API                                   In-memory Store   WebSocket Szerver
+
+
+
+
+6.4. ábra. A Schnorr-autentikáció és a WebSocket kapcsolatfelépítés szekvenciája
+
+
+
+
+6.4. Biztonsági megfontolások
+   A szerveren         soha               nem tárolódik jelszó vagy jelszó-hash érték, kizárólag a salt
+
+      és a verier (y ).
+
+
+   A challenge értékek memóriabeli tárolóban rövid lejárati id®vel (TTL) ren-
+      delkeznek, megakadályozva a replay-támadásokat. Egyszeri felhasználásúak: a
+
+      sikeres vagy sikertelen ellen®rzés után azonnal törl®dnek.
+
+
+   A JWT tokenek HS256 (HMAC-SHA256) aláírással rendelkeznek, 2 órás ér-
+      vényességi id®vel [8]. A sub claim tartalmazza a felhasználónevet. A kliens
+
+      automatikusan frissíti a tokent a lejárat el®tt 5 perccel.
+
+
+   Fiókzárolás 5 sikertelen belépési kísérlet után automatikusan aktiválódik (a
+      recovery folyamatra is érvényes).
+
+
+   A WebSocket kapcsolat hitelesítése a JWT token query paraméterként történ®
+      validálásával valósul meg. A szerver 30 másodpercenként ping üzenetet küld
+
+      (heartbeat), és a lejárt token¶ klienseket automatikusan lecsatlakoztatja.
+
+
+
+
+6.5. Telepítési architektúra
+  A fejlesztési és futtatási környezet egyszer¶ és önállóan m¶ködik:
+
+
+
+ 1.   go mod tidy  a függ®ségek letöltése.
+
+
+                                                                                                        40
+                                                        6. Komponensek felépítése és kapcsolataik
+
+
+
+
+  2.       make run (vagy go run ./cmd/server)  a szerver indítása a 8080-as por-
+           ton.
+
+
+   Az els® indításkor a szerver generálja a 2048 bites Schnorr csoport paramé-
+
+tereket (ez akár egy percig is tarthat), amelyeket a params.json fájlba ment. A
+
+zkp-chat.db SQLite adatbázis szintén automatikusan létrejön.
+   A rendszer a fenti módon küls® szolgáltatás-függ®ség (Redis, üzenetközvetít®
+
+stb.) nélkül m¶ködik, mivel a modernc.org/sqlite könyvtár tiszta Go-ban imple-
+
+mentálja az SQLite motort, és a challenge/TOTP állapotok in-memory tárolókban
+
+élnek. Egy alternatív, konténerizált telepítési módot a 7.5. alfejezet mutat be.
+
+
+
+
+6.6. Modulstruktúra
+   A Go szerver bels® felépítése jól elkülönített csomagokra (package) tagolódik,
+
+amelyek a felel®sségi körök mentén szervez®dnek. A 6.5. ábra a csomagok közötti
+
+függ®ségi kapcsolatokat mutatja be.
+
+                                                                                 cmd/server
+
+                                                                                           main.go
+                                                                                  (Alkalmazas belepesi pont)
+
+
+
+
+                                                                                                                   internal/
+                           chat/                                                                                                                            handler/
+
+        handler.go                                                                            totp.go                                        auth.go                                user.go                                message.go
+   (WebSocket kapcsolat)                                                                 (TOTP vegpontok)                                (REST vegpontok)                 (Felhasznalo vegpontok)                   (Uzenet vegpontok)
+
+
+
+
+                                                                                                                                                                              service/
+
+                                        hub.go                                                                                 totp.go                                    auth.go                          recovery.go
+                                   (Uzenettovabbitas)                                                                    (TOTP logika)                              (Hitelesitesi logika)                (Visszaallitas)
+
+
+
+
+                                                                                                     repository/                                                                  store/                                                     crypto/
+
+                                                                                   message.go                           user.go                             totp_pending.go                     challenge.go                                schnorr.go
+                                                                                 (Messages tabla)                    (Users tabla)                           (TOTP pending)                   (Challenge tarolo)                        (Schnorr-protokoll)
+
+
+
+
+                                                    Kulso fuggosegek
+
+   gorilla/websocket                     chi/v5 router             pquerna/otp
+                                                                                                          SQLite
+
+
+
+
+    6.5. ábra. A Go szerver csomagstruktúrája és a modulok közötti függ®ségek
+
+
+
+   A f®bb csomagok és felel®sségeik:
+
+
+    cmd/server: Az alkalmazás belépési pontja (a HTTP szerver, a router és a
+           függ®ségek inicializálása).
+
+
+    internal/handler: A REST API végpontok kezel®i (controller réteg), ame-
+           lyek a HTTP kéréseket fogadják és a service rétegnek delegálják.
+
+
+    internal/service: Az üzleti logika (a Schnorr-hitelesítés, TOTP kezelés és
+           jelszóvisszaállítás koordinálása).
+
+
+
+
+                                                                                                                   41
+                     6. Komponensek felépítése és kapcsolataik
+
+
+
+
+    internal/crypto:        A      Schnorr-protokoll     matematikai       m¶veletei
+
+     (csoportparaméter-generálás, bizonyítás-ellen®rzés).
+
+
+    internal/chat: A WebSocket Hub és a valós idej¶ üzenettovábbítás logikája.
+
+    internal/repository: Az adathozzáférési réteg (Data Access Layer)  SQL
+     lekérdezések a Users és Messages táblákhoz, valamint a memóriabeli tárolók
+
+     (ChallengeStore, PendingTOTPStore) TTL-alapú lejáratkezeléssel.
+
+
+    internal/middleware: A JWT autentikációs middleware, vagyis a védett vég-
+     pontok hitelesítési rétege.
+
+
+    internal/model: Az adatmodell struktúrák (User, Message) deníciói.
+
+    internal/config: A környezeti változókból olvasott kongurációs beállítások
+     (port, adatbázis-elérés, JWT secret, paraméter-fájl útvonal).
+
+
+
+
+6.7. Rendszerdiagramok
+   A fenti ábrák a rendszer két központi aspektusát szemléltetik. A 6.3. ábra a
+
+hibrid kommunikációs réteg logikai felépítését mutatja: a REST API és a WebSocket
+
+szerver közötti feladatmegosztást, a JWT-alapú felhatalmazási láncot, valamint az
+
+adat réteg (SQLite + in-memory tárolók) szerepét. A 6.4. ábra a teljes hitelesítési és
+
+WebSocket kapcsolatfelépítési szekvenciát ábrázolja id®rendi sorrendben: a Schnorr-
+
+protokoll hárommenetes párbeszédét®l a JWT kiállításán át a WebSocket csatorna
+
+megnyitásáig.
+
+
+
+
+                                         42
+7. fejezet
+
+
+
+Az egyes komponensek m¶ködése
+
+
+
+7.1. ZKP regisztráció és bejelentkezés
+   A rendszer biztonsági architektúrájának központi eleme a Schnorr-protokollon
+
+alapuló jelszómentes hitelesítés, amelynek megvalósítása a kliens-oldali kulcsszár-
+
+maztatástól a szerver-oldali bizonyítás-ellen®rzésig terjed. Az el®z® fejezetben be-
+
+mutatott komponensek szintjén haladva az alfejezetek ezt a teljes láncot kibontják.
+
+
+
+
+7.1.1. Regisztráció (US-01)
+   A regisztrációs folyamat során a kliens-oldali JavaScript kód (schnorr.js mo-
+
+dul) generálja a kriptográai paramétereket:
+
+
+
+  1. A kliens véletlenszer¶en választ egy 32 byte-os salt értéket.
+
+
+  2. PBKDF2SHA256 kulcsszármaztatással kiszámítja a titkos kulcsot:                         x =
+     KDF(jelszó, salt).
+
+
+                                                              x
+  3. Kiszámítja a verier-t (nyilvános kulcsot): y = g            mod p.
+
+  4. A   kliens   a   felhasználónevet,   a    salt-ot   és       a   verier-t   (y )   a   POST
+     /api/auth/register végpontra küldi.
+
+  5. A Go szerver a kapott adatokat az SQLite adatbázis users táblájában tárolja.
+
+
+
+   A szerveren semmilyen titkos adat  sem jelszó, sem hash  nem tárolódik. A
+
+jelszó soha nem hagyja el a klienst.
+
+
+
+
+                                          43
+                              7. Az egyes komponensek m¶ködése
+
+
+
+
+     7.1.2. Bejelentkezés  Challenge (US-02)
+         A Schnorr-protokoll els® menete:
+
+
+
+         1. A kliens elküldi a felhasználónevet a POST   /api/auth/login/init végpontra.
+
+         2. A szerver visszaküldi a tárolt salt értéket, így a kliens a PBKDF2SHA256
+
+           függvénnyel újra kiszámíthatja az x titkos kulcsot.
+
+
+         3. A szerver kriptográailag biztonságos véletlenszám-generátorral el®állít egy c
+
+           kihívás értéket.
+
+
+         4. A kihívást memóriabeli tárolóban (ChallengeStore, sync.RWMutex-védett Go
+
+           map) rögzíti, 5 perces TTL-lel.
+
+
+         5. A c értéket visszaküldi a kliensnek.
+
+
+
+
+     7.1.3. Bejelentkezés  Proof Verify (US-03)
+         A protokoll záró menete, amelynek kliens-oldali JavaScript implementációja
+
+     (schnorr.js) az alábbi:
+
+
+ 1   function createProof (x , challengeHex ) {
+ 2         const c = BigInt ( '0x ' + challengeHex ) ;
+ 3         const k = generateRandomScalar () ;
+ 4         const t = modPow ( params .g , k , params .p );          // commitment
+ 5         const s = mod ( k - c * x , params .q );                 // response
+ 6         return {
+ 7               commitment : t. toString (16) ,
+ 8               response :      s . toString (16) ,
+ 9         };
+10   }
+
+          7.1. forráskód. A Schnorr-bizonyítás kliens-oldali generálása (schnorr.js)
+
+
+         A modPow függvény a JavaScript beépített BigInt típusával végzi a moduláris
+
+     hatványozást. A    generateRandomScalar kriptográailag biztonságos véletlenszá-
+     mot állít el® a crypto.getRandomValues API segítségével. A lépések részletesen:
+
+
+
+         1. A kliens generál egy véletlen k értéket és kiszámítja a commitment-et: t =
+
+           g k mod p.
+
+
+                                               44
+                             7. Az egyes komponensek m¶ködése
+
+
+
+
+  2. Kiszámítja a választ: s = (k − c · x) mod q .
+
+
+  3. A t commitment és s response értékeket a POST        /api/auth/login/verify
+     végpontra küldi.
+
+
+  4. A szerver kiolvasza a kihívást (c) a ChallengeStore-ból és a verier-t (y ) az
+
+     adatbázisból.
+
+
+                    s
+  5. Ellen®rzi: g       · y c ≡ t (mod p).
+
+  6. Sikeres ellen®rzés esetén, amennyiben a felhasználónak nincs aktív TOTP be-
+
+     állítása, HS256-aláírt JWT tokent állít ki 2 órás érvényességgel. Ha a TOTP
+
+     aktív, egy ideiglenes pending_token-t ad vissza (lásd 7.2. alfejezet).
+
+
+
+
+7.1.4. Hibakezelés és biztonság (US-15)
+   Fiókzárolás: 5 sikertelen bejelentkezési kísérlet után a ók ideiglenesen zá-
+     rolódik (locked_until mez® az adatbázisban). Sikeres bejelentkezés esetén a
+
+     számláló nullázódik.
+
+
+   Egyszeri challenge: Minden kiadási kihívás egyszeri felhasználású  a sike-
+     res vagy sikertelen ellen®rzés után azonnal törl®dik a ChallengeStore-ból.
+
+
+   Verier validáció: A regisztrációkor a szerver ellen®rzi, hogy a verier érvé-
+     nyes csoportelem-e (nem nulla, hexadecimális formátum).
+
+
+
+
+                                             45
+                                  7. Az egyes komponensek m¶ködése
+
+
+
+
+     7.1.5. A Schnorr-ellen®rzés implementációja
+         Az alábbi kódrészlet a szerver-oldali bizonyítás-ellen®rzés Go implementációját
+
+     mutatja be (internal/crypto/schnorr.go). A függvény a                           g s · y c ≡ t (mod p)
+     egyenl®ség teljesülését vizsgálja:
+
+ 1   func ( gp * GroupParams ) VerifyProof (
+ 2           verifier , commitment , challenge , response * big . Int ,
+ 3   ) bool {
+ 4           if ! gp . IsValidGroupElement ( verifier ) ||
+ 5                 ! gp . IsValidGroupElement ( commitment ) {
+ 6                  return false
+ 7           }
+ 8           // g ^s mod p
+ 9           gs := new ( big . Int ). Exp ( gp .G , response , gp .P )
+10           // y ^c mod p
+11           vc := new ( big . Int ). Exp ( verifier , challenge , gp .P)
+12           // g ^s * y^ c mod p
+13           lhs := new ( big . Int ). Mul (gs , vc )
+14           lhs . Mod ( lhs , gp . P)
+15
+
+16           return lhs . Cmp ( commitment ) == 0
+17   }
+
+         7.2. forráskód. A Schnorr-bizonyítás szerver-oldali ellen®rzése (schnorr.go)
+
+
+         A       függvény   el®ször   ellen®rzi,   hogy      a   verier   és   a   commitment   érvényes
+
+                                                   s
+     csoportelemek-e, majd kiszámítja a g              mod p és y c mod p értékeket, végül összeha-
+     sonlítja szorzatukat a kapott commitment-tel. A Go math/big csomag Exp metódusa
+
+     hatékony moduláris hatványozást végez (square-and-multiply algoritmus).
+
+
+
+
+     7.2. TOTP kétfaktoros azonosítás
+         A ZKP-alapú hitelesítés önmagában is er®s védelmet nyújt, de a rendszer egy má-
+
+     sodik védelmi réteggel is kiegészíthet®: TOTP (Time-Based One-Time Password) [3]
+
+     alapú kétfaktoros azonosítással (2FA). A TOTP az HOTP (HMAC-Based One-Time
+
+     Password) [35] algoritmuson alapul, id®bélyeggel kiegészítve. A beállítási folyamatot
+
+     a 7.1. ábra, a TOTP-vel történ® bejelentkezést a 7.2. ábra szemlélteti.
+
+
+
+
+                                                        46
+                             7. Az egyes komponensek m¶ködése
+
+
+
+
+                      Kliens (Böngésző)                                      REST API                                        SQLite
+
+
+
+
+                                                                    TOTP BEÁLLÍTÁS
+
+
+                                       POST /api/totp/setup (JWT)
+                               1
+
+                                                       TOTP titkos kulcs generálás (pquerna/otp)
+                                                                                  2
+
+
+
+
+                                                                                        Titkos kulcs ideiglenes mentése
+                                                                                  3
+
+                                           QR-kód (base64 PNG)
+                                                                                 4
+
+Felhasználó beolvassa
+az Authenticator appal
+
+
+                                   POST /api/totp/confirm (6 jegyű kód)
+                               5
+
+                                                                TOTP kód validálás (RFC 6238)
+                                                                                  6
+
+
+
+                                alt                                        [Helyes kód]
+
+
+                                                                                               TOTP véglegesítése
+                                                                                  7
+
+                                          2FA sikeresen aktiválva
+                                                                                 8
+
+                                                                     [Helytelen kód]
+
+                                                                                               Titkos kulcs törlése
+                                                                                  9
+
+                                           Hiba: érvénytelen kód
+                                                                                10
+
+
+
+
+                      Kliens (Böngésző)                                      REST API                                        SQLite
+
+
+
+7.1. ábra. A TOTP kétfaktoros azonosítás beállítási folyamata
+
+
+
+
+Kliens (Böngésző)                                                 REST API                         SQLite                 PendingTOTPStore
+
+
+
+
+                                                     BEJELENTKEZÉS TOTP-VEL
+
+
+               POST /api/auth/login/verify (commitment, response)
+        1
+
+                                                            Schnorr ZKP ellenőrzés
+                                                                      2
+
+
+
+
+                                                                             Van-e aktív TOTP?
+                                                                      3
+         alt                                                     [TOTP aktív]
+
+
+                                                                                  pending_token mentés (5 perc TTL)
+                                                                      4
+
+                       totp_required: true, pending_token
+                                                                      5
+
+            POST /api/auth/login/totp (pending_token + 6 jegyű kód)
+        6
+
+                                                                                      pending_token kiolvasás és törlés
+                                                                      7
+
+                                                             TOTP kód validálás
+                                                                      8
+
+
+
+
+                              JWT token kiállítása
+                                                                      9
+
+                                                            [TOTP nem aktív]
+
+                              JWT token kiállítása
+                                                                      10
+
+
+
+
+Kliens (Böngésző)                                                 REST API                         SQLite                 PendingTOTPStore
+
+
+
+    7.2. ábra. Bejelentkezés TOTP kétfaktoros azonosítással
+
+
+
+
+                                                                 47
+                       7. Az egyes komponensek m¶ködése
+
+
+
+
+7.2.1. TOTP beállítás (US-04)
+ 1. A felhasználó a chat oldalon megnyitja a beállítások modalt, és a         POST
+    /api/totp/setup végpontra küld kérést (JWT hitelesítéssel).
+
+ 2. A Go szerver a pquerna/otp [34] könyvtár segítségével generál egy TOTP
+
+    titkos kulcsot.
+
+
+ 3. A titkos kulcsot QR-kód formájában (base64 PNG) prezentálja a felhasználó-
+
+    nak, aki mobil autentikátor alkalmazással (pl. Google Authenticator, Authy)
+
+    beolvassa.
+
+
+ 4. A titkos kulcs ideiglenesen az adatbázisban tárolódik.
+
+
+ 5. A felhasználónak meger®sítésként be kell írnia az els® 6 jegy¶ kódot a POST
+
+    /api/totp/confirm végponton. Helytelen kód esetén a titkos kulcs törl®dik,
+    és a beállítást újra kell kezdeni.
+
+
+
+
+7.2.2. TOTP ellen®rzés (US-05)
+  Bejelentkezéskor, sikeres ZKP ellen®rzést követ®en:
+
+
+
+ 1. A szerver ellen®rzi, hogy a felhasználónak aktív TOTP beállítása van-e.
+
+
+ 2. Amennyiben igen, a szerver      nem   állít ki JWT tokent, hanem egy ideigle-
+
+    nes pending_token-t generál (5 perces érvényességgel, egyszeri felhasználású),
+
+    amelyet memóriabeli PendingTOTPStore-ban tárol.
+
+
+ 3. A kliens megjelenít egy 6 jegy¶, id®alapú kódot kér® mez®t.
+
+
+ 4. A kliens a kódot és a pending_token-t a POST      /api/auth/login/totp vég-
+    pontra küldi.
+
+
+ 5. A szerver az RFC 6238 [3] szabvány szerint validálja a kódot (30 másodperces
+
+    ablakkal).
+
+
+ 6. A JWT tokent a szerver kizárólag sikeres TOTP ellen®rzés után állítja ki.
+
+
+
+
+                                          48
+                        7. Az egyes komponensek m¶ködése
+
+
+
+
+7.2.3. TOTP kikapcsolás (US-14)
+   A felhasználó a beállítások modálban deaktiválhatja a 2FA funkciót a        POST
+/api/totp/disable végponton. Biztonsági okokból a m¶velethez meg kell adnia
+az aktuálisan érvényes 6 jegy¶ TOTP kódot. Sikeres validálás után a tárolt titkos
+
+kulcs törl®dik az adatbázisból.
+
+
+
+
+7.3. Chat funkció
+   A hitelesítés után a felhasználó a valós idej¶ cseveg®felületre kerül. A kommu-
+
+nikáció a WebSocket protokollra [30] épül, az implementáció a gorilla/websocket
+
+[29] könyvtárat alkalmazza a kapcsolatkezeléshez, és egy központi Hub architektu-
+
+rális mintát követ az üzenettovábbításhoz.
+
+
+
+
+7.3.1. Hub architektúra
+   A rendszer üzenettovábbítási magja a Hub struktúra (internal/chat/hub.go),
+
+amely az alábbi feladatokat látja el:
+
+
+
+    Az aktív WebSocket kapcsolatok nyilvántartása (sync.RWMutex-védelemmel a
+     párhuzamos hozzáférés miatt).
+
+
+    Felhasználónév alapú üzenettovábbítás (routing) a megfelel® kliensre.
+
+    Jelenlét-információ (presence) szórása: új felhasználó csatlakozásakor vagy ki-
+     lépésekor minden aktív kliens értesítést kap.
+
+
+    Oine üzenetek kézbesítése: a korábban nem kézbesített üzenetek automatikus
+     elküldése a csatlakozás pillanatában.
+
+
+
+
+                                        49
+                              7. Az egyes komponensek m¶ködése
+
+
+
+
+         A kliensszerver közötti kommunikáció egységes JSON        envelope   formátumot
+
+     használ:
+
+
+ 1   {
+ 2         " type ":      " message " | " presence " | " history " | " error ",
+ 3         " from ":      " felado felhasznalonev " ,
+ 4         " to ":        " cimzett felhasznalonev ",
+ 5         " content ": " uzenet szovege ",
+ 6         " users ":     [{" username ": "..." , " online ": true / false }] ,
+ 7         " messages ": [...] ,
+ 8         " error ":     " hibauzenet ",
+ 9         " time ":      "2025 -01 -15 T10 :30:00 Z"
+10   }
+
+                7.3. forráskód. A WebSocket üzenet envelope formátuma (JSON)
+
+
+         Az omitempty JSON tag-ek biztosítják, hogy az üres mez®k ne kerüljenek bele
+
+     az átvitt adatcsomagba (sávszélesség-optimalizáció).
+
+
+
+
+     7.3.2. WebSocket kapcsolat és hitelesítés (US-16)
+         A WebSocket handshake a GET     /ws?token=<JWT> végponton keresztül történik.
+     A Handler struktúra (internal/chat/handler.go) a következ® lépéseket hajtja
+
+     végre:
+
+
+
+         1. A JWT token kiolvasása a query paraméterb®l.
+
+
+         2. A token aláírásának (HMAC-SHA256) és érvényességi idejének ellen®rzése.
+
+
+         3. A sub (subject) claim-b®l a felhasználónév kinyerése.
+
+
+         4. A HTTP kapcsolat WebSocket protokollra váltása (Upgrade).
+
+
+         5. A felhasználó regisztrálása a Hub-ban. Ha a felhasználónak korábban volt aktív
+
+           kapcsolata, a Hub a régit lezárja.
+
+
+         6. Jelenlét-broadcast küldése minden aktív kliensnek.
+
+
+         7. A kézbesítetlen (oine) üzenetek automatikus elküldése.
+
+
+
+
+                                                50
+                          7. Az egyes komponensek m¶ködése
+
+
+
+
+   A kapcsolat hitelesítése query paraméteren keresztül történik (a WebSocket pro-
+
+tokoll nem támogatja a custom fejléceket a böngész®s JavaScript API-ban), de a
+
+token ugyanolyan HMAC-SHA256 validáción esik át, mint a REST API végpontok-
+
+nál.
+
+
+
+
+7.3.3. Felhasználók listázása (US-11)
+   A   GET /api/users REST végpont (JWT-hitelesítéssel védett) visszaadja az
+összes regisztrált felhasználó nevét. A WebSocket csatornán emellett a presence
+
+típusú envelope valós id®ben jelzi az online/oine állapotváltozásokat.
+
+
+
+
+7.3.4. Üzenet küldése és fogadása (US-06, US-07)
+   Az üzenetküldés folyamata:
+
+
+
+   1. A kliens (chat.js modul) egy message típusú envelope-ot küld a WebSocket
+
+       csatornán, amely tartalmazza a címzett felhasználónevét (to) és az üzenet
+
+       szövegét (content).
+
+
+   2. A Hub a HandleMessage metódusban validálja az üzenetet (nem üres tartalom,
+
+       létez® címzett).
+
+
+   3. A MessageRepository (internal/repository/message.go) az üzenetet el-
+
+       menti az SQLite messages táblájába.
+
+
+   4. Amennyiben a címzett rendelkezik aktív WebSocket kapcsolattal, a Hub azon-
+
+       nal továbbítja az üzenetet a dedikált send csatornáján (Go channel).
+
+
+   5. Ha a címzett oine, az üzenetet a szerver delivered    = 0 állapottal menti, és
+       a címzett következ® csatlakozásakor automatikusan kézbesíti.
+
+
+
+   Minden kliens számára egy dedikált goroutine (writePump) felel az üzenetek
+
+puerelt kiírásáért, amely elkerüli a blokkolódást a Hub f® logikájában.
+
+
+
+
+                                         51
+                                7. Az egyes komponensek m¶ködése
+
+
+
+
+         Az alábbi kódrészlet a Hub üzenettovábbítási logikájának központi részét mu-
+
+     tatja be (internal/chat/hub.go), amely az online címzettnek történ® azonnali
+
+     kézbesítést valósítja meg:
+
+ 1   // Deliver to recipient if online .
+ 2   h . mu . RLock ()
+ 3   recipient , online := h . clients [ env . To ]
+ 4   h . mu . RUnlock ()
+ 5
+
+ 6   if online {
+ 7           select {
+ 8           case recipient . send <- data :
+ 9               _ = h. messageRepo . MarkDelivered ([] int64 { msgID })
+10           default :
+11           }
+12   }
+
+             7.4. forráskód. Az online címzettnek történ® üzenettovábbítás (hub.go)
+
+
+         A   sync.RWMutex olvasási zárral biztosítja a szálbiztos hozzáférést a kliensek
+     map-jéhez. A Go select utasítás nem blokkoló küldést valósít meg: ha a kliens
+
+     send csatornája megtelt, az üzenet nem vész el (az adatbázisban delivered = 0
+     marad), elkerülve a Hub f® goroutine-jának blokkolódását.
+
+
+
+
+     7.3.5. Korábbi üzenetek (US-12)
+         A       GET /api/messages/{peer}             REST     végpont      lapozható      (li-
+
+     mit/oset)      üzenet-el®zményeket       szolgáltat    két   felhasználó   között.     A
+
+     repository.MessageRepository.GetHistory                metódus   SQL   JOIN-okkal     kéri
+
+     le a feladó és a címzett felhasználónevét, így a kliens közvetlenül megjeleníthet®
+
+     adatokat kap.
+
+
+
+
+     7.3.6. Oine üzenetek (US-17)
+         A Hub.deliverUnread metódus a felhasználó WebSocket csatlakozásakor auto-
+
+     matikusan:
+
+
+         1. Lekéri         az         összes          kézbesítetlen         üzenetet         a
+
+             MessageRepository.GetUndelivered metódussal.
+
+
+                                                 52
+                       7. Az egyes komponensek m¶ködése
+
+
+
+
+  2. Egyetlen history típusú envelope-ban elküldi azokat a kliensnek.
+
+
+  3. A   MessageRepository.MarkDelivered metódussal kézbesítettnek jelöli az
+     üzenet-azonosítókat.
+
+
+
+
+7.3.7. Kliens-oldali chat modul
+   A chat.js JavaScript modul (IIFE mintával) a következ® funkciókat látja el:
+
+
+
+    Automatikus újracsatlakozás: ha a WebSocket kapcsolat megszakad, a modul
+     exponenciális visszalépéssel (backo ) újrapróbálkozik.
+
+
+    Felhasználólista és jelenlétjelz®: a presence envelope-ok alapján valós id®ben
+     frissíti az oldalsávban megjelen® felhasználólistát (zöld/szürke jelz®).
+
+
+    Üzenet-buborékok: a küldött és fogadott üzenetek megkülönböztetett vizuális
+     megjelenítéssel (eltér® szín, igazítás) jelennek meg.
+
+
+    XSS-védelem: a escapeHtml segédfüggvény megel®zi a cross-site scripting tá-
+     madásokat az üzenetek megjelenítésekor.
+
+
+
+
+7.4. Jelszóvisszaállítás és session kezelés
+   Egy ZKP-alapú rendszerben a jelszóvisszaállítás sajátos kihívás, hiszen a szerver
+
+nem rendelkezik a jelszóval. A megoldás egy recovery kulcsra épül® visszaállítási
+
+mechanizmus és a hozzá kapcsolódó session-életciklus kezelés.
+
+
+
+
+7.4.1. Recovery key generálás (US-13)
+   A regisztrációs folyamat során a kliens automatikusan generál egy 256 bites (32
+
+byte-os) recovery kulcsot, amelynek a szerepe megegyezik egy tartalék jelszóéval:
+
+
+
+  1. A      kliens     véletlenszer¶en        generálja      a   recovery       kulcsot
+
+     (crypto.getRandomValues).
+
+
+  2. A normál jelszóval azonos PBKDF2SHA256 kulcsszármaztatással kiszámítja
+
+     a recovery titkos kulcsot: xr = KDF(recovery_key, salt).
+
+
+                                            x
+  3. Kiszámítja a recovery verier-t: yr = g r mod p.
+
+
+
+
+                                         53
+                          7. Az egyes komponensek m¶ködése
+
+
+
+
+  4. A yr értéket elküldi a szervernek a regisztrációs kérés részeként.
+
+
+  5. A szerver a recovery_verifier oszlopban tárolja az adatbázisban.
+
+
+  6. A recovery kulcs hexadecimális formátumban egyszer jelenik meg a felhasz-
+
+      náló számára, másolható a vágólapra. A szerver soha nem látja a nyers kulcsot.
+
+
+
+
+7.4.2. Jelszóvisszaállítás (US-08, US-09)
+   A jelszóvisszaállítás a normál bejelentkezéssel azonos Schnorr ZKP protokollt
+
+alkalmazza, de a recovery verier (yr ) ellen:
+
+
+
+  1. A felhasználó a bejelentkezési oldalon az Elfelejtett jelszó linkre kattint, és
+
+      megadja a felhasználónevét és a recovery kulcsot.
+
+
+  2. A   kliens   a   POST /api/auth/recovery/init              végponton    kér   salt-ot    és
+
+      challenge-et.   A   szerver    a   recovery: prexszel tárolja a challenge-et a
+      ChallengeStore-ban.
+
+  3. A kliens a tárolt salt-tal kiszámítja xr       = KDF(recovery_key, salt), majd a
+                                                       k
+      szokásos Schnorr-bizonyítást végzi el: t = g         mod p, s = (k − c · xr ) mod q .
+
+  4. A kliens generálja az új jelszóhoz tartozó credential-öket (új salt, új verier)
+
+      és egy új recovery kulcsot (új recovery verier).
+
+
+  5. A POST   /api/auth/recovery/reset végpontra elküldi a Schnorr-bizonyítást
+      és az új credential-öket.
+
+
+                              s
+  6. A szerver ellen®rzi: g       · yrc ≡ t (mod p). Sikeres ellen®rzés esetén felülírja az
+      adatbázisban a salt-ot, verier-t és a recovery verier-t.
+
+
+  7. A régi jelszó és a régi recovery kulcs érvénytelenné válik. Az új recovery kulcs
+
+      megjelenik a felhasználó számára.
+
+
+
+   A recovery folyamat során is érvényesül a ókzárolás: 5 sikertelen recovery kísér-
+
+let után a ók 15 percre zárolódik.
+
+
+
+
+                                              54
+                             7. Az egyes komponensek m¶ködése
+
+
+
+
+7.4.3. Kijelentkezés (US-10)
+   A kijelentkezés a kliens-oldali JWT token törlését és a WebSocket kapcsolat
+
+bontását jelenti. A chat.js modul disconnect() metódusa bontja a WebSocket
+
+kapcsolatot, leállítja az automatikus újracsatlakozást és a token-frissítési id®zít®t,
+
+majd a localStorage-ból törli a JWT tokent és a felhasználónevet.
+
+
+
+
+7.4.4. Token lejárat és session kezelés (US-18)
+   A session-életciklus a következ® mechanizmusokra épül:
+
+
+
+    Rövidített token-érvényesség: A JWT tokenek 2 órás érvényességi id®vel
+     rendelkeznek (a korábbi 24 óra helyett), csökkentve a kompromittált token
+
+     kihasználhatósági ablakát.
+
+
+    Automatikus token-frissítés: A POST /api/auth/refresh végpont (JWT-
+     hitelesítéssel   védett)    új    tokent   állít   ki   a   jelenlegi   érvényes   token    alap-
+
+     ján.   A   kliens   5   perccel   a   lejárat   el®tt   automatikusan       frissíti   a   tokent.
+
+     A handler az        AuthMiddleware által a kontextusba írt felhasználónevet a
+     middleware.UserContextKey típusspecikus kulccsal olvassa ki, mert a Go
+     kontextus típus- és értékfügg® összehasonlítása miatt plain string kulcs nem
+
+     adna vissza egyez® értéket.
+
+
+    WebSocket heartbeat: A szerver 30 másodpercenként WebSocket ping üze-
+     netet küld minden aktív kliensnek. A kliens pong válaszát a szerver 60 másod-
+
+     perces id®ablakkal várja  ennek lejártakor a kapcsolat megszakad.
+
+
+    Automatikus lecsatlakoztatás: A szerver a writePump goroutine-ban nyo-
+     mon követi a kliens JWT token lejárati idejét. Ha a token lejár, a szerver
+
+     ClosePolicyViolation (1008-as kód) WebSocket close frame-mel bontja a
+     kapcsolatot. A kliens megpróbálja frissíteni a tokent és újracsatlakozni; ha ez
+
+     sikertelen, átirányítja a felhasználót a bejelentkezési oldalra.
+
+
+
+
+7.5. Alternatív telepítés: Docker konténer
+   A 6. fejezetben bemutatott natív telepítési mód (go                  run / make run) mellett
+a rendszer Docker konténerben is futtatható, így a gazdarendszerre nem kell Go
+
+
+
+
+                                                55
+                         7. Az egyes komponensek m¶ködése
+
+
+
+
+fordítót vagy más fejleszt®i eszközt telepíteni: elég egyetlen Docker runtime (Docker
+
+Engine vagy Podman), amely izolált és reprodukálható környezetet ad.
+
+
+
+
+7.5.1. Image felépítése
+   A zkp-chat/Dockerfile kétlépcs®s (multi-stage) felépítést alkalmaz, amely je-
+
+lent®sen csökkenti a végleges image méretét és az esetleges támadási felületet:
+
+
+
+  1.   Builder réteg (golang:1.24-alpine): a Go forráskód lefordítása statikusan
+
+       linkelt binárissá (CGO_ENABLED=0, -trimpath, -ldflags="-s        -w"). A statikus
+       linkelés azért valósítható meg, mert a modernc.org/sqlite [33] tiszta Go-
+
+       ban implementált SQLite motor, így nincs szükség küls® C könyvtárakra vagy
+
+       rendszerszint¶ libsqlite3 csomagra.
+
+
+  2.   Futtató réteg (alpine:3.20): csak a lefordított binárist és a web/ stati-
+
+       kus er®forrásokat (HTML sablonok, CSS, JavaScript) tartalmazza. A folyamat
+
+       nem root, hanem egy dedikált, nem rendszergazdai jogú (app, UID 10001) fel-
+
+       használóval fut, a legkisebb jogosultság (least privilege) elve szerint.
+
+
+
+
+                                           56
+                               7. Az egyes komponensek m¶ködése
+
+
+
+
+        A Dockerfile váza a 7.5. listában látható.
+
+
+ 1   # --- Build stage ---
+ 2   FROM golang :1.24 - alpine AS builder
+ 3   WORKDIR / src
+ 4   COPY go . mod go . sum ./
+ 5   RUN go mod download
+ 6   COPY cmd ./ cmd
+ 7   COPY internal ./ internal
+ 8   RUN CGO_ENABLED =0 GOOS = linux go build \
+ 9        - trimpath - ldflags =" - s -w" -o / out / server ./ cmd / server
+10
+
+11   # --- Runtime stage ---
+12   FROM alpine :3.20
+13   RUN adduser -D -u 10001 app
+14   WORKDIR / app
+15   COPY -- from = builder / out / server / app / server
+16   COPY web ./ web
+17   RUN mkdir -p / data && chown -R app : app / data / app
+18   USER app
+19   ENV PORT =8080 \
+20        DB_PATH =/ data / zkp - chat . db \
+21        PARAMS_PATH =/ data / params . json
+22   EXPOSE 8080
+23   VOLUME ["/ data "]
+24   ENTRYPOINT ["/ app / server "]
+
+                        7.5. forráskód. A kétlépcs®s Dockerfile váza
+
+
+
+
+     7.5.2. Perzisztencia és konguráció
+        A konténer saját fájlrendszere ephemer: minden docker     rm vagy image-frissítés
+     után elvész, ezért a szerver perzisztens állapotát küls® volume-ra kell helyezni. A
+
+     rendszer perzisztens állapota két fájlra korlátozódik:
+
+
+
+         zkp-chat.db  az SQLite adatbázis (felhasználók, recovery verier-ek, TOTP
+          titkok, üzenetek).
+
+
+
+
+                                              57
+                              7. Az egyes komponensek m¶ködése
+
+
+
+
+         params.json  a 2048 bites Schnorr csoport generált paraméterei (p, q , g ).
+           Els® indításkor percekig tartó m¶velet, ezért indokolt egyszer generálni és meg-
+
+           ®rizni, így minden felhasználó azonos paraméterek ellen bizonyít.
+
+
+        Mindkét fájl a konténeren belüli        /data könyvtárba kerül, amely Docker   na-
+     med volume   -ként (zkp-chat-data) van bekötve. Ezt a VOLUME       ["/data"] direk-
+     tíva deklarálja, és a DB_PATH, illetve PARAMS_PATH környezeti változók irányítják a
+
+     config.Load függvényt (internal/config/config.go) a helyes elérési utakra. A
+     JWT_SECRET ugyancsak környezeti változóból olvasódik, így éles környezetben futta-
+     táskor kötelez® titkos értékre cserélni.
+
+
+
+
+     7.5.3. Orkesztráció Docker Compose-szal
+        A futtatási topológiát a docker-compose.yml írja le. A fájl a kézi docker      run
+     parancsnál verziózható és reprodukálható indítási módot ad, és az egyetlen szolgál-
+
+     tatás, a zkp-chat köré szervez®dik:
+
+ 1   services :
+ 2     zkp - chat :
+ 3        build : .
+ 4        image : zkp - chat : latest
+ 5        container_name : zkp - chat
+ 6        ports :
+ 7           - "8080:8080"
+ 8        environment :
+ 9           PORT : "8080"
+10           DB_PATH : / data / zkp - chat . db
+11           PARAMS_PATH : / data / params . json
+12           JWT_SECRET : ${ JWT_SECRET : - dev - secret - change -in -
+                  production }
+13        volumes :
+14           - zkp - chat - data :/ data
+15        restart : unless - stopped
+16
+
+17   volumes :
+18     zkp - chat - data :
+
+             7.6. forráskód. docker-compose.yml  a teljes futtatási topológia
+
+
+
+
+                                                 58
+                         7. Az egyes komponensek m¶ködése
+
+
+
+
+   A restart:     unless-stopped szabály biztosítja, hogy a konténer a gazdagép
+újraindulása után vagy váratlan hiba esetén automatikusan újrainduljon, kivéve ha
+
+a rendszergazda kifejezetten leállította. A      JWT_SECRET a shell-környezetb®l veszi
+át az értéket ($JWT_SECRET:-... szintaxis), így a titkot nem kell a verziókövetett
+
+fájlba beírni.
+
+
+
+
+7.5.4. Futtatási workow
+   A Docker-alapú telepítés kényelmes használatához a Makefile dedikált célokat
+
+biztosít, amelyek egyesítik az image-készítés és az indítás lépéseit:
+
+
+
+    make docker-build  a production image (zkp-chat:latest) elkészítése a
+      Dockerfile alapján.
+
+    make docker-run          az   image    egyszeri   futtatása   (docker   run)   port-
+
+      továbbítással és a zkp-chat-data volume csatolásával.
+
+
+    make docker-up  a teljes compose-stack háttérben történ® elindítása
+      (docker    compose up -d), szükség esetén újraépítéssel.
+
+    make docker-down  a compose-stack leállítása és eltávolítása. Az adatkötet
+      megmarad, így a docker-up újbóli hívásakor a teljes állapot (felhasználók,
+
+      üzenetek, Schnorr paraméterek) elérhet®.
+
+
+
+   A Docker-alapú futtatás funkcionálisan ugyanazt az eredményt adja, mint a 6.
+
+fejezet natív make   run indítása, azzal a különbséggel, hogy a gazdagépen egyetlen
+függ®ség marad, a Docker runtime. Ez szervertelepítéskor és a tesztelési (8.) fejezet
+
+E2E futtatási szcenárióinak egységes környezetben történ® reprodukálásakor egy-
+
+aránt el®nyös.
+
+
+
+
+                                            59
+8. fejezet
+
+
+
+Tesztelés
+
+
+
+    A kriptográai rendszerek tesztelése különös gyelmet igényel: egy elírás a mo-
+
+duláris aritmetikában vagy egy rosszul kezelt széls®érték a protokoll egész biztonsá-
+
+gát alááshatja. A tesztkészletet ennek tudatában három szint¶ (a szoftvertesztelési
+
+szakirodalomban         tesztpiramisnak   [36, 37] nevezett) rétegzés mentén építettem fel.
+
+A rétegek elnevezését és megközelítését a hivatalos Android tesztelési dokumentá-
+
+ció [38] inspirálta: ott is három réteg (          local unit tests instrumented tests UI tests
+                                                                  ,                     ,              )
+
+különül el hasonló arányokkal és hasonló felel®sségekkel.
+
+
+
+
+8.1. A tesztpiramis alkalmazása
+    A piramis logikáját az alábbi alapelv vezérli: minél gyorsabb és izoláltabb egy
+
+teszt, annál többet kell bel®le írni; minél lassabb és több komponenst vonultat fel,
+
+annál kevesebbet. Ennek megfelel®en a tesztkészlet három rétegre oszlik, amelyek
+
+futási sebességben és függ®ségeik körében nagyságrendileg különböznek egymástól.
+
+
+ Réteg                        Android megfelel® [38]      Függ®ségek                   Tipikus id®
+
+ Egységtesztek (unit)         Local unit tests (JVM)      nincs I/O, mock repo         < 1 ms/eset
+
+ Integrációs (instrumented)   Instrumented tests          in-memory SQLite, httptest   < 500 ms/eset
+
+ End-to-end (E2E)             UI / Espresso               teljes szerver, WebSocket    130 s/eset
+
+
+   8.1. táblázat. A három tesztréteg és az Android világban használt megfelel®ik
+
+
+
+    A rétegek zikailag Go          build tag   -ekkel vannak elkülönítve: minden tesztfájl
+
+vagy   //go:build unit, //go:build integration, vagy //go:build e2e direk-
+tívát visel (kivéve a tiszta, I/O nélküli egységteszteket, amelyek mindhárom réteg-
+
+ben futhatnak). A Makefile három külön célt biztosít a rétegek futtatására: make
+
+
+
+
+                                                    60
+                                        8. Tesztelés
+
+
+
+
+test-unit (gyors visszajelzés fejlesztés közben), make test-integration (középré-
+teg, valódi SQLite), és make   test-e2e (teljes rendszer). A make test mindhármat
+szekvenciálisan végrehajtja a CI pipeline-hoz.
+
+   Egy külön make     test-race cél a Go versenyállapot-detektorát (-race) futtatja
+a konkurens komponensek (WebSocket Hub, repository réteg) tesztjein, ami elen-
+
+gedhetetlen egy többszálú kiszolgáló megbízhatóságához.
+
+   A tesztek kizárólag a Go nyelv beépített eszközeire támaszkodnak: a testing
+
+standard könyvtári csomag biztosítja a tesztvázat, a net/http/httptest csomag
+
+a HTTP handler tesztek szimulált kérés-válasz környezetét, a gorilla/websocket
+
+könyvtár pedig a WebSocket kapcsolati tesztek kliens-oldalát. Küls® tesztelési ke-
+
+retrendszer (pl. testify) nem szükséges. A tesztkörnyezetben kisméret¶, 64 bites
+
+Schnorr-csoportparamétereket alkalmazok a gyors végrehajtás érdekében.
+
+
+      Réteg                 Tesztek száma        Célarány (Google/Fowler [37])
+      Egységtesztek               54                        ∼70 %
+      Integrációs tesztek         112                       ∼20 %
+      End-to-end tesztek          20                        ∼10 %
+      Összesen                    186                          
+                 8.2. táblázat. A tesztkészlet rétegenkénti megoszlása
+
+
+
+   A projektben az integrációs réteg a céltól némileg nagyobb, mert a kriptográai
+
+és authentikációs logika kevés izolált egységre bontható, és minden lényeges ellen-
+
+®rzés valódi adatbázison keresztül történik. Ez a hangsúlyeltolás szándékos: inkább
+
+kevesebb, de érdemi teszt fut le, mint sok olyan, amely mockok mögött nem fog
+
+valós hibát.
+
+
+
+
+8.2. 1. réteg: Egységtesztek
+   Az els® réteg tesztjei semmilyen I/O-t nem végeznek: sem fájlrendszert, sem há-
+
+lózatot, sem adatbázist nem érintenek. A küls® függ®ségeket interfészek és kézzel írt
+
+teszt dubl®rök   (test doubles) helyettesítik. Ennek köszönhet®en egy-egy eset mik-
+
+roszekundumok alatt lefut, és a teljes egységteszt-készlet kevesebb mint másodperc
+
+alatt végez.
+
+
+
+
+                                            61
+                                    8. Tesztelés
+
+
+
+
+8.2.1. Mock repository és service-szint¶ hibaág-tesztek
+   A repository csomagban deniáltam a UserRepo és MessageRepo Go interfé-
+
+szeket, amelyek a konkrét (SQLite-ot használó) implementációk publikus API-ját
+
+deklarálják. A service réteg konstruktorai ezentúl az interfészeket fogadják, ami
+
+lehet®vé teszi, hogy a teszteknél egy kézzel írt mock-ot adjunk át, és minden repo-
+
+sitory metódus viselkedése külön beállítható legyen. Erre azért van szükség, mert a
+
+korábbi, valódi adatbázisra épül® tesztek nem tudták kiváltani az error ágakat (pl.
+
+mi történik, ha a lemez megtelt a CreateUser közben?); ezeket az ágakat most a
+
+mock tetsz®leges hibával tudja aktiválni.
+
+
+   Teszteset                      Leírás                           Eredmény
+   TestRegister_CreateFails_      Mock Create hibát ad → hiba      Elutasítva
+   ReturnsError                   tovább
+   TestRegister_                 Exists lekérdezés hibája →        Elutasítva
+   ExistsCheckFails_ReturnsError propagál
+   TestLoginInit_                 DB hiba → ErrUserNotFound        Elutasítva
+   GetByUsernameFails_            (anti-enum.)
+   ReturnsUserNotFound
+   TestLoginInit_                 Zárolt ók → ErrAccountLocked    Zárolva
+   LockedAccount_
+   ReturnsAccountLocked
+   TestLoginVerify_               DB hiba → ErrInvalidProof (ne Elutasítva
+   GetByUsernameFails_            szivárogjon)
+   ReturnsInvalidProof
+   TestRecoveryInit_              Recovery kulcs nélkül → hiba     Elutasítva
+   NoRecoveryVerier_
+   ReturnsError
+   TestRecoveryReset_             DB hiba →                        Elutasítva
+   GetByUsernameFails_            ErrRecoveryProofFailed
+   ReturnsProofFailed
+ 8.3. táblázat. AuthService mock alapú egységtesztek (auth_unit_test.go  7
+                                       teszt)
+
+
+
+
+                                        62
+                                    8. Tesztelés
+
+
+
+
+   Teszteset                      Leírás                            Eredmény
+   TestSetupTOTP_                 DB hiba a setup lekérdezés        Elutasítva
+   GetByUsernameFails_            közben
+   ReturnsUserNotFound
+   TestSetupTOTP_                 Aktív TOTP újrakongurálás        Elutasítva
+   AlreadyEnabled_ReturnsError
+   TestSetupTOTP_                 Perzisztálási hiba terjedjen      Elutasítva
+   SetTOTPSecretFails_
+   ReturnsError
+   TestConrmTOTP_                Rossz kód → secret törlés (mock   Elutasítva
+   InvalidCode_ClearsSecret       ellen®riz)
+   TestVerifyLoginTOTP_           Ismeretlen/lejárt pending token   Elutasítva
+   PendingTokenMissing_
+   ReturnsExpired
+   TestVerifyLoginTOTP_           5. sikertelen TOTP → ókzár       Zárolva
+   InvalidCode_                   (mock ellen®riz)
+   LocksAfterFiveFailures
+   TestDisableTOTP_               Kikapcsolás TOTP nélkül           Elutasítva
+   NotEnabled_ReturnsError
+   TestHasTOTP_                   TOTP státusz ellen®rzése          Sikeres
+   Enabled/Disabled               mock-kal
+  8.4. táblázat. TOTPService mock alapú egységtesztek (totp_unit_test.go 
+                                 részlet a 14-b®l)
+
+
+
+
+8.2.2. Crypto egységtesztek
+   A Schnorr ZKP matematikai korrektségét vizsgáló tesztek nem igényelnek semmi-
+
+lyen függ®séget, csak tiszta math/big aritmetikát. Ezeket a tesztek minden rétegben
+
+megjelenítik (nincs build tag), de természetes helyük az egység réteg.
+
+
+
+
+                                        63
+                                    8. Tesztelés
+
+
+
+
+    Teszteset                    Leírás                              Eredmény
+    TestGenerateGroupParams      p, q prímek; q | p − 1; g q ≡ 1     Sikeres
+    TestVerifyProof_Valid        Helyes titkos kulccsal generált     Sikeres
+                                 proof
+    TestVerifyProof_Invalid      Rossz titkos kulccsal generált      Sikeres
+                                 proof
+    TestIsValidGroupElement      Csoporttagság-ellen®rzés            Sikeres
+    TestFullProtocolFlow         Teljes regisztráció → login         Sikeres
+                                 szimuláció
+    TestMultipleProtocolRuns     10× egymás utáni login              Sikeres
+    TestVerifyProof_             Speciális eset: x = 1               Sikeres
+    SecretKeyIsOne
+    TestVerifyProof_             Speciális eset: x = q − 1           Sikeres
+    SecretKeyIsQMinusOne
+    TestVerifyProof_             Nulla response elutasítása          Sikeres
+    ZeroResponse
+    TestVerifyProof_             Replay-támadás detektálása          Sikeres
+    ReplayedProof
+             8.5. táblázat. A Schnorr crypto tesztek (részlet a 18-ból)
+
+
+
+
+8.2.3. Middleware és envelope tesztek
+   A JWT autentikációs middleware külön tesztelési gyelmet igényel, hiszen ez a
+
+réteg védi az összes hitelesítést igényl® végpontot. A tesztek egy   sentinel   handler
+
+segítségével ellen®rzik, hogy a middleware megfelel® esetekben továbbhív-e a kö-
+
+vetkez® kezel®re, illetve blokkolja-e az érvénytelen kéréseket. A Hub réteg envelope
+
+JSON-szerializációs tesztjei szintén ebbe a rétegbe tartoznak: tisztán memóriában
+
+zajló encoding/json m¶veletek.
+
+
+
+
+                                          64
+                                      8. Tesztelés
+
+
+
+
+       Teszteset                      Leírás                         Eredmény
+       TestAuthenticate_ValidToken_ Érvényes JWT → átengedi          200
+       Passes
+       TestAuthenticate_ValidToken_ Felhasználónév kontextusba       200
+       InjectsUsernameIntoContext   írva
+       TestAuthenticate_              Hiányzó Authorization fejléc   401
+       MissingAuthHeader_
+       Returns401
+       TestAuthenticate_              Nem Bearer séma                401
+       NotBearerFormat_Returns401
+       TestAuthenticate_              Hibás token formátum           401
+       MalformedToken_Returns401
+       TestAuthenticate_              Lejárt token                   401
+       ExpiredToken_Returns401
+       TestAuthenticate_              Helytelen aláírási kulcs       401
+       WrongSigningSecret_
+       Returns401
+       TestAuthenticate_Failure_      Sikertelen auth nem hív        ellen®rzött
+       DoesNotCallNextHandler         tovább
+                   8.6. táblázat. Az autentikációs middleware tesztek
+
+
+
+
+8.3. 2. réteg: Integrációs tesztek
+   A második réteg tesztjei valódi komponenseket használnak (in-memory SQLite
+
+adatbázist a :memory: DSN-nel, valódi HTTP kérést httptest.NewServer-en ke-
+
+resztül és valódi WebSocket kapcsolatot helyi TCP-loopbacken), de nem érintenek
+
+küls® szolgáltatást vagy perzisztens lemezt. Ez megfelel az Android        instrumented
+test   kategóriájának [38]: a tesztelend® rendszer úgy fut, ahogy produkcióban, csak
+
+a külvilág (a lemez és a hálózat) cserél®dik le ekvivalens, de gyorsabb változatra.
+
+
+
+
+8.3.1. ZKP authentikációs folyamat
+   Az auth service integrációs tesztjei a teljes regisztrációloginrecovery folyama-
+
+tot valódi SQLite-on végigfuttatják. A ókzárolás és a challenge egyszeri felhasznál-
+
+hatósága itt nem izolált mock-viselkedést, hanem a valódi DB állapotátmeneteket
+
+ellen®rzi.
+
+
+
+
+                                          65
+                                8. Tesztelés
+
+
+
+
+Teszteset                    Leírás                            Eredmény
+TestRegister_Success         Sikeres regisztráció érvényes     Sikeres
+                             verier-rel
+TestRegister_                Duplikált felhasználónév          Elutasítva
+DuplicateUsername
+TestRegister_InvalidVerier Érvénytelen verier formátum       Elutasítva
+TestRegister_VerierIsZero   Nulla érték¶ verier              Elutasítva
+TestLoginFlow_Success        Teljes ZKP login ow              JWT
+                                                               kiállítva
+TestLoginFlow_               Hibás proof                       Elutasítva
+InvalidProof
+TestLoginVerify_             Challenge nélküli verify          Elutasítva
+NoChallenge
+TestLoginVerify_             Challenge replay-védelem          Elutasítva
+ChallengeIsOneTimeUse
+TestAccountLocking_          5 sikertelen → ókzárolás         Zárolva
+After5FailedAttempts
+TestSuccessfulLogin-         Számláló nullázás                 Sikeres
+ResetsFailedAttempts
+   8.7. táblázat. Az auth service integrációs tesztek (részlet a 15-b®l)
+
+
+
+
+                                      66
+                               8. Tesztelés
+
+
+
+
+Teszteset                   Leírás                           Eredmény
+TestSetupTOTP_Success       TOTP secret + QR-kód generálás Sikeres
+TestSetupTOTP_              Dupla setup → hiba               Elutasítva
+AlreadyEnabled
+TestConrmTOTP_             Meger®sítés helyes kóddal        Sikeres
+ValidCode
+TestConrmTOTP_             Rossz kód → secret törlés        Elutasítva
+InvalidCode_ClearsSecret
+TestLogin_WithTOTP_         ZKP OK + TOTP aktív →            Sikeres
+ReturnsErrTOTPRequired      pending token
+TestVerifyLoginTOTP_        Érvényes TOTP kód → JWT          Sikeres
+Success
+TestVerifyLoginTOTP_        Rossz kód → elutasítás           Elutasítva
+InvalidCode
+TestVerifyLoginTOTP_        Lejárt pending token             Elutasítva
+ExpiredPendingToken
+TestVerifyLoginTOTP_        Token replay-védelem             Elutasítva
+Pending-
+TokenIsOneTimeUse
+TestDisableTOTP_Success     Kikapcsolás helyes kóddal        Sikeres
+TestDisableTOTP_            Kikapcsolás rossz kóddal         Elutasítva
+InvalidCode
+TestFullFlow_Register-      Teljes E2E: regisztráció → 2FA   Sikeres
+EnableTOTPLoginDisable      → login → disable
+   8.8. táblázat. A TOTP service integrációs tesztek (részlet a 16-ból)
+
+
+
+
+                                     67
+                                        8. Tesztelés
+
+
+
+
+     Teszteset                      Leírás                                Eredmény
+     TestRecoveryInit_Success       Recovery init: salt + challenge       Sikeres
+                                    visszaadása
+     TestRecoveryInit_              Nem létez® felhasználó → hiba         Elutasítva
+     NonexistentUser
+     TestRecoveryReset_Success      Helyes recovery key → új jelszó       Sikeres
+                                    beállítva
+     TestRecoveryReset_             Hibás recovery key → elutasítás       Elutasítva
+     InvalidProof
+     TestRecoveryReset_             Challenge nélküli reset →             Elutasítva
+     NoChallenge                    elutasítás
+     TestRecoveryReset_             Challenge replay-védelem              Elutasítva
+     ChallengeIsOneTimeUse
+     TestRecoveryReset_             Régi jelszó érvénytelen reset után    Sikeres
+     OldPasswordFails
+     TestRecoveryReset_             Új recovery key m¶ködik               Sikeres
+     NewRecoveryKeyWorks
+     TestRecoveryReset_             Régi recovery key érvénytelen         Elutasítva
+     OldRecoveryKeyFails
+     TestRefreshToken_Success       Token frissítés → új JWT              Sikeres
+     TestRecoveryReset_             5 sikertelen recovery →               Zárolva
+     AccountLocksAfter5Failures     ókzárolás
+                  8.9. táblázat. A recovery service integrációs tesztek
+
+
+
+
+8.3.2. Repository és HTTP handler tesztek
+   A    message_test.go      teszteli   a   valódi   SQL   JOIN   alapú   üzenetel®zmény-
+
+lekérdezést, a kézbesítetlen üzenetek sz¶rését és az ábécérendes felhasználólistát. A
+
+handler rétegben a tesztek httptest.NewRecorder-en keresztül szimulált HTTP ké-
+
+réseket küldenek, és a visszakapott http.ResponseRecorder státuszkódját és JSON
+
+payloadját ellen®rzik. A tesztkörnyezet in-memory SQLite adatbázist és kisméret¶
+
+Schnorr-paramétereket alkalmaz a gyors végrehajtás érdekében.
+
+   A handler tesztek megírása során két implementációs hibát sikerült azonosítani
+
+és javítani:
+
+
+
+    RefreshToken kontextuskulcs-hiba: A POST /api/auth/refresh végpont
+       kezel®je a felhasználónevet plain      string típusú kulccsal olvasta ki a Go
+       kontextusból ("username"), miközben az          AuthMiddleware egy típusspeci-
+       kus   contextKey("username") kulccsal tárolta azt. A Go kontextus kulcs-
+       összehasonlítása típus- és értékfügg®, ezért a lookup mindig sikertelen volt,
+
+
+
+
+                                              68
+                                   8. Tesztelés
+
+
+
+
+  és minden tokenfrissítési kérés 401   Unauthorized választ kapott. A javítás: a
+  handler a middleware.UserContextKey konstanst alkalmazza következetesen.
+
+
+ ListUsers null válasz: A GET /api/users végpont üres felhasználói adat-
+  bázis esetén {"users":   null} JSON választ adott vissza {"users": []} he-
+  lyett. A Go nil szelet JSON-kódolása null-t eredményez, ami JavaScript kli-
+
+  ensoldali hibát okozhat (TypeError:        Cannot read properties of null). A
+  javítás a GetMessages kezel®nél már alkalmazott nil-ellen®rzési mintát terjesz-
+
+  ti ki a ListUsers kezel®re is.
+
+
+
+ Teszteset                   Leírás                             Eredmény
+ TestMessageRepository_      Üzenet mentés + lekérdezés         Sikeres
+ SaveAndGetHistory           (JOIN)
+ TestMessageRepository_      Kétirányú üzenet el®zmények        Sikeres
+ GetHistoryBidirectional
+ TestMessageRepository_      Limit + oset lapozás              Sikeres
+ GetHistoryPagination
+ TestMessageRepository_      Üres el®zmény nem hibázik          Sikeres
+ GetHistoryEmpty
+ TestMessageRepository_      Kézbesítetlen üzenetek sz¶rése     Sikeres
+ GetUndelivered
+ TestMessageRepository_      Kézbesítés jelölés +               Sikeres
+ MarkDelivered               újralekérdezés
+ TestMessageRepository_      Üres/nil slice nem hibázik         Sikeres
+ MarkDeliveredEmpty
+ TestMessageRepository_      Részleges kézbesítés               Sikeres
+ MultipleUndelivered
+ TestUserRepository_ListAll Összes felhasználó listázása        Sikeres
+ TestUserRepository_         ID lekérdezés név alapján          Sikeres
+ GetIDByUsername
+ TestUserRepository_Get-     Nem létez® felhasználó → hiba      Sikeres
+ IDByUsernameNotFound
+                8.10. táblázat. Az üzenet repository tesztek
+
+
+
+
+                                        69
+                                8. Tesztelés
+
+
+
+
+Teszteset                    Leírás                              Eredmény
+TestGetParams_               p, q , g paraméterek visszaadása    200
+ReturnsGroupParams
+TestRegister_Success         Érvényes regisztrációs kérés        201
+TestRegister_MissingFields   Hiányos mez®k                       400
+TestRegister_                Foglalt felhasználónév              409
+DuplicateUsername
+TestRegister_InvalidVerier Érvénytelen hex verier              400
+TestLoginInit_Success        Salt és challenge visszaadása       200
+TestLoginInit_               Hiányzó felhasználónév mez®         400
+MissingUsername
+TestLoginInit_               Ismeretlen felhasználó              401
+UnknownUser                  (anti-enum.)
+TestLoginVerify_Success      Teljes ZKP bizonyítás → JWT         200
+TestLoginVerify_             Challenge nélküli verify kísérlet   400
+NoActiveSession
+TestLoginVerify_             Hibás Schnorr-bizonyítás            401
+InvalidProof
+TestLoginVerify_             ZKP OK + TOTP aktív →               200
+WithTOTP                     pending token
+TestRecoveryInit_Success     Recovery salt és challenge          200
+                             visszaadása
+TestRecoveryReset_           Hiányos recovery reset kérés        400
+MissingFields
+TestRecoveryReset_           Challenge nélküli reset kísérlet    400
+NoActiveSession
+TestRefreshToken_Success     Token frissítés (javított hiba)     200
+TestRefreshToken_            Hitelesítés nélküli refresh         401
+MissingContext
+        8.11. táblázat. Az auth handler tesztek (részlet a 26-ból)
+
+
+
+
+                                      70
+                                8. Tesztelés
+
+
+
+
+Teszteset                    Leírás                             Eredmény
+TestListUsers_EmptyDB        Üres adatbázis → [] (nem null)     200
+TestListUsers_               Regisztrált felhasználók listája   200
+WithRegisteredUsers
+TestListUsers_               Ábécérendezett eredmény            200
+OrderedAlphabetically
+TestGetMessages_             Üres el®zmény                      200
+EmptyHistory
+TestGetMessages_             Ismeretlen peer                    404
+PeerNotFound
+TestGetMessages_             Üzenetek lekérése                  200
+WithMessages
+TestGetMessages_             ?limit=2 hatása az eredményre      200
+LimitParam
+TestGetMessages_             ?offset=2 lapozás                  200
+OsetParam
+TestGetMessages_             Kétirányú üzenet-el®zmény          200
+BothDirections
+TestGetMessages_             Érvénytelen limit →                200
+InvalidLimit                 alapértelmezett
+                   8.12. táblázat. A chat handler tesztek
+
+
+
+
+                                      71
+                                    8. Tesztelés
+
+
+
+
+     Teszteset                   Leírás                              Eredmény
+     TestTOTPStatus_             Új felhasználó: TOTP inaktív        200
+     NotEnabled
+     TestTOTPStatus_Enabled      Beállítás után: TOTP aktív          200
+     TestTOTPSetup_Success       TOTP secret és QR-kód               200
+                                 generálása
+     TestTOTPSetup_              Dupla beállítás kísérlete           409
+     AlreadyEnabled
+     TestTOTPConrm_Success Meger®sítés érvényes kóddal              200
+     TestTOTPConrm_             Hiányzó kód mez®                    400
+     MissingCode
+     TestTOTPConrm_             Érvénytelen kód → secret törlés     401
+     InvalidCode
+     TestTOTPDisable_Success     Kikapcsolás érvényes kóddal         200
+     TestTOTPDisable_            Kikapcsolás TOTP nélkül             400
+     NotEnabled
+     TestTOTPDisable_            Kikapcsolás rossz kóddal            401
+     InvalidCode
+     TestTOTPDisable_            Hiányzó kód mez®                    400
+     MissingCode
+     TestTOTPVerifyLogin_        Pending token + érvényes kód →      200
+     Success                     JWT
+     TestTOTPVerifyLogin_        Lejárt vagy érvénytelen pending     401
+     ExpiredToken                token
+     TestTOTPVerifyLogin_        Érvénytelen TOTP kód                401
+     InvalidCode
+             8.13. táblázat. A TOTP handler tesztek (részlet a 18-ból)
+
+
+
+
+8.3.3. WebSocket tesztek
+   A WebSocket hub biztonsága és konkurens-korrektsége két külön tesztkészletet
+
+igényel:
+
+
+
+    JWT         alapú   upgrade-megtagadás.          Az     új    pump_test.go    és
+
+      chat/handler_test.go fájlok olyan eseteket fednek le, amelyek bizton-
+      sági szempontból kritikusak: lejárt JWT, hiányzó token és rossz aláírókulccsal
+
+      aláírt token. Mindhárom eset 401    Unauthorized választ kap, és a WebSocket
+      upgrade meg sem történik. Ezek az esetek korábban csak a teljes E2E tesztben
+
+      voltak jelen; a külön handler-szint¶ teszttel a hiba minél közelebb a bevezetés
+
+      helyéhez (az upgrade-et végz® handler kódjához) detektálható.
+
+
+
+
+                                          72
+                                                8. Tesztelés
+
+
+
+
+    Hub konkurens hozzáférés.                           A    TestHub_ConcurrentUnregisterAnd-
+      OnlineUsers eset 50 egymással párhuzamos Unregister és OnlineUsers
+      hívást indít ugyanarra a Hub példányra. A teszt a                      make test-race céllal
+      együtt futtatva a Go versenyállapot-detektorát [28] aktiválja, így a Hub bels®
+
+      sync.RWMutex használatának hibája (elfelejtett lock, dupla unlock, stb.) az
+      els® futáskor felszínre kerül.
+
+
+    writePump               üzenetkézbesítés.                   A       TestWritePump_Delivers-
+      MessageToClient          eset       a     teljes       writePump   goroutine-t        végigfuttatja:
+
+      a     kliens    kapcsolódik,    a       teszt   egy     üzenetet   helyez   a   küld®     csatorná-
+
+      ra,    és   a   kliensoldal    a    valódi      WebSocket       frame-en    megkapja         azt.   A
+
+      TestWritePump_ClosesOnChannelClose                         a   pump   helyes    leállását    igazol-
+
+      ja, amikor a Hub bezárja a küld® csatornát.
+
+
+
+
+    Teszteset                                   Leírás                                Eredmény
+    TestServeWS_                                Lejárt JWT-vel dial                   401
+    RejectsExpiredJWT
+    TestServeWS_                                Token nélkül dial                     401
+    RejectsMissingToken
+    TestServeWS_                                Rossz aláírókulccsal dial             401
+    RejectsWrongSecret
+    TestWritePump_                              Teljes írási goroutine-on át          Sikeres
+    DeliversMessageToClient                     üzenet
+    TestWritePump_                              Unregister után a pump leáll Sikeres
+    ClosesOnChannelClose
+    TestHub_                                    50 párhuzamos hívás, -race            Nincs race
+    ConcurrentUnregister-
+    AndOnlineUsers
+             8.14. táblázat. A WebSocket hub és handler integrációs tesztek
+
+
+
+
+8.4. 3. réteg: End-to-end tesztek
+   A piramis csúcsán egyetlen tesztfájl (internal/integration/api_test.go)
+
+áll, amely a teljes rendszert egy valódi                 httptest.Server segítségével indítja el.
+Ugyanazt a chi routert, JWT middleware-t és WebSocket hubot használja, mint
+
+a cmd/server/main.go. Ezek a tesztek nem egyes komponenseket, hanem komp-
+
+lett felhasználói utakat (    user journey       ) ellen®riznek: regisztráció → bejelentkezés →
+
+védett végpont, vagy két kliens közötti valós idej¶ üzenetváltás WebSocketen.
+
+
+
+
+                                                      73
+                                    8. Tesztelés
+
+
+
+
+   A tesztkörnyezet kisméret¶ (64 bites) Schnorr-paramétereket alkalmaz a gyors
+
+végrehajtás érdekében: egy átlagos fejleszt®i gépen a teljes E2E rétegre kb. fél má-
+
+sodperc kell.
+
+
+    Teszteset                        Leírás                           Eredmény
+    Test_S4_1_GetSchnorrParams Schnorr paraméterek lekérése           200
+    Test_S4_2_LoginInit_             Ismert felhasználó login init    200
+    KnownUser
+    Test_S4_2_LoginInit_             Ismeretlen felhasználó           401
+    UnknownUser_Returns401
+    Test_S4_3_ListUsers_             Felhasználólista JWT-vel         200
+    Authenticated
+    Test_S4_4_                       Üzenet-el®zmények lekérése       200
+    GetMessageHistory
+    Test_S4_4_                       Ismeretlen peer                  404
+    GetMessageHistory_
+    UnknownPeer_Returns404
+    Test_S4_5_TOTPStatus             TOTP státusz lekérdezés          200
+    Test_S4_6_TokenRefresh           Token frissítés                  200
+    Test_S4_7_                       Hitelesítés nélküli hozzáférés   401
+    UnauthenticatedAccess_
+    Returns401
+    Test_S4_7_MalformedToken_ Hibás token formátum                    401
+    Returns401
+    Test_S4_8_Register_              Érvénytelen verier              400
+    InvalidVerier_Returns400
+    Test_S4_8_Register_              Hiányzó mez®k                    400
+    MissingFields_Returns400
+    Test_S5_FullLoginFlow_           Teljes login → védett végpont Sikeres
+    ThenAccessProtectedEndpoint
+    Test_S5_                         Duplikált regisztráció           409
+    DuplicateRegistration_
+    Returns409
+    Test_S5_RecoveryFlow             Teljes recovery folyamat         Sikeres
+    Test_S6_WebSocket_Connect        WebSocket kapcsolatfelvétel      Sikeres
+    Test_S6_WebSocket_               Érvénytelen tokennel WS          Elutasítva
+    InvalidToken
+    Test_S6_WebSocket_NoToken Token nélküli WS                        Elutasítva
+    Test_S6_WebSocket_               Üzenetküldés WebSocket-en        Sikeres
+    SendMessage
+    Test_S6_WebSocket_               Oine üzenet kézbesítés          Sikeres
+    OineDelivery
+                        8.15. táblázat. Az end-to-end tesztek
+
+
+
+
+                                         74
+                                           8. Tesztelés
+
+
+
+
+   Egy negyedik, böngész®ben futó UI tesztréteg (pl.              Playwright   -tel a JavaScript
+
+BigInt alapú crypto-kód végrehajtásának ellen®rzésére) technikailag lehetséges vol-
+na; a szakdolgozat keretében azonban a manuálisan elvégzett böngész®s teszte-
+
+ket tartottam elégségesnek. A szerveroldali E2E már minden REST végpontot és
+
+WebSocket forgatókönyvet lefed, a maradék kockázat a kliens-oldali renderelés, amit
+
+a manuális forgatókönyvek hatékonyabban fognak meg.
+
+
+
+
+8.5. Tesztelési összefoglaló
+ Csomag                                      Rétegek              Tesztek száma     Eredmény
+
+ internal/crypto                             Unit                      18          Mind sikeres
+
+ internal/middleware                         Unit                       8          Mind sikeres
+
+ internal/chat (hub, envelope)               Unit + Integration       7 + 5        Mind sikeres
+
+ internal/service (auth_unit, totp_unit)     Unit (mock)              7 + 14       Mind sikeres
+
+ internal/service (auth, totp, recovery)     Integration           15 + 16 + 11    Mind sikeres
+
+ internal/repository                         Integration               11          Mind sikeres
+
+ internal/handler (auth, chat, totp)         Integration           26 + 10 + 18    Mind sikeres
+
+ internal/integration (api_test)             E2E                       20          Mind sikeres
+
+ Összesen                                    3 réteg                   186         Mind sikeres
+
+          8.16. táblázat. Tesztelési összefoglaló csomagonként és rétegenként
+
+
+
+   A három rétegre tagolt piramis gyakorlati el®nye, hogy a fejleszt®i visszajelzési
+
+ciklus drasztikusan lerövidül: a make        test-unit a teljes egységréteget 12 másod-
+perc alatt lefuttatja, így minden kódváltoztatás után automatikusan meghívható.
+
+Az integrációs és E2E rétegek csak a commit vagy CI lépéseknél indulnak el; ez
+
+utóbbi a make    test szekvenciával teljes kör¶en lefut kb. 20 másodperc alatt.
+
+
+
+
+                                               75
+9. fejezet
+
+
+
+Összefoglalás
+
+
+
+9.1. Elért eredmények
+   A dolgozat egy ZKP-alapú biztonságos cseveg®alkalmazás tervezését és megva-
+
+lósítását mutatta be. A Schnorr-protokollra épül® jelszómentes azonosítás, a TOTP
+
+kétfaktoros hitelesítés és a WebSocket-alapú valós idej¶ kommunikáció együttesen
+
+egy olyan rendszert alkotnak, amelyben a szerver soha nem fér hozzá a felhasználó
+
+titkos adataihoz.
+
+   A munka során a következ® eredmények születtek:
+
+
+
+    A Schnorr-protokoll gyakorlati alkalmazása egy teljes hitelesítési rendszerben,
+     amely bizonyítottan soha nem teszi ki a felhasználó titkos kulcsát. A kliens-
+
+     oldali PBKDF2SHA256 kulcsszármaztatás biztosítja, hogy a jelszó soha nem
+
+     hagyja el a böngész®t.
+
+
+    Egy hibrid kommunikációs architektúra megvalósítása, amely hatékonyan szét-
+     választja az állapotmentes hitelesítést (REST API) és az állapottartó valós
+
+     idej¶ kommunikációt (WebSocket).
+
+
+    A valós idej¶ chat funkció implementálása Hub architektúrával, jelenlét-
+     kezeléssel és oine üzenetkézbesítéssel.
+
+
+    ZKP-alapú jelszóvisszaállítás recovery key segítségével, amely ugyanazt a
+     Schnorr-protokollt alkalmazza, mint a normál bejelentkezés  így a kliens
+
+     a recovery kulcsot sem fedi fel a szerver felé.
+
+
+
+
+                                         76
+                                    9. Összefoglalás
+
+
+
+
+   Session-életciklus kezelés: 2 órás JWT érvényesség, automatikus token-frissítés,
+    WebSocket heartbeat és lejárt tokenek automatikus lecsatlakoztatása.
+
+
+   77 egységteszt, amelyek teljes lefedettséget nyújtanak a kriptográai, hitelesí-
+    tési, TOTP, recovery és üzenetkezelési rétegekre.
+
+
+
+
+9.2. Korlátok
+   A   jelenlegi   implementáció    nem   tartalmaz   végpontok   közötti   titkosítást
+
+    (E2EE), így a szerver hozzáfér az üzenetek tartalmához. Egy E2EE-réteg (pl.
+
+    Signal Protocol) beépítése önálló tervezési feladat, amely a dolgozat hitelesí-
+
+    tésre sz¶kített fókuszán kívül esik.
+
+
+   Az SQLite adatbázis és a memóriabeli tárolók egyszerver¶ architektúrát felté-
+    teleznek, ami korlátozza a horizontális skálázhatóságot.
+
+
+   A Docker konténerizálás a jöv®beli fejlesztés tárgyát képezi.
+
+   A rendszer nem nyújt védettséget kvantum-számítógépes támadásokkal szem-
+    ben, mivel a diszkrét logaritmus probléma kvantum-környezetben hatékonyan
+
+    megoldható (Shor-algoritmus).
+
+
+
+
+9.3. Jöv®beli fejlesztési lehet®ségek
+   Végpontok közötti titkosítás (E2EE) bevezetése Signal Protocol vagy hasonló
+    séma alkalmazásával.
+
+
+   Docker konténerizálás a reprodukálható telepítés érdekében.
+
+   PostgreSQL-re vagy más skálázható adatbázisra való áttérés, Redis bevezetése
+    a horizontális skálázhatóság érdekében.
+
+
+   Post-quantum kriptográai primitívek vizsgálata (pl. lattice-based ZKP sé-
+    mák).
+
+
+   Mobilalkalmazás fejlesztése (iOS, Android).
+
+
+
+
+                                           77
+Irodalom
+
+
+
+ [1]   Sha    Goldwasser,    Silvio     Micali    és   Charles     Racko.    The    Knowledge
+
+                                             Proceedings of the 17th Annual
+       Complexity of Interactive Proof-Systems.
+
+       ACM Symposium on Theory of Computing (STOC)                     doi
+                                                                     . 1985, 291304. old.      :
+
+       10.1145/22145.22178.
+
+ [2]   Claus-Peter Schnorr.  Ecient Signature Generation by Smart Cards.               Journal
+       of Cryptology    4.3 (1991), 161174. old.       doi: 10.1007/BF00196725.
+ [3]   David M'Raihi és tsai.    RFC 6238: TOTP: Time-Based One-Time Password
+       Algorithm    . Internet Engineering Task Force. https://www.rfc-editor.org/
+
+       rfc/rfc6238. 2011.
+
+ [4]   Douglas R. Stinson és Maura B. Paterson.           Cryptography: Theory and Practice     .
+
+       4. kiad. CRC Press, 2018.       isbn: 978-1-138-19701-5.
+ [5]   Victor Shoup.    A Computational Introduction to Number Theory and Algebra               .
+
+       2. kiad. Cambridge University Press, 2009.          isbn: 978-0-521-51644-0.
+ [6]   Kevin   S.   McCurley.     The    Discrete      Logarithm    Problem.   Proceedings of
+       Symposia in Applied Mathematics            42 (1990), 4974. old.
+
+
+ [7]   Alfred J. Menezes, Paul C. van Oorschot és Scott A. Vanstone.                  Handbook of
+       Applied Cryptography     . Elérhet®: https://cacr.uwaterloo.ca/hac/. CRC
+
+       Press, 1996.   isbn: 978-0-849-38523-0.
+ [8]   Michael Jones, John Bradley és Nat Sakimura.               RFC 7519: JSON Web Token
+       (JWT)   . Internet Engineering Task Force. https://www.rfc- editor.org/
+
+       rfc/rfc7519. 2015.
+
+ [9]   Mohsen Toorani.  Security Protocols in a Nutshell.             arXiv preprint    (2016).
+
+       arXiv: 1605.09771v2.
+
+
+[10]   Neha Upadhyay.  Cryptographic Foundations of Cloud Security: A Survey on
+
+       Trust Models and Zero-Knowledge Proof-Based Authentication. (2025).
+
+
+
+
+                                                  78
+                                       IRODALOM
+
+
+
+
+[11]   Rohit Pathak és tsai.  Bibliometric Survey on Zero-Knowledge Proof for
+
+       Authentication. (2021).
+
+
+[12]   Zhigang Chen és tsai.  A Survey on Zero-Knowledge Authentication for
+
+       Internet of Things.    Electronics   12.5 (2023), 1145. old.    doi: 10 . 3390 /
+       electronics12051145.
+
+[13]   Raghav Dwivedi és tsai.  Privacy Preserving Authentication System Based
+
+       on Non-Interactive Zero Knowledge Proof Suitable for Internet of Things.
+
+       Journal of Ambient Intelligence and Humanized Computing           (2021).   doi: 10.
+       1007/s12652-021-03459-4.
+
+[14]   Thiyagarajan.      Enhancing     Captive    Portal   Authentication   with     Zero-
+
+       Knowledge Proofs. (2024). SSRN: 5106822.
+
+
+[15]   Kapil Saluja és Madhuri Bhatia.  Zero Knowledge Proof Based Authentication
+
+       Protocol Using Graph Isomorphism. (2019). arXiv: 1911.09329v1.
+
+
+[16]   Ahmed Asimi és tsai.  Strong Zero-Knowledge Authentication Based on
+
+       Virtual Passwords.    International Journal of Network Security       18.4 (2016),
+
+       601616. old.
+
+
+[17]   Feng Hao és tsai.   RFC 8236: J-PAKE: Password-Authenticated Key Exchange
+       by Juggling  . Internet Engineering Task Force. https://www.rfc- editor.
+
+       org/rfc/rfc8236. 2017. doi: 10.17487/RFC8236.
+
+[18]   Itzel   Vazquez   Sandoval   és    tsai.    PakeMail:   Authentication   and    Key
+
+       Management in Decentralized Secure Email and Messaging via PAKE. (2021).
+
+       arXiv: 2107.06090v1.
+
+
+[19]   Kazukuni Kobara és Hideki Imai.  Pretty-Simple Password-Authenticated
+
+       Key-Exchange Protocol. (2001). arXiv: cs/0110024v1.
+
+
+[20]   Mikhail Fomichev és tsai.  FastZIP: Faster and More Secure Zero-Interaction
+
+       Pairing. (2021). arXiv: 2106.04907v3.      doi: 10.1145/3458864.3467883.
+[21]   Little és tsai.  Secure Account Recovery for a Privacy-Preserving Web Service.
+
+       (2024).
+
+
+[22]   Faller és tsai.  Password-Protected Key Retrieval with(out) HSM Protection.
+
+       (2024).   doi: 10.1145/3658644.3690358.
+
+
+
+
+                                             79
+                                       IRODALOM
+
+
+
+
+[23]   Zhang és tsai.  Blocklisted Oblivious Pseudorandom Functions. (2025). arXiv:
+
+       2507.16040v1.
+
+
+[24]   Nguyen és tsai.  Zero-Knowledge Password Policy Check from Lattices.
+
+       (2018). arXiv: 1802.05004v1.
+
+
+[25]   Gijs Van Laer és tsai.  Harden Zero Knowledge Password Proofs Against
+
+       Oine Dictionary Attacks. (2016).
+
+
+[26]   Will Major és tsai.  An Authentication Protocol Based on Chaos and Zero
+
+       Knowledge Proof.   Nonlinear Dynamics      (2020).   doi: 10.1007/s11071-020-
+       05463-3.
+
+[27]   Povsic.  Zero-Knowledge Authentication. (2022). arXiv: 2205.05847v1.
+
+
+[28]   The Go Authors.     The Go Programming Language https : / / go . dev
+                                                                 .                         .
+
+       Hozzáférés: 2026-02-27. 2024.
+
+
+[29]                      gorilla/websocket  A fast, well-tested and widely us-
+       Gorilla Web Toolkit.
+
+       ed WebSocket implementation for Go https : / / github . com / gorilla /
+                                               .
+
+       websocket. v1.5.3. Hozzáférés: 2026-02-27. 2023.
+
+[30]   Ian Fette és Alexey Melnikov.    RFC 6455: The WebSocket Protocol        . Internet
+
+       Engineering Task Force. https://www.rfc-editor.org/rfc/rfc6455. 2011.
+
+
+[31]        chi  lightweight, idiomatic and composable router for building Go
+       go-chi.
+
+       HTTP services https://github.com/go-chi/chi
+                       .                                       . v5.2.5. Hozzáférés: 2026-
+
+       02-27. 2024.
+
+
+[32]   SQLite Consortium.    SQLite  A C-language library that implements a small,
+       fast, self-contained SQL database engine https://www.sqlite.org
+                                                   .                                . v3.46.
+
+       Hozzáférés: 2026-02-27. 2024.
+
+
+[33]   modernc.org.   modernc.org/sqlite  CGo-free port of SQLite for Go https:.
+
+       //pkg.go.dev/modernc.org/sqlite. v1.46.1. Hozzáférés: 2026-02-27. 2024.
+
+[34]   Paul Querna.    pquerna/otp  One Time Password utilities for Go https : .
+
+       //github.com/pquerna/otp. v1.5.0. Hozzáférés: 2026-02-27. 2024.
+
+[35]   David M'Raihi és tsai.    RFC 4226: HOTP: An HMAC-Based One-Time
+       Password Algorithm   . Internet Engineering Task Force. https://www.rfc-
+
+       editor.org/rfc/rfc4226. 2005.
+
+
+
+
+                                          80
+                                   IRODALOM
+
+
+
+
+[36]   Ham Vocke.    The Practical Test Pyramid https : / / martinfowler . com /
+                                               .
+
+       articles/practical-test-pyramid.html. martinfowler.com. 2018.
+
+[37]   Mike Wacker.   Just Say No to More End-to-End Tests https://testing.
+                                                             .
+
+       googleblog.com/2015/04/just- say- no- to- more- end- to- end- tests.
+       html. Google Testing Blog. 2015.
+
+[38]   Google LLC.    Fundamentals of Testing Android Apps https://developer.
+                                                         .
+
+       android.com/training/testing/fundamentals. Letöltve: 2026-04-20.
+
+
+
+
+                                          81
+
