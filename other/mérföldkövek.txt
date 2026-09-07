@@ -1,0 +1,21 @@
+1. Mérföldkő: Tesztelés, refaktorálás és szoftver véglegesítésee (augusztus 25 – szeptember 7 (13 nap))
+Szoftver release-ready állapot
+
+2. Mérföldkő: Fejlesztői dokumentáció – Specifikáció és tervezés (szeptember 8 – szeptember 21 (14 nap))
+A probléma részletes specifikációja
+Tervezési döntések és indoklásuk
+Rendszer architektúrája (komponensdiagram, adatfolyam)
+A felhasznált technológiák
+
+3. Mérföldkő: Fejlesztői dokumentáció – Megvalósítás részletei (szeptember 22 – október 5 (14 nap))
+FGSM megvalósítási részletei
+PGD megvalósítási részletei
+GUI/frontend implementáció
+
+4. Mérföldkő: Elméleti alapok, bevezetés és felhasználói dokumentáció (október 6 – október 18 (14 nap))
+Elméleti háttér (FGSM, PGD, kapcsolódó munkák, védekezési stratégiák)
+Felhasználói dokumentáció (telepítés, GUI, használati esetek
+Bevezetés teljes kidolgozása (motiváció, feladat leírása, hozzájárulások)
+Összefoglalás, következtetések, továbbfejlesztés, mellékletek
+
+5. Mérföldkő: Véglegesítés, véleményezés (október 19 – november 1 (13 nap))

@@ -1,0 +1,16 @@
+
+tervezés pontok:
+-gpu használat
+
+
+költségfüggvény J
+
+
+linearitás
+mitől lesz egy modell lin vagy nemlin - aktivációs fgv
+traszferabilitás
+cnn vs transformer modellek
+adversarial tréning
+
+normalizált pixeltér
+softmax - miért azt használja az algoritmus
