@@ -1,0 +1,1265 @@
+----- PXL_20260907_103317246.MP.jpg -----
+PS E EE
+HÉ sé A A ked öt c savzes :
+d ús 4
+Ny 4 ön 8] i 4 41
+:] AT itel
+hi Ésa ki - 3 a N si Z : : NI
+MI b. . VA tŐt ak. eg ! ") il
+NN CC H. [1 "1 !
+f 1 NT .
+: £ r 4) A 4 1
+gk .. :
+lanitó- és tesztadat veneráliá S.
+.. t- ; ; tg KELTE ; ! :
+a Fil oszltada sENnerdlaása 1ew-shot
+[24 4 - .
+Learninghez
+Ccarninsnez
+PF; x d. 2 ; Hir e. AP; 12 A -41125
+emavezelő. ÖZTZŐ.
+Lr (Gulyás László ("sal
+-AULYVAS 1./2165410) A szél Magy RArFISZUIAn
+
+í 1 x a 1 ; ! 1 4. T rán il [ 1 tt 2 rk 3 x ait "1 ] a. ; ta 1 kg
+
+egyetemi docens programtervező miormatikus BSc
+ffudapest, 2024 MAL ALA LA AT LTAL
+Í Í kij leltél KATE EHHATÉS 1! Í ! ! Í it
+
+! 1 11 i i il i ! HETE EH] téri TIE! j jösst í7
+TAN jee s tsdtószt telje félts: fért esztüj féltve Hit VA HA elé Kel VEK VE TARTA VEÉR TÁN i ANETTE TENTKEATKÉMTTA] MATKATTTÉNI ! ! ! jERNVEÉNEÉRHEÉ ég elle KÉT ET KE Yeét éli (lel ANGT EN] 1 EE JÉR E keltél értél ert ltal alélt le EZ LEÉLT 14! iletták él
+3 s. 79 ásd ÁGA 2 s 98 ; í a 28 ká £ KÖ VATA eg. 3 k ÖBB VA BO! MAR ÍLAZPT FEL hnalánsn nok 378 A CS, 1 34
+
+----- PXL_20260907_103318688.jpg -----
+EA o A As
+lartalomjegyzék
+. LE ÉP,
+I. Bevezetés 3 k
+2. Felhasználói dokumentáció 1
+2.1. Hardverkövetelmények ,  —  — E !
+2.1.1. Minimális Nhardverkövetelmény . .. . — :
+2.1.2. Ajánlott nardverkövetelmény ii .— !
+2.2. delepítés és mditáss.s)5..  . GZ
+23 tiasználati úlőultata) A
+23.k —C— Kezelőftelület áttekintése s. gt
+2.3.3. Mappából betöltött képek HAjortalása . . sg
+2244 KéDpEL segrrálása A
+3. Fejlesztői dokurnentáció II
+4 []. - Punkcionális követelmények 4 . , . . I
+4.1.2. Nem Ainkciónális követelmények . , [3
+n2.  Pelhaszeuói eletek [LL . 14
+Mé. FAlhásználói felület testreszabása [4 ga
+Met ! KO DJEKTNÖk előállítása [4 ga
+b: Kkaplementációhok fellüsznált könyvtárak 4 444 gs
+VAb ab ! 1 VETA AI ( Hb [netman [ák ALA ALA ANN 16
+A AAA VÁLA ! ELÉ VAJ VA A ATÁT
+ANN s
+
+----- PXL_20260907_103320133.jpg -----
+; ; zs E : EKG.
+3. Grahkuüs felüli
+7 1 A A. !
+0. F.45.  GZÖSTHNHONTÁCIG
+tl 21)
+3 ( bjektum auemoentálásy
+3.4.5. C)bijoektumok VAVOIRÁLIK ;
+: ;
+3.4.6. Cbijekturmoök adfedése
+777
+1. PyYA si , HTEBSE-. s , 10or irá
+1. lTesztelési jegyzőkönyv 2
+24
+1.1. biunkcionalitás tesztelése
+1.1.1. Általános csotok . x
+L 1.2. Sarokcsotok és lehetetlen feladatok — . l 4
+Pp Í
+it ! E É 2 só
+1.2. Hibakczelés tesztelése .
+al m N c [1 Ea [1 [2 - - - re] [1 ká et ht ká s
+; : : T9. eg:
+3. Üsszegzés
+7 Írd
+Irodalomjegyzék
+ks 1 —
+. -.
+Abrajegyzék
+41
+Algoriítmusjegyzék :
+12
+éljtst MENYÉNEK ii TEN MEGTETT ) Í í ! A l ! ! . .
+
+----- PXL_20260907_103321592.jpg -----
+FAL 1
+A mesterséges intelligencia fejlődése az elmúlt évtizedekben hgyelemre méltó
+
+volt, és ma mar számos területen, beleértve a képfeldölgozást is, alkalmazásra ke
+rül. A képfeldolgozás különösen olyan fejlett technikái, mint a few-shot learning.
+lehetővé teszik a gepek számára. hogy rendkívül kevés adathól tanulva felismerje-
+nek és értelmezzenek összetett mintákat és objektumokat, ami alapvető fontosságú
+a mesterséges imtelligencia további alkalmazásainak kiterjesztése szempontjából.
+
+A icw. shot learning olyan gépi tanulási módszer, amely képes arra, hogy minimá.
+lis példaszám alapján generalizáljon és azonosítson új entitásokat [1 Éz a módszer
+kilönösen hasznos olyan helyzetekben, ahol az adatok korlátozottak vagy drágak a
+beszerzésük. A technika lényege, hogy a tanító algoritrnus a korábbi tapasztalatokat
+felhasználva képes új, ritkán előforduló kategóriák gyors felismerésére és kezelésére.
+
+I. szakdolgozat arra fókuszál, hogy tanító. és tesztadatokat generáljon few-shot
+learning modell számára, mely segítségével a modell képes lesz az objektumok kö-
+zotti térbeli kapcsolatok, mint, a közelség, távolság és atledés fogalmait generalizálni
+és értelmezni. ISzáltal a modell képes lesz az ilyen típusú viszonyokat azonosítani
+és értelmezni új, látott és látatlan adatokon is, moly tudást később új definíciók
+elsajátítására is lehet alkilmazni, akár kisszámú példa megléte mellett.
+
+AAA MA IÉLYTs IÉlTeléáítélli ! 1 MELETT i TIGER EEÍTÉSAI! : Al KEÉN ETET VAA! fil JEL 1 jEGEÉTT fé ETTE TÉS Té21 félteni KÁTÉA tél ze ESVE kél KEGYES FÉG 9] EDE KLÁRA 191994) főjdő KEEN zót Fel LL feltettél Ae]
+
+----- PXL_20260907_103322820.jpg -----
+a ) . e : i
+; ! ;
+A Med] Jealiírvmanonnt é ni Á.
+Felhasználói dokumentáció
+A következő fejezetek felhasználói szemszögből ismertetik a szoftver fontos ele
+mert, amelyek szükségesek a szoftver hatékony telepítéséhez és használatához. Ítt
+találhatók a hardverkövetelmények, a szoftver telepítésének lépései, valamint a hasz-
+nálati útmtató is.
+ti 1 ? :i : 4 ; ; És ;
+2.1. Hardverkövetelmények
+i Hi - HEH él ösijjó lés kt At bel EHSEHERI félllő HERHERE
+2.1.1. Minimális hardverkövetelmény
+AÁ szoftver alapvető futtatásához szükséges minimális hardverkonfiguráció:
+e (117: Kétmagos processzor, 2.5 (Gliz
+s Memória (RAM): 4 G13
+s lláttértár (IDD): 10 C713
+2.1.2. Ajánlott hardverkövetelmény
+Az optimális teljesítmény érdekében ajánlott handverkoönítgüuráció:
+s (FU: Négymagos processzor, 3.5 GIlz vagy gyorsabb
+s Mernória (KHAM)! 8 (713 vagy több
+e lHáttértár (5512): 10 C713 vagy tőbb
+e Dedikált NVidia! videókírtya: Minimum 2 (GB VRAM
+" NYVidia CUDA toclkit megléte kzükzépes 4 (4H1J-4 gyorsításboss AL
+E. kt .
+
+----- PXL_20260907_103324059.jpg -----
+6) €) Íí 81 F. P. i 2 li [a ili F) ií ús
+2.2. lelepítés és indítás
+A szoftver használatához BZUKSÖKOK A legalább 2 8 verziójű Pvthon tuttatókoór
+nyezet, mely elérhető a Python mnvatalos oldalán
+: dokumentáció a Drogram 1.1) VETZIÓjához köszzült. mely a doknumenturri mellett
+21p tormátumba csomagolva elérhető A függőségek telepítéséhéz és s7 mditáshoz
+a következő leírás szolgál utmutásköént:
+e Windows 10. 11: át.
+L. Dupla kattintás a mellékelt install .bat fájlra
+2. Indítás módjai:
+(a) Duplakattintás a maln.py fájlra
+(b) py main. Py parancs kiadása parancssorban
+e [Debian alapú rendszerek:
+L szükséges lehet a mellékelt shell seriptet az operációs rendszer által fut
+tatható seriptté alakítani a következő módon:
+(aj dos2unix program telepítése Parancssorhól: sudo apt-get install
+ey dösZunix
+(b) script átalakítása: dos2unix install .sh
+2. Függőségek telepítése:
+(aj Futtatási jogosultság biztosítása: chmod utx install. sah
+(b) Futtatás rendszergazdaként: sudo ./install .sh
+3. Indítás módjai
+(a) Duplakattintás a main. py fájlra
+(b) python3 main.py parancs kiadása parancssorban
+I E "—
+
+----- PXL_20260907_103325388.jpg -----
+A 2
+s Felhasználói dokumentáció
+ÉL ETOGETTEGYTSEZELTEZYEITT se lesik Tyjittész láss lős alles sm ÉSE S Bé oéssílneeytfás és EE s sssaoptdssszzsztttssígiátontztátoztászetékánisi s e sZotZSSZTSŰÉSZÉSSSSZTÁ; IRTA e 7:
+") z : ] 1 HALA PA ] 4 aslt HEENNIE BETUK HNNIÉK
+Iz a szekció a Program használatához tög útimutatásni szolgálni, körbejárva an
+nak funkcióit, és bemutatva az elvárt kimenetet "gy példabermenet függvényébher
+2.3.1. Kezelőfelület Át Lokintóso
+tíz az alfejezet a erafikus Fel használói felület általános bermitatására szolsál 2
+Elindítva a szoftvert az alábbi (ld.2 2.1, ábra) kezelőfelület fogadja a felhaszná h.
+lőt valasztott témától függően. A Dbrogram alapértelmezetten az ÖDETÁLIÓS rendszer
+témáját használja.
+lsyt4 tisz ad HE Eeöeteéséeey fésfvezezzsártti ETET péjhoeg Eleg sítés] i s
+on émnies egés élet sss PI Etats gy jbék ÁE ÍS leg ezttsz ts
+gyel kánt; AMG MANN: EGE E] IEGTÉTVIEHUA EGET Ai
+yen] LL szer
+(a) Sötél téma (bj) Világos téma
+2.1. ábra. Megjelenés témától függően
+A következő ábra (2.2.es) és felsorolás szemlélteti a CI] gombjamak funkciona-
+hitásat.
+mozürt imadok! FEK I "totaton 11 josag] étage yes] 1931 i
+EZEN 4. "94 Fess ÁÁ ,
+JE As yYT ATTDSON el) "ALAN VksAEG Baebán eb aj.
+: AM
+hatti elit Já tosaggoeti allast MUKI
+2.2. ábra. A grafikus felület címkézve a felsorolás megértéséhez vs Ay s AT
+A ——([1Égy beviteli mezőre helyezve a kurzort, megjelenik az adott mező Ana AY MA A
+
+----- PXL_20260907_103326587.jpg -----
+19 FO ik H EMEL MYSSEAHÁTT HE közli i ; " stl
+I. Felület testreszabása
+(a) Vémaválasztás
+(b) Betűmérei megvaltoztatásy
+(C) Ablakrmérvi megváltoztatása
+I. Objektumok előállítása
+(a) Szegmentált objektumok importálása
+(b) Egy kép szegmontációja k
+(C) Több kép egyidejű SZOBINOTNTtÁCIÓJA
+(4) ozegmentalt kép megjelenítése
+HI. Generált képek paramétereinek beállítása
+(a) Generálni kívánt képek száma
+(b) Képek szélessége pixelben
+(c) Képek magassága pixelhen
+(d) Öbjektumosztályok kiválasztása
+(e) Háttérszin kiválasztása
+(f) Kimeneti könyvtár megadása?
+! :
+(g) Crenerálás elindítása
+IV. Objektumok paramétereinek beállítása
+(aj Forgatás alsó korlátja fokban
+(b) Forgatás felső korlátja fokban
+(c) Unitorm nyújtás engedélyezése
+(d) Objektum magasságának minimális nyújtása százalékban
+(e) Öbjektum szélességének minimális nyújtása százalékhan
+(£) Objektum magasságának maximális nyújtása százalékban
+(Z) Objektum szélességének maximális nyújtása százalékban
+(h) Átfedés engedélyezése
+(1) Objektumok minimális távolsága százalékban
+0) Objektumok maximális távolsága százalékban
+(k) Öbjektumok SZÁMOSSÁLÁNAK alsó korlátja
+(1) Objektumok számosságánk felső korlát já
+! 1 ! ! ú : ! ke kenetet 1! lgítéál jbsztá héjú ki lét ; ! IA / ! il 1! MARE i2]! ! Í
+A AAA ,Alapérfeleentt kimeneti könyvtár a genenüted images. HANNA MATAÁNÁLAY 3 s ANN
+AGYA A "10044 a generült kép átlójának hossza pixolben. E E EL ALTELANAAOAANA A ALALYUJAN !
+
+----- PXL_20260907_103327745.jpg -----
+1 1 K GET ELL lű] JE 1 ] j szil Br, mij
+A els Alól eőkilenénkalió
+2 2; TET HIRES: Key ovos lose yen very Ve le e eat VÉ MO lsz SA AAA AAA AA KAN A tAtossas se st SSE ÉDSSESSESBSSET VÁRSZ] Ántttákbiss
+2.3.2. Szegmontáció
+A szemantikus s zegmentadió lehetővé teszi. hogy feltöltött KÉDETNI Vagy képeken
+detektálásra kerüljenek az objektumok, melyek különböző Osztályokba kerülnek he
+SOTOolásra
+Jelenleg támogatott osztályok: repülő, kerékpár, madár. csonak, palack, busz.
+autó, macska. szek, teh en, asztal, kutya, ÉG , maotorkeréknűr., EMLŐDET. NOVÉTN , bárány,
+kanapé, vonat
+lámagott képkiterjesztések; . Prtd, .3P9, .3peg, .brnp, .a91f k
+Szunpla kép szegmenteciója
+AÁ szunpla kép szegmentációjánál, mint hunkciónál, 1 bemeneti képen detektál
+hatóak és megjeleníthetőek az ott talált objektumok. Példa a 2.3 ábrán.
+I. A 2.2 Abrán található I.(b) gornb kiválasztása
+2. köp kiválasztása
+A ÁT A A ss s e wugy
+gt
+GAN . A s ! o RAL
+a A A ó keltem rnő]
+A F.A kt Lé — I
+A ÁL TT AAA 6 kezes, A, a do ér
+CC SÉG N ul v
+(2) Félda a szegmentációs eljáráshoz (b) A felületeten látható eredmény
+kijelölve a elmentett objektumot.
+2.3. ábra. A szegmentációs folyamathoz példa he- és kimenet
+Mappából betöltött képek szegmentációja
+L. A 2.2 Ábrán látható a I1.(c)-vel jelölt gomb kiválasztása
+[I
+déjó 21]! i Al HEPYÉAYINS HEJETT,
+2. Mappa. kiválasztás
+" Nern szükséges a manpának közvetlenül képeket tartalmaznia, a program képes kiterjedt map- A
+pasatruktúrából száruiuzó képük betöltésére út HIS A ! A JÁ
+
+----- PXL_20260907_103329176.jpg -----
+"7 PRI ! VET ÁLD b 1 PSG [ett ttettássssy, Ájd ! jiizett fd;
+fi jtttátésszeszíáttttétthéss; s ontttttttákitkéseseyivótfólébékéseyyítágyjékáásásnyyyyyátdáttossaryyyyty tt ll tts ts EA ÉLÉST TNKSSSSo gfáKtss]ogtssss HOST ssel tttlesszzt fels a EGYE
+") P: 1 A , : É 7 : féllel : ili I 4. ell ;
+2.3.3. Mappából betöltött képek importálása
+
+Ha rendelkezésre áll saját, objektumokból álló képhalmaz, lehetőség van ennek az
+umportálására. Ennek során a PFORTAM Nem vizsgálja, hogy a külső adatok helyesek
+e, mindent a megfelelő mappába holyez ami megegyezik a tartalmazó könyvtár
+nevevoil Ilyenkor rk valaszthatóva válik VÁG öOsztalyválasztó ablakból. ha eddig TFETTT i
+létezett az adoti osztaly
+
+I. A 2.2 ábrán címkézett gombok közül a ÍL.(a)-val jelölt gomb kiválasztása ís
+
+2. Mappa kiválasztása
+4 v ; itt : Felili F .
+
+2.3.4. Képek generálása
+
+A program a felületen megadott generálási paraméterek alapján allitja elő a
+képeket. A paraméterek a C[lL.ban adhatók meg, ahogy az a 2.2 ábrán látható.
+
+Pontos megjegyezni, hogy minden objektum Nnyraméretezésre kerül annak ér
+dekében, hogy a különböző képmanipuláló eljárások egységes méretű képeken clői
+gozzanak, kiszámíthatóbb eredményt produkálva. Ennek eredményeképpen minden
+
+objektum és alakzat hosszabb oldala a generált kép felhontásának hosszabbik di
+menziójának ötödére kerül skálázásra.
+
+Alapértelmezett áttetsző hátterű lesz a kimenct, amely módosítható (2.2 ábra
+
+A következő hibák merülhetnek fel a paraméterezésnél, amely a nem defniált
+viselkedés kezelése, és a futó generálás biztos terminálása miatt kulcsfontosságú:
+
+s Hibaüzenet jelenik meg generálás indításakor ha:
+
+Bármelyik mező üresen marad
+Bármelyik mező minimum értéke nagyobb, mint az ahhoz párosuló ma.
+XIIIMITTIÉ
+Kikapcsolt átfedésnél az objektumok felső korlátja (2.2 Ábra IV.(1) jelö.
+lőnégyzet) meghaladja a 3-at
+- Bekapcsolt átfedésnél több, mint 7 a megengedett maximuma az ohjek-
+turnoknak
+: 7 Á megadott távolság maximuma nagyobb, mint 9024
+ . d A A ATTI EA A E
+
+----- PXL_20260907_103330235.jpg -----
+A
+Ha van legalább 1 kiválasztott goormotriai alakzat, (téglalap, háromszög,
+KÖT és négyzet osztályok), nincs legalább 1 szín kiválasztva azokhoz [22
+abra ÍV.mi)
+e [Hibaüzenet jelenik meg generálás közben, és 7 generálás befejeződik. ha:
+A megadott paraméterkombinációk lehetetlen vagy túl nehéz feladatot
+doehnmiálnak (például: 2009 méretre nagyitott objektumokat szeretnénk EGY
+mástól 5076 távolságra lehelyezni) E
+l. Á paraméterek kitöltése után 2.2 ábrán HI.(g)-vel jelölt gombra kattintva el
+mdul a generálás
+2. Ha nincs megadva a kimenet helye , akkor a szoftverrel azonos mappában létre
+Jön a generated images nevű könyvtár. amely tartalmazni fogja a kimenetet.
+KZ ki d FR
+A következő ábrán található néhány kép amely példázza a generált eredmények
+(24) Ob jektumlehelyezés (b) Öbjektumlehelyezés (c) (ibjekturulehelyezés kis
+áatlodóéssel nagy Lávolsággal távolsággal
+2.A. abra. Féldakimenetek
+A sikeres generálás után ( példakimenet 2 de) egy
+generation stats. /genendlis ideje/ nevű összefoglaló kerül létrehozásra, amely az
+objektumok átlagos skáltzását, a sikeresen generált és elvetett képek mennyiségét,
+és a lehelyezett objektumok számát tartalmazza osztályra lebontva.
+
+----- PXL_20260907_103331450.jpg -----
+ű "
+XI1O7O
+3. fejezet
+"ejlesztői dokumentáció
+Ez a fejezet a fejlesztői dokumentáció, mely ismerteti a szoftverrel szemben tá-
+masztott elvárásokat, az implementáció során hozott fontosabb döntéseket, mint
+peldaul az architektúra, a felhasznált külső könyvtárakat. Itt kerülnek ismertetés.
+Te a generálás szempontjából kulcsfontosságú algoritmusokat, hozzájárulva ahhoz.
+hogy az esetlegesen szoftvert továbbfejlesztő programozók átlássák a tel Jes rendszert.
+! . ! HP att] 1 Fa 1
+3.1. Követelmények
+A szoltverfejlesztés kezdeti szakaszában meghatározásra kerültek a követelmé-
+nyek, melyek fontosságát az 15 példázza, hogy ezek alapján kerültek meghozásra a
+főbb döntések, még az implementáció előtt. A következő szekció ezeket ismerteti.
+i : ! s Falili The én HULE? HILEER ; relfttásg ! ;
+3.1.1. Funkcionális követelmények
+Ebben az alfejezetben a szoftver funkcionális követelményei kerülnek meghatáro-
+74514, hogy a szottvernek milyen konkrét feladatokat és funkciókat kell ellátnia. Ezek
+4 követelmények leírják azokat a viselkedési módokat, amelyek a rendszer használata
+során a felhasználók vagy más rendszerek számára elérhetők, biztosítva a technikai
+célok teljesítését.
+Grzenerált képek
+! A ATATLÁT] jól általánosítja a LL közelség. 4.5 lság?
+e A program által generált képhalmaz jól általánosítja a , közelség", "távolság
+és /atfedés" definícióját az ezeket a fogalmakat tanulni képes neuronháló szá-
+JAG. il A em / 2] . VELT / A TA VENUS . A
+Ka öm — -
+9 PR :
+
+----- PXL_20260907_103332703.jpg -----
+17 B " Ah E APR ) : FŰ
+i s AR bojl SZÉ] dokumontáció
+pezosgoottéttét s öonyottójjégvötáátyttsssnytítfólf44bé9ősyőőn99ő0k0044 kén ontét sztk oz ttétőFKESE SET EEE ESZO ET FEET ERSSS s s : Esz E ELÉ
+azok AuisTnontaációi vélőet lenszerűek. de A defrmált korlátokon nem mutatnak
+túl semmilyen csethen som
+Szegmentáíáció
+tektálására legalább 10 kategóriában
+
+e Több kép párhuzamos szemantikus szegmentálása lehetséges. :
+
+e lgyidejűleg egy kép szegmentálása csetén az ahhoz tartozó maszkok megjele
+
+nitésre kerülnek.
+
+e Az azonosított objektumok a megfelelő katcgória mappájába mentődnek.
+
+K épgenerálás
+
+e Legalább 65 kiválasztható háttérszin elérhető
+
+e A geometriai alakzatok legalább 6 színben goncrálhatóak, egy generálás során
+
+több szín is választható.
+
+e A generált képeken az objektumok száma a felhasználó által meghatározott
+korlátok között mozog.
+
+s Amennyiben engedélyezve van az Opció, minden objektum megtartja az ere-
+deti oldalarányait a nyújtás során, ellentétes esetben ez ritkán fordul elő a
+véletlentaktor miatt.
+
+s Az objektumok elforgatása a grafikus felületen beállított korlátokon helül tör-
+ténik.
+
+s Az objektumok közötti távolság 3 objektumig a következő képlettel van meg-
+NAtároZzvi:
+
+képátló X alsó korlát — Isáu 2 fŐpátló x felső. korlát
+100 Am 100
+
+----- PXL_20260907_103333811.jpg -----
+É 3. Fejlesztői dokumentáció
+ELT TOTVÉT SZÉTMENT e e sys ez RSS ZATA KUSS TATDS OSZT 2 SES
+2, ij 1 4 il játssz ül E il : öm : 1
+3.1.2. Nem funkcionális követelmények
+A szoft vertejlesztés során a nem hinkcionális követelmények olyan specifikáci
+ök, amelyek 17 alkalmazás általános minőségét és működését határozzák meg. Mis
+ci tunkcionális követelmények EF; összpontosítanak. hogy A szotltver "rriit Csinál
+addig a nem funkcionális követelmények a "hogyan" kérdésére adnak választ hetfo
+lyásolva a teljesítményt. a megbízhatóságot és tuttathatóságot egyaránt. a követke
+zőekben ezek kerülnek áttekintésre.
+Használhatóság
+e A betűméret személyre szabható.
+e [émaváltás lehetősége (sötét és világos).
+e Az ablakméret manuálisan beállítható.
+Futtathatóság
+e A szöltvernek atlagos asztali számítógópen vagy laptopon kell futnia. megte
+lelve a hardverkövetelményeknek.
+s A programnak Dehian alapú UNIX rendszereken és Windows 10-- OPETÁCIÓS
+rendszereken is működnie kell a függőségek megléte mellett.
+Megbízhatóság
+e Szabványos használat során a PTOgRTAM nem omolhat össze váratlanmiil.
+s Ha cgy probléma nem megoldható, a programnak le kell állna és tájékoztatnia
+kell a felhasználót.
+s A numerikus idátokat váró mezőkbe csak számok irhatóak, eszel megelőzve a
+hibás működést.
+s A program futtatásához legalább 3.8 as verziójú Fython környezet szükséges.
+ÁÁ ETT 4. A mellékelt scriptek használatával a, függőségek egyszerűen telepíthetőek kell — — no
+A A A A LELEK ALÉNEÉNS gel eg Ven ess elekkel va yes ea ell el kényes Vé létére és VA Ő kes VE e Ve ká tálat
+
+----- PXL_20260907_103335139.jpg -----
+Ka Z SES. ; e s
+e, Fő, ; 1 VET Hideeeskt] HAt tttást ÁK HIT 9 s
+— 3. Pejlesztól dokumentáció
+: jotsámenyágyááátátátátániáótéékbébbbb káld 000009 99 ső ESttEA AS ttslSsssssssogyeet ESETE ttság szorsztáeyetát o sz
+
+A program felhasználását tekintve 3 fő részre hont ható, a következőben ezek
+kerülnek áttekintésre (grahkusan: 4.1. 49 477 ahbrák)
+3.2.1. Felhasználói felület Lostroszabása
+
+1 felhasználói felület szem előtt tartva a kényelmi szempontokat lehetőséget nyújt
+a betűméret változtatására. a sötét és világos térna közötti váltásra. illetve a telhon
+tás gyors változtatására.
+
+3 AÁGÓ: TEHDEHNUÁ RSA ANAK: útál AIA E 1 sssáfsákyárl tás : REN ÁÁSHEZ AKA 2ÁATÁLTEB ES, KIRE EE VÉR ESZ: Fej ötsE ZF tHETÉI
+3.1. ábra. G1l/I módosítás felhasználói esetei
+KIKA ik 4 Allj ii ! -gezptkn gk A LIH
+
+3.2.2. OÖbjektunok előállítása
+
+A generált képekre teendő objektumok előállíthatóak egy vagy több kép sze- ;
+mantikus szegmentációjával, illetve a felhasználó által is importálhatóak, ha állnak
+
+a rendelkezésére. Geometriai alakzatok futási időben kerülnek létrehozásra. igy a
+felhasználónak azokkal nincs teendője.
+Möldisi as 18 fe AT geszti sszegyészogyzzzzeyós misszrílítssza ÉSI!
+1! Kép san onoszll ába ! i ke LK HÉ Vele
+" NANMÉNYS eméemenmemté E] szilll fél e AT i Elle
+Mk Mk jajjeáp "vaty hartetsó 1 ay ál! ön. IK MAettég deébtyk; lts kot Fétajoos XA. MIK NgfáLá át Ákzzhgyoal Ál jgktyi i TA
+[MÁR 4 ll ill Kibo ALAN éllő ; 3
+AE 1. Muy ely örval he nee enó szegmensét agyatok kvázi
+4.2. Ábra. (hb jektumlétrehozás felhasználói csetei
+et 4. . /
+
+----- PXL_20260907_103336248.jpg -----
+€j 1 £ k P.J P.
+3.2.3. (Generálás
+8 It tanító. és teszt adat készletek szários változó felhasználásával hoz
+hatók létre: a teljes kép módosításaitól kezdve mint le; teli
+te teseMtht A KÖZEEVE, Int peldáni a háttér. telhontás.
+()1) CKTÍTIT kp - ÁÁ VTj ÉSE tv 4 HET 197 5. Vép A Fry/l 243 ; ; . : : Zeú
+3] mok száma, távolságuk és az átfi désük, az egyes objektumokra sDECIKuösaAn
+ukalmazott formázásokig, úgy, mint az oldalarány- változtatás. a (uniform ) nyújtás
+és forgatás
+Fis , Foti TET TIHET ú et
+1 Baana s tg HA i A tt : KEPÍZ ÉSZT SÉT: EZ E
+pit sál állt í she Ha e kogtlts i Ag allsz 24 97 sak zt ales Hz : FSZÓTET IEP EKE TERE : Áozbád EZÉS] Szó: i
+Í HL HESZSEÉÉE HK BESE Hit ; ürdsöta kt ds] ozartkos
+i Héé mtsézarsest A jézvat : él Hó ftazzsa ták - 38 fi eds agg ét Arpposypztetsa ;
+i Flpákeni JEA HEzTÁS: hespl Éy A rilját ii
+3.3. ábra. (Genocrálás felhasználói esetei
+§ú 19 : Pal b .. HE: 1 a : oo gi sz
+3.5. Implementációhoz felhasznált könyvtárak
+A szottver fejlesztése során több különböző külső könyvtár került felhasználásra.
+Fzek segítségével lett megvalósítva a felhasználói felület, a képek manipulálása és
+elemzése. Az alábbi szakaszok részletezik az egyes modulokat és azok felhasználását
+a projektben.
+3.3.1. Tkinter, Custom Fkinter
+A Tkinter a IFython standard (GUI toolkitje, amely a felhasználói felület létreho-
+zAsAhoz került felhasználásra. [2] A Cfustom kinter egy kiegészítő csomag, amely
+móödernebb, testreszabható widgeteket hiztosít [4]; A projektben a Custontkinter
+segítségével lett megvalósítva a gombok és a hevíteli mezők stilusos megjelenése. A
+felhasználói felület megvalósításakor a Cfustomkinter 5.2.2 volt a legrisebb, ez
+került felhasználásra.
+B a A 4 —
+
+----- PXL_20260907_103337306.jpg -----
+kbtssbenyyáfágábátétsktltssnynnédítkákés szg yték láss szt, (Ess SSZZERTEKEL KA ESSZSSAESE HI JStsssssgg] s s sz sss ttstlszzsszzogfősts] sm ozosegssssgeszsz]
+
+t$ tk € NA. ri
+3.3.2. Matplotlib
+
+A Matplotlib egy atfogó könyvtár a Pythonban. amelyet a grahkák és ábrák
+készítésére szolgal 14] 1 projektben 02 a könyvtár Cry szemarntikűsarn szegment ált :
+kép megjelenítésére leti felhasználva, láthatóvá téve 4 szegmentációs maszkokat. Á
+tunkció implemontálásakor a Matplotlib 3.8.4-es verziója volt használva a csomag
+nak
+3.3.3. PIL (Python Imaging Library)
+
+A PIL vagy annak utodja, a Pillow, lehetővé teszi képek betöltését. manipu
+
+lálását és mentését számos formátumban Iól- A projektben a PIL könyvtár a ké
+pek betöltésében, átméretezésében, az átlátszóság kezelésében, és az osztályokból
+kiválasztásra kerülő objektumok képre illesztéséhen nyújtott segítsége. lovábbá kü
+lönböző geometriai alakzatok hatékony, futási idejű generálására is felhasználásra
+került, ami egyik kulcspontja a szoftvernek.
+AÁ PyTorch egy nyilt forráskódú gépi tanulási könyvtár, amelyet a Facebook AI
+
+Kesearch Lab (FAIR) fejlesztett ki. 16] Kiemelkedően alkalmas mélytanulási modellek
+zyors prototípusának készítésére és a komplex számítások hatékony végrehajtására.
+AÁ projektben a PyTorch által a COCO (Common Ohbjects in Context) adathal
+mazon előretanított Deeplabvi modell került felhasználásra. 7] A gépi tanuláshoz
+köthető funkciók megvalósításához a Pylbrch 2.3.0 verzió Ja került felhasználásra.
+DeeplLabvi modell
+
+A Deeplabvi egy előrehaladott szegmeontációs architektúra, amelyet a (o00£1e
+tejlesztett ki, és a ResNet - 101 hálózaton alapszik [8]. Ez a modell a dilatált konvo-
+lúciók alkalmazásával képes figyelembe venni a szélesebb köntextust anélkül. hogy
+növelné a modell mélységét vagy csökkentené az átfogó felbontást.[9] A projektre va-
+lÓ alkalmasság abban nyilvánul meg, hogy képos a. NAKYVPONTÓSSÁLIÚL SZEEMTENtáCIÓTA,
+úgy, hogy nem szükséges a képmért egységesítése. i
+
+e PR
+
+----- PXL_20260907_103338515.jpg -----
+3.4. Implementáció
+hozott fontos döntés, mint az archítokturálr: sájatosságok, a használt DTOSTAÁING
+Zed] paradiema. CS Az CYÓÉS hunkcionalításokat ellátó algsorítmmisok Ti bermitatászra
+kerülnek
+3.1.1. Szoftverarchitektúra
+;
+MV architektúráról általánosságban
+Az MV architektúra ( Model Vicw archítoktúra) egy szoftvertervezési minta.
+amely külön választja a modell (adatok és üzleti logika), és a nézet ( felhasználói fe-
+tület) rétegeket. Ezáltal a fejlesztők képesek függetlenül frissíteni az adatkezelést és
+a felhasználói felületet anélkül, hogy a másik komponenst érintenék. Áz architektúra
+elősegíti az alkalmazások karbantarthatóságát., tesztelhetőségét és fejleszthetőségét.
+Öbjektumelvű Programozási paradismáról általánosságban
+Az objektumeolvű Programozási paradigma egy szoftverfejlesztési megközeltes,
+amely a programokat valós vagy elvont entitások (objektumok) köré szervezi Ezek
+az objektumok adatokat (mezők vagy attribútumok) és viselkedéseket (metóődusok
+vagy hunkciók) tartalmaznak, amelyek lehetővé teszik számukra. hogy egységként
+működjenek. Áz objektumok azonosítása és újTahasznosíthatósága érdekében osz-
+tályokba soroljuk őket, melyek a közös tulajdonságokkal és viselkedéssel rendelkező
+objektumok tervrajzát jelentik. Az objektumelvű Programozás központi fogalmai kö-
+P 2 mg less stét F. " is 115881 i BHHJESÁKSR E féle vágj zéfjftőjonzágéft Z 7 h tetsző , aki : Fizek
+ze tartozik az öröklődés, a polimorhizmus, az enkapszuláció és az absztrakció. Fze
+együttműködésével egyszerűbbé és strukturáltahbá válik a szoftverek fejlesztése, ke-
+zelése és karbantartása.
+! peljedkIA AAA KE KS ALÁ ANTJÁNÁ sIRporTa i
+
+----- PXL_20260907_103339560.jpg -----
+MLV architektúra és osztályok a szoftverben
+A szoftver MY archíitektúrájának unplementálása a következő tájlokat foglalja
+magába (csomagdiasramot ld : 1.4 ábra)
+e viewimain. vindov.py - Kozoli a telhasználói felületet és a felhasználói; mter
+akciókat, megjeleníti a képgenorálás haladását. A Mainy Lndov osztály imiple
+
+montaációját tartalmazza
+
+e viewítool tip.py "egédosztály, mely lehetővé teszi. hOgy egy mezőre navi k
+gaálva felugró szövegként megjelenjen annak funkcionlitása A ToolfTi p osztály
+implemeontációját tartalmazza.
+
+e model segmentation utils.py Végrehajtja a szemantikus szegmentáci
+öt a képen, vagy képeken, és menti is az igy keletkező objektumokat. Á
+segmentationtils osztály implementációját tartalmazza.
+
+: : tHdssz: [lis ki 94 1. I E Z : Pi " Fo Fi  szőék zi FA
+
+e model laugmentation utils.py . Felelős a képek nyújtásáért és forgatásáért.
+Az ImagehRotator és lmagestretcher osztályok implementációját tartalmaz
+
+s model igenerating utils.py . Öhbjektumokat helyez el egy üres vásznon az
+átadott mennyiségi, nyújtási, forgatási, átfedési és távolsági paraméterek alap-
+ján. Legenerálja a geometriai alakzatokat futási időben. A Generat ingÜtils
+osztály implementációját tartalmazza.
+
+MANYA] E SE HTSA [roz teék s lét ő ELÉS HEGYE : fett
+
+----- PXL_20260907_103340653.jpg -----
+Ág E BR LAIKUS felülöt.
+íz alkalmazás er; 18 Ti
+3 1 £ tar $4.5 2 ai] 1174 5 ! AE -. í 1, 1 1 Í í át E. ü 5; 1 ; öl t
+srafikus felhasználói felülete (CUT) a Tkinter, és a Custom I kinter
+könyvtárak soepítségővoől 115
+; ! ri. 4 t "ú A vi 17 j : "AT UKT A AT HGEb édi A mi ku ájvés ÖZP KEZE jerk EA :
+9. 1. éles körű támogatottság voltak, tekintve hogy a Python egyik
+snöépszerűbb GUI könyvtára. A felhasználói felület tervezése során kiemelt fievelermn
+lett szentelve az átláthat ösagnak, és a magától értetődő kezelhetőségnek !
+3.0. abra. A grahkus felhasználói felület vázlata
+Ahogy a 3.5 ábrán is látható, a (I letisztult elrendezést követ. A bal oldali pa-
+nel lehetőséget biztosít a felhasználó számára, hogy különböző objektumokat állítson
+elő, akár a saját képhalmazának importálásával, akár egy vagy több kép szegmen-
+tálásával, illetve a generált képek felbontásának, háttérszínének és a rajta található
+objektumosztályok beállítását 18 elvégezheti. A jobb oldalon elhelyezkedő testresza-
+bási opciók segítségével a felhasználó szabályozhatja az objektumok paramétereit,
+mint például a forgatás és nyújtás mértékét.
+A tervezés során fontos szempont volt, hogy a felhasználó gyorsan és hatékonyan :
+tudjon navigálni a felületen, és zökkenőmentesen végezhesse él a kívánt műveleteket.
+A felület egyszerűsége mellet fő szempont volt az is, hogy minden funkció logikusan
+és könnyen hozzáférhető legyen. (UML 1d.: 3.6 ábra)
+AA ÁGA 19 A
+
+----- PXL_20260907_103341717.jpg -----
+! EG HIKIB
+it jits ll s le ik HEHE HEZ bk ist sz téli B EE tes] ER Ajaj 71 gét]
+3.6. ábra. A grahkus felhasználói felületet osztálydiagramija
+1 F. me jöt
+3.1.3. Szesmentáció
+Az objektum szegmentáció algoritmus a képeken látható objektumok elkülöni-
+tését végzi el. Az algorítmus a következő lépéseket tartalmazza:
+1. algoritmus Segment Imagc and léxtract High GConhdence Objecis —
+Function segment  imagelimg, save dír "segmented objects )
+function SEGMENTIÍMAGBÓ 7149, save dír — "segmented objects )
+terisor 47 IMAGE VENSOR( 1719 )
+model  0ut PIHA elt FERDMŐL ELTER SOT ]
+probabilities t7 WONTMAX(modet output)
+fágh con f  pmediattona 47 AkPPLYTHRESHOLD (Prahaltététe s )
+S AVR I4CGMIENTBDŐB HGCYts(imn 4, Atgh  conf  predidctvon a, ükttbi , elür )
+oventlay tr CÍRBAUKÓVBRLAY (11119, Ata! don] PIT EZ GÉVOTIS )
+MERT fél [hiszáb piát josttó fosé yet yosg ked gyel Hg ped yet YEN TÉT TÉN ELTETT ETETETT TE ETET ETET E EE ee ET ÉTTAT Í ii ! ! ! MENETET ! VALEA ! ! ÁM ! I / Í MA J I
+el ENE ! él fell TERET éllel ETET LETVE TETTE ett Kértél VETT VET LÉT ENE Kés HONT A)
+i AAA / JALAJAI / ÁLY A szegmentáció kiuadetések jatk móélytanmnulási modell alkalmazási, amely a (0 adat, ! FAK AAN ANAANN
+AAA A NANÁ AAL AVATAVÁ ! ! ETET A
+
+----- PXL_20260907_103342822.jpg -----
+7 LABA] fitt IA jseghzá[ [HAS : 2 9
+bazishól IT ATTN 17 í7 s : i-t / í ]
+a, 4.3 ! Vjt A s 7A) ! HTI ük HV ] deAu i LA W7/h) FEB ; 171 ! 1 á1 E 1 .
+; gy reszen lett hboetantitva [TŐ] HZ Az alsorítmiuis képes
+ti özmni és elkülönítem a képen látható különböző objektumokat. mint peldá
+zt erek és különböző állatok. A modoáll kimenete alapján maszkokat hozunk létre
+ci IT]. Ivo K ez CLVOSs öobjoki IBAÁST ület, 101611k 1 KÉDÖETI, melyek Hi TIÉzET íg kérvet KEZőképpen
+néz ki
+a. 381 Hhsljti 1 4 AA SAKLÉRETH kin ijeás ágtól ! FEJES EHESSEH EN /
+function  SAVESEGMENTEDŐBIEG TI slortgimal image output redtietitoris
+CALL ÚT TAL GS, SAVI (117 soemented objects", ELTE — GTETI FÉJÉJÉJÉT I h
+tabels §4— ÍIDENTIFEY[! NIGL) KÍI.ABELSI output  predicltionsi
+tor label m labels do
+mask 4- ÚREATEMASK( outmut nvredictions, label)
+ran ya 54 dd A PAÉT Fair "3 hőt HLTÁLÉ A E : Hb Fák vacAmtHH Esz? !
+largest : omponent 4— IGXTRACGTÍIARGESTCOMPOŐNENTÍTask )
+bounding bon 4t— GETBOUNDINGBOX(largest component)
+cropped image 4- CRoOPÍMAGElőriginal image, bounding bor)
+ransparcent taver t—- GRHEATKÍRANSPARENTLAYERÍ(mask, bounding bor)
+"E ai "EFIT "E jetslétő tti roi eryag 1 ik 4 B BtuHA dlh i E 7 zryó ti z 74 7. 41 7 A É Z HF: í Hg: ,
+CAtegory d t— LIHTI ATKGORYDIRECGTŐKRY ( categor U names label. save dámi
+VAVEÍMÁGEWITII TRANSPARENCY (cropped image, transparent laver,
+end for
+end function
+Ebben a folyamatban a képről készült maszkok segítségével az objektumok azon-
+sitásra és mentésre kerülnek. Az objektumok körüli kontúrok és a maszkok átlát
+szóságának kezelése külcslöntosságú lépés, amely hozzájárul az eredmény vizuális
+minőségéhez és pontosságához. Az UML osztálydiagram a 3.7 ábrán található.
+5 je dtítáy peso ask tá JEE !
+hé ks Hlhetl sk Falk ást 18 glltki léstí tits g Het E
+Aid jeti His tesi té HEGY ÁEH HEZ ÉN ÉN
+AIA AIKENNÉBBE SAL. UL ATR ÉR HET FRKÉ JÉ 1B. (RE GJÉ
+bent kal Mék kül KÉR]
+ilésétt  1H8 úA MILL TT EE HIMEK MÉ (ett HZRTÁ E Ki jkajy jei) AE ES (JER Rat pg) "Gy fyátj14 Aj, AE A TF! ER EA ÉN RAJJEHTS]
+MATT ARG REI Hits He NASK Ah HK BY AEG [1 tardétbésAl
+jos HETES]! HAJT tt Jt 11 FÉR E ERTL JE HÉ JPRERK ), 5ÁA Jé 2 ! feat 1zát jáyl 1): ATJ1A kájés
+jostast! sül jesctg állt HE] I I hKágyA y REN HIRDET esá tk 442 dástól ETTAL 21 ASH TÁR TÉN It] ;
+3.7. ábra. Szegmentációs osztály osatálydiagnamnja
+I TAz egy rószán a dokumentáció szerint 20 címkét jelent ós a háttór lestegőriát, a ft ály
+
+----- PXL_20260907_103343877.jpg -----
+3.14.4. Objektum augmentálása
+/ ! 1 , ! TK REZGÜÉTT jösts FÉL: döpéó Midi ; ;
+tanításában, segíti a tanítani kivünit logalmak általánosítását. ezesetben a távolság.
+közelség és átfodés definciókaut. Az augmontált objektumok még tovább hkáővítik a
+potenciális objektumok halmazát. ozzól hozzájárulva aihoz. hogy általános Hiciászt
+sajatítson el a méólyháló. Az alábbiakban két algorítmus kerül bernutatásra ame
+lyek az objektumok forgatását és nyújtását végzik el. elősegítve ezzel a modell jobb
+generahzáló képességét. Áz implementáló osztály UML diagram 3.8 ábrán k
+function STRETOCHÍMAC El TITLAGÓ Di , unni forr seglimnea, man height.
+mar heght, mim width, maz width)
+undth, hergítt €— GeETSIZEGmage mil)
+it uniform scaling then
+segte €- HANDOMBETWEENÍTMIZ herght/l00.0, mar herght/lőd 0j
+nem width €- width x scale
+nem  hetght €— height x scale
+unidth scale 4- KANDOMBETWEEN(Mmain width/100.0 mar widtíh/i00 0)
+nem width 4— width x width scale
+nem  herghtit €- hetght x height secate
+end 1f
+if image ml.mode £F KGBA" then
+end 1£f
+return HESIZEÍMACGE 17nage pilmew widih new herght, hanczos !
+4. algorítmus ltotate Image ME,
+function ÍROTATBIÍMACG IE 7tage . mél, angle. man, angle max)
+rotation : angle €- RANDOMBETWEEN(anate mián, angle maz)
+if image mil anöde A KRGBÁ then
+irnage : mil 4-7 (IONVERTTORGBA (tmaga . pit)
+end if
+return KOTATR( magad . jat, rotation angle, transparcnt hackeround )
+
+----- PXL_20260907_103344953.jpg -----
+ossymtttááoáosnygtá hányt úttássíyayóéttásséráryagbnss97910kd0--979 96 9ézgén éke At ESSEK SSE SS TESTES SZA tESSSASE] s s ztz a. E
+1iEEy ÁS EN
+Hi
+3.8. ábra. Áz augmoentáló osztályok osztálydiagramja
+3.1.5. Objektumok távolsága
+A képi objektumok automatizált elhelyezése a generált eredményen a legfonto-
+sabb része a dolgozatomnak. A "távolság" és " közelség", mint absztrakt definiciók
+kontextusában távolság meghatározásakor figyelembe kell venni a teljes kép átlójá
+nak hosszát is, moly a kép szélességének és magasságának kvadratikus összegével
+diagonal — / width" 4 height
+A távolságtartás matematikai alapját az euklideszi távolság képletében találjuk,
+amely igy szólítható meg:
+ahol pi 7 (21, 41) És pa 77 (Ta, Y2) jelölik a két objektum pozícióit a képtéren behül.
+A kihívást tovább növeli, hogy az objektumok elhelyezését dinamikus környezet
+ben, változó képméretek mellett kell megoldani, miközben az elrendezésnek funk-
+cionálisnak kell lennie. A megoldás érdekében kifejlesztett algoritmusok részletes
+leírását az alábbiakban tárgyaljuk. Az osztály WML osstálydiagramja a 4.9 ábrán
+található.
+
+----- PXL_20260907_103345950.jpg -----
+Két objektum esete
+0. algoritmus Calculato Two ( bjeciső Center
+function CALCULATBTWOORBJBCTS( ASNTER[( 172198, fall apidéh full hetaht
+function INBOUNDSÍ( r. 4, width, hezght)
+retürn (ÚSz 2 fall wmidih dt) A (0 ÉZy S full he tight — height :
+end function
+function SELECGTFIRSTVPOINTÍ mA 1idih., ma herghtt !
+rl €4- RANDOMÍ(U, full width ima  awadtht
+yl 4— KHANDOMÍ(ÍÓ, full hezaht — ima he fit)
+return (71.41)
+end function
+retlries €— 1000)
+while retries 2 [4] do
+angte 4— KANDOMÍ(Ú, 27)
+distance €- HANDOMÍ(Tin distance, mar distance)
+T2 €- al 4- distance - coslangle)
+42 4— yl 4 distance - smianale)
+if INDOUNDSÍ 12, 42 img sizesil [DI ing sizesjli[l!j then
+if min distance S disi S max distance then
+return (rl vl ing sizeslüljd, img szzesjülll). (z2 v2 ng sizes il 0 ing.
+end 1f
+end 11
+FELÍrtes €- Telries - 1
+end while
+return [/
+mil "Tvwwa G(hiects" Clenter" alsorítmus lénései a következők: i
+Az "Calculate "Two Objects" Center" algortmus leér
+I. Az elhelyezendő objektumok méreteinek lekérdezése a Get lmageosiízes msg
+vénnyel.
+7." köválásszt ása d [enesdóőbvezett . területen . belül A
+2. Az első pont véletlenszerű kiválasztása az engedélyezett terütet
+BSelectFirstPoint függvénnyel.
+I. határozása az első ponttól szárított véletlenszerüen gsn0ralt
+3. Az új pont meghatározása az első ponttól szároltott
+szög (0) és távolság (4) alapján: UN s
+Í ! : ! ÁE joke KAL kel ETEL ÉTÁŐ VALA
+
+----- PXL_20260907_103346905.jpg -----
+t. killenőrzés. hogy az új pont a megengedett területen belül helyezkedik-e el é.
+hogy a két pont távolságu a megadott határok között VAI;
+d e Vr. ajó 4 [ya — 19 )2
+Három objektum esete
+function (ALCULATE FRIANGLEEÉDCIESI inga, — full width, full height
+mim distance, mun distance)
+img sizes €— GETÍMAGESIZES (17295)
+function ÍNBOUNDSÍT, 4, width. fiezgfit )
+return (Ú S 7 2 full width -— wmzdi AJ A[(U ly 2 full hetght — he 2erfiÉ !
+end function
+netrtes €— HOG000
+while retries 2 [] do
+TI, 41 €- RHANDOM(D, full width—img szzes[Üj [0 ), HANDOMÍÓ, full heighi—
+img sizesílll)
+angle, 4 KRANDOMÍ(Ú. 27)
+distance, 4- HANDOMÉTIN distance mar distance)
+: T2 €- II 4 distance, - coslangte, )
+42 4— yl A distance, : siml angle, ]
+angle, 4— KANDOM(Ú. 2)
+distance, €— KHANDOMÍTIN distance mar distance)
+IT3 €— Il 4- distance, - cosl angle, )
+43 4— yl -4- distance, : sm angle, )
+if INI3OUNDS(x2, y2, img sizes[ l[ÓJ, img sizesjl[[1D and l
+INBOUNDS(x3, y3, img sizes[2j[ól, irng sizes[2][1]) then
+if nini distance 3 ily, s, az $ mar distance then
+return (21, 41, 29. sizesjül lül, 109. szzes ült],
+(42, 42.1mg  sizesi JÓL 29  szzesí till,
+(8, 43, 19719. sizeés[2][[0], éng  szzeslzl[t )
+end if
+end if
+retries ir MENYE mr.
+Az algorítmus többször is megismétli a fenti lépéseket udv Mano
+TM tngy nagynak mély vev! gs mene AGYA ulve
+s ANN AY
+
+----- PXL_20260907_103347853.jpg -----
+"ő He 1] Eat rá ániúgé ai [/Ú3 1 HEH: Ti ie
+s A LEMEZÉN I lokumentáció
+nem sikerül megfelelő parost, találni, üres listát ad vissza
+! 1 ( Á A 8 4
+Triangle I1dgos , eMM Ív alsoritmis hÁTOTTI objektum lellelyezését
+E gy, hogy a kialakítoti háromszóg minden oldala a meghatározott távolsári
+korláton belül maradjon. Az úigorítimnus lépései a következők
+I. Az objektumok méreteinek lekérdezése a Get Ímagesizes függvénnyel
+2. Az első pont véletlenszerű kiválasztása.
+3. Az első ponttól kiümndulva két új pont meghatározása, minden egyes új pontot
+egy véletlenszerűen generált szög és távolság alapján kiszámítva:
+TaZ tű. CÉ, vs d, sínt? )
+Ta 7 21 FÚ, : COBÍMA JJ, 4 — 1) 4 ds Sim (Ő, )
+) 1 ld tabvsngazáó LTén gyeás mi ax. nilééte 7 F r . "2 8 . sb -, szet] 1  HÉztassstász PRnrEszz , ;
+1. ftillenőrzés, hogy az új pontok a megengedett területen belül helyezkednek-e
+el.
+3. A kialakított háromszög oldalhosszaimak kiszámítása:
+6. Ha minden oldalhossz a meghatározott távolsági korlátokon belül van, a pon-
+tokat visszaadjuk.
+Az algoritmus többször is megismétli a fenti lépéseket (maximum 500000-szer /,
+hogy nagyobb esélye legyen megfelelő konfigurációt találni. Ha a pr öbalkozások sorál
+nem sikerül megfelelő háromszöget találni, üres listát ad vissza.
+
+----- PXL_20260907_103348746.jpg -----
+EE 66 [ ejlesztői dokumentáció
+3.4.6. Objektumok átfedése
+[: function áj. TÍLATHE VI ; i
+(-ALCIÍLATH( ERLÁPÍÍTVTÁCEMBE NTIOD7TEL íz 110 01: ian
+piaced objecis bbori 9, TES Wndilt, res. fi ÁTIÉT A
+7 ) / (CGINRETI H UV 4 1
+:3 tor 2719 in objects fo öovertap do
+Í target z,targat 4. target w target h í
+y ; 1 tt
+KANDOMOHOLICB placed oljecds hbbores)
+5 TŰ Wing CN 4— 119. .size
+ő: it 17719. mode 5" RGI3A then
+1: img 4— img .convert[" RG 3 A)
+8: end 1f
+(§- / "FFI 7 TT" " her APA Tá wys K Ét ! " ; E tetté Hits zzéH: 94 o A 7291 8 x z Í E ;
+J: non transparent mask i-— (x,y) for r in rangclima a) for V im rangetírig Aj it a
+Ö!
+10: 1f noni tranzparent mask then
+117 TIT, Ty 4—- KANDOMÚ 1 HOLCBEGnon transparent maski
+12- overlap z4te- KHANDOMÍINT(IGrget r target r-t target w— [)]
+Lt: averlap yt RANDOMÍINT[target v target v-- target h— I)
+14: placement a 4€— overlan :-— nr
+köz placement 4 4 OVerlap 4 — ny
+LŐ: if placement za: 0 then
+I 5: else if placement 3 — res uzdih — img w then
+20- end 1f
+21. if piGacement 4 0 then
+2: else if placement 4 Tés height —íung h then
+24: piacement 4 €-Tés height — img
+25: end 1f
+26- A PPEND(placements, (placement  x, placement 4))
+27. else
+28- A PPEND(placernentis, (0, 0) )
+29: end if
+3): end for
+31. return placement
+32: end function s
+Tá. Wwerlanblácement" alszoritmus célja, hogy több kép elhelyezését
+A "Calculatel hverláapílácement" algoritmus célja, hogy több )
+biztosítsa a rendelkezésre álló területen úgy, hogy azok átfedésben legyenek egy
+már elhelyezett objektummal. Az algorítrus az aláhbi lépéseket követi:
+I. A rendelkezésre álló képek méretének lekérdezése.
+2. Egy eddig lehelyezett ob jektum kiválasztása véletlenszerűen. !
+
+----- PXL_20260907_103349705.jpg -----
+"ő PiLESEsef HUNKEBBNUY 159... juj Hét RL sk ag
+niet ági VE MESHZ, AOL A Ccól Az, hogy a kiválasztott KÉP i
+23 worry , 1 .. 1 Hitet í jöt F F : ;
+L. A kiválasztott kér 7
+xv] 21 lát zatlan JVXI 1 mek Fri ghatározása. ogy Azok ne kerni
+jenek áttfedésbe sz alap kép átlátszó Lerületeryvel
+. A cél kép poziciójanak kiszámítása a vásznon úgy, hogy az átfedés a kívánt
+helyen valósuljon meg, miközben gyelembe veszi a vászon határait, hogy 4
+kép ne lógjon le A
+6. Áz új pozíció hozzáadása az elhelyezési iistához.
+/. Az algorítmus ismétlése, hogy különböző konfigurációkat próbáljon ki. és ha a
+képek nem illeszthetők az adott korlátok közé, akkor a folyamatot újraindítja.
+Ez guzktt Ek FIEZIKÉK E szzenyyfeő közp eé
+[E CB ágál jégéti k [Es z3K HÉ EK
+[ii ég ekteséti ye: Al HÁLA EKSH attó it gl s szot tátB [619 [ártó tj: seg EA dá élő" 211: HEEszó JÉN 142 dl hass kaz zs állá
+FE ksd Es HEZ ETEK hleszhii tis ! ii M. légi EHE tés séget, séef ctbsobs ssedtosáábójefdtsszégsás zót ebéő 4 SAR. s átélte kitjviSEttő HAAS [Ass EA, ASZ HEHE HE ÉKE LK 8 3
+AAH 489 Ász HAS AÁH E AKA B HEH rt gés felébééfábes sét cádb stat ét 99 HS Hali FÉR EEHEETETSEÉÉE 1.FEHT Ő $féésskéfész HÁYEÍ FESZ ATS FESS TSZ TÉT FEESE STT SÉT VET
+: FelRFESH HRSZ ER HEG RE MKE HI sé nhönHEá BAR E AT HELL RARBÁE IE, HERE: ÁjA BH ét s klet zeke sí ga AZ tj
+HAB KSZAgHR Ásó HESS FEZ3] Pad : : Pélj Et 7 AAL AV FEÁE; [EEGEHTE- Eg 8 1 s HÍG REÁ ÁK ét 2118 41 Ed láss 1598 Hz Atea
+BejHHEÁ I Esze HEH HEH : ez edes agsi : dd aga] 3723 H HET Fid]
+kgtjRs HR AKA HERB) [BELÉ TEE 2 A Tség főtt ) Ét lék feléséét Hz
+jitRT RG! ERR e BERE !Eek 1 HE snlébét höbilésaBÉA ER [E RIER HIS BE SET HRSHE HÁL HE Hi IBai
+3.9. ábra. Öhbjektumlehelyezésért felelős osztály diagramja
+o 1 úl [A ii I! ! ő ATA all Ú ] I ú ! JÁLÉTA ! Í El MIN j 4 A
+
+----- PXL_20260907_103351208.jpg -----
+". e ;
+t. fejezet
+8. i
+169" T ]é i 1 APT 599
+lesztelési jegyzőkönyv a
+et Ú7 ko
+A fejezet a szoftver teljeskörű tesztelésének menetét mutatja be, kitérve a
+megfelelő funkcionalitás tesztelésére, elkülönítve az általános- és sarokese-
+teket. A hibakezelés helyessége szintén teljeskörűen kipróbálásra került,
+ezzel biztosítva, hogy a program helytelen bemeneti paraméterek vagy
+előre nem specifikált felhasználás esetén sem fagy le, vagy kerül végtelen
+ciklusba.
+4.1. Funkcionalitás tesztelése
+tíz a szekció a szoftver általános működésének tesztelésére összpontosít, külön
+figyelmet szentelve az általános használati csetekre és a ritkábban előforduló, de
+kritikus sarokesetekre. Itt kerül kiértékelésre a szottver viselkedése a felhasználók
+által leggyakrabban használt funkciók esetén, valamint azt, hogy hogyan kezel a
+nem szabványos bemeneteket.
+4.1.1. Általános esetek
+Ebben az alfejezetben a szoftver leggyakrabban használt funkcióinak tsz
+se történik. Az általános tesztesetek bemutatása mellett a fejezet azt 18 HELL
+hogyan reagál a szoftver a tipikus felhasználól intorakoiókria. 4
+VAA A szegmentáció helyességének ellenőrzése sora 44 került tesztelésre, hogy a .
+AAA AA YA A AT övetkezőkben mindkettőre található 1-1 példa —
+AAA AT Minvhálásui kérültéldi 4. 1/ ábra). A. következőkben mindketten tett 4 a
+
+----- PXL_20260907_103352803.jpg -----
+ÁFA KM MM — A TI[MHűHEH
+(A) Szoftver által felismerhető kép (b) Bemenet megjelenítése a
+szepínentációs maszkkal
+4.1. ábra. A felismerés helyességének tesztelésére példa. k
+ll ] ÁR ho ] , E. e
+(a) Szoftver által nem felismerhető (b) Kimenet ha nincs felismerhető
+kép objektum
+4.2. abra. Szoftver által nem kezelt. de helyes formátumú bementi ké
+Fi ;
+A generálás tesztelése a következő paraméterekkel fog történni, ha az nincs
+külön specifikálva:
+s Képméret: 900x900 px
+s Használt osztályok: macska, téglalap, kör, kutya
+es Forgatás: [/" 180"
+s Szélességnyújtás: KO0V4- 1204
+s Magasságnyújtás: KOVÓ- 120
+s lUniform nyújtás
+/ a 4-6 objektum LA AAN I
+LT Alakzatok színei piros, öld, kék NN 4
+
+----- PXL_20260907_103354321.jpg -----
+1 sát! H fézslltltás " NUTESENYE 1
+( )bj1e i 1.
+Jektumok nem uniform nyújtása
+( kimenot 1.3 ábrán)
+Itt a támaszt váró
+a tamaásztott elvárások szok. hog "b ki
+CA 7 Az sot NÉ... HIVEI 24 E st ÉPT ét vi
+ellentetes irányba oltorzított kérnek :
+; ! "Tedményez, ezzel me BETŐSÍtVE A nyújtás meg
+telelő működését
+11/70 magasság. ölő SZÓlCSSÉég, uniform nyúüjtás nélkül
+070 magasság 2044 szélesség, umiform nyújtás nélkül k
+! ": 3. ák pestilliesáthbiásss: 4 A — áál sAihror ki ísdílsstltesítthésítítésí hess] iésthiéáii EE ÉHEN JEA aid silésíltejtt er] " 1 " 162
+4.3 ábra. Kimeneti példa a szélesség és a magasság megfelelő nyújtására
+Objektumok távolsága
+Elmondható, hogy a szoftvernek ez a legfontosabb funkcionalitása, mivel a geo-
+metriai koncepciók tanításához elengedhető a távolság (4.4 ábrán a kiunenet a kö-
+"1 20-40 ALA
+
+----- PXL_20260907_103355747.jpg -----
+sz ttNSASA NMSzAAKÓLANHSSAA ÚRRA NESSÁN IBN 4. É kod JÉsI JÜRVYZI KOTI VV
+()-AYA
+20)-4Y A
+1). 60194
+! Fo
+Fi 71 : MAYA e ís
+A E 1 i i REhj 2
+m A : : ég ii.
+(a) 2 objektum kis (b) 2 objektum közepes (c) 2 objektum nagy
+távolság csetén távolság cselén Lavolság esetén
+: JEA : ! al
+[dj 3 objektum kis fe) 3 objektum közepes (f) 3 objektum nagy
+távolság esetén távolság cselén fávolság csetén
+A 4 ábra. Vávolságalapú elhelyezés tesztjének kimenetéből 1.1 példa
+e e A E A GÉ ké A ANÉNEHENE] ! ke EE EE AE VT VEN EN TE ee eV Yltál ő KYLE LŐTÍNAL LAT KAKY VE KV ELÉ A MTE lététől
+A RA e e e A E A ÉT ATAAÁTA] HE] A E ANNA E elhal téy él E TKLÁ ll TA KAL LAN AAN AAA A AATÁNI
+e e e e e E E A A E E ÁÁÁÁ ! e A A AELYÉAYAN VAA A AAA MATA
+E elt ettel fit JE FEE is ÉL KE va Fe EN Vál EKE FE EA El EN E KE Mé KÁR NTATÁI ANYAG jó KÉVY s ly YEN KAL VÉ YT E TANTKA FK NK ANNÁT
+s Í
+
+----- PXL_20260907_103356825.jpg -----
+"1 1 ? ti r : 1 i AzÁ
+Öbjektur ; :
+2. sé h. : 110) zh. 7" ." " : Httő HI52 lá P] , HIP
+k távolsága bekapcsolt átfedésvel
+(4.5 ábra
+e 4 objektum
+10-60
+e 6 objoktum k
+0.207
+10.675
+ÉP a ! :
+(a) 4 objektum átfodőse (b) 4 objektum álledése (c) 4 objektum átfedése
+kis távolság csetén közepes távolság csetén nagy távolság csetén
+i if 1141 1 Uiisstttésaii [4 MHIEEÁLYHHEG NI Hl tésói Hé 14411 14111[Ceá1 [Htésij [tési [té ez141 át feéjt 9 altt tetjkötjtést tét [ej iejtéstjHéj és tsíjisíjtst tetési estje ett 11331140 11 misi] 1 E ij jtetténzjtezítssttiátésttisztrotiásjjittestttet$ st zt1ő4] seutézzzet áá tesTI s t34őt 2231. seláz !
+4 d. ! Í
+vi. vo
+kis távolság eselén közepes távolság esetén "agy vavntág om
+4.5. ábra. "[ávolságlehelyezés tesztjéből példakimenetek MANN
+
+----- PXL_20260907_103357896.jpg -----
+[1 Tisz £ mé LL ( xv : ú t ; j : it : i
+SHarokesetek és lehetetlen feladatok
+A sarokesetek tesztele or
+steuntossagú a szoltver meghbízhatósárának biztosi
+tasában. kKbben az : [fegrez : ;
+J " a szoltver ntkábban előtördnló, de potenciálisan kri i
+tikus helyzetek ben valo viszelkedeteni keri; ; ;
+bt íló viselkedése kerül tesztelésre, amolyek extrém vagy szokatlan
+bemeneteket foglalnak magukban.
+A lehot , . zo TeeKR rZvré lt vozy TIT JRE Hb előtt : ÚYÉ i
+oetlen esetek kezelési úgy történik, hogy 20 egymás után eldobott kép
+én a generálás leáll, hibaüzenetet megjelenítve a felhasználó felé. fz az ÉEVSZETÜ
+közölése a lehetetlen eseteknek lehetővé teszi, hogy elkülönüljenek a sarokesetektől A
+A randomitás hatásaként megeshet, hogy egy olyan paraméterkombinációt próbál a
+szoltver alapul venni, amely a definiált korlátokon belül mozog, de lehetetlen. MÉrIS,
+ugyanezen korlátokon belül létezhet nehéz, de megoldható feladat is.
+A következő paraméterváltoztatás csetén leállt a program:
+e [ávolság: 75. 8576
+A leállás oka, hogy a feladat nem megoldható anélkül, hogy egy objektum ne lógna
+le a teljeg vászonról a jelentős méretük miatt.
+Ellenben ha a következők kerülnek mogváltoztatásra a kezdeti konhiguraációban,
+az már eredményez képeket[ld.: 4.6 ábra):
+s [/ávolság: 75-85
+as Cldalméret: 4074
+s ()bjekturmszám: 2
+TT TU] 1
+4.6. Ábra. Példák nagytávolságú elhelyezés
+A A A A A A A A A ATÁT MAN ANYA A
+ko A " s gú AA
+
+----- PXL_20260907_103359207.jpg -----
+Za 57 a szottver hibakczelő ké A
+Pessegeit helyezi fókuszba. Részletesen elem
+Z1, hogyan közeli 4 rendszer
+gy: ; a Tendszer a helytelen varv várutlb
+hogyan biztosít ja A felhasználók szúmi
+tek kimenetei a 4.1 táblázatban jelennek meg
+e Képek importálása: hibaüzenet jelenik meg, ha
+L. a telhasználó nem választ mappát. ő
+:) 4. TV .. Tari 9" H88! al al W í 1
+2. ha nem támagott a kép kiterjesztése
+e Képek generálása: Hibaüzenet jelenik meg, ha:
+1. a generálni kívánt képek számát a felhasználó nem adja meg
+xy s: tt b its JE va Fi 1 Hgt zi
+2. a képek felbontását nincs specihikálva
+3. az objektumosztályok kiválasztása nem történik meg
+4 a forgatási paraméterek érvénytelenek (a minimum nagyobb a maximum.
+nál)
+5. a nyújtás paraméterei érvénytelenek (a minimum nyújtás nagyobb, mint
+A IMIAXIIIIITI
+6 kiválasztásra kerül(nek) geomotriai alakzatok, de nincsen(ek) hozzáljuk]
+színek definiálva
+7. ha az objektumok minimális száma nagyobb, mint a maximális
+8. ha az objektumok száma meghaladja a hármat, és az átfedés nRInCS enge
+délyezve, a rendszer hibaüzenetet jelenít meg a távolság alapú elhelyezés
+korlátairól
+s Egy kép szegmoentációjánál: hibaüzenet jelenik meg, ha
+[. A képfájl elérhetetlen
+2. A képfájl nem támogatott kiterjesztésű
+Jel s Több kép szegmentáció ja: FAK AA NAAA!
+AAA AAA "2. Átugorja a kép szegmentációját, fagy 99 Perm támognztgtt ktereszét UL
+LL I AAA AAN AN A A
+MAAA A e A A E A e NAJA el AAA JÁN EL KIÉ Kötél - IEzo99—— Í
+
+----- PXL_20260907_103400239.jpg -----
+e TEEATATEET Fe ETET EEEsEEE EEEN NEANAERSERYFEFYEKNNY ON ÁSSAETYEETTAKEHFF YT TITRE? TRENT otto fős reseet est esse EEEN ESTEKET HSSS TEÁS IEEE EEREE Ste REGE HSYÁ E KÉSÉSE EE VES HÉÉÉ TET
+al hitt" W it ká KH A 1 Pá ! hm í "-. eposzi
+
+Bemeneti paraméter. Elvárt kimenct Kapott kimenet
+belső objektumkorlát: ö — Hibaüzenet Hibauzenet
+
+Felső objektumkorlat: 4 —(Generálás elindul Czenerálás elmedüul
+belső öbjektumkorlát: 4 — Hibaüzenet Hibaüzenet
+Kikapcsolt átfedés
+belső öbjektumkorlát: 3 — Generálás elindul trenerálás elindul
+Kikapcsolt átfedés
+Alsó objektumkorlát: 3 — Hibaüzenet Hibaüzenet
+belső objektumkorlát: 2
+Nincs kiválasztott Hibaüzenet Hibaüzenet
+alakzatszin s
+Nincs kiválasztott Hibaüzenet Hibauzenet
+objektumosztály
+"Több kép A kép nem kerül A kép nem kerül
+szegmentációja .avil szegmentálásra, a többi — szegmentálásra a többi
+formátumú képpel Igen 3)
+
+— . avif kiterjesztésű kép Hibaüzenet Hibaüzenet
+szegmentálása ll
+
+"Nincs megadva könyvtár Hibaüzenet Hibaüzenet
+
+több kép
+4 1. táblázat. ldlvárt és kapott kimenetek paramétertesztelésneil
+Í AJ AA A A AA RÉT ÁÁÁÁ ! Mm MELYEN AAMÁNAN MÁR s A MA NAL!
+A A A A AYANT 8 ÁT
+
+----- PXL_20260907_103402142.jpg -----
+j—— tell,
+1 4 A 4 1
+aal FATB ES Tk,
+Osszegzés k
+AÁ mesterséges intelligencia egyre nagyobb térhódítása mellett és a korlátozott
+mennyiségben elérhető tanulóadat ténye miatt már most fontos az olvan megközeli.
+tések alkalmazása, amellyel képes egy modell korlátozott számú adat mellett is tudás
+elsajátítására.
+Dolgozatomban egy ilyen modell alaptudásához szükséges képi adat generálásá-
+nak antomatizálásra törekedtem, mellyel a távolság, közelség és átfedés definíciók
+taníthatóak. és ezekre alapozva tanulhatóak a modell által bonyolultabb koncepciók.
+Annak érdekében, hogy a neurális hálózat túltanulását elkerüljük, objektumok
+széles skáláját alkalmazhatjuk, és azok több féle módon előállíthatóak, mint im
+portálás, szegmentálás, vagy akár futás idejű generálás alakzatok csetében. Ezek az
+objektumok forgathatóak, nyújthatóak, és a teljes képen mennyiségben korlátozha-
+tóak, még inkább generalizálva a geometriai távolság fogalmat. Bemutatásra került,
+hogy ezeket mind egy egyszerű, általam létrehozott grafikus felhasználói felületen
+miképpen lehet paraméterezni, hogy valamelyest előrelátható legyen a végeredmény,
+de a véletlenfaktor miatt nem jósolható meg teljes merték ben.
+A szoftver olyan módon került implementálásri, hogy 44 továbbfejleszti
+gyen, mely külcsfontoksági meg kiterjedtebb képi halmazok gonerüldsánat érdem
+Fi f ai
+be-i. mér több
+AYANT! 114. terv Antták további töajtásával még több
+) Mivel a használt modell előtanított volt, így annak további tanításával Ms
+AA féle objektum felismerhetővé válik, és ennek a hálónak ny 4 tanyálévtetete MM! UM
+A ÁÁÁ ÁM A ALA ek kn ac! kevotsyz éséné ! koddyoyésés [80 songs] [5.9
+
+----- PXL_20260907_103403249.jpg -----
+FS EA A OS VK AAS EA A MAÓ Jt ZAL s.
+JÉ ék Asz gl b kt ZA
+e. . s bo A A
+tr HA
+mssztíssesstlttssséetisstidlássétté elsz ejssnytálgssyíttttéklászsátáészsét btk (122
+[ováhbóá KM AÁ SK bk [1 ! :
+; VDUKTU TÁKOTT elhtitűst s MTASRAIÁZÁLÁ nk Tk. [4 AMA
+: ] dd má, B ak JT] j ael 1 4 E? B ty 1. MLS TT bt 1 Its "1
+; kzledöse tel VÉR; elv Tf ALK Cridekéheori
+cgy másik műttörtödet :
+d] : a! 111 MT ATTÉS E élt Ag sf1 [FW ! !
+A ez ATÁT VÉVE 4JÁpa ÁLLATA A MATT ÉT TE AE AMA 11 !
+: [E ERAGTA ETKETTE EE i
+: UK JAÁAVITASÁNh jöttét] 1
+én . : i ! 1 4 kt 3 rY A " ! [ j j 1 1
+! 7441 424)! it) ÁTMÓTAT hát VÁLTANÁ ATA ET T
+15] ! Í ! KAHAVHAANTÍTTEII KERTET ATATAÍLYTÉTÜNN
+Í MATAT MAKI ANT NÁTEN MENT MTK ÁTAR SETA Tél!
+hi ANN
+
+----- PXL_20260907_103404704.jpg -----
+Irodalomjegyzék
+It] IBM. What is few-shot teanynang? https : //wsw. ibm. com/topics/few-shot 2
+learning. Accessod: 2024 05.29.
+I2i 1 ython Software Foundation. Tfinter feuthon mterface to Fel/Tk httosz:
+/ / docs .python .org/3/ l1ibrary/tkinter.html Áccessed: 2024.§5-22.
+3] Om schiutnanskv. (stomikinter: Modern and Customizable tdgets for
+dkinter. https ://custontkinter . tömschimansky . com / docamentation/.
+Accessed: 2124. 05.22.
+i4j John D. Hunter. Matplotlb: Visualization with Python. https ://nmatplotlib.
+Org/. Accessoed; 2024 05.22.
+[5] —Álex Clark és ( ontributors. fFillewm: The Python Mhnaging Library https ://
+python- pillow.org/. Accessed: 2024. (15-22.
+IG] Facebook AI Kesearch. Fv Torch: An open source machme learning framemerk.
+https ://pytorchb .org/. Accessed: 2024-05.22. Pacebook AI Research (PALIK,
+2124.
+I7]  DeepLab V.? Model in Fylorch https ://pytorch . org / vision / stable
+models . htmlfiedeeplabva -resnet101. AÁccessedi 2024 19.24.
+Is] Shaoging Íten Jian Sun Kairing He Xiangyu 2hang, £0p fegyeduat enrmind
+A 141 ÁGY s Zfarviv . ara Ándi /1512 . 03385. Ácsessed:
+for Image ltecogmitton. https : //arxiv , org / pdf A AAA! MAY
+k j9][ Arinjoy  [anerjes, [dated  (formatutana ( Leep Learning) https
+] arinjoyemail , medinn . com / díilated : conyatntágya : o9np ota
+LA eb9fd3ől2iese. Ácsessodi Z2021-09424. 2042, A A AA LA LAK ALKAT ANNA
+AAA NT MAAA A A A A NA I
+
+----- PXL_20260907_103405934.jpg -----
+és A CK EZ kf VÉ AE ÁSZT Á 21 SAST VÁRTA KALÓZ 135. FÁLEZR
+si lt ssenyegévszset yggytslatat yot HAH pest [tits aszztdá atz ts VS Zs EF SESS A AVASSS ASS VESS VT 99 TitHs
+X 1. TÁL MTVEÁÍATHÁSVYZMNÁÁLTTÁL UT pt áenetsÉD Sz ktT: est s sss sztssszetáíyentzszttttkíézttsyttáltttsz tsz szzzzsostzt szi
+1061 SOTTO [telongizó Í 1115 : ! i . !
+1085 Carshick James Havs Pietro Peiana
+! c 170tr Dollár "TXung- Yi Lin Michael Mare
+[erosolt GC): GCoammon (his 1 i
+mi (/O76€ts5 im tt mtert httne EEEN EE 2.
+" y" s Yv : ! "A i F ; í ; Ú í
+1405. 0312 Accossod [20724 415 12] MH) 14
+ko est VERT VEB AVss stl Ess Jőesjóló
+
+----- PXL_20260907_103407156.jpg -----
+Abrák jegyzéke
+
+2.2. A grahkus felület címköézve a felsorolás megértéséhez... : 5
+
+2.3. A szegmentációs folyamathoz példa be. és kimenet. . . . A
+
+dl. GUI módosítás felhasználói ésefel . . . . . . .... .. . .. ... . [d
+
+3.2. Gbjekturmnlétrehozás felhasználói csetel . . . . ..... ... .. [d
+
+0. krollerálás felhasználói esel s a s A
+
+a4 (a anapdiisrami . . . . 6. a s ss thíhgíűúÉ
+
+35 A prahkus felhasználói felulet vázlata . . . . . . . . . . . . . . . .. 8
+
+36 A grahikuz felhasználói felületet osztálydiagramja . ........ . . 2I
+
+37 Szegmentációt osztály osztálydiasramija . . . . . . . .. . . . . - . s - al
+
+38. Az augmentáló osztályok osztálydiagsramja . . ... ...--.-.- 23
+
+3.9. Gbjektumlehelyezésért felelős ösztálv diagramja . . . .. ... . . . 28
+
+41. A felismerés helyességének tesztelésére példa . . , - . . - . - - - - - : 30
+
+492. Szoftver által nern kezelt, de helyes formátumú bementi kép . . . . . 348
+
+43 Kimeneti példa a szélesség és a magassag megfelelő nyújtására . . . . ál
+
+ÁGA a : [Ana kirnététéból 141. péld: CC a
+
+44. "Vávolságalapú elhelyezés tesztjének kimenetéből 1-1 pólda . ...
+
+4.5. "Távolságlehelyezés tesztjéből példakirenetek (4 [4/4454 lb
+
+4.6. Példák nagytávolságú elhelyezést 4 44 d TT TT
+AAA HI AMA ÉÁNAÁK HNK s
+AAA NA A s
+LN A AA AAA NA ANNA A
+NU MENNI s
+A AA A A AK
+LL A
+AAA AA A s——.—-—
+
+----- PXL_20260907_103408328.jpg -----
+Algorítmusjegyzék
+
+L. — 5egment Image and bxtract I high Confidence Öbjects . 2] aj
+iz 1 4 ié8 dl
+
+2. — öave sermented (hjárts LL LL : Cl
+
+a. [ íreteh [mas o.
+
+4. —/Dcalanate [oo Gíbjeciő dni 6. a
+
+za] 14 i alles té MEGHEESTT teki" i eF
+
+B ——[ Cakalíte liagzk freee 95
+
+AEK LG ES KROO KSE FssssÉssstl vel kel SEA ss ÉN IDEG Esttt1és
+

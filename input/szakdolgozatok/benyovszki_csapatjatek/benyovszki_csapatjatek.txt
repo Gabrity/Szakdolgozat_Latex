@@ -1,0 +1,1062 @@
+----- PXL_20260907_101158314.MP.jpg -----
+: E — — 4 —oTeljes oldal $
+kzsVER. — Eötvös Loránd Tudományegyetem
+fs ek 4 [Informatikai Kar
+43 kozt : 7 Egyetemi-Vállalati Fgyüttműködési Intézet
+99 Mesterséges Intelligencia Tanszék
+Fő d .. ÁE E ge] i
+Egyszerű, többszereplős csapatjatek
+.. " 7 i Fi /
+környezet fejlesztese, tanulo agens
+: - Z ! / / PF Pá
+csoportok vizsgalatanak segítéseésre
+Szerző: Témavezető:
+Benyovszky Botond István Gulyás Lászla
+Programtervező informatikus BSc. docens
+Budapest, 2024
+9 -
+
+----- PXL_20260907_101202724.jpg -----
+k. irtalomjegyzék
+PAM, Telepítési útmutató A
+23. A procramlibítása s s d a
+24 A neurális háló és alkalmazása (4 d e 5
+LA e a ez
+26 ADprosram használata s ee e A
+27.  MéERtesek ös Visszátolltésék 4 4. s d ee EA
+3 Fejlesztő docimeéntáto gu
+3 £ —— Kövelelmenyezi
+32 — Pelhaásziaál techíolőiák 8
+23  — MIplémentáe
+34 — Merész
+4  [eszftelési jegyzőkönyv
+41. /Funkcionaltaás tesztelése [d d A 6
+F.4. Nem funckionálislelvárások [6 [4
+Eredmények d ATTb4940 4 4 A
+7-2. E-1372 MÁló Bredményel [A
+2 AN KZT háló eredményen [4 [A
+MANN EZTANrE hÁld eredmények 4-4 A
+D.A. Következtetések HAM ss KKA z kht s ss tt e d e
+
+----- PXL_20260907_101204615.MP.jpg -----
+pár CS FSI " [! ít 11! 11 HITTEM Itt HITT ri tiltii Y iHti li ltit 11 ij titi ni H "1 TAÁTTTTTI 3 ih iiii [3 HITT TÁLH TSYÁ HAT 1 TH 7114 Hi HHHI] titi HIT
+ML HI ML IMI MÁN MANNA HÁ Mel NAT HITTE HANNI MATUKI ; IEEE HATÁRA HU HIREK ESSO EG A TEN ÍTTKK ft
+1 7 ! Ti 11. JUT 11 v Milliltéztó JI jor : 47 hd ült "1 JJ HAJ ELL asszástr ését ht hód A]
+X 9 " bó § kél "fat ! jé -— I ! 1 MH H1128 u SZEATTATÉTN 19 I UI UHUTSS 1) 1141 Ettáő di LU sti étöáézpk jard [ét ) ki ld 149. dő hd ! bt v klád tás : hai ból bél ! hi bá 200 990 ! fr háó [dd Fi ál 1] :
+3
+N 1 K a. 0. N i í 4 H9) [i "! Í j MEA 19 ti! ! j 11111 tl RSA] 11111 45-9219951111191 2141 LE 852 sé tl 2 441 hál ost 3280 1 hd le Ládd] ha hót ! 44 [ Job fekebzzágn fogg bánt tod 4 14 ján 3o 190--1ért ht 22 ;
+FOGATÓMITERVZTL :
+1
+ÁÁ Mi d MI j 1! HIT jILTET MAIN VITT THE TET MIHÉRK HEHH INIIKES Etsztheé tél
+MLM] ! ;
+szi 1 dit
+Katát 9999 999 I vi :
+. Át 1 i
+E 1 APT An í " ;" fo] " 2. : sz
+
+----- PXL_20260907_101206725.jpg -----
+Digitális eszközeink, mint a mesterséges intelligencia, egyre inkább teret nyernek a
+mindennapokban, légyen szó média generatív technoölóőgiákróli képelemző rendszerekről,
+prediktív modellékről vágy döntéstámogató rendszerekről Ézek az Mi-aálapú megoldások
+hihetetlen lehetőségeket nyitnak meg, de vajon mire képes valójában a MmeESÍeTZÉsgES
+intelligencia? Utóbbi idők egyik legfelkapottabb kérdése ez a modern tudományos világbari
+Sokakat foglalkoztat, hogy az MI mikent változtatja meg életünk számos területét E.
+ilyen toörmán, az MI célja többnyire olyan problémák megoldása, amelyek hasvományos
+mödszerekkel vagy egyáltalán nem, vagy csak nehezen kezelhetők Nézve például a
+videöjatékipart, ahol a nemjaátékos karaktereket (NPC-k) irányító hagyományos módszerek
+mint az allapotgépek, keresési algoritmusok és szkriptek gyakran kiszámíthatóvá és
+mesterségesnek tűnövé teszik ezek viselkedését 2
+Mdara mar azonban a neuráis hálók alkalmazása ebben a környezetben új lehetőségeket kínál
+a jatékélmény növelésére. Az alacsonyabb szintű pontosság és a kimeneti variabilitás ami más
+területeken hatrányt jelenthet, itt előnyt jelent mivel a neurális hálók természetesebb és
+kiszám íthatatianabb viselkedési mintákat hozhatnak létre Csökkentett mesterségeszég és
+fokozott emberihez hasonió reakciók ezáltal jobban szimuláljak egy valódi játékos
+viselkedését, növelve az élményt. Határozottan látszik, hogy a mesterseges intelligencia képes
+átalakítani a játéktervezést. Izgalmas látni, hogy az előrehaladás miként bontakozik Ki és
+milyen új technológiák kerülnek bevezetésre Nem kétséges, hogy az MI jövője még rengeteg
+meglepetést tartogat számunkra. Ahogy technológiánk fejlődik, úgy növekszik a gépezetben
+rejlő potenciál is. Már várom, hogy láthassam, milyen új dimenziókat nyit meg a mesterséges
+intelligencia a közeljövőhen.
+1.2. CÉlKkÍTÚZÉéS és feladat ismertetése
+A szakdolgozat célja egy olyan egyszerű, többszereplős csapatjáték környezet fejlesztése.
+amely lehetővé teszi tanuló ágens csoportok vizsgalatát. A neurális hálók alapú ágensek
+A " KÖZÖL kooperáció és versengés tanulmányozása erdekében egy olyan játékot tervezek,
+
+----- PXL_20260907_101209274.jpg -----
+hl MA — — 4 —[ Teljes oldal :
+melyben az ágenseknek stratégiai döntéseket kell hozniuk egy csapat részeként. A projekt
+során a következő fő feládatokat határoztuk meg:
+L Fejlesztési környezet létrehozása: Egy megfelelő, egyszerű, és gyors csapatjáték
+környezet megtervezése és mplementálása
+hin kid 17 7 ; ! TIP ! É sz mg 7 e E :
+2. Tanuló ágensek létrehozása: Neurális háló alapú, gépi tanulást használó ágersek
+fejlesztése
+3. Tanulási folyamat elemzése: Az Aagensek tanulási folyamatának és viselkedésérjek
+elemzése és értékelése különböző stratégiák fényében.
+Ez a szakdolgozat tehát egy olyan kutatási keretrendszer létrehozását célozza meg amelyben
+vizsgálható a neurális hálók képessége kompetitív csapatjáték megtanulására. és
+alkalmazásának hatása a szereplők viselkedésére.
+1.3. Főbb Felhasznált techno ösíiák
+.e — Parnuzamos programozás: Mellékszáiakon fut a számítások indítása, és a megjelenítés.
+e — Direct2b kirajzolási A megjelenítő ablakban a kirajzolás Direct2zD API-n alapul a nagy
+teljesítményű megjelenítés érdekében
+. (UDA C4-: A neuralis hálókkal kapcsolatos számítások, és következésképpen tanítási
+folyamat felgyorsításhoz videókártya (GPU) programozási nyelv
+
+----- PXL_20260907_101211037.jpg -----
+Legalább "Compute 5.0" képességű NYIDUITA videokártya.
+1. Operációs rendszer: Windows 19711
+2. Futtatáshoz: friss NVIDIA driver: hitps:l/Wwww nyvidia com /ern-pb/getorce/drivers :
+1. Visual Studió 2019:
+x. — javasolt telepítési opciók:
+s Desktop Development with C---
+s [MSVCv142—Y52019 [4 x564/x86 build tools :
+2. NYIDIA CUDA Tooikit: ntos: //deve oper nyila com /euda-
+down 0ads arzet os: noowsélarget arci-x2ő 64
+223. Aprorram leírása
+Á program egy olyan eszközt biztosít, amely lehetőve teszi egy neurális háló betanítását egy
+csapatjáték szímulációjában A játék célja, hogy a játékosok elérjék az ellenfél bázisát. majd
+onnan sértetlenül visszatérjenek a sajátjukba, miközben megakadályozzák az ellepfeleket
+ugyanezen cel elérésében.
+A játék egy folytonos, kvázi végtelen, kétdimenziós térben játszódik két 10 fős csapat között.
+A megjelenítés bekapcsolásakor egy 1280x800 egységnyi területet jelenít meg. ahol 1 egység
+1 pixelnek felel meg, de a kiraizolt terület az ablakkal szabadon átméretezhető. a számításokra
+nincsen kihatással Mindkét csapatnak van egy saját bázisa, amelyek szimmetrikusan
+nelyezkednek el egymástól 720 egység távolságra. A bázisokat a csapat színével megegyező
+(kék és píros) 25 egység sugarú kör jelöli. A játék kezdetekor a csapatok tagjai a saját bázisuk
+középpontjából indulnak, különböző irányokba nézve, 36 fokos szögkülönbséggel.
+
+----- PXL_20260907_101212876.jpg -----
+A jatekosok 10 egység átmérőjű körökből állnak, melyekhez egy irányjelző vonal is tartozik.
+Minden lepesben a játékosok -9 és --S fok között elfordulhatnak, majd 0 0 és 7 0 egység közötti
+távolságot léphetnek előre Ha egy játékos eléri az ellenfél bázisát egy jelzőt kap amely a
+megjelenítésben vastagabb vonallal kerül ábrázolásra. Ha a játékos ezzel a jelzővel vissza tud
+terni a saját bázisára, csapata egy Rontot szerez. Ha egy ellenfél utolér egy játékost (hozzáér
+az eljlső 745 -os részével), akkor a iátékos elveszíti a jelzőiet, és visszakerül a saját házisára.
+" képen látható halyány telített kör szimbolizálja a piros csapat bázisának területét Erre a
+területre lépve tudják a kék játékosok felvenni a pontjukat, a piros játékosok pedig leadni azt
+A képen látható €gy ponthordozó piros jatékos, aki hp a saját bazisa fele tart. Öt a vastagabb
+vonaltipussal lehet felismerni. A kék játékos is FOR a piros bázisa felé tart. de ebben egy közeli
+Ű piros pontnélküli játékos akadályozza
+mm. d I .
+
+----- PXL_20260907_101215988.jpg -----
+E -ov istszmá 21600 lépésen kéresztül tárt, ami 60 hertzen ( Hz) frissítve 6 perc játékidőrnek
+felelne meg. Ez a 50 H2-és frissítési ráta modern többszereplős jatékoknál egy gyakran használt
+szabvány. mert egyensúlyt téremt 4 sima játékmenet és a szerverek, valamint a hálózati
+erőforrások hatékony kezelése között? Tesztek alapján ézt az időtartamot találtam elég
+hosszúnak ahhóz. hdey a csapatok taktikái megfelelően érvényesülni tudjanak, ennél hosszabb
+idő aránytalanul kevés esetben játszána döntő szerepet. A idő telését a grafikus ablak tetejért i
+kúzódö zöld csik segít megbetsülhi, mély balról indul, és az idő leteltével éri el az 2hd1ak jobb
+A két csapat felváltva lép, a kék/baloldali csapattal kézdvé. Minden csapattagnal először az
+elfordulás történik meg, utána az előre lépés, majd a két legközelebbi ellenfelet, na elég közeli
+kerültek hozzá, automatikusan megtámadja. Ezt követően a másik csapat lépése következik
+Az idő lejárta után eldöntésre kerül, hogy melyik csapat nyert. Ez a tanyiási folyamatnál x24p
+majd fontos szerepet. Ennek a pontos kiértékelése:
+1. A magasabb pontszámú csapat
+2. Azonos pontszámnal az utolsó pontot korábban megszerző csapat
+3 Ha még mindig nem egyértelmű, akkor az a csapat, amelyiknek több pontjelzővel
+rendelkező játékosa van a játszma lezártának pillanatában.
+4. Ha ez sem dönti el, akkor döntetlen, vagyis egyik csapat sem számit nyertesnek.
+Zá Arneuráls háló és aíkalmazaása
+kiinden játékost a csapatán belül megegyező súlyozású neurális háló irányít Ennek 17
+bemeneti értéke van:
+- 14:Van-e önmagán pontjelző
+2-5: 5ajaát és ellenséges bázis távolsága és relatív iránya
+7 — 66-17: Két legközelebbi ellenfél, és legközelebbi csapattárs távolsága, relativ iránya,
+relatív elfordulása, és pontjelző birtoklás
+Minden bemeneti érték 71,0 és 1,0 közé van narmalizálva a következő szabályok szerint:
+e "Fontjelzót Ha van pontjelző az érték 1.0. ha nincs 71.0 A
+
+----- PXL_20260907_101217587.jpg -----
+E zelatív szögek: -180"7 — 1807 közötti intervallum van arányosan levetítve -1,0 és 1,0
+e — Távolságok: Az alábbi képlet bármilyen (pozitív) távolságot -1,0 és 1,0 közötti értékre
+konvertál. azzal az előnnyel, hogy a kisebb távolságértékek között nagyobb
+különbséget tesz mini nagyobb távolságok ESETET].
+BÁN
+Ezek alapján 2 kimeneti értéket generál minden iátékos:
+
+- 1 Mennyit fordul ei
+
+- 2: Mennyit lép előre
+A kimeneti értékek -10 és 16 között generálódnak, ezek interpolálódnak a korábban
+megadott tartományokra. 6
+A bemeneti és kimeneti reteg között egyetlen rejtett reteg van aminek a szélessége kódból
+valtoztatnató. Onptimalizációs okokból nem futásidőben megadható érték.
+Z.2. Atanulási iolvamat
+A tanulási folyamatot egy általam kifejlesztett egyszerű heurisztikus keresési módszer jellemzi,
+amelyben ötvözöm a gradiens szélsőérték-keresés és az evolúciós algoritmusok néhány
+elemét. A kezdeti súlyvektor, amely a kék csapat jellemzőit határozza meg. nullértékekkel van
+inícialízálva. Ezt követően a rendszer véletlenszerűen generál 500 új súlyvektort a kezdeti
+vektor £0,87as intervallumában, melyek m indegyike egy-egy piros csapat logikáját modellezi
+
+mn ertékelés sprán a legiobb súlyvektorek átlaga képezi a következő iteráció kiindulási
+vektorát. A következő iterációk során a véletlen generált súlyvektorok eltolódási tartománya
+A marcsak £0,35./Az 0,8-as és 0.857ös értékek tapasztalati úton kerültek beállításra annak. ]
+
+----- PXL_20260907_101219331.jpg -----
+E os zében, hogy a tanulási folyamat indításakor nagyobb varianciát biztosítsanak, míg a
+későbbiekben egy györs, de stabil tánulásii tempót tartsanak fenn ami az iterációk
+előrehaladtával továbbra is hátékonyán alkalmazható. Minden iteráció során a kék csapat,
+mint referenciá 500 mérkőzést játszik, a magához képest enyhén módosított súlyozású piros
+Az 500 meccs lejátsztával 34 DIrTos ( sapaátok Az eredmeényeik alapjári sorba rendezésre kerülnek FA
+a következő szempontök alapján:
+1. Egy nyertes csapatok előrébb kérülnek a veészteseknel
+2. A nagyobb (bozitív) pontkülönbséggel rendelkező csapat kerül előrébb
+3. A magasabb pontszámmal réndelkező csapat kerül előrébb
+34 A meccs végén több pontjeélzős játékossal rendelkező kerül előrébb
+Sarba rendezést követően a nyertes csapatok, de legfeljebb a csapatok legjobb harmada (156
+Csapat) súlyainak átlagából készül a következő iteráció referencia csapatának súlyozász. A
+szelekciós limit célja, hogy a 2-4 szempontok is ervenyesüljenek. Enélkül az algortmus nem
+venné figyelembe a győzelem mértékét.
+A program képes elmenteni az aktuális iteráció kiündüuló értékeit manuálisan is, valamint
+autoriatikusan minden 10 iterációban, amik visszatölthetőek és folytható a tanulási folyamat
+velők. A program képes két különböző allapot referencia csapatát összemérkőztetni amihől
+megallapítható a tanulás siKEressége, hogy a Korábbi eredményeknel jobban szerepel-e a
+többet tanult modell.
+Z5. Aprosram használata
+A Program menüje egy egyszerű parancssoros ablak, ahol a tájékoztatás a program állapotáról.
+a lehetséges opciók megjelenítése, valamint a felhasználói bemenetek is szöveges formában
+történnek. A főmenüből érhető el néhány lényeges információ a száamítogep videókaártyájáról
+a Device informations menü alatt, valamint a szimuláció inányítómenülje a Stert menüpontot
+Választva. Am ig főmenüben A menüválasztás egyszerű számok segítségével történik az inputok
+leegyszerűsítésének érdekében, "addig a szimulátidnál választható lehetőségek rövid
+barancsokkal használhatóak. Ennek célja a lehetőségek közti kvázi Hamming-távolság
+növelése, vagyis kizárni annak a lehetőségét, hogy veletlen elgépelésből egy helytelen parancs. / s
+e SAO] nene MÉ A A A A A
+MM s CI
+
+----- PXL_20260907_101220999.jpg -----
+n bevitelre. Erre azért van szükség, mert amig a főmenüben nincsen tétje helytelen
+nenüpont választásnak . addig itt figyelmetlenség mérhető károkat is okozhatna a
+felhasználónak ha például körábbi szimuűlációk visszatöltése helyett újrakezdett számításokat
+indítana. elvesztegetett idő és áram formájában.
+
+MAIN MENU !
+
+1 - Start
+
+2 - Device informations
+
+0 - Exit program
+
+s...
+
+e. 1:Aszimulátió menüre valt
+. —2: Az eszköz információs menüre vált
+e. — 0: Kilép a programból
+2$2 Szimulációs menü ] I [ [ [ 4
+szimulációs mod kiválasztásáaelótt:t
+se o, sony oszen o ]
+start - start a new simulation 1
+: iozd - Load a previous state
+: "
+I duel - create a new duel í
+
+8 - Back to Main Menu I]
+szimulációs mód választás után:
+
+MEN ÁL
+um / mi mn
+
+----- PXL_20260907_101223860.jpg -----
+ SIMULATTON - Current mode: SIM, PAUSED
+save - Save the current state ,
+open - öpen the visual window /
+113 - Change speed modé
+pause - Páuse/unpáuse the símulation !
+stöp - Stöp the simulatión !
+0 - Back tó Main Men
+"
+e start— Start anew simulation:
+előröl indítja a betanítást függetlenül attól, hogy korábbi mentések elérhetőek-e
+e [90ad— load a previous simulation:
+Betölti a legutolsó elmentett állást, és onnan folytatja a tanítást
+e c3uel—treate a match between two previously saved state:
+Kivalasztható két korábbi mentett állapot vagy referencia csapat, akik a résztvevő
+lesznek egy összehasonlító játéknak
+e save —S5avethecurrentstate: . o
+Elmenti fájiba az aktuális iterációhoz tarozó állapotot
+s SspEen-ÜOpen the visual window: .
+Megnyitja a grafikus megjelenítő ablakot ahol a jaték és résztvevőinek aktuális
+allapota megfigyelhető — ll
+s. Palse -—- Patuse or unpause the calculations:
+szünetelteti, vagy szüneteltetés után folytatja a a számításokat
+s slow -— Turn on/otff the slower calculation mode:
+Lassított mód kapcsolója. Segít a játék megfigyelhetőségén az által. hogy
+felfoghatóbb lassúságra fogja vissza a számítási folyamatot.
+s stop - Stop the simuláation:
+Kilép az aktuális szamításokból, lehetőséget adva egy uj szimuláció indítására.
+s 0 - Back to the main menu:
+/ visszatér a főmenübe. Nem lép ki az aktuális szimulációból, az betöltve marad. vagy
+tovább fut!
+LL NN ll
+
+----- PXL_20260907_101226051.jpg -----
+A menüpontok közül csak a kontextusban elérhetők Vannak kilistázva. Ha éppen van
+betöltött szimulációs mód, annak a tidusa a  Gurrent Möódée" után van feltűntetve (SIN /
+DUEL ), valamint a számítás szüneteltettségéről is itt lehet tájékoztatást kapni ( PAUSED 1.
+Tanulási folyamat során a program minden iteráció végén kilogol néhány hasznos
+intormációt a tanulási folyamatról
+ITER 43 - 1919 M5
+Winners - lösers$: 63 - 437. :
+Highest polnts: 1 - 2
+Number of point getters: 4
+siggest weight / change: 0.150£67 - -6.092981
+1. Az aktuális iteráció sorszámát, valamint az előző kör alatt eltelt időt
+2. Az 300 piros csapat nyerteseinek és veszteseinek száma. (A nyertesek szára 1566-ban
+van maximalizálva)
+3. A kek és a piros csapatok között legmagasabb elért pontszámok
+4. Darabszám, hogy a piros csapatok közül hány tudott pantot szerezni.
+3. Az aktuális kék csapat neurális hálójában a legnagyobb tabszolút) súlyozási érték.
+valamint iegnagyobb t(abszolútj változás az előző körhöz képest.
+Az özszehasonlító mérkőzés (duel) eredményét egy sorban foglalja össze a konzol ablak:
+! Final results: 11 - 14
+Ahol a bal oldali érték az elsőnek megadott kék csapat pontszáma, mig a jobb oldali érték a
+masodik, piros csapat által elért pontokat jelenti.
+
+----- PXL_20260907_101227778.jpg -----
+A AMA i
+) 6.3. Eszköz intürmatioós meni
+DEVICE INFORMATIONS 1
+Devite: 0 - NVIDIA GeFörce RTX 3080 1
+Totál global memory: 10244 MB i
+Shared memory / block! 48 KB !
+Totál constant memory: 64 KB
+Number of multiproöcesszörs! 68
+Concturréent managed access: Not supported
+Statk size limit: 1024
+MeáDp Size limit: S3I8860£
+0 - Back tö Main Menü
+nyél tt -. Ez oki itt si A 1 Mi 7 : j : 7 sé2z ot
+tz a menü mindössze néhány GPU képességeivel kapcsolatos információt oszt meg 4
+2 goz sz fo - eg -z i HHHNHEE Midjítstt Ez et Elő 2. mt
+telhasználóval, mint peldául a rendelkezésre álló maximális VRAM mTIEFnyiIsége.
+ZS 4. Sratikus megjelenítőablák NT
+d sg sszszszesakgaszyssyfétbéjg8b4bjáróáéskánozééysssáEszöEKKÁÁENEK449989 Ef főkköősskzisstkKÁSEÉő49 09 kőőőDAFREHAÉá 44 atás s ogassyiétésú s sys ssyogyágyygástóó 1 sel só stl ált e sss i sagjöttáytgjégjomssyjjétákkssslszsyssóst negyon áz
+zi MBE A A s ÉS A ss ts ss zttűt -
+öz zttk E A AR iz ii ts AA d E s kRtasó ditIEE A.
+: A a A s ti : !
+é . HF 4 "b. A 2 gy ÁÁ sz. a.
+Ah ml s
+2 . A A A e d a, et öss kő. a 2 i
+áh Et ÉL E zek a :
+e a Ad A LA S Ps a —
+ön] s so ROLL d, A sb] A s ts RÉS
+hr] RE E més Al d LM a :
+: FEE det jöt ággal ő SANS K Fels st e Alá 4 E KSEHÉSA 47 JE E] ő ai tltssdó ss fösszíttr ÉSE : zni
+— i éle ÁT e S ÁTKOT, Dá fá, Mi o ság a s ES a
+; 2 s. Má PAB HIRE MEYER A TÁN MAT lt ak AKA Al ÉRESA 19 ÁR. kjjjljy ll seásksz gél KE AT S, tte zt As ÉBE íly 2.
+Tt a e A s AGA S a a E
+Bug Es TŐ s. HUKK Ták 1. KYRA ét ZATA a s (GbR küldött vzgót Át : HANA, Rad ss .
+" : MI SZEMET] ke Mel APB at ÁL kár AMOR A ESZ
+kás [ADR a A elk e A a AM AL BUG s il
+! MA ei vittél] [144 KA ű TA. AY E, tt hi. só Al ál ab, Ma 3
+ak a 4 A TENNÉ 9 ] TA s ál s . RÉ a A
+a Ada ks vá b a A E ő o
+gát RG 4 e, ZAL. AMA NÁLAKÁ s sség s MAMÁNAK Md kN a altt,
+vo ; jl 4 él él él GTV AJNIKSE NEE" Mi iz i 1 TA MEZ! 1 4.2 Wi fi A JAR VA
+ú " Ú FLY 1 kél ! aaz 9 A "shh Ál s A A lt ITTÉBE B éri
+íi 2 GYA MAMA E LA Mg ás AAN ató 11 ye klan 95 ESANAT EA !
+£ AHH? 7 2] ARLYATÁNE AZ JAHN JAS íl fil ÁR 2 YÁAJAÁJA? fi MATAT MATA I : F-sjjl hi h
+A grafikus megjelenítő ablak célja kizárólag a folyamat megfigyelését s zolgálja, a folyamatra
+1 semmilyen ráhatása nincs. Mivel a jatékelemek kirajzolása szintén GPL erőforrásokat vesz —
+I igénybe, ezért amig ez a; NA A AL. CD
+NN MM IERTYAR, FZÉTF AMIK ez az ablak nyitva Van, a számítási folyamat kimutathatóan lelassul  —— -—
+(4 ANÁ A ÉN 6656
+ML YI LN NN MANNA
+fi Jt !
+9 : t.i ! JJ . y . e . 4 : e. ST 042 991 1 2)
+
+----- PXL_20260907_101229976.jpg -----
+I B — — 4 —[ Teljes oldai ;
+A grafiküs megjelenítő ablák aáláapésétben egyszerre rajzolja ki mind az 500 párhuzamosan futó A
+mérkőzés játékosait, bázisájkát! Válamint a párhuzamos mérkőzések sorából a léselsőben
+résztvevő csapatok aktuális pontszámát Éz a kirajzolási mód hasznos a tanulási folyamatról
+átfogó kép alkotásában, ami csak 2 csapat mepgfievelésével nem lenne látható Jobban
+megfigyelhetőek a tendentiők Összetártásra, üldözésre és hasonló stratépiákra.
+3 VM . !
+Lehetőség van a kirajzolt játékosok mennyisésének állítására a NumPad ÉR
+bilertyvőgombokkal. Ezzel lehet a kezdeti 10 000 kirajzolt játékos számát csökkenteni illetve
+növelni 1000-el, 20 és 10 000 között. (A nem kirajzolt játékosok továbbra is részt vesznek a
+sajat játékukban ) A minimum 20 esetén csak az első merkőzés csapatai kerülnek
+megjelenítésre, akikhez a kiírt pontszámok is tartoznak A kirajzolt játékosok számának
+csökkentése javítja mind a háttérbeli számítások, mind a kirajzolás sebességét az erőforrások
+felszabadulása miatt.
+ria az egyéni játékosok mozgását szeretnénk alaposabban szemügyre venni, érdemes a
+konzolablakon keresztül lassú módra váltani.
+—C Mérkőzés (duel) mód esetén A megjelenítő ablak működése megegyezik a szemléltetekkel —
+A azzal a különbséggel, hogy mivel ebben 4 módban csak két Csapat letezik, ezért nem lehet Á .
+ —C—onítani a kiralzolt játékosok számát, mindenképp az összes (20) megjelenítésre kerül. o
+
+----- PXL_20260907_101231656.MP.jpg -----
+mM - — d —ofejeg oldal :
+
+A mentéseket egy relatív /HAVeFIlésVI7-4E-21/4ppába készíti 2höla számok a neurális háló
+reteg szélességéeknek felelnek mégA fálldklélnezése /3-4144 nán alákú, Ahol az első szám A
+random generátor magjából (RANDOM [/DÉÉD) származik, a második szám pedig az állapothoz
+vezető iterátiók számát adjá meg. Él BlÁDJán táláljá meg a program a legkésőbbi modellt a
+szimuláció visszátöltésekor. A fájlok tartalma binárisan kötlöülti hogy a léhegőpontos számok
+kimentése és visszatöltése során ne keletkézztén kerekítési hiba
+
+SEGA RA ÉSE ÁM MAAS NANA sss AAA KK sss b AA MAAA KINNT AAK ss AAA A LA AAA OKA KA VAVAN ANAK Hl E vh e o VE ETANLEÉNHHEK ly ÁMÚ  AL66Lüo
+
+----- PXL_20260907_101233721.jpg -----
+e A programnak képesnek kell lennie a szabályrendszer által meghatározott játék
+e A program biztosítja a bázisok, és csapatok létrehozását, inicializálását, és állapotuk
+írissitéseét
+e Ajátékszereplői közötti interakciók kezelése, mint támadás és peortszerzés
+a — Neurális háló integrálása a játékban résztvevő ágensek döntéshozatalába
+. Az ágensek környezetét leíró adatok használata a háló bemeneti értékeikért
+?. APBáló kimeneti értékeimek használata az ágens lépéseihez
+ETI TonHSsifolkomat toridlás, és kiértékelési
+as A prograri képes új súlyozások létrehozására és használatára egy tanítási módszeren
+keresztül
+s — A folyamat során kiszámolt súlyozásokat képes fájlba elmenti, és onnan visszatoltem
+s —[/isszatöltött állapotból lehetőséget ad a programa tanulási folyamat folytatására
+s Különböző állapotok eredményességének összehasonlítására ad módot merközesken
+kereszül
+s A program képes mérkőztetni a tanított neurális háló alapú ágenseket különböző
+referencia ellenfelekkel
+3.114. Megjelenités
+s A szoftver lehetőséget kell adjon a játék grafikus reprezentációjának megjelenítésére
+s A kiraizolt elemeket folyamatosan frissíteni kell a aktuális állapotok alapján.
+s A programnak biztosítania kell lehetőséget arra, hogy az szimuláció a felhasznalo
+számára felfogható lassúsággal tudjon haladni.
+ks Vr s
+
+----- PXL_20260907_101235282.jpg -----
+"o -. — b —ofeljeg oldai :
+31.22. Nem tunktionálik KÖVÉTtelnTenyek MÉ 4
+e A szoftvernek biztosítánis Kell! Kogy a szímulációk és a neurális hálózatok számításai
+lehető legevorsábbán fuSsánák,
+e. A prögram futásidejének öptimálizálása érdekében hatékony algoritmusokat és
+adatstruktúrákat kell ÁAIKálm azni.
+e Aszámiítási feladatok gyorsításának érdekében párhüzámosítást és GPU programozási
+technikákat kell álkálmaázni.
+.?. — Az adatátvitel öptimalizálásának érdekében biztosítani kell, hogy csak a feltétlenül
+szükséges adatok kerülnek mozgatásra a ÚPÚJ és a GPU között.
+e. —Atanulási folyamatnak hardwarefüzgő belátható időn belül konvergálnia kell egy olyan
+allapotba, ahol a további tanulás már nem eredményez jelentős javulást.
+2. — A program több napos futási idő alatt sem omolhat össze, állhat le, vagy szakíthatja
+meg a tanítási folyamatot felhasználói beavatkozás nékül.
+. — Helytelen felhasználói bevitelt le kell tudjon kezelni a program leállás nélkül.
+s A szoftver nem okozhatja a szimulációs eredmények elvesztését vagy azok
+invalidálását. I MI
+2123 Megismételhetőség I! MNK
+s A tanulási folyamat eredményeinek pontosan megismételhetőnek kell lenniük a
+környezettől függetlenül.
+s A tanítási eredményeknek indítfferensnek kell lenniük arra, hogy a tanulási folymat
+során történt-e megszakítás majd később mentésből visszatöltött állapotból folytatás
+2.2. Felhasznált technológiák
+2.2.1. FPárhuzamos programozás
+A A projekt kétféle párhuzamos programozási technikát valósít meg: d
+JR. e hagyományos: CPU szálak kezelése, ami ennek a pontnak a tárgya Ál s
+grafikus: GAL kernelek indítása, amivel részletesebben a CUDA Cit pont foglalkozik
+
+----- PXL_20260907_101236765.jpg -----
+ . A -- — 4 — Teljes oldal :
+Mig a grafikus protesszór! esetén 4 teljesítmény növelése volta cél) addig a közpönti
+processzornál a bárhúzámosan fütó szálak télja az egymástól független tévékenységek
+szétválasztása, hogy ezek ne blőkkolják egymást. A szálak elkülönítése lehetővé teszi, hogy a
+rendszer folyamatosan és zökkenőmentesen működjön, a alábbi módon?
+
+1 Fő szál Felelős a felhásználói nputok kézeléséért, Valámint 4 számításért és
+megjelenítésért felelős szálak indításáért és kézeléséért.
+
+2 Szimulációs szál! Felelős az adátok kimentéséért é5 vVisszatöltéséért fájlok és
+videómemöőria (VRAMI) között. valamint CUDA kernelek meghívásáért. Élettartama egy
+szimuláció indításától annak lezárásáig tart.
+
+3. Megjelenítő szál: Felelős a Direct2) alapú megjelenítő ablak és a hozzá kapcsolódó
+kirajzolás vezeérléséért, valamint az ahhoz szükséges információk átmásolásáért a
+
+VRAN-ból a RAMI-ba.
+A szálak létrehozására és kezelésére az itel : álregő osztályt használom.
+222 Directzbhirajzoláső" "00" ! [ ! O
+
+A projektben a Direct2b API-t használom a játék grafikus elemeinek megjelenítésére. A
+Direct? egy hardveresen gyorsított, her dimenziós vektorgrafikai API, amely lehetővé teszi a
+nagy teljesitményű grafikai megjelenítést Ez különösen fontos a valós idejű szimuláció során.
+ah0i a gyors és folyamatos kiíirajzolás elengedhetetlen. A Direct2d használata a projektben
+biztosítia a gyors és minőségi erafikai megjelenítést, ami hozzájárul a szimulációs környezet
+hatékony és élvezetes használatánoz. A megoldás alapjául a Microsoft saját Create a simple
+Dírect2D application" útmutatóját vettem.
+A projekt során a CUDA Cyr technológiát alkalmazom a GPU kihasználására, ami jelentős
+teljesittménynővekedést biztosít a számítási feladatok végrehajtásában.
+
+A CUDA AMI a C hbrogramozási nyelv kiterlesztése, amély lehetővé teszi a
+szálszintű párhuzamosság sperifikálását C-ben, valamint GAPL eszköz
+specifikus műveletek (például az adatok mozgatása a CA És a GAL között)
+0 meghatározását [7 MANI A
+
+----- PXL_20260907_101238429.jpg -----
+"a cé .. — e —oFeljeg oldal :
+A CUDA használatának / előnye 4 /háakgymértékben dárhuüzámosíthátó / számítások
+végrehajtásában rejlik. A CPUVal "szembeni előnye a GPlU-naák 42 högy amig az előbbi
+legfeljebb néhány túcaáat maggal rendelkezik Addig 4 GPL több ezér maggal rendelkezik amrzel
+jelentősen növelhető 4 Számítási / skbesség nagy mennyiségű és jól párhuzamosítható
+feladatok esetén A CUDA ugyanakkor ő GPU mMmemóriájához is hozzátérést kínál lehetővé téve
+nagy mennyiségű adatok tárolását a VRANIFDani ezzel meégspórólva jelentős adatmásolást.
+A CUDA programozás a hagyományos C-t nyelvhez képest 2 területen hoz változást: mernória
+kezelés, és függvényhívás. Mindkét esetben fontos szem előtt tartani, hogy a program két
+elzeparált köntextusra oszlik szét: CPU [Most] vagy a GPU (device) Ha egy változó vagy
+függvény az egyik környezetben létezik, akkor a másik oldal számára elérhetetlen Ezek
+megkülönböztetésének, valamint a két oldal közötti kommunikációnak a módjai röviden az
+alábbiak:
+3231 Függvények 4
+A függvények kéttipusáta Poli valamint. dévitdé — attribútumok különböztetik meg Ez
+a két jelző kombinálható egy ost — delics — módon. ekkor a fordító két külön függvényt
+készit a háttérben, egyet mind a két környezetre. Ha egy függvény elé nem kerül egyik
+attribútum sem, akkor impiicit módon host metődüusként lesz kezelve Host függény nem
+HiA/Aható meg device oldalon, sem host oldalon nem hivhatóak a device metődusok
+Fortos különbség hogy emiatt a nem kifejezetten CUDA-hoz készült libraryk nem
+használhatóak nem-host függvények esetén, beleértve az std libraryvt. Az std helyett néhány
+funkcionalitást a NVidia thrust" könyvtár pótol.
+2.2.3.2. Változók és memoóriaterületek
+A lokális változók deklarálása teljesen hagyományosan történik mind a két kontextusban,
+speciális attribútumokra nincsen szükség, de Így nem használhatóak a ket oldal közötti
+adattovábbításra. Olyan device oldali memória terület foglalására, aminek 34 memoöóriacime
+értelmezhető (de nem feloldható) "host környezetben, és ezáltal használható akár
+E adatátvitelre, a Cudalállot host funkciót használhatjuk. Felszabadítása a cudarree metódussal .
+— lehetséges, Használatuk hasonló a C-ből ismert nallocrhoz és Wees-hez. Az eképpen lefnelalt 6
+—feTHetek közölt a FA AMencpy függvény használatával lehet másolni adatot környezeten belül . 0 (
+k . !5. de főképp környezetek között. 4
+
+----- PXL_20260907_101240343.jpg -----
+kk A — 4 — Teljes oldal :
+Host oldalról device oldalra feladat delegálás úgynevezett kernel hívásokon keresztül történik.
+Egy kernelhívás a középpontjában egy speciális Előbal — attribútummal ellátott függvény
+áll. Ilyen fügevény nem lehet cermmilyen osztály része, és a függvénynek nemi lehet visszatérési
+értéke. A tüggényen belül explicit defintálás nélkül használható néhány változó, amelyek célja
+3 szálak közötti különbség tétel. Legfontosáabbak közülük a threadiűk, bivckidz és EISCKEPEM,
+melyek jelentése és használatáról lentebb írok.
+A kernel hívás ránézésre megkülönböztethető egy a fűggvénynév és a nyitózárójel közé ékelt
+seseblőcksPererid. thresdsPerőlocko o). A thresdsPe Blcck szám adja meg az egy biokkbart
+futtatandó párhuzamos szálak számat, ami az aktuális architektúráknáil legfeljebb 1924-re van
+korlátozva" A biocksPerGrid adja meg, hogy hány ilyen szálcsomag lesz indítva. Fontos
+különbség hogy az egy blokkon belüli szálak garantáltan egyszerre indiulnak a Dicakkok
+dtásának ütemezéséért viszont a CUDA runtime felel a rendelkezésre álló erőforrások
+figyelembe vételével. Az optimalis teljesítmény gyakran nem a fegpagyobb [HFEZŐPÉEPELŐECK
+szár mellett érhető el hanem a megfelelő értéket kísérletezéssel érdemes beállítani, mert 2
+főrgvérntől függően az optimális érték lehet magasabb és alacsonyabb is, de általánosságban
+ziánlott 2" alakú számokat választani Mind a két érték megadása lehet egy, kettő vagy
+Fáromelemű formában a dim3 struktúra segítségével. Ez csak a szálak beazonosítását szolgáló
+indexek számításánál iátszhatnak szerepet, optimalizációs szempaontból nincs különbseg 323
+szál vagy díszíbő, 2, 1) szál indítása között.
+A korábban említett beépített CUDA változók az előbb említett értékek segítségével segtenek
+beazonosítani az adott szálat a függvényben:
+s bilockbim Megegyezik a fügevényhíváskor megadott threadsPerBlock értekkel, a
+blokkok méretét adja vissza.
+s blöckidx: Az aktuális blokk azonosítója
+e tnareadidkx: A blokkon belüli szál azonosítója
+ko UA o
+
+----- PXL_20260907_101241887.MP.jpg -----
+zt]
+ő. Ezt
+gs : AN
+ki ! TA ez ;
+B. EE s
+A E ..-— — d — Teljes oldal $
+A
+32.34.  PSIAGDOTOGTONI
+s 1] Hé : ! ! [4 MIT aes ; ! ljó ! 1 Tee 2721 illó! lösz :A r
+Az alábbi béldáprotram az A és 3 Btömb elemeinek összegét tárolja a ( tömbben:
+! §
+c ölő] Vb. Va ANT ATÁT AVAT ÉR, VFIDATJT ÉV ZNE NY
+int bBIBCEDLK[X 4 PIGYKTÓN , NI A VERMÉSÜTŐN , XI :
+:
+int maálni) :
+:
+Size £ size E NM BIZROTVÁLÓRE ) )
+7 - ALLolaTÓ 1ndot Kectőrsihk A a hm b in os. MeNOry
+e vs :
+ath szÉJTT : HASLY 1" 1 2 HT szag 4004 1004! HR 4 ! VESS ásás: ERTE [EE sAABSS BÁJA 4fdosssztáSS 4; 11 :
+tTicsC" AR [los RÍ TC Szoli :
+tTi0Bbő" MB 2 [/diOCAUTHORr]] CI SIZE . :
+: TORTÁN CÉ 2: [FLOOR OKÉ Sze
+We WE NN KK i
+: //ó nil lallzle lo l veze 0 4666
+: . A :
+A 4
+: (6 ALLOCALS SSULGPS TR (GYI EL
+ti d A 66 ;
+e s th DA i
+ahh 6B i
+s ák
+E 0cAa FG A, ék
+: s NÉ ME A CAN MI i
+! figsztó l £; I MW DN ! i
+cucdaMALlLoCIÓd c, Size — —
+; WC — I AWE II :
+AZ? CöGy Wertors From füst MÉNSNŰ [o /dévice Memory
+ego eli AJ A, (SIZze CG eme VHS T [DG TE]!
+: esen di B, A B, E IZe EG lemegy s Tt TODEVTEB I, [
+i
+i É
+i il Inyokeé kernel
+ink fHMeEsdSMÉrPrBldltk 2 235)
+; 1 HICcKSPAM ÉPÍ :
+E CAFÉEMŰSPETHIÜCK - 150 CAPSAJSHAMÁIOCK, :
+i VACAUTHOoR DD CKSPRPÁPTTÓ, FB AdsPArhiGcEs ATÁT B, 0 £, V..
+k í
+i il PÁL! bé ! 1 bédó ! ként F éhes "mi MIATTA ál? : pad kejjüttétg jtó FRETT 97 en 1 ég ős 9" 591 tj eli téáti 8 Aj Hi E A
+1 CooY result fO4 devitlk kémsorv 10 host menő :
+: ! i : i :
+ n CC contain MM k resüit ín host íNkémory
+! CUGAMERCDVÉA CAK, SIZRU CudaMencpovőevicerőHOstil
+! 77 FIÉE dévíce MélNlkildry :
+Í s Ag [IAN YESSS VUK FTTÁNYENE ;
+;i MA 1
+LU AFFEGÍŰE)
+CYOKECTBBMŰTÉ))
+! . Ereé MOst mMÉNdNY
+4 Ál !
+a néldakód a CLUDA hivata in iábó : i
+A példakód a CUDA hivatalos dokumentációjából származik
+Me NI JAN ! !
+4 NEG NE ANN MA ATA
+NÉ AM
+A 5.
+A NYC
+Aa ÉG S
+A d ÁÁÁ LÉ 19
+MÉG s AAA MNK i
+s ss ETI ANAK : ele : E
+
+----- PXL_20260907_101243560.jpg -----
+b : EP — — 4 — Teljes oldal ;
+A Modell-View-tontröllér /DrOEgráÁmtérvVézési minta lényége 4 program harom rétegre
+választása. A View (Nézetl/ tártálmátzála felhasználói felülétekét, és fogadja a közvetlen
+bemeneteket. ! Ide " sötölható [/5 [/MÉRu [osztály lészármazottai amik a standaró
+Bementi/kimeneti Stréáameket kézelik (Stdin7stdőút), valamint a DiréctzDd-n keresztül kezelt
+HWND osztály, ami a játék erafiküús megjelenítéségrt felel.
+A Modell (Adat) réteg, ahol a program állapotát leíró adatok, valamint a program alapjául
+szolgáló logikák implementátiói találhatóak. Ebben a projektben ide tartoznak a csapatokat és
+bázisokat reprezentőlő Colony és a játékosoknak megfelelő Ant osztályok, valamint a neurális
+hálózatok implementászért felelős NeuralNetworkbBase és NeuralNetwork osztályok.
+A Controller (Irányító) réteg szerepét a SimulatianHandiler osztály tölti De. Ő felel a másik két
+réteg összekötéséért, a folyamatok magas szintű irányításáért, programszálak indításáért,
+valamint az adatok kimentéseéért és betöltéseért.
+A retegek elkülönülését erősíti a CUDA-Ct--bói származó host, global és device oldali
+szeparáció. A View réteg osztályai kizárólag host függvényeket használnak, a Model reteg
+elemei kizárólag a GPU-n léteznek és device függvényeket használnak, a Control réteget
+megtestesítő SimúulationHandier az egyetlen hely, ahol a két oldalt összekötő global
+metóődusok találhatóak.
+Host A ——oCh í — 3
+eeültegtöpemi IMA] I NAL alNetwork
+
+----- PXL_20260907_101245605.MP.jpg -----
+FR ATAI
+277 1sztádíti
+Ko sZ Rats s
+ZA 7 az -
+- zen A
+2 7 a ks Í ! Í Í ti ii il Í ili ts
+332. Osztályvdiáagrá mok
+VALÁL jssyi i
+TANK KAJA Az ]
+MAKKAI TÁN A THIN TANK TT JNA:
+il esésnt THIN VMÉSNET VITT EVANNÉNEN MANNKAS ÉRNE
+MERNE AMIN dett
+! !
+1
+] !
+KIR THENVAT MSTÁEÉKY TT HÚ i ejt. d aE beér innet a hr t ki
+HITE ES 4 FL ÉSE KIHTETL HÍRE! ]
+j HTTÉRAL TK RÉ KAHES AN A AI HENÉLE § ]
+Í Ms dkTNT Kel ee AZT ÁALIRES 1
+FE
+HitHtss zssrtttttt4 1444 477 sszáát tt ttÉTÍTI NT TS
+MAGAS SALT
+fos Í W. !
+ttttítítiiit 1HitH1111111111111
+1111 Hitt 111111111119 sstittítttttittítet ,
+1 tt Hi Mt] ni Hi H111 1111141111111111 szít 1111111111447 , HEHH 11 111111 3 se111111 éi
+Ka
+tt$tttssszzzzsssg111ttáttt4TT szss1ottátttttttssszzzsszzso1 11 TH HE4azzsszst 111 THIRTIETH 11 A ESSSSS33391 1011 1111T111441 szsréoíh1111111111114141481essszzzzzttsttttttT11t1 $$$ $$1ETTH EHHEZ Lo ITT
+Kik sti MEEEEEEEÉE 1
+tét? : si. £k7 TE: E2251
+4 sEE TELT ÍGÉR ök HEtetőssi ragi :
+1115 144111 144111 1
+sss sss Stt désszssssztttété Frog ii
+: EaPtt il HETES sszsZástT A HERE Í Ül HI HAHH HERK HEEEEEEEEEEEEE :
+: szt ATA EHE: Hlelsszszesszté ét, 11 H4 Hbbtsszszsstéét H [1 HEHH HK HIT HIT! :
+: HAlAHMÁHHE: stss zzz HHHEE B TEBA AH HR dést tti új t 1! : EHET Hi . ;
+: HATHHRH AE KESZ ÁÁ HERE EK S AHA: Hi Hl HEH : i
+: : EGHATHHNKHÉREA . IGÁT! 1 1 HI HANK HANVAKERE HERNTEEENHE i
+: HHHKIRE köss HI Ki ék stttéiétt HEH HAH MEHETEK HAH HELEELEETH
+E ; HI ee ks ss aj] d gt] HR  begazsdt ij 1 11411 HÚ ili HI ii :
+: MIRE BE ETEBÁ AHA 11 His S TEHETI HE Elk 31114] 111 HHEEEK HEHE :
+HINA Jets lrszoksi áló KÁR EST AHIHTHESSSE EEEN 89 ősszes szésss ét 111418 HANHHANTEE
+: HIH1. í HIÁ: EH EssszsszoA AKA Ef 1132 EE
+IFEGEÉ HE HB BEEE ÁHÁRKÉT Bs si ill éli téli
+elvé EJHA HR gyik ktsg 11141 HI HHITIN :
+Í kiisteen a Há HR HÁESEÁE Szt eteégi B ertetétszénzorszáti ?t1 [1141 HA HANK HAN
+: közezeg zóló HIT AT HESS AI zdt 814111 1 Petáélt Esdfoát él! BAL ja! 9gskszodgÉss KÓ 54111 HITE HEHE :
+: 2 AtYLAKERE7 Hsztseo ze KEI kéz sz teaktt AHA [ HEHH HAH FANEEEK
+i Hégletksszéssz eték Tt [ 44 éátlalatétééássé s Hy 9 ó1odégéséts JAN HANNA i
+fERÍRSEBÁSZ AIR ART EEK HESS 821 1 /TJHTKTTK MIN MANI : 83
+[/éjstgbáne 813141 Pal ki H4! 14 dé kon ásar sss aan 09 /1111111111 MINTÁI MIN it
+2 : fd edz EEEEEEEEEET ETET EEESEESSSZSSSZSSZBE1EH4 FELH RYEKEEÉELESZSSÉS: Egely HF ERYEEsésátásss : an AK mag 3914 aktát ét H4.E44 E [44 44 4 444-4d 1444 44 144-40 34.444 45 142900 kal fotos TETTE SSZZETETZESE TS ha
+d sát! i HE zá KAT KI KIE HÉ: LARA ANAK ENE Essd 279 AÍTTTTT MATA ká
+Fist s HOTEL 52 a KSZE SÉGÉT VERET T KEZÉRE ESAEKS A 41 :SZÉsdból ([/ MI It REESE EEEEETŐEÉE994 $242 1 Ait HE !
+Í HA ti MINIBESE . 97/MMNEe 9 élkAM HIAk magia MAAA UA útlélta Mi Hi vAktteá éél Meldtéti 15 ATA ah dot: !
+: Hi Í KHÁRÍNKHÁR EHE E s átt MINI
+Í ! jitter HE lezelketüi Hi: [éb HK Í !
+jigr b kéhyékáléss Látyi sík HL HEHE fi
+! MINH tek dttt la osztó HERET 1 édgd Í
+Í To ht ékkseses ss szeddátstt 494. Í
+Í TITTRTE FesselPA LEETEMSET 6 A 2! HÁNE :
+HI HE KESEzery ké főgéE ti A 14! 1rlke :
+MIRA HbBssZE KE kot elgd Él ET HET EFE E  gesádt ápd1 1919 ké dó FH PA 141 patt !
+UT lássszttbas hbdl 196! ázat 11 j9ád Í
+HTV NEEZíssőáéáaÁNt Egy FAÁAN fő fort ! :
+közatsljá EHE kégetsstet tött: ák áAHATTTÁENEKHT Bé fol té lése tortat [TSA KTÉTTT TEAT A Hir ÍTTÁOy Ká (E tázcs i
+1 k EZ áA 411! R HAkds kissé sat sti si 4/0009 9i ! ! ;
+KEZE AATATHTTT [IE TRVERE sét 4 sellő] NYET PYŐ[/HybtELÉ sari
+e EHEN véíételééét
+zígdl satb (9944 [449984 zta 8: : ! tj 14 1
+ly ulsz Vuk i
+MAMA ANIMA RE9EsE JÉ, két l KETKK
+RAN AA HT figy ettáréssái ii HANYHAVAI Miljelkk ess ARÁKA Ha
+MAVANAKA LA Ata VEKKAE EY ETT Hi
+HAMAR 1858 e HAI TENYT Mésr ky Körzet állátttvHENEELT KEREKET HT HAH EAT sét Mellpssssé Kkt lag es ges
+ahh ltágys RÉG a MEN A THESE AMA Ki 411 Ell karl fé fás kés kek hát  s TÁR ESA SstÁNST a ESEL Sal] HE VGA 14
+Í HÁNY jIAHEYIEK ! doonjtAhYhós KIKRE ES ANAK //HATTATT A KIKHTHZTKTSTKTTRA !! KAGÉRÉs éklánalsta A lasré ítélő SRA. bétsEs i
+Í A RUMKIRK cnk AIA JKIKKTK MAKE 18-s8k sApsétákt KEEN FA KTASAT HELL KKÉNÍKORA Fk Var sállal s ela szőtt ő ozó i
+KRATNAN AA e BANT Kihsklétsés st Esők Et ettY A 41 HEYÁNTEKA TT AAGAAKÉBTAYTK PR AENTE SY ssel ozgtétt A Eg ii
+Í dl MIÍTÁRATEE eF sFH it hátát vil EBET 28. ; HEHÜELNTT EAK FI MAGT KRT TTA [It 1ő 4.
+úTAhlekszs KALNYTÁN MAN RAGTTAT TT, PHET EE EEEEKTTA 1 [ART E KEEN YE (MS E :
+il télelalelétta szít A HÚ HANK flYMlE KESátAt az  sszkétbét TAT 1144 £HÉRY IREK HA AI tó 95 IAASÉK kk 1ő4ét sémkaádt
+KÖR AT HHERGPSÉSÍ AT TE HETKNJI ! NATKIÉHETE E attól] li KAR HÁL HAT YATÁHNT GTA E HAEToál s lő s zs i
+: Hit ni ATTI] Hi :? 1 11111 [e] ejtetei 192244 112. : É
+Í ili fégjlelsés JEgslskt JE 4444 ili FölÁA Eik ÁH AN A TKIMI j :§
+Í i ii Myjávtls jsátedt9VÁTNA i THK États ék 11 kÁAKTTT TTI! Hi
+UJ jHtréndst anal MHK [AT MTT HITT MAGJA ő [/eggormosadaráká lá A MAAL A 111 999196 Ha
+MULT AALA krasasoó 1 1951 NYH ÁHT: E 1 FAJA TY494191 VIRRYSAT 2 TSE959880 1.
+MAAA AA NAT AMANARAI [Éber At KAYA KAY NET égen ő reza ii
+t 1 1
+Í É th 1444 Hl Hb! Hékjsáát 4 ;
+iii . ii MET F1 8Ad 11 KAR HEKI HtNt LÉT, A. , 4.4. 183 1 Pé y ME get AL Band Et] Atti ! Í Í ást mán ti 11 :
+
+----- PXL_20260907_101247062.jpg -----
+e 2 . 4 — Teljes oldal :
+: Í Í Í ii! II II ii it MI MINT IH 11 ili ii fil ii Új
+NH TT ssszásttt1111 444 ZH THMNIS 13 i
+ii hét tésee elt gi 8191
+mA HHáse Kát HAt A
+TANK EK] HANK REZA EKE 2
+AN KRESZ HEHE HA  :
+mik kssáiájítk EE Ess dl k Es jssstttáí ét éőtéttsszÉsztssítői?
+Bret] 11 j Ai jege sozstpltüádi i 1 ! sapadt:
+elj! Ha JA hdsgamtábáát 41 hőt 171 gosaakáó Hé] Ádtoááltan 11 HL HR Elé feszogtáak édi 2943 o zsg tát 113 elj ibőjszotdé4 ELTE AE te 1EJ4 11 ÁT ETÁ
+HiHH HAt HHESB 1HÁLI :
+HHHHHR ti Id1147 ii Hit 11 T14444 Pannon 224 HiHE jH111121712 tHitH4111443 ztzrsttáátáti
+4í HI Félt A HE HEGERT HET HETÉT ABE
+il w
+sg ás
+EA! PASA MHK ÁáIs NY ébéss 441 [ HI HI HI HI TKI HEtéár askááki 111744 HERE akt 1!
+. ree serti éléyeáesítéttt ij jittszésett tti 11124 TA TH kj jéjépáí0s-- 111 h91202sEsÁ1/ ff hé etozsezktáttt kj épéttetszzzkkttíjkkjéktetesszsttttt[jhéHté4: HIHI HELEE HAT HT EHEZ E 3238 $
+s tszesttti ! Í HI i HITH8t TM megesz stét tál FL aryecmgyt el ítöjdj kél ege EBE BA A : s :
+filátsssedetítk öszísétettsszsétttítálsszésssséttti[TEEESÉESEHÁ11 E tdssssssét őlő ékőttssszátttl éld tátésszsz NA EtEtEszzz 1419 ttsészsztátÁT HT köEktszs átt 19 VA tátsszssstttÁl HT HEtEktszztkáll [FEE ii bb ePÍJŐ TÉS 2 ENNE akás ő Hak sjéásékosi 1.2 tok tzsz S 712 öö ááét s
+RE ESGBRA KÖSZ! Fec zárt zal, Pécsi dANKEMIAGAKL EK In ALKATS [lk eogyó tkobat a sorolás RE as ss A es E gs AT te
+EE ESZGNhETÉÉG 18. [HR EHE HEBESsAN bIEE S BEHIER EE AHH RE E EE HHHIBR ERKEL ANT BEtE d HRR E 111 fi 11932 HI Kszj PA HHHH HK: oszton AM töjitss sát s szzejetti
+köze PEBE sztk il MAN ME REszstt ÁH gét ETTE ;
+HITHEEE Hi Hi sat ER áll szt 1211 FLERA 2
+: KK gos ke pa ss EHE ETT Hg Es tt HST ta
+: s E ES AZA sVásEzEs
+EH etsszzzzssztéttáttát ött Eésssszsstt e tssszzzsétt HI ttsssszzslstt E H1144s HK sss tb EHETEK s sm EGK felei
+; HEHE Petktésssztttál sé) Ha [Ess stét ét! HEHE fe lt sászátáó ké kttssszt zéád e HT fkeszdáádsz 11 14114 1148 H HHH EH ssszzszzszszzstttttttté
+34 Mentés és visszatöltés..—/ / I
+24  kMiéentes ös visszáloltésgii 4 4 /
+Mentési fájl készítésekor az aktuális referencia csapat, és a módosított súlyozású Épirosi
+i Et 1 " : hi ri bij 91 i ; koti] HI : : HE 44.) , 4 tk 4 ax
+csapatok súlya kimásolásra kerül a GPU-róől egy CPU oldaii folytonos float tömbbe. amelynek
+e MH . MEIN fili Í Rar bo. Hitt HE a E .. HK Hi nm 3
+hossza. [1 7 [piros Csapatok számol ) : (neurális haló súlyamak számal 2 a
+elet üt E tte dj! E ésslssi : ! jük H.4 ei : Hi ba Ér ! lt mzztaltot 1 sltttál : jtagi tét 2 z2.
+folytonos tömb kerül kiírásra a bináris kódolású mentésfájlba módosítás nélkül
+1 Fel a 9 / mari 999 k ül ! pitti ii Í At HU [ai : 11 fü Ő Hi 1 R8211528 al 1 : 21 21
+visszatóltéskor innen kerül Visszaolvasásra a módtól függően. Tanítási folyamat folytatásához
+az Összes súlyt hbeolvassa a DrOETam és visszamásolja a GFU-ra, és leosztja a megfelelő
+csapatoknak. Mérkőzés (duell mód esetén a fájlból csak a legelső - referencia súlyozású —
+! csapathoz tartozó súlyokat tölti be rendszer mind a két mérkőzeésfél esetén. (Feltéve. hogy
+1 ! áj! " ! t Di Hi [1 j j [1 f [1 " old tág HA
+I] neurális háló által irányított csapatokat választott a felhasználó)
+
+----- PXL_20260907_101248679.jpg -----
+E o -- — 4 —o Teljes oldal :
+11.11. Altalanos esetek
+: A 111 Tesztek funkció: Szimúlódtió Indítás
+Lelrás: A szimuláció indítása a start paranttsal.
+Elvárt kimenet: A szimuűlátió elindull a megfelelő üzenetek jelennek még a rendszer állapota
+trissül.
+Teszt lépések:
+e [nditsdelaprosgramot.
+e — írd beastart parancsot a szimulációs menübe lépés után.
+a. — Ellenőrizd a kiírást: TEREI
+e — open paranccsal nyisd meg a megjelenítőt
+..— Ellenőrizd, hogy a két bázis, és a játékosok a helyükre kerültek
+s Ellenőrizd, hogy dause parancs kiadása Után a játékos résztvevői elindulnak és az
+iterációk eredményei kiírásra kerülnek a konzolban
+Eredmény: A szimuláció sikeresen betölt, a konzolban és a kirajzoló ablakban megjelenik a
+megfelelő visszajelzés.
+4.112. rTesztelt funkció: Szimuláció mentése és automatikus mentése
+Leírás: A szimuláció mentése automatikusan és manuálisan a save paranccsal.
+Elvárt kimenet: A szimuláció aktuális iterációszámát tartalmazó mentés jön létre a megfelelő
+mappában
+Teszt lépések:
+e Indítsd ela programot.
+e A start, majd pause paranccsal indítsd el a tanítást
+e — Add ki a Save parancsot egy tízzel nem osztható iteráció számítása során
+e — Várj legalább a 411 iterációig.
+
+----- PXL_20260907_101250415.jpg -----
+"2 E -. — ef — Teljes oldal :
+e — Ellenőrizd, hogy a mentések mappában szerepel legalább 3 állápotot tartalmazó
+mentés: (81-0.nan, [81-10 nán, valamint a manuális mentés pontjához tartozó fájl.
+e — Ellenőrizd, högy ezek nem ürés fájlok
+Eredmény: A szimulátió sikeresen ment, a várt fájlok a megfelelő helyen és névvel jelentek
+meg, nem üresen
+4113 Tesztelt funkció. Szimulgoió Detültésée
+Leirás: Korábban elmentett állapot betöltése a load paranccsal.
+Elvárt kimenet: A szimuláció állapota betöltödik, a rendszer folytatja a korábbi állapotból.
+Előteltetel:
+a. Szimuláció mentésére vonatkozó teszteset sikeres.
+a — létezik a megfelelő könyvtárban és névvel mentett állapot
+Teszt lépések: WE 0. I
+.s Keresd meg a legmagasabb iterációs számmal rendelkező mentési fájlt.
+se [ndítsdelaprogramot.  -
+s [Írd beazlioacd parancsot a szimulációs menübe lépés után.
+s — Ellenőrizd a kiírást: ITER za szám mentési fájl nevéből
+s Open paranccsal nyisd meg a megjelenítőt.
+s Ellenőrizd, hogy a két bázis, és a játékosok a helyükre kerültek.
+s Ellenőrizd, hogy pause parancs kiadása után a játékos résztvevői elindulnak, és az
+iterációk eredményei kiírásra kerülnek a konzaolban.
+Eredmény: A szimuláció sikeresen betölt, a konzolban és a kirajzoló ablakban megjelenik a
+megfelelő visszajelzés.
+4.1.2. Sarokesetek és lehetetlen feladatok
+A.1.2.1. Fesztelt funkció: Mibás poruncs kezelése 6
+A Lelras: HiDÁS parancs bevitele a szimulációs menüben. 5
+ ———elvárt kimenet: A rendszer hibajelzést ad és visszatér a szimulációs menübe  . /
+65555
+
+----- PXL_20260907_101251809.jpg -----
+. B e. — 4 — Teljes oldal :
+Teszt lépések:
+s [Indítsd ela bprögramot és lépj a szímúulátiós menübe.
+e Írj be egy érvénytelen parancsot, például foobar .
+Eredmény: A rendszer figyelmen kívül hagyja a helytelen paáarantsot, nem történik semmilyen
+nem kívánt állapotváltozás. A menühöz tartozó elérhető parancsok újra kiírásra kerülnek.
+3122 Tesztelt funkciói Hibakézelés otrel Daroncs során
+Leirás: Hibás input kezelésének tesztelése 34 duel parancs kiadása után.
+Elvárt kimenet: A rendszer megfelelően kezeli a hibás inputot, és visszalép a szimulációs
+Teszt lépések:
+e. Indítsd elaprogramot. i
+e. ri beaduelparancsot a szimulációs menüben.
+s 3aiAcsapatválasztáskor adi meg nem egész szám bemenetet
+s b) A csapat választáskor adj meg olyan egész szamot, amihez nem tartozik mentes,
+vagy referencia csapat
+Eredmény: A rendszer hibáról visszajelzést ad, majd visszailrányit a szimulációs menübe.
+42. Nem funckionális elvárások
+421 (ptimalizáltság
+A program futtatásához használt számítógépp fő releváns alkatrészei:
+s CPU:AMD RyzZzen 9 5900X
+s GPU: NYidia GeForce RIIX 3080
+Az iterációk sebessége ingadozó, és függ a programtól független GPL terheltségtől Az alábbi
+táblázat foglala össze a tapasztalt számítási időket iterációkként, a neurális háló középső
+MR NK rétegének szélességétől függően:
+KIGAALL NN LN I e
+
+----- PXL_20260907_101253230.jpg -----
+Réteg szélessége! Átlagos futási idő [ms]
+2 590
+3 750
+A 320
+ti 590
+7 1025
+8 1920
+c 11598
+10 1270
+11 1250
+12 1490
+13 152344
+Látható, hogy a számítási időt jelentősen befolyásolja a neurális háló kormpilexktása, de 23
+legnagyobb mért hálón is kevesebb, mint 2 másodperc egy iteráció kiszámítása. LeEsSzZtelése lmi
+során ekkora komplexitásnál 200 0008 íterációnyi tanulást elégségesnek találtam, ariFek a
+számítása egyenletes terhelés mentén nagyjából 85 órányi számításnak felel reg.
+4222 Megbízhatóság
+Az eredmények kiszámításánoz több, mint 250 órányi folyamatos felügyelet nélkül
+működésre volt szükség, amelyek során a program nem akadt el, nem okozott memory iezket,
+éz nem érte váratlan leállás.
+—— Z
+5. Eredmenyek
+A program segítségével több neurális háló struktúrat is tanittattam, majd ezeket
+összehasonlítottam ugyanahhoz a tanítási folyamatból különböző pillanatokból elmentett
+változataival, valamint 4 referencia csapattal, amiket diszkrét programozott logika iranyitott,
+nem pedíg neurális háló.
+A szimulációban felváltva lépnek a csapatok a kék csapattal kezdve, ezért fontosnak tartottam
+minden lehetőséget mind a két irányba tesztelni Fz az apró különbség a két oldal ritkán
+befolyásolta, hogy melyik csapat a gyöztes, de nem volt példa nelküli.
+A táblázatokban a bal oldali oszlop jelöli a kék csapat tanultsági állapotát, míg a felső sor a
+ME KK piros csapatét. A sorok és oszlopok metszéspontjában található cellák a hozzájuk tartozó .
+s csapatok közötti mérkőzés eredményét tárolja, ahol az első szám a kék csapat pontszáma, a —
+NYAK második a piros csapaté. JI 3
+
+----- PXL_20260907_101254685.jpg -----
+k. s - — st — Teljes oldal :
+A cellák háttérszine megegyezik a mérkőzés nyertesével.
+A -4.—.-1 számok a referntia csapatokat jelölik 4 következő megfeleltetés szert:
+-1 — Véletlen Csapat: A kimeneti értékeiket véletlénszám generátor segítségével állítottam elő
+2 - Pontszerző csapat: A tagok az ellenfeleiket figyelmen kivül hagyva csak 4 porttszerzésre
+fökuszálnak
+3 - Támadó csapat: A játékosok nem törődnek pontszerzéssel, helyette csak a legközelebbi
+ellenfél megtámadására törekednek
+-3 — Fele-fele csapat: A csapat tagjainak fele a pontszerző taktikát, másik fele pedig a támadó
+taktikát alkalmazzák. !
+L1 17-13-2 haló eredménye / / [/ (
+i 3! 0-O 00 o0joo ai 00 00 a7 Hő HM 00 08 €I13 H13 081
+]  -2jo0 00] co [dea án [el EG [3 Aa AZ áz 2 A TEA Erdő LÁZ A
+Zzönbol(EZi 0-G AzG7 AZÓ 2-0 - ABS 500 55-58 35-4416-14 35 619 29 047 AA 3
+5000) 9-2 39 25-30 0-0 [100 é90 445 3119 2023 43 1[24-17] 10-32 31-19 323 222 830.
+1000010-A7 0-0 ál EL 340 26-22 230 3115 1633 17-8 232 GE la A E
+] FOI DC 0. 2 18-0 540 440 340 31-15 35.15 21-17 329] (5 310 120 am.
+S900 122 200 451. 0-0 ál AG 45-4 35-68 43.11 25-2 34-E 11-0 5-8 [15-17 ml
+) 100000/18-0 184 4019 0-o [to-0 47-00 3911 41-10 26.9 50-00 194 38-6 178 4-7 [13-13 ]/ 1738
+e ál ll mm agosan!
+[200000120-0 a 30 aza 140fs0 500 90 450 ő 4P5 2£5 303 5-3 1010 399 [1
+2.2. 17-12-2 háló eredményel:
+4] 00 f 00 — 00 — AMA 6 Ál a 0. 04 02 02 LM 0
+2] 0-0 [/o0cAu HO] 2 aa Meg ca 0... 00 A I. 62 E 0 a
+2] 00 — 040 [/ocAuthor] Zea 2 1073. 90-60 10670 954 1229 1433 637 0838 947 032
+a tt s Me A s la 2 lt
+100) aa / 0017 00 KIK 0-0 [ 00 [ob mel 055 MA 023 042 040 03 043 044.
+e a A A a E a s A A
+Ag A é Ára 622 580 AAA ATA [/docAu 429. load dad9 sas aaz 5wi
+MAR 4 A é4 4. LYA AA A EÁ
+9 [AAA A 4 ll ah ni KM GZ 24 AG LL MÉR a
+ules A uljúj 110. 380 450 371 470 385 223 §4 ( §7 [ 22 189 612/
+MM , Do ul 4 úk 44 42 KÁ am]
+MANNA [ooo AD AY 240 240 [/42-0 EL ls AOÁA 522. 57-16 60-19 53-18 18-68 217 109 10-14 12-15 / 2-12l
+
+----- PXL_20260907_101256355.jpg -----
+E A a 4 — Túljes oldal :
+- TATAI LELET MÉ NT AT ATM A MAT E TARTENI mo
+Lo fs 00 6465[ 00 [oD Ahol [A a e a e Hd-55 )
+[of 44 ba 068 00 [/ 00 [00 Fo. 042 er (őús 04 4 A TI e]
+fo gbol 4 b00 40 00] 00 KIGLT ab. M-gg) JEGY BGaZ ga 02 0 EC
+! sül 0-48 00 12410 00/ Ge 203 VA ElnzülN JB-6s) 16-B BEAR Wa Hl Das. 024 042 0-0 0-4
+) so0j 00 00 20 00 [240 Csa [AUTH [2290 995 lm 392 7 aűaő 0 CG
+f 4000) 038 bd 4228 SAO TD 56-7 [EB Av [/28-áz [/ 125 422 026 SZA 13. KZ 221
+f ozocofÁaoY KI a S fg AL ef [34 a] e sz 7 za]
+) sooof 70. va 301 As jsdn 440) AGY GY A E c A A
+[ zo000f 90 20 3820 szó [200 dz0 ÁGO e zs za [32 dr 1 8 1:
+Izo0000[ 90 drb 3823. SZÓ [0-0 [340 [AZ0 ZEM Z6d (EZ 1 AZ ZA FH
+S 4 [17-7-2halo eredmenyei / / ]
+A Kp 4 A AL A ll lt 2 A La
+kg a A e a a a a LL e]
+I zo rá 00 493 00 I 2. 20 ( 22 [86-59 354 133 038 O27 ÜU38l
+Do sz zs S je 13-22 1 26-38 43-43 34-42 Fi — S2Zi
+- i0o0] 61 C0 6 8 I. 8 A 9. J64di [4037] 18-39 4dl4I F3ő EZ3 i
+I zoom oz 00 38-40 2201 660 581 511 5243 4945 35-32[/30-44 339 435.
+ó A 0 agAl nő 7 — 2 ző — Jaz AZ GB ASS [1729 d e
+] 19 102 140 388 560540 450 280. 63 El 25 Eg] Sz gl
+ zoo00f 00 00 21 Sa fözR 70 d 70 22 zi HE ő [ El
+5.2. Következtetések
+Az különböző arhitektúrájú csapatok eredményeit összevetve általánosságban megfigyelhető.
+hogy a szélesebb hálóval rendelkező csapatok csak több tanulás tudják felülmúlni a referencia
+csapatok szintjét, de további tanulás után jobb eredményeket tudnak elérni, mint hasonló
+szinten tanított kisebb hálóval rendelkező csapatok.
+A tanulási folyamat konvergálása figyelhető meg a különböző szintű önmaga elleni
+mérkőzésekből. A tanulás hatékonysága figyelhető meg addig a pontig, amig a fő átló jobb
+MEG oldalán túlnyomórészt piros, a bal oldalán pedig túlnyomórészt kék cellák láthatóak Ezt a CD
+5 pontot a szélesebb hálók később érik, de az eredményekhől jól látható pont: 6
+! A
+
+----- PXL_20260907_101258065.MP.jpg -----
+E — — 4 —[ Teljes oldal ú
+A 13 szélességű háló esetén a tanultsági maximumot nagyjából az 50 000. iteráció után éri el,
+mig a 12 szélességű hálónál már 20 000 iteráció környékén elkezdi a stagnaálást, a 10 és /
+szélességű hálóknál pedig ez már 10 000 körül tapasztalható
+Érdekes megfigyelés, hogy a 13 szélességű háló a véletlenszerűen mozgó csapat ellen hirtelén
+jelentős teljesítménybeli romlást szenved el, ahogy tanul. Megfigyelve a jelenséget élőben a
+tapasztaltam, hogy ez a háló ekkor hangolódik rá nagyon az ellenfelei mozgására, és arra
+reagál a jobb döntések eléréséért. A véletlenszerű csapat mozgása viszont teljesen
+összezavarja a gondolkodását.
+
+A 7 szélességű háló teljesítménye a Támadó [-3) és Fele-fele (-4) csapat ellen arra enged
+következtetni, hogy ez a komplexitás már képes elég megalapozott takti kát megtanulni ahhoz,
+hogy magabiztosan, vagy egyáltalán le tudja győzni a referencia csapatokat.
+
+29
+
+----- PXL_20260907_101259673.jpg -----
+Rh .. E - 4 — Teljes oldal :
+5. Összeföglálö
+A szakdolgozat célja egy olyán egys kett többszéréplős csapatjáték környezet fejlesztése volt,
+amely lehetővé teszi tanuló ágens ( sbnortok vizsgálatát. A fejlesztési munka során siIKETésen
+implementáltam a szimulációs környezetet) amely valós idejű szimulációkat és adaptív
+viselkedést tesz lehetővé
+A neurális hálók alkalmazása révén az ágensek képesek voltak tanulni és alkalmazkodni a 5aját
+stratégiájukhoz ez által tökéletesítve a gondondolkodásmódjukat. Végeredményben olyan
+ágensek jöttek létre, amik átadják a megfontoltan alkalmazkodó, természetes viselkedésű
+játékosok illuziójat, akik képesek lettek védekezésre, üldözésre, kitérésre, elcsalogatásra, és
+más hasonló fortélyokra. Ezeknek a hagyományos programozási technikával megvalósítása
+hatalmas feladat volna. Hosszú fejlesztési idő árán se lehetne a játékra optimalizálni
+tökéletesen a logikát, és minden eshetőségre felkészülni.
+Et sziszont a neurális hálók és CUDA technológia segítségével megfelelő tanuló környezetben
+nár nap leforgása alatt egy elképesztően komplex gondolkodású játékszerepiő kitaníitása vált
+elérhetővé. És amennyiben a játékszabályok változnának, az alkalmazkodás egy újabb pár nap
+alatt aktív programozói időveszteség gond megoldható lenne.
+62 "Továbbfelesztési lehetőségek
+A projekt további fejlesztési lehetőségei közé tartoznak:
+1 Kiértékelés automatizálása: A tanulási eredményekkel kapcsolatos összehasonlító
+táblázatok automatikus Eenerálása a korábban elkészült mentési állapotok
+felhasználásával
+2. Különböző struktúrájú neurális hálók összemérése: A jelenlegi állapotában a szoftver
+nem képes összehasonlítani különböző architektúrájú agenseket. Ennek lefejlesztése
+lehetővé tenné a megvizsgálni tanulás során elérhető teljesítményt a neurális háló
+I felépítésének fűggvényében.
+3. Bonyolultabb Jlátékmechanikák! A játékmenet bővítése további játékelemek és
+NA medchanikák / bevezetésével, / amelyek komplexebb szimulációkat és tanulási
+Mm k. MNK NY Sa] Cl
+
+----- PXL_20260907_101301623.MP.jpg -----
+K.S E s. 4 —oTeljes oldai :
+tói Eekület lavítása: A felh: Ai felület további fejlesztése és fino
+a — Felhasználói Felület javítása: A felhásználói f
+:1ói élmény érdeké saleártve 4 práfikai megjelenítés és az interaktív
+jöbb felhasználói élnyény érdeke ben, beleértve a grafika gi
+elemek fejlesztését
+; 351 o] bk: UI és fe ABhk tanulási alvorítmusok integrálása a
+5  Haládó Tanulási Algoritmusok: Uj és fe ilett "
+rendszerbe, amelyek még kátékönyvábbá tészik áz ager ök tanulását és adaptatciój
+áll ll 8 i eti : sz
+izÁtIT sz teléSsi AIT övábbi automatizálása, hogy a
+5 Tesztelési Automatizátió: A tésztelési folyamatok további aute
+1 : Ér - ! : ir j legyeri
+rendszer még megbízhatóbb és könnyebben karbantartható legye
+PIT .. "7 Ti, A "HI "A E. 8, "i a. A ! tesztelése
+I S s (ség Hláés, MELY 1 FEBH ESA. IEEE éks renariók és környezetek Fesztelése
+3 Különböző Szenariók Vizsgálata: Különböző játéksz
+hogy még átfogóbb képet kapjunk a neurális hálók viselkedéséről és teljes
+különböző helyzetekben.
+
+----- PXL_20260907_101304275.jpg -----
+6 E s 4 —Teljos oldai :
+i ait a lk. eGArA wir korfvÉVETIÉ (TV 1. Art: fi 3 19011 por? ir vi tért KP ÍRÁS 1
+hg V-A K ÁÁ "TA (Prof 1 XT" wit 1-42t) ni. tíöl FT gy ort. why dálaliita VIN nAra :
+. font végy égy FH TT 4 71 vs FRY? ÁLLTA NISA LL ÁTÁL Ál t2írirort da di Bet jet 11931 Műtári 1
+t ha: ÍR AA COM ető HA orogrammingauttija finedev hto fegturás lán téltthíTVTáli s VÁC ANNÓ i
+sk i véle NOT TT o 47 Ta - protráamminky cinieté ndev hetre ést BU YT Kó ;
+Szeretnék köszönetet mondani témavezetőmnek, Dr. Gulyas Laszlonak a sok segitsegert 25
+türelméért. Gyakorlati és szemléletbeli tanácsai nem csak szakdolgozatom elkeszylesenek
+voltak kulcsfontosságú elemei, hanem segítettek a szakterülettel Kapcsorldtos Aelyes
+szemlelet kialakítasaban is
+Hálával tartozom Holod Vanának, aki évtizedek során vegig mellettem allt. AZ Kitartó
+támogatása és ösztönzése tette ezt a mérföldkövet egy kalandteli kilometerküle. Sem sZzovok
+le nem írhatják, sem gondolatok fel nem foghatják mennyit jelent az ő faradhatatlan MANN
+batorítása! TM
+

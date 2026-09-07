@@ -1,0 +1,1247 @@
+----- PXL_20260907_101838264.jpg -----
+a A Ae HA6737. fh LL y ÉREK SL AY 105 APON 9 MÉRVE DÓ :
+Rf aa MT Fel TAL ÁK ONT (ERTÁRÉS A VIASZ BÉS At
+sesbr, — [ÖTVÖS [DRÁAND [/DOVAÁNYEGYETEM
+4 5 NÁL IK. a 4 "GY
+ÖS A MI] VÁ Ál csent ! v fi
+kt ös a KI át ERTE ÁT ta, 1 i A. il, ! A TE 4 1 1 jőll. 1 AA £ 1 PA 1
+NENIT MESTERSÉGES INTELLIGENCIA
+TANSZÉK [
+Ritka evolúciós tréning alkalmazasa
+a TF ir El áttő AGY ÁL al
+Dodcens programtervező informatikus Kört
+
+----- PXL_20260907_101857256.jpg -----
+——— LA AY éz 7. VÉG 0 VEL Fönt jó ; -2 STEG ÁZ a AB ;
+b A - 4 —[/ Teljes oldal "
+lartalomjegyz
+ő 1
+ÜEHES $
+1. Bevezetés
+1.1. A S5patse Kvolutionarv Training . 31 "T) módszer áttekintés
+Fák x 1: A 2 " x : : i ,
+12 A dulgozat célja És felépítése . . . . . . a a a rt 7 3 7
+2 ii A ; HT. Bi 3 ;
+2. Felhasználói dokumentáció
+217. Hendszerkövetelimények . . . s e s a s a s s s s, s s tn tt
+211  innnális Handverkovetelmény . . . . 2 2 a c a 4 - 7 2 b tt ;
+212  —4jaánlott hard erkövetellléllY . : . . . . - : a s s a set
+E (LII használati Uiutabó . , . , , , , . s . s s a s cs sz as íz
+45. [rénes tdítása.. . .  . . . . . ss. zs ei. I
+234. Kimeneti eredmények és viznAlNZÁTIÓ . . . . . s s. a s s sz - 11
+3. Fejlesztői dokumentáció 15
+MELŐ IK OVELPÍEDÉNYEKE — . :. . . . . a , . . . s zak a a e a ak ís
+A.1.1. Funkcionális követelmények . . . . . . . . s s s a ss s a s 15
+4.1.2. Nem funkcionális követelmények . . , ,. . , , , , , , , , , . . . H
+Bi) PALKARYTTÁTÓLRRBERBE — , — 4... . , ii aa a AA
+Ma EXBdimények visualizárdóina . , , , , , , , , , . . . . , . , . . -
+HW ELENÍSKATÁMÁLttektúra . , , e gt
+9.3.1. Model. View architektúra a Gliil-ban . . . . . . . ... .  — 398
+3,4.2. Cbjektum-orientált programozási alapelvek , . . — — —. — 2E
+VA,  Kódkönyvtárak és technológiák , . . , . . . . .. ... 0 91
+
+----- PXL_20260907_101859095.MP.jpg -----
+aa SZÁdE A pép s spzora Jar zátzt ÉSzAG d
+venit ele Teljes olda ! CI
+4.3. SceíPv a xépi tanulás ituplemontálásához . . ... -. -— . 2
+4.5.2. A sparse háló tanulási folyamata és beállításai . . . . És
+3.6. Tövábbfecjlesztési lehetőségek és Ji eábeli munka. . . .  . CC 8
+4. Tesztelési jegyzőkönyv 2i
+4.1. Funkcionalitási tesztek 0 ll. s s s s s Ő
+4111. Általános esetek és használati forgatókönyvek . . . : e a - - 78
+1.1.2. Szélsőséges és hibakezelési tesztek . . , a . -: s a a a r s s s s 3 31
+4j3 HihbakcAilbsi osztok s a A
+5. Összegzés ri
+3.1. A Spar Pvulutlonarv [ralning jelentősége . . . . . . - . - - c - a e : 34
+4.2. A dolgozat eredmény éj és jövőbeli kilátások . . . , . . . . - . . . - - - 4
+Irodalomjegyzék 38
+Ábrajegyzék 41
+
+----- PXL_20260907_101900926.jpg -----
+BA zeggyépíjeeset Rea] PA
+folotkó — — 4 — Teljes oldal :
+. .
+"o
+Sparse Evolutionary Traming (SET) módszer
+1.1. A Sparse kvolutionary Íiramimng (5FK 1) módsze
+áttekintése
+A gépi tanulás és a mélytanulás gyors fejlődése az elmaűlt évtizedekben az ermmberi
+élét számos területén hozott forradalmi változásokat, Heleértve Az egészségügyet, a
+pénzügyi szektort, az ipari automatizációt és a képalkotást Hi, 21. Azonban a körnp-
+lex, mély neurális nalózatok trénineje gyakran nagymértékű számítási teljesítménet
+És jelébtős Ardátforrásokat igényel, ami akadályozza az ilven rfepdszerek általános ai
+kalmáazását különösen úlyan környezetekben, andl ezek a források kerplátozettaák.
+E problémára kínál megoldást a Sparse Evolutionary frainins [SET módszer,
+melyet 1.C. MocAmi és munkatársai vezettek be [31. A SET egy olyan technika,
+Amely lehetővé teszi, hogy mély neurális hálózatokat hatékonvabbap lehessen tant
+tani, jelentős számítási erőforrások felhasználása nélkül Ennek elérése érdekében a
+SET az algoritmus kezdetétől fogva egy ritkított hálóstruktúrát alkalmaz, ahol csak
+47 aktívüld szükbékes kapcsolatok vannak jelen. A SET elméleti alapja az evolúciós
+aAlgorituusuk alkálmázása a hálózati kapcsolatok ki- és bekapcsolására, Így elkerül
+ve A hagyományos sűrű, sok réteget magában foglaló architektúrák alkalmazását
+[3]. A BIKT egyik legtűbb előnye a hatékonyság és a mélytanulási modellek kisebb
+mdatlgánye, ami lehetőséget nyújt a különféle kihívásokkal teli környezetekheng való
+e Mc nni ékésnya [1].
+A A. BET! nlyan szemártúkban válik különösen értékessé, ahol a mélvhálózatok mű
+A 4) éhes Érontos lenne, de a rendelkezésre álló számítási kapacitás és enereiafogyasztás
+A ÁAÁNNÁN Jelentás korlátokat ktáLl9 15, 6]. Ezzel a technikával lehetőség nyilik a neurális hálóza-
+flétteteljel FAVRNATEVÉNAI MATAT FAKE fe MAJ ANELY ÉVÁT I Í " FNATÉNATTA ey yét féltfálii : : : mi
+
+----- PXL_20260907_101902403.jpg -----
+tok hatékony alk ina kutyak okk osz közökbhbeng, hékgvazóott ternledszerekltien, ég azvél
+alyan kömvesetekben, ahol 4z erőforrások éptínallzálása külcsímiossági.
+1.2. A dolgozat célja és felépítése
+mentációjára koncentrál, amely egy átfogó, felhasználóbarát felületet hiztosít a 5F I
+algotítmiűüs parauméteremik hoállításárna és inűködésének vizüslízálására, A (ll ról
+JA, hogy A SET alkálmázása kún MINTA kezelhető légver ulvan felhasználók számára 15.
+zat nemcsak a SÉT módszertanának mélyebb megértését segíti elő, Hanem zvakor lati
+eseközként is szolgál 4 műdszer továb ll vizsgálatályádg és fejlesztésében.
+A dolgozat szerkezete az alábbiak szerint épül fel:
+
+1. Felhasználói dokumentáció [1-hbben a fejezetben részletes ntinutatót nyúj-
+tunk a CI telepítésénez és használatához. amely magában foglalja a rendszer
+követelményeket, a felhasználói felület funkciólnak bernütatását, és az adatbe.
+töltés, valamint a 3ET tréning folyamatának lépéseit.
+
+2. Fejlesztői dokumentáció A fejlesztői dokumentáció célja, hogy bemmtas
+sa a SET irmplementácsiós részleteit és az alkalmazott szoltverürehitektúrát.
+észletesen tárgyalja a különféle könyvtárakat és ternneláslal inegoldásokat,
+mint a ttkbodotstraji ÉP], Matplotlih [5] és hel1Pv Il, melvek kulcsszerepet játsza.
+nak a grafikus felhasználói felület és a gépi tanulási folyamat támogatásáhan.
+Kzen felül kitérünk nú szoftver további fejlesztési lehetőségeire.
+
+3. Tesztelés A tesztelési fejezet ismerteti a szoftver funkcionális és hibakezelési
+tesztjeit. 22 magában foglalja az általános teszteseteket, amelyekkel ellenőriz
+zük a GT működését a felhüsználó számára, valamint szélsőséges tesztelési
+szeenáriókat, melyek biztosítják, hogy a szoftver helyesen reagáljon a nem várt
+helyzetekre.
+
+I. Összegzés Az ÖSsszeEZÉK fejezet a dolgozat főbb eredményeit és tanulságait
+foglalja össze, valámint jövőheli kutatási irányokat és fejlesztési lehetőségeket
+említ.
+
+----- PXL_20260907_101903836.jpg -----
+AZ SZÁN A A PL ÉSE KEL RG EAK ÁROK AES B3ÉR 942829 RRt 3 !
+A ) 1 [1 ) Í
+. kt. a! A i ] ál ! ki kí
+
+" hú MA. . 8 d Ar." TVÁZA T "Vw 7 1.
+
+Felhasználói dokumentáció
+
+2.1. Kendszerkövetelmények
+
+2.1.1. Minimális háardverkövetelmény
+A program futtatásálulk szüűkséek minunális hardverkontíguráció:
+
+e CPU: Kötmskds processzor, egytátóőb 2.5 GH7
+
+e Memória [/dANDJ2 AGYA
+s Háttértár (HDD vagy SI 10/4513 szalad hely
+e Crafikus kártyát Integrált grafikus vezérlő elegendő
+s Fython verzió: 1.4 vagy újabb
+
+2.1.2. Ajánlott hardverkövetelmény
+A. ATKA ITTA IK ÉULTATÁSÁNOZ AJÁNÓTT Nan Vor kontur
+e CPU: NÉpNWIAKoK prudeskzor, legalábbi 4410/1172
+s Memória [MATH] 1 vágy töbh
+s Cirafikus kártya: Intogrált grafikus vezérlő elegendő
+
+NAGYI NA A AN ! i e AA A A EE :
+
+----- PXL_20260907_101905388.jpg -----
+Do s E A
+Felhasználói doknunnientáció
+2.2. Telepítés és futtatás
+1 F: Tr. ki "a 7 rt F
+9 9.1. Windows telepítési lépések
+telepítéséhez használhatja a Microsott Store t 15.
+19
+nél o 1á égtek ; iilsdlkhodat dát 1 4
+MI Fi ellés i
+9.1. Ahbra. Python telepítése Windows alatt
+3. visseL Meg 4 PArancssort, és navigáljon a program könyvtárába:
+cA program Könyvtár?
+ti 1.IKId TEK JER ER LEÁLLT ÉRA 2 PATANCSSOTDAN üli JOCAAS ELTE KÖLN VLÁLÚU Jjatható.
+s IN Ti Mit 4 K PTE] BÍR: 1 TAL, AR, [s tj "a 9 4 1 mi Kikélükt a]
+HGIAUBREOYS UusartDovna loads program könyvtár
+
+----- PXL_20260907_101907313.jpg -----
+Bo Me
+ks -— 4 — Teljes oldal :
+, Felhasználói doímentáció
+ho A ex ükséyés Feethin ki NANA ati FIÁNAK LAN útéséhez füttűlssua a következő DALA SOL;
+Pib install -r redgujzrementi. txt
+Sikeres telepítést követően 4 paruncssorhan megjelennek a telepített kénpvvtá
+successfully instáallod Pygmentss4.18.0 astroid-4.2.4 ásttúkéns-z.4.1 cortóuroy-i 1
+3.4 Cyeler-0.12.1 decorator-§.1.1 dill-0.3.§ executing-2.1.§ fonrttosis-é.53.1 i
+nython-8.27.0 isort-E.13.2 jedi-0.19.1 kiíwisolver-1.6.7 livelíté-8.43.§ matoloti
+ib-3.9.2 matplotlib-inlino0.1.7 mecabe-0.7.0 networkx-3.3 mumba-8.68.§ mumngy-2.
+8.2 packapging-z6.1 pandas-2.2.3 parso-8.§.4 pexpect-é.9.§ pillow-18.6.§ piatform
+dirs-6.3.2 prompt toolkit-3.68.47 psutil-ó.0.B ptyprocess-0.7.§ pure eval-8.2.3 p
+vlint-3.2.7 pyparsing—3.1.§ python-dateutil-2.9.8.postó pytz-28Z?76.2 scípv-l.1£6.1
+setuptoolis-7É.1.0 six-1.16.6 stack-dats-É.6.4 tk-É.1.8 tomlkít-8.13.2 traitlets
+-5. 14.43 ttkbootstrap-1.10.1 tídata-Z024.2 wosidth-eé.2.13 :
+2.2. Ahra. A szükséges kom vtárak sikeres telepítése
+9. A program indításához futtassa;
+pyEthon main 1ndos. py
+A Program sikeres indítisa után megjelenik a grafikus felhasználói felület
+2.2.2. Linux telepítési lépések
+A Linux operációs rendszeren túrténő telepítéshez kúveésse az alábbi lépéseket:
+1. Telepítse a Fvthon 4 legújabb verdóőját a csomaágkezelő segítségével:
+euda Aapt-get install python3
+MA AA VA ANYAI A
+MAAA KAGAAÁK s
+s AAA AN NN
+
+----- PXL_20260907_101909174.jpg -----
+B IEdt A,
+B ze e
+: HR] E.
+to . ZAN
+E ő 4 ; (98 s glész Apáti
+AN A
+E zs A ák
+ÉLETE ez ku Teljes oldai 1
+2. Felhasználói dokumentáció
+Reading package lists... Dohe
+Building dependenty rve... Dán
+Roadiné state ihnfármátioh... Von
+sugséstéd packapes:
+öythönz:det pythonj-tk pythonj-veny
+The föllöning NEW páckaáges will bé installéd;
+pythónó
+0 upgredéd, 1 névly installed, 0 tű Peuove and Ő hol Upgraded,
+leed tö get 0 B/23.8 kb of arehivet,
+Atf"tor this operation, 2.9 ki af addítianal dítk space will be used.
+seleeting previously unselected packáge pythoni.,
+(Keadinpg database , , , 33164 files and diréctories éurrantly instálléd.) i
+preparing tó unpatk ,.  /pythóna 3.12. 3-Bubuntuz amds4.deb ,.,
+Unpacking pythoni (34.14. 3-OUDUNtUl) ...
+setting up pythonda (2.12.3-Oubuntul2) ...
+running python rtupdate hooks för pyihuná.l12... i
+running python post-rtupdato hogks for pythoni.12...
+Processing treipggers for man-dh (2,12.H-4huijlól) ...
+[EHELh fGHERH Et: FARPHSREE ES fé: fin: féljfötőt EéjL.BEGA EEEN TES e a FelÉEt? eégséjág [Elő HÉÉÉ] ag EjttHÉÉ Hó Fi EEEEEEZHI HEHE E
+).3. ábra. Python 3 telepítése Linux alatt
+Z. 4018DÍ1t5E a Python csomagkezelőt: i
+Elst! Hát 12 Pi / HT sit 7 - :
+vget httpsg://boststrap. pypa.109/ge6L-Dp1P.PD7y
+python3 Bet-PÍiP-PY
+ELEJE JET iz 1425... [2-4 Hta4z I OLT RETESZ [ PJTERIT LEP 239 , Ér ér s íz HÉGC. Rájt, út
+ETEL E PET] RL ET47-5f2, ÉPujádi. asz - £ 2jGYst ZT Fr, irja. fü... FH? 191643 .12887 13£F4, ád. 25 AFP Ár A 1
+sirat 1 17295 124 frésd UA ru. 118 , kér d frészrF 2. aga, frFpTTas; 123 / § F.a ői só jar JI, 02 3124 30431 T 430,
+i tiz P2R passz i eszi, szallt ást FStikLETtő.. . ét 8
+REG ÁE SZ TIZ [ ITIBTÁAÁSR [4 1 ET 4 jele? erf5d 21, dé ;
+[ jei:t Hit ii a Et szet ák ! H ; [HA ri " Ki IA : " sáról 2 31.
+2 ök. ábra. Pethon csümágkéezelő telepítése Linux AAL
+3. Töltse le a program fájljnít és navigáljon a letöltött könyvtárba a terminál
+cd program könyvtár:
+1. Telepítse a szükségys könyvtárakat:
+piípő install rr reguüiíremente , txt
+18, A! [oreMeréK en TO CCA AN KIKA JA! 199
+A python? madn wudlodows , [y
+A A AAA NAAA ANAK A A
+e A A A A A A NA NA S AAA ! A e A E A E JÉ E VÉLE LETÉI
+LT JAVA YÁVÉVÉVEI d ATTI LN
+A e e A e A AK A A A A A A A A NAA VA AA ALATTI A A EÁ
+LN ÁAK TÁVATÉLÉJÁA AAA S EL
+LAN ALVÉLÉN FARA LL
+A A A A ARE MÉRI ÉRA Él ÉLEI e EE KATE KS EE
+
+----- PXL_20260907_101912849.jpg -----
+ez o — 2] — EY. ps 1] ős Kt
+cAfá o sál 92 EAK ZÁLOG EA ZS ÁT ;
+tt AMRARY A A EL NA 2 Ata tók s AAL Ay
+E SA KEY AG a A aDÁRbA Ab RK ka 1992 A o ági ;
+AL AZSZGSA Ott] lt
+kén 2 ÁR AE ád ég vol "ri
+a A: oldal :
+[As nálló dockuantontíván
+TAL lttesktásá belt táktárbbén ranyáasttadá neha. HE YEA PAT 1531 Végy Pé YT Pet at HESS VAY 9324 423 9 499 4 PP Ess sas! réljedfolkttél helyét attila EA A TO a e ere ere EE EETETELETETETT 7 ts] 1
+; Pen 1 ) I A tl ii JA i w ! Ni föl fá HlfANE H a
+42. (1 használati útrmru tat
+fiad Rut HIELA] ád fil fezpd renndt Élatet bt
+e c Hanley elarrére éti
+Bel yet kajsét El i
+c zet 1 E etés ú3
+E 4
+! Elengzgil État zár
+Po d Tv 4.
+2.5. ábra. A program gratlkus felhasználói felülete (Gil 1)
+A PrUKTAM $E1 kus felhászíttálk Ht felületi a AI i lehetővé teszi 4 felhasz nálú szálliá-
+ra a 5parse kvolytiónary Training [511 algorítrmuűs paraméteminek beállítását, az
+adathalmaz kiválasztását, A tréning fülytimnatának figyelemmel kiséréset 05 a trém:ine
+eredményeinek vizus [/Ávlúját, A GAÍT1ölűlet a 2.5 ábrán látható.
+Ég w í i i 4 1 És jét I!
+2.3.1. Adatbetöltés
+Az adat í töltését? ú4A ETT múl lóll tré ningjének WIN MtásÁNudi A NÉNÉ91 ló AT
+1. Adjál meg 4/KÉJÉT Vt." nevét 4 job felsű sarokban található  szűvegdőhbotdán,
+JÁ FT ER ! iát EI ! : i ül ! li I ille ! 1) ] ! í 1 1 ! ; Í T Tall :
+n. KÉR út A TATA TARKA N AAMÉRNÍTEET énik Ui KÁAT akturéköt, ÁT ORTAVÉSYASAR ER: AGÁLÓN) A újeleket
+tértal FILANYA MA Ú.,
+2 NÁlusKYiK kin. kaszálni kívánt 4 athaluuiyt 4 Mo Y4 ! VANAK NYAL VIALÉN  1ANÉYy
+ANTANT A. TATA KTTAAAAK 14 ALASATAATÁSAN KdlvaetIkesék éva ia avat AA VALÁL AALAANAI ;
+A A AAA ANAÁTAAA) "4 KÉENTÉTTN IK zel MANAYEVAMAIÁ lel VAN ATLAIAJAL LÁV JANE AA A A NA AJÁN JÁ ALAN FI ANE NE A]
+AAA ARAN MARA FARVA YAN Mm MINTST s Mézaul ért számokat KATA adathalniad. e A AA NAT NÁL AYATÁAJÁLAI TA ATATAAI MAAA AAA AA
+A JE ATA NA VATELATI FATET felel felti KAJA feljeltti JET] TETEL fi HATTETA ! Í ! ! i ! JRE Il MALE 1 MEN] feljélii VELE] i ] í JÉG! HAI HR i fél i féllel JELEN fél!
+ALAAKTAAAI Mag VENA RAYENI JARTRTAA jével AVANT jVANI Ál JÁVAI JAJ] JAVAK TATAI KATTANT JAJA jel TALALTA] e AA] AAA AI ! ! ! VAK JAA FALL EJT / MAJétféll VAA elk ali JJ Mell
+AKAR Ae el A TéT él ele JélAJAlANI E Av el e el lel AA KANÁRI MURYALANÁI IA VAA YA Al TK ÉN KATTANT Mo felfeljáltal JEA! ! HETE Kel ANAK ALA All JAT] JEAN JA ! / íl NANATENEA] ÁR JAVNE ÉT
+JARTAAATAN A ARANKA KÁ Melle AÍfATÉNA TK AAL JAJA A A AAA ALAN A AV TKI a] veglet VEL AAL A Fell el el EL KTV ERL NET TH he el e fe Jel e E Fel A éle ellelfel Í HJA HAJI i TE Fél FEJNI jElJEIN HIATÁGIÉ MANAGE TELE által
+
+----- PXL_20260907_101914742.MP.jpg -----
+Áj A EFt as Ek TK E 64 ET KÓ S NÉL ZA DŐLÉS AT AA KÉL
+s e S ABS ÁL SA AGA A METER
+PM EA PSA MÉRÉS (ELZDÍN 4 12244 2 TÉGY?
+cl
+ANT ART AMA nál 13 CÍ di tentőtr 1
+[Ch] EN Í ; gens egye [hgy
+ével ÖREGEN TÁ kagyarttnot étre
+ost tava as ansíttete iiglelgyanarastkés [tert két
+daötg évét Testet eg Htezérta agyoty
+grascér a 1 Ezgétt Tugtoraj álarzyoztár tazl
+úg jögesetsy kett 12
+fejtés 199 Egy peeleéteíttasítár [ út
+ílagietk vgy Égívastsr í
+Fehér kié
+fianyasstt Ft új
+, hate Fov eékn
+korál ál part ett
+Fuss izu: héltákiól
+I
+2.6. ábra. A program grafikus felhasználói felülete az adathalmaz kiválasztása
+s Fashion NÉNIST: Funadírahokat tartalínázó adathalmaz.
+: s Kuzushiji MINIST: Hagyományos japán írásjeleket tartalmazó adathalmaz.
+2.3.2. Paraméterek beállítása
+A GLf fedület hiztosítja a parse vúlutlotáry Trujning [SET] parauinétereinek
+egyszerű kezelését és konfigyurálását. A következő alapveni beállításokat találja a ii
+s Tanítópéldák száma: A tanítóhalmazból felhasznált peldak száma. 11pusa.
+egész szám, Mini érték: 10, Maxi un érték: LII,
+s Tesztelőpéldák száma; A teszthalmásból felhásánált páldák satnya, TIPpusa.:
+úgész KZÁ. MÁN NUN Értélés 1011, MAXIUU1 ÉPtéki VÚLÓYINIL
+e Epsilon [Sparsity szint): A ritkítás mértékének szabályozása, 11pusa: lébe
+KŐPANA AK 114. MIN win értélkz 0.0. AA ÁGA
+A " Zed í HK apcsolatok eltávolítási Kgyakoriságu Ja 41 PACAL A TÁN AA 1, KÖTSAN PAN ! AAN ÁT
+A adott Kapcsolat milyen válószműséggel kerül eltávolításra, TÍPUsá: I vgdpon MÁÁ AAN
+
+----- PXL_20260907_101916755.jpg -----
+.. 4 —o Teljes oldál :
+K/FVIWM asználói dokumentáció
+a frónin ki foo IK kö nyarg A telje x ANN I tÁll FARTÉRTE NATO] végyy ha lucdió tanyplási PIE
+el ejtett neuronok száma: A regtékt rétegek nejri mi amak száma. [ffrusa
+egész számi. Xiniunim értek: 1.
+e Batch méret: A tianitősdüitok hatoch ekbe rendezésének mérete. 1ípísa: egesz
+szám. Mini érték; 1.
+a Dropout Hate: A dropoút réteg valószínűség paramétere. 1ipusa: lehégi
+e Learning Rate [Tanulási rátajt A tanulás sehességért szabályozza. 1fpusa:
+lebezüőpontos száni. Minunum érték: [..
+a Momentum: A hálózat evorsább könyvergálásának biztosítása. Lípusa: lebe
+gÓDONtOs szám. X linirnigny érték: (1. Maximum Frték: 1.0.
+s Weight DJecary: 3 súlyok csükkentésének mértéke. Tipusa: lebegőpontos
+szán, sin érték: [11
+e Sparse/Dense kapcsoló: A ritkított vagy sűrű algoritmus közötti váltás.
+F [A 17 ki HIG 2 A j HjJELSÉJES [JÉ rő EE ali IPI
+2.3.3. Iréning imdítása
+A paramóterek heállítása után a Start Training gomb megnyomásával mdiít
+hatja el a tréning folyamatát, A tréning során figyelik kísérheti az alábbiakat:
+e Teljesítmény grafikonok: A tanulási gúrhék valós idejű megjelenítése, hele-
+ÉTtYEe 4 veszteség és pontosság változását az opochA ok során,
+s Tréning haladása: A Start Training" gomb alatt látható a folyamatjelző
+kát, eeryrelv felel a kténinye aktuális állapotát,
+A folyamatban lévő tréning hármikor megszakítható a , top TFrauning" gombbal
+K A es PÁR EÁ 4 A ellés thá ride rt rt fi! Tod A] f Tél ef fe 1 1 léha.
+2,9, 4. Kimeneti eredmények és vizuallzáció kN AAN
+LA "A Grónidy Alatt 4 program folyamatosan moódítotozza a hálózat teljesítményét és [4
+AA FANJSZOT MÚLATTA SAAK  AASZNÁJATÁL. A tréning végeztével a MEAISEAUAA különböz MANN MAAA
+s NÁGMAlárdálat és nepdményeket kínál a felhasználó számár
+
+----- PXL_20260907_101918380.jpg -----
+1 Felhasználói dokumentáció
+Bosda1 Jee! : ! 1 AE
+apolo peték iA felj forzairesébet fir ÉLpETÉET
+A not CLAY tl ) él Ted eg Éuszése ELÉG
+k : i
+tszts tööseter IZ Tesdery Aasen sed
+! ő jat CS fs parte ús
+lt A Tegt ag Égzezes s
+A I ! fede 8922 ét
+1 A
+1 i tengeti Hite ú3
+at ] ) Leseppérag fégder ndi
+sek Ú k. testé ús
+1 hl ék észt Tess
+HETESEME 136 Atsapasg [ő 1E2i ó A i : : ;
+2.4. tbra. Á program grafikus felhasználói felülete a tréning végeztével
+A finden futtatást követően az eredniények a .resnlts mappában lesznek elérhe
+tősk, a futtatásnak adott névvel azonos nevű mappában. Amennyiben a felhasználó
+nem adott nez nevet a futtatásnok, a kisérlet dátum és időpontja lesz a mappa
+nese. Ebben a mappában megtalálhatók a következő fájlok és információk:
+s Végső súlyok (final weights.npz): A tanítás során kapott végső sülvok,
+amelyeket később hetülthet ús újra felhüsználhat más alkalmazásokban.
+s Hiperparaméterek (hyperparameters.csv)]: A tanítás során használt hi
+perpatuiméterek [54 formátumban,
+s Bemeneti réteg kapcsolatai (input connections.np2)]: A bemeneti ré
+teg küapcsulatálnuk váltizása Az epujdh uk súrán, arat később felhasználhat 1
+nálózat vizüallzációjáhos.
+s Metrikák [metrivs4tsy): A tréning során gyűjtött mutrikai adatok CSTV for
+KAT VAAT ÉPÍT
+s Monitor (monttor.json ): A tanulás alatt Összegy újJtátt Monttorozási adatok,
+NN kívánt futtatást, A tanítás végeztével a következő lehetőségek érhetőek él B
+
+----- PXL_20260907_101919981.jpg -----
+hejhó SGRELÁZÓ A Dá al áh E 904 ÁL 1 EE ELL EGY IAN FÁBA PRRL : TŐR ké : ;
+EN a st íz 9.
+) EA AA EZ S S EL MESE AZÉ, a: !
+4 EF d a ZH 19 AGL 47] SE Gzakéseb bi , ! 7
+s s — 4 — Teljes oldal !
+1 Folfasznáalói dokínéntávi
+4 411 19531 Fe 1 dezkádoztbézsákszthásíákszíkbzábétítTt kerétdsztászébézzt ssíklásttászttbezttszti kést) vez [dsdísssó rül btssátregi rotdtedbhedttatíetítattsatbtetltatlsattozítozlssíászászásotászíttozlsíásott od Hpt eíleztthzitszttsé lk heéttsíttzttnlásojástossí tisztaba Lt4ászíd st Hoszhtoktásztteszíászítéászíesítndszzássttésá tt koztes
+. CGITáltú AJAkít ás: ! hálit ú4341941k HÁ TLAN JA [4 ai elyet készül folfyasználhát
+VETÉS dícAlthohs AMATATT Val KETY ú ! MATAT 1jl 1 fiut tát MEL DPÁTÁNAÁTI hd található.
+? [ [1 1 i s : i Í FAL 1 1 !
+s Bemeneti réteg kipcsolódása: Demonstráljá a ritkított nálózat bemeneti
+rötegének kupcsolttal szÁmányk évőlúrióját 4 ttérnitik során.
+TETTE HTTA MR ANYASÁNAS élt s z—ANPNNNYTAN]
+yek em fstarbtetel Alert epe ra ee
+laaredeny Chat —— Fegakag darát adá
+Biatalkbt bílsbépiis MATETB TENNI MAMA i EZPESETEL ÁT BTI pest fölazPírjE i
+: 1 - kKPF-r ! fájt Ki ai fe, kitz! BH HI igát]: HERE tl 1 4 He tják e: ts 4 4 E. z :
+2 ADA. A IE FIETNETT ÖLEL Kai 948] dotanak kivi Its eánel é1ő PIEHTE TEA Ik saFrárn
+s fanulási görhe: 112 ualizálj 4. 4 tanítás és tesztadatokon mért VÉSZÉGSÉL És
+pontosság értékek gralfkonját.
+1 , [SA u: Cr , 2 MA s KÖIRÁRA ki ÁM ZÁS AZ sigti : 7" ! :
+
+----- PXL_20260907_101922530.MP.jpg -----
+AP VÉLET Ő ek 91 A S AL sek a FV EE 19 [647 ÉL TALAL (EAT YE AZA E YA
+kk YA e KÉL TALÁL
+d E AT A ESEL TT EZ AN ZASAA, 71 1. CA s KN? ÁL dk E S [És To.
+A Tét 2 év S KR LÉ: azt kYEsnk án 972, NIKE E FÉDPZLTBA ÉT S IMÉPŐELTÍ S KÁZÁLS Pt ELL 3 /22 ks :
+A SZÁL [241 s ZER: lt set 7 1ofő
+: Ms tl sss sot
+í I 11 Pi j ! a . 1 : !
+Pl ásznA li dokAuthortto
+tie Thzt Ésa aal fataáb
+ost mr feglíletentsett Helyésyttsén tanok, éti :
+are da ! ; ! fedtnít vgy Éhtenéne eget
+: " polyáriakbssákkjteálú ki ! ! , Mgnusteésgti koprtgésták RL Ű
+! i i
+! il Hghtéltéstt j élgatettéte [doreft— 94 i
+! ! 1 A e ú2 ]
+: ) : ME [
+We félt] 1 FEJE Csen tás ame pas darper: ELET
+) urát at
+Jallellat AJARI? [. fáttiotentt :ÉGnyayi; Ki Í
+]
+1 ! CC lasan élet
+Kellő 3 JELL !
+Velké EN Teefbajál I FegorAk
+KÉN AJETÉNEI félts ETELE ET JEA É főzni töneseit
+Hi kéjt 4 jégítérítás áss 1 31 1
+ELENEL ETTE] : : i
+sm! ai
+2.4, Alíra. A tanulási zúrhe a tréning során
+zöönó 4 jós : FH. úi id EjBHLHERESL i HEHEHE EI FR. :9 HEHEHE FH. HEESHT 1 gól ASYESÉLHEL ah TP. ng : ". alte Y Éz fe
+es Erőforrás használat: A trénine során ielhasznált erőforrások [( Pt , szálak,
+mernória) statisztikülnak ábrázolási.
+Sole Zsss Oo Etepisízenk [ket z
+dggezzttoos ázásagat [ó VENA A FE Enyertégek kán  nzsmozme sm
+dada gázt kél lellélléllélléli Ű i ! o Eunai szg fggyegstt otletet
+ágsíejznraii etjészagtáreai , ! ál ho Finslérgy Élvgézn vrgyene
+1 : ! i ! [CC Epüáte ela hill A
+JELET VENNI 1 í ! Hi [OC Amit hez popazsin aa
+HL It FAJBA tl 1 ut EVET !
+! ] ) va kt " i fa A ult 4 A [o Franz pszt 4
+hl Í !] il ) i I i " ! / [oC klüfehe) hájijrAnk hl Ássyo FÉG
+! ! . il! " mllölely E sjlygi s sjaltöljál lata vel szi i
+Í Í !
+! : I ! Eleeytnyt Eliasköny ús i
+Í IK Hi 1 H
+KIVÉVE ! "1 JAM ks éyji éyebő Úsíigii i
+! i 1 kégratenyutb ut CLA
+IK Mi I ilésyésgtt tő [doszt ÉLYIEIERY !
+HW 1 félő 1 JEE Tél MAJETÉ ] MÁÁ Aj poatáso risdá Diuggy eti éé ;
+! i i t
+ölte NATY YA," JÉÉÉ ay ! éeédjetdóeí jót jgelfost ft ob jckágélhás jő elodosá ő o hőkdlyyddoey ák őklágl ég ya polo snosásnzíimszá
+15! 1
+! ! 1 W mágyen : (felferaéraji feltseágáttye RAY) ! Í
+A.A, ADTA, Az Hróforrásuk Ansanálata a tránitg során
+i
+: J ; vi sa : : 3. Á KÖLL LEPATTAN: "7 A 14 : 32 ; : ! : ?. : TA, :
+
+----- PXL_20260907_101923944.jpg -----
+- — 4 — Teljes oldal ?
+F: [I
+ÖT
+3. fejezet
+[4
+Fejlesztői dok ció
+ejlesztői dokumentáció
+Es 2. ösi jak ek Íi HEG jól HEHE ETTE
+).1. Követelmények
+Az alábbú fejezetekben isinertetésre kerülnek a követelmények, amelvek FT ATÁ-
+: 1 :
+FOzZzák a szoftver elvárt működését és a fejlesztés alatt figyelembe vett szempontokat.
+3.1.1. Funkcionális követ elmények
+Hiperparaméterek beállítása
+s Leírás: A felhasználó beállíthatja a neurális hálózat tréminsjéhez szükséges
+IRT]
+s Felhasználói történet:
+Funkció megnevezése: Tiperparaméterek heállítása
+Ftővid leírás: A felhasználó beállíthatja a hálózat különböző hiperpara-
+métereit (pl. tanulási ráta, epőchok szal. stb. ].
+1" Adott: A felhasználó megnyitja 4 hiperparáméterek heállító felüle-
+A 1" kon: A felhasználó negddlja 4 kívánt értékeket és ellnedlítja a tré.
+LN 1 Akkori A hezdszer elfogadja 4 nmegadott FTtékoket és ellndítja a há
+IAN A LL
+
+----- PXL_20260907_101925689.jpg -----
+VélzeM s At év
+- — 4 —feljes oldal :
+1. Fijlesztéál dÖktírnentáció
+iréning indítása ős tmnonítoronása
+e Leírás: A felhusznaáló elindíthatja A tréning folyamatát és valós időben meni
+e Felhasználói történet:
+Funkció megnevezése: Tréming indítása és monitorozása
+Kövid leírás: A felhasználó elindíthatja a tréninget és valós időb ETE ke
+vetheti a hálózat tanulási folyamatát.
+A dott-Mikor- A kkor:
+? Akkor: A rendszer megjeleníti a tréning állapotát és ETFÁTHÉTEvETT
+valós időben.
+Eredmények vizualizálása
+e Leírás: A tréning befejeztével a rendszer megjeleníti a trénine ersdrmrérret.
+Eralikonok és statisztikák formájában.
+s Felhasználói történet:
+Funkció megnevezése: Eredmények vizualizálása
+Htöővid leírás: A felhasználó megtekintheti a tréning eredményejt sraf-
+konok és statisztikák segítségével,
+A dott-Mikor- A kkor:
+t Adott: A tréning folyamat hefejeződött.
+s Mikor: A felhasználó megnyitja az eredmények megtekintése felüle
+Let,
+t Akkor: A rendszer megjeleníti a tréning eredményeit és statisztikáit.
+Múltbéli tréningek eredményeinek vizualizálása
+e Leírás: A felhasználó megtekintheti a koráhhi tréningek eredményeit és sta-
+tisztikáit.
+
+----- PXL_20260907_101926943.jpg -----
+—- — 4 — Teljes oldal :
+4. Fejlesztői dokumentáció
+s Felhasználói történet:
+Funkció megnevezése: Műúltbéli eredmények . izvalizálása
+Rövid leírás; A felhúsználó megtekintheti a múltbéli ÍTéin E eredinié-
+A dott-Mikor- A kkor:
+t Adott: A felhasználó kiválasztott egy korábbi tréninvet a legőrdüló
+zt Mikor: A felhasználó rákattint az általa kívánt statisztikát tartal
+HIÁAZÓ sOINÁTA.
+t Akkor: A rendszer megjeleníti a kiválasztott statisztikáit.
+Gráf készítése a hálózati kapcsolatokról
+s Leírás: A felhasználó " net" tájlformátumban elmentheti a hálózati kapcsola-
+tokat, amelyeket később megtekinthet egy gráf formájában.
+e Felhasználói történet:
+funkció megnevezése: (iráf készítése a hálózati kapcsolatokról
+ftövid leírás: A felhasználó elmentheti a hálózati kapcsolatokat " met"
+fájlformátumban, amelyet később megtekinthet egy gráf formájában.
+- Adott-Mikor- A kkor:
+" Adott: A felhasználó kiválasztott egy koráhhi tréninget a legördülő
+mien üliől.
+? Mikor: A felhasználó rákattint a "Crente grApn gombra.
+t Akkor: A rendszer senerál egy gráfot a kiválasztott futtatás máap-
+DÁJÁDAN.
+A datmentés
+e Leírás: A felhasználó elmentheti a tréning eredményeit.
+es Felhasználói történet;
+Funkció megnevezése; Adatmentés
+
+----- PXL_20260907_101928819.jpg -----
+- 4 — Teljes oldal $
+J. Fejlesztési dokumentáció
+ttövid leírás: A felhusználó elmentheti a tréning állapotát és eredreé
+nyvli
+A döott-Mikor- A kkor:
+t Adott: A tróning folyamat hefejeződütt.
+? Akkor: 3 rendszer elmenti az adatokat.
+3.1.2. Nem funkcionális követelmények
+e Leírás: A szoltvermek gyorsan és hatékonyan kell működnie, hozv ndniralj-
+zálja a tréning időt.
+Felhasználói élmény
+e Leírás: a felhasználói felület legyen intultív és könnyen használható, lehetővé
+Kompatibilitás
+s Leírás: A szoftver inűködjön különböző operációs rendszereken [MA Inderes,
+Linux) és támogassa a Fvthon legfilssebb verciőilt.
+aeyélály 9 VE VA AAA LT LAGABAKYANIAL JA
+3.2. Felhasználói csetek
+A program két fő felhasználói esetet támogat: a hálósát trénlinygjét és a fréning
+eredményeinek viznuahzációját, Az alábbiakban részletesen bemutatjuk ezeket a fel
+használói eseteket.
+3,2.1, Hálózat tréningje
+A felhüusználó mnsudhutja a hálózat tréninujóhes szükséges hiperparamétereket, LL
+majd elindíthatja A trend folyatnatát, A program valás lőlen megjeleníti a tréninye BEA
+KÉL . állapotát és eredményeit, lehetűvé téve a felhasználó számára 14 trénine folyamatának —  .
+
+----- PXL_20260907_101930143.jpg -----
+; r"
+- 4 —oTeljes oldal :
+4. Fejlesztői dokumentáció
+24. ALÍLEEZASIZÁSÍTM SZ IIÁR TÁVOL TT MITEL OTÁIT AL KPTÍTIZÉÁN TTZÁTSMUSRUTZEVTI 1 ITISÁLT: 1. 3317 Veneé MEN EztoGT BIT JET törThESST TMTE ORE TESÍTAÁSÍTTNÍTSIT STT SELEETZE SZESSZTÍTTÍTTORLOT SEK E s s e s e tt E sZ ss SES VERS SzSz tsz SZIKÉS VAA ESSTTtss 9 [
+I i ! Todhgylédéi vegi fid ti 139) E same El
+ht 4 it 1 IE ja HÉ " A tt] ERT rtl s). 1 1
+A IK il ! i HA szi : il AAL
+y jó 4 VEYEVTT EE] N B et tet átttboke él! Ves f
+Pty CJESGA 15 El 11981" fádási lép kását íg adását 1 allt A fi
+ya HERE tti j fifiédhétt Tt klet ; ák új]: radói :É 1.
+jön zt ütt 1 i ; i
+sa [EI EGYEESEEEYEESÍTEST A FAST TSÍHÁTIKÁG Fari Elő ii 1
+1 ji ál "a i
+ABE AN E Al " E jó ERTE fú
+[1 í Í mi " " Ai
+HEVES tsa Kát fáj MENENEOHTLSS 13 Tél il TASKS TEESE sléél A
+oj HEVENY el Féttsóg o el]
+, fu.
+4 ,
+i Adatszett kiválasztása 1
+lelte 151-E
+1 FF
+? F] Tr EnÉ HETENTE ESTÉT
+kileng vágott 1.1 ölsz] FA
+2 öl 4 Fsskirmenyatk. 1
+A :
+köl gMítkszálask
+ii: ik
+—
+Felhkszítális
+! Másé] fegGa HÁ
+A
+! HT
+2.1. Ahra, Hálózat tréningje felhasználói eset diagram
+3.2.2. Eredmények vizualizáció ij;
+53 a kán kár redmenyek vizunaliz ACIÓ JA
+A Lrenin hef JÖZTÉ Well A felhasználó megtekintheti el trénnye eredmény ejt, grah-
+Ér ; f 1 3 1! IT " í et ri: P1! I; : ín z3 ; "1 "13 4! ! - 7 í s MI A -. : —
+konok és statisztikák for májában, A program lehetővé teszi a felhasználó számára,
+hogy kiválassza a kívánt futtutást és statisztikát, amelyet meg szeretne tekinteni.
+
+----- PXL_20260907_101931486.jpg -----
+-— — 4 —oTeljes oldal :
+ÖL FPSZEGI ld kuntentáem
+jot "
+a" ! ii.
+/  — Máúltboli futtatás ;
+KK petötés )
+EE YE : il 9. El
+0 [! [A lg koll
+i ! 4 ÉN,
+í 1 hi E hal
+. Figy
+i 1 Al éz
+; ! í "ADPEGSdes
+/ ! cÉpréogdei AL
+! í ik 1 felj
+TEphÉedes 4 " (! Ta
+4 1 W 4 ,)
+! esprocodozk vÁR ko :
+, : re e Erőforráshasználatós,
+/ 1 7 Bemenetiretez S, [ információk
+; v Kapcsolatainak . megjelenítese
+, olom]! A... evolúciója
+X poszt tt ; 1 jól lét, fé HÉ HEHÁBES S,
+: 7 €zraf cenerálása a "N Als 38
+F ! hálózati ]
+tt hú kapcsolatokból ,. Í : Í
+——Tanulásigörbe 9 E mi :
+Félsz
+3.2. abra, Eredmények vizualizárciúja felhasználói eset Hjásram
+3.3, Iendszerarchitektúra
+23,3.1. Model- View architektúra a GUT-ban
+1 program eralikus felhasználói felülete GUI a Maödel View (ADV1) arehitektő
+KAT alkalmazzu, amely elkülöntti az adatkezelési logikát a megjelenítéstől Ehhen a
+felépítéshiem:
+s Model / A 8864.41p.py múdul tartalmazza a sparse hálózati tréningfolyama.
+GAE, , VkKÉTENE 4. IT! úlköritmus adu ptív kapcsolati hálóját. A dense mip.py
+! módúul tartálmmiázza 4 denye hálózati tréningtfolyamatot, ritkítás nélkül.
+MRA A S AAA KALYAAYYÁN AL ksd ALÁN main window. py a CGI tiepjelenítési rétege, amelyen keresztül a
+A NT TU Kell syorAló hedllíthatja a KET paramétereit, indíthatja és nyomon követheti 1
+UM 1! AM hl hl Ú KÁNAÁN DI]
+
+----- PXL_20260907_101933335.jpg -----
+hol A ázó fa A ALANT é FE TAL , s AMFE EofA A 2 : 1 : 7 2
+- — 4 —oTeljes oldal ;
+
+1" Pallos tó Mokurdentádciá i
+tösztölését. amely mi ekönnyiti 4. új] ankitélk kiépítését PA hiháakézéelést, tell eel :
+a felhasználói interakciótól függetlenül 4. aiesdell pontosan végrehajtja a tanulási
+folyamatot és visszaküldi 9 aeltokut a (il il mig jelenitésétie, i
+JJ " v i vejét Ell 14 ! : w jut MIA HEG] ell éá lt] Ft! iú lési ia A Ela) : elteti JELES : ;
+3.3.2. Objektum-oritentált programozási alapelvek
+
+1 program tübb ahjektum ortentőlt BICNTANHGZÁSI aláapclvet Használ, amelyek
+sepítik a moduláris felépítést és 4 künnyen karhántartható köd létrehozását:
+lön usztályba van szervezve, arndiv leltetűvé teszi az egyes modülokhoz tartozó
+a Öröklés [(Inheritance) Amennyiben szükséges, a Tkinter (ld. 3.4.1 szakaszi
+alapú osztályok örökléssel kitetjeszthetők, hogy egyedi vwidgetek jöjjenek létre,
+e Ahsztrakció ( Abstraction) A (d [ ós a tréning modulok interfészei elrej-
+tik a komplex impierentációs részleteket. ami csökkenti a felhasználói hibák
+esélyét, mivel a felhasználók csak az egyszerű, absztrakt felületet látják.
+3.4. Kódkönyvtárak és technológiák
+3.4,1. Tkinter és ttkhootstrap használata
+A ttkbuotstrap [7] égy Pvthon-künyvtár, amely a Python szabványos grafikus
+felhasználói felületének, a Tkinternek a megjelenését és hangulatát javítja azáltal.
+hogy modern, Rootstran ialette témát ad a vidgetekhez. Frissitett stílust és további
+funkciókat kínál, amelyek megkönnyítik az esztétikus és funkcionális grafikus felüle-
+tek létrehozását. A ttkbőotstrán a ttk-re. a Tkinterhez készült tematikus vwidgetre
+épül, és bevezeti a Hootstrap által ihletett színsémákat. tipográliát és elrendezési
+fejlesztéseket,
+3.14.2. Matplotlib a vizualizációhoz
+A Matplotlib [8] könyvtár a tréning során keletkező tanulási görbék (pl. veszteség,
+pontossági valós idejű megjelenítésére szolgál. A Matplotlih integrálásával a felhasz-
+
+----- PXL_20260907_101935364.jpg -----
+——
+- — 4 ——o[eljeg oldal ?
+ki Fitáles XCII KÜ rre kolesáó
+nálók 4 11 ! JOGA valís TARGYA Követthotülk 11 LAnNÜUlÁsI folyanitot, ZETA ÉSE N IME KÖTE áti
+a medol] visolködésének LENSATTÉ ROTT 4 A PALA ÉteTEK mo Íánolását. docAuthor
+Matplotlib lehetőséget biztosít a korábbi futtatások során keletkezett adatok egy
+3.4.3. SciFy a gépi tanulás implementálásához
+rű inirializációkat és a sparse mátrix manyoulációkat.
+A brlPy könyvtár tartalmazza a kúvetkező, a sparse hálózatokhoz hasznos adat
+szerkozeteket:
+9 SC1DY.sparse.dok matrix Kulcs szótár mátrix, amely a ritka mátrixokat
+Egy szótárhan tárolja [fNetlonary (4 kevil.
+.9 SC1py.Sparse.cao matrix koordináta lista mátris, amely a ritka mátrixo-
+kat koordináta lstaként tárolja (( (NN rdinate list).
+e SCipy.sparse.lil matrix Listák listíja mátrix, amely a ritka mátrixokat
+listák listájaként tárolja [List OF Listsl.
+Ezek az adatszerkezetek lehetővé teszik a hálózati kapcsolatok hatékony tárolását
+És manipulációját, amelyek kulcsfontosságúak a SET algoritmus hatékony működé
+hifi láta ;
+3.0. Implementációs részletek
+rkbben a fejezetben a program implementációs tészleteit mutatjuk he, Különös
+tekintettel a szoftver arthitektúrá jára és a HPALsO F. válutlonarv IYrajning ÍSETI al-
+gporituus működésére.
+GZ a. Molgozat 4 5(/AD5/ Sunmer 5ehool 2020. Scalable Deen Leonardo úkta
+megvalósításával. felhasználóbarát gratikus felhasználói felülettel és a tréning ered.
+ményeinek vizualizációjával, bemutatva, hogyan lehet az adaptív ritka kapcsolatokat
+felkasználni a nagy neurális hálózatok számítási költségeinek csökkentésére.
+
+----- PXL_20260907_101937710.jpg -----
+ar
+-. 4 — Teljes oldal $
+d AAA ÓL doki nr enmárvió
+3.0.1. Szoftver architektúra leírása
+1 DIGRTAÁTNI $í tt veranohiítoktútájn hey ÉN komponenst épül; I
+l. man  window.ny2 Iz 1 fAjJl tartúlmázs a uraflikus felület fő funki TÓL, Attié
+lveken körösétül a felhasználó Iran yítáátja a SET fölyamatot, A Tkinter és
+ttkbuotstrap csomagokkal létrehozott kezelőfelület lehetőséget biztosít a SET
+algorítműs hiporparamnétereinelk hedllítására, mint például a 4SPALSINY szint,
+lbamine TÁLÓ ÉS épocN SZANTAK,
+2. set mip.py: Hz a modul tartalmazza a Sparse E volutionarv Training SET)
+algorítmüs Uunplementárióját. A SKT a Sparse MLP (Multiliver Perveptronl
+struktúrára épül, amely a kapcsolatok ritkításával aptirnalizálja a tanulási fo-
+lvamatot. A 5ET imnpiementíciójában a fő függyények a sparse inicializálást,
+kapcsolat eltávolítást és új kapcsolutok létrehozását végzik el minden epoch
+SOTAN.,
+3. dense mip.py: Ez a modul tartalmazza a. Dense MIP [ Maltiláver
+Perceptron tréenyiefolyamaátát, amely a hagyományos, sűrű kipcsolatokkal
+rendelkező neurális hálózutot tanítja meg. A dense MLP tréninsfolvamat a
+sűrű kapcsolatok újrakonfizurálását nem végzi 9, Így a hálózat sűrű marad.
+I. utils: Kz a modul tartalmazza a segédfüggvényeket, amelyek a hálózati adatok
+betőltését, a tanulási görbék muntését ós a hálózati paraméterek visuallzávióját
+3.5.2. A Bparse háló tanulási folyamata és beállításai
+2. parsec Fvolutiumary [Training (SIZTI füölyámátában 4 / neurális hálúlkát keddet
+beg egy véletlenyzérűém ritkított struktúrával inelul, / si mindem öpoch végén ÚLJOTA
+konfigurálja 4 kapcsolatult, 4z tvvolúciós algoritmus élve ali JÁN.
+A BET Algúritumik hároui 1 fázishál állt
+1. BPATse Tnicializálási: Az intviallkásiós fázisban. 4 MÁ Lét válétlensáemétn MANN
+! rIEKkitjuk Hl) TAKE TA TVÁN A spArCaity level RÁGTA, ALMNTÍN Meghatározta, hogy KALYÁT FÍÁM KÁKYATANTN
+EKE 5 ! ! : MÁlózuyti küpvsolutók hány MATBAN 41 AE legyuün Aktív. MELNK ! NAT M MANN
+ll VO LATI kN VA AT AA KA LL A AA AAA ANN MM ! ! ! s "
+VAN ! ! ől MI MAAA MAMA A VA MAKYA MAAA 14. A KK MEKKAI ANT ANANANAN UT ! ! ! I TT
+
+----- PXL_20260907_101939292.jpg -----
+- — 4 —oTeljes oldal :
+d, Fejlesztői dokumentáció
+2. Áróniny (Forward ós Hack ward Pasgj): Mirirele n batch-heg a nálózat elére
+halad a foru art DASS PETTSÉED; Pl, kiszámítva a Kkitrierii: teket. F ZEHLÉETT 7F EFTEE BTÉF
+DAEFATIGN algoritnmus zi BÍtSÉLÉK el csak Az akt KAPI solatokra SZATTÍLI diak 2.
+4 prudens ertekek, 4 4 sülvok 4 learninp rate alapján His HlTtek
+). Kapcsolatok újrakonfigurálása (Prune és Heprovwj: Minden epsch
+(Regyov , hogy fenntartsuk az eredeti sparsity level-t.
+Fz a folyamat lehetővé teszi a hálózat SZÁHIÁTA, Ogy Evolúciós éden termmrljon,
+Az evolúciós alsoritnus az alábbiak lépéseket követk
+1. Iteráció a fétegeken: i fi ELYÉNY végíipíterál a nálózat minden rétegén, kezd
+vet rké kán FÉJLt FL TEti ÉtŐL 1 — FF. AZ ÉGI TEJtett réti Big [SPHLII jAvers - 1.
+ld, 1. aleorikmuüs 2? sorszámú sor.
+2. Súlymátrixok átalakítása COO formátumra: A súlymátrixokat [self w Ha
+£5 a parciális dertívált súlvimnátrixnkat [self pdwiil) (A 21) formátumra könvertál
+: juk. A ( OG) formátum hatékony a ritka matrixmitveletekhez. Id. 7. algoritmus
+A SUTSZÁNÚ sót.
+3. Súlyértékek rendezése: A sülvértékeket (self [d] data) rendezzük. Ez segyt
+azonosítani a nullához legközelebb eső súlyokat, amelyeket el kell távolítani.
+ld. 1. Algorítnumnis 5 sorszámú sor.
+1. 0-hoz közeli kapcsolatok eltávolítása: A függyény azonosítja és eltávo-
+Htja a 0-húz legközelebb eső súlyokat. Ez a lépés kulcsfontosságú a hálózat
+ntkaiságának fenntartásához. ld. 1. algoritmus 10 SÜTSZÁNÚ SÖT.
+E E
+", Karciális derivált súlyok frissítése: A ParcIAlS derivált súlyokat
+(self. pdwlil) frissitjük az eltívolított súlyok alapján. Id. 1. alsoritmus 12 sor
+alék LOL AAESÉTT ajt
+! 1, Új véletlenszerű súlyok hozzáadása; Miután eltávolítottuk a legkevésbé
+AA KANYART kúlYOkut, új véletleütszerű súlyokat adunk a náldzathozs a kívánt ritkasági
+AN szint funntartása érdekében, Ek a lépés hiztosítja, hogy a hálózat továbbra is
+A A ÁG AAA I lé Úlaléi KU; fi HIÉNA ) : 1 IE itél tet HEÉNS; 1 . jellel I AKEE Le ESlő] [ő ts MIEN Miflálélte ELT! JEE JEE ENAETE fellelt
+I tanulni és alkalmazkodni tudjon a tréning során, 14. 1. algorítmus 1440r
+
+----- PXL_20260907_101940931.MP.jpg -----
+e. . 2. : 2. 2 as a 5 Ő 1 : : ! zi 5] . : i E ; í t i : , : és ; VÉLEK ) : : : , ; ő ETVE ozsb- Ada sszstÁzósekérösysz :
+- — d — Teljes oldal $
+7. Frissított súlk Mmályix útált k ÍVÁSA KT] fornáÁtu MŰITÁ s A felősíti tt Súlvyrnát
+tumra könyvertüljuk. [d 1. alkörítitiüs 49 úr.
+Wább található 4 SET úlgdrítmiüs IA, 10 súly evülúriós alyotítműs iniplementá
+
+----- PXL_20260907_101945602.jpg -----
+DG As ÉN AA AKÓ (ELFÉR RV ni AZ (15 ÉL gt 94 A
+2 lég, ÁZ FE GYÉB KÁZMÉR Zé VA NE 7749 KATA Zár ÁRÉN Ő ;
+kg A -. s —- Teljes oldal ?
+4. Fialesztől dokument ártó
+L. algoritmus toe hts kyíllutjön
+1: function WEIGHTS  RYVÖLUTTÉN
+! for minden röteg 24 1-4tőln fayens 22 210 do
+3 Súlymátrix w9/11 átalakítása CÚÓ formátumra
+Parciális derivált súlymátrix plw[] átalakítása CC) formátumra
+; Sűúlyvértékek rondezése vals mm
+Ő: first 2Zerő pos 4€- első núulld púzítzójának megtalálása vals m-ben
+7 last Zero Dos 4- utolsó nulla pozíciójának megtalálása vals 10-ben
+S largest negative 4— vals tlll — zeta) x first zerő posi
+s. smallest positiuwe €- vals wfmintlemetalvals w) — I. i
+11: Súlyok eltávolítása, amelyek a legközelebb vannak a nullához
+13 a [largest negatíve, smallest posítível tartományon kívül
+14. Parciális derivált súlyok frissítése
+15: new 4 Tót-stackírowms wW new, cols 4 new)
+18. old pd ro t—statkírows pd cols pdj)
+É 1. nem pd rec flag €- array interüetlold pd re nem w rel
+18. vals pd nem.romwms pd nem, cols pd new
+19: parciális derivált süléök szűrése new pd re flag használatával
+31 pdwlil — convert tú Gsrívals pd nem rows pd new, cols pd newil
+"1. [7j véletlenszerű kapcsolálok hozzándása
+22. keep con t— sizelröws 1 new)
+23. len rand t— lenethívals w) — keep con
+21. limit t— 5 /dunslz — 11
+5. rand vals €— random uniform —l2mit, mit, len rand)
+2f7 while len rand2() do
+7 ik, jk 4 véletlenszerű sor. és oszlopindexek senerálása
+292 unig  fiaág t- tot arráv interséltírand 4 46.
+3Ű: stackítotis 40 nem, cols w nem)
+31. ik nem és jk ném húzzáádása rows 149 new és c0ls 4 nemhez
+32: len rand é- lenethívals 14) — sizelrows 14 nem)
+446 end while
+62 rand vals hozzáadása vals 1 new hoz
+35: Frissített súlymátrix átalakítása CSH formátumra
+Mi: will €77 Cünyert tú. Vsr(vals w new, rows 4. new, c0ls 4. nem)
+35: end function
+Í IMI E MIR Ali mű ut d íf (4 1 E ia HELY A Fi ale MELL KAJA FI Ti t " ég] 1 ké MAs di il se] WANNA jr? ! Í
+3.6. Továbbfejlesztési lehetőségek és jövőbeli munka  —/ /.
+s A pevaram tövábbákjltsatésékes és antinallsálásához több lehetősé is adut
+A orrom eovÁbhÉGylesztésélez és optinsllsálásához többi lehetőség 15 medol:
+NN MAAA ANANAÁN MA E A EE ELERT E ELLE LL
+
+----- PXL_20260907_101947341.jpg -----
+je Et IVO ÉR si EV et sk: köl sk ALT Ő ÉRA 7 35 ÁR E s e A SAE AL ;
+B e A
+e -— — 4 — Teljes oldal :
+4, Fellbsznől dokumentáció
+ő [ovábbi vizualis ÁciGiű lehíetűősékek? (OTstúri íj eruhikonik heépítése, kinélvelk
+köll implementálni, nmilyek a hálózati kipcsolátok változásait követik
+Py Iorch UTJA támogatásával párhuzamos számításokra optimalizált változat
+készítése, Khhosz jelenti S módosításokra lesz szükség a skill sleoritrmis HTTIplé
+1 IeNntávl jal BERÉL, il mily vk hát [ ! ! E " kernel fügygyéngyek F9fjA, OZ FŐS, ri REZET vál! Éri AL ;
+mixok átvitelét a G.Pl/-ra foglálják magukban.
+s. További adattipusok és modellek támogatása: A program hővítése kü
+lönhöző neurális hálózatok ! 1. ( onvalútional Xeural Network-! számára is,
+AHIÓA ek szintén nrofitálhatnak 4 SDATSÓ Erénine fels amathól. FAhez új Osztás
+lvokat és modulokat kell létrehozni. amelyek támogatják a különböző neurális
+nálózati architoktürákat és az ezekhez szükséges adatfeldolgozási lépéseket.
+Például a ( 4 X-ek esetében szükség lesz a könyolúciós rétegek és pooclnye réte-
+gek inplementálására. valamint a megfelelő adar előfeldolgozási lépésekre (pl.
+képek normalizálása, augmentációjal.
+s Hendelkezésre álló adathalmazok hővítése: A program hővítése új adat-
+nalmazokkal, amelyek lehetővé teszik a hálózatok különböző feladatokra tér-
+TÉFLÉI tanítását. Fpslel áni F-] VINEST, CIÉAR 1ÜL ( IR A Ű. 108, Imaágevet adathal
+tazokkal váló buv ÍtPS, úimelvek dd JE [4 tanulásban KVARTAT Násznúlt ndathal-
+mazók. Ennek tuungyalósításáhóz műdosítani köll áz nálúzat-inkdalísálási falva.
+matot. amely a bemeneti réteg méretét és a kimeneti réteg számát a megfelelő
+adathalmazokhoz 14 rítju.
+47 Itt bemutatott továllbftjlésetési lehetőségek növelhetik 4 program hatókony:
+ságát és szélesebb körben történő alkalma 4ÁSÁT, amely AozZájárulhát 4 spaárcse tanulás
+pav ki jr liti Hdt Za osítását.
+
+----- PXL_20260907_101949142.jpg -----
+- 4 —oTeljes oldal .
+1. fejezei
+. fejezet
+47: . . PP [I
+lesztelési jegyzőkönyv
+z I 7 at ajjst ! : lesi Hl klete ! j- , Her
+4.1. Funkcionalitási tesztek
+F.2 A TÉsz a rendszer fünkeionális tesztelését mutatja he, biztosítva, hogy minden
+funkció az elvárt módon működjön. Tirtalmaz általános teszteseteket és forgatóköny
+veket, amelyek a mindennapi használatot szimulálják, valamint szélsőséges eseteket
+És Hibiakezelési teszteket, amelyek megvizsgálják a rendszer korlátait és hibakezelési
+4.1.1. Altalános esetek és használati forgatókönyvek
+Ebben a szakaszban azokat az általános eseteket és használati forgatókönyveket
+mutatjuk be, amelyek a rendszer mindennapi használatát szimulálják. A tesztek
+rélja annak hiztosítása, hugy a nendszer minden funkciója megfelelően indködjáén
+a tipikus felhasználói interakciók során. Az alábbiakban néhány példa található az
+általános tesztesetekre:
+s Trénimpe paraméterek váalkdálása
+s Aduthbetültés és urtlatvizúdáalízáciú
+e Xödell tréning és kifetélelés
+— fréning paraméterek valídálása teszteli a felhasználó által megadott tréning
+paraméterek helyességét és ÉrvVÉényességét, Az elvárt eredmény az, hogy 4 TESZEL
+helyes paraméterek esetén sikeresen elindítja a tréninget, és hihás paraméterek vaGtén —
+
+----- PXL_20260907_101950573.jpg -----
+rétek 7! e A] - 42 vi ei A 8
+- — 4 —oTeljes oldal ;
+: TA AT AT ale; FOGYTAK
+hihanvseni tot 19lőhit mesg. Az 4 láltiti LÁT att HÉN páldát MIditát  ú LrÉnini DATATHÉTETEK
+fövAncI Ass KYNJE elet HE i
+beste ás8 s...i—
+aka éve Tony o letoziászasatéégtéi ri
+lt fogj tt 43
+he fátucéssst, és
+[2 asdakeeyítjttéstzéeást 1
+ÁR Fátelestt zeatemeePc? köpés. BET
+lóját ; ( semmis fin E.
+d honan öles
+tl. ábra. A program grafikus felhasználói fedülete a trénine paraméterek
+heállításásval
+Az adathetőltés és adatvizgalizáció teszteli a rendszer képességét az adatok he
+LÖltésÉére És megjelenítésére. Az cívárt eredmény az, hogy a rendszer sikeresen hetőlti
+Az adatokat és megjeleníti azokat a grafikus felhasználói felületen. Az alábbi ábra
+egy példát mutat az adathbotültésre és adítvizvuáallzációra:
+s Um B A AM A AB A NN NUN NI
+
+----- PXL_20260907_101951856.jpg -----
+jL SZA ETO ZENÉLNEK ZANA LATE JEL APRAL A hg? 194 Áe 902 VÁG AK B HG FŐ a c
+lo EL Et MELE ka:
+LT PSZtPÍÉSI PEgYVIZŐ KGY
+MÁL feellonyo ed Félt
+entert taste
+nt enséb Fenát eg áj rszéset várat
+vik : MEGEL GATE Toy itten aiuolhijtíser hfiebrser fi nem fess Eg i
+I llállaláekilájés GYÉR (Bara ls her édoy été ELÉ
+A
+Í ! 1! MI il ! MI Ul. MÁ fegtloitagy él pyésetétek É
+! ! ! all ! ! 1 1 Mi ,  eybeltsyel Pliejepzség futo: cette: FEET
+LL LASYAAAAKAAÁN a ad! sás aj
+B os] Essen
+: CR] y É t FF 1 1 TE. Jaa ii Ti ÉLI 7 ty heki  féét E Hat] ; § A HE: E 4 Pig ást Hi hi 9. ! Í Hi ki 1 EPE ARCA A EDE B Fe ks 14 Fi "9 J : pa: : 1 2!
+3.2. ADTA. A program gralhkus felhisználói felülete az adatok viznalizáció jával
+4 irödlel] tréninue és kiértékelés teszteli a TEndÍISzer képességét a maordell tréninetére
+va É-i § 2" Áj
+Task tettei a ő? 17 Feetgtó EHE 9 KHT FAT ÉVÉT o Fi lg salt poli? érő) Est Hejj EEtBA Hay s üg feltét a Az 42
+tremninejet dl HETE EEEN LE parantoterekkel És kiértékeli annak LÖlTESÍTIIÉNny GE.
+Moajáar sFytői FEPEEI Ealénéssstésáreti KEGEGEK
+] ! félléiléi i FEutyetkétissét Algyfeát
+fegtte tő, Mg! ;
+TESTES] Ezra, Estét fesdsti jeg él ik fe kt. 2 : :
+EE] jeltlféttsi lo Al] : Kar rusgEa;
+jul ÁK, "
+fk! ii i ;
+Hl tát !! Fil ho Tijejéblj Feet :
+) All [o Mseljam loretélt keszit
+4 átt ils] Jöedütttgy, [94 fen FEB ÉS
+14 ali 1
+he fiak en 12 jogsz; i
+ál
+" di 1 ! frélyjízdággra BE RLETETTEK fotó Í sgBT
+! TEVET, !
+HHTEN ! "4 I ! ! ;
+AETÁTETEI 1 A Fo auvooan í
+if ! kll
+JAJ N l Latagyoratgegi Plezden; !
+Í B ll! k !
+! félléllél Heti ill ! ! kelhetett YTE3 Í
+ul A ] l
+(Ál ij! VEYA
+JAJŐYETENJÉ 4 pl KÉK itóka ijááldtáó ag iögködáijáklás
+Í Í NEL" HI ül 3 ? 118 áló ! A PIE fi eiH IF u félt "1 5 fid HT k ] TEL " TVE s495 V l j. vejét E] 1 11 1 j Í je j i
+JEE 4.4, APA, A protián arahlkus felhasználót felülötő a műdell tr A JÓV E NAAA AAN
+"1 " Pi 2. ?
+1 1 423 . p PP a s Ahoz. TV - 45 AZ wáT. ÁM ; 1 ,, v. !"
+
+----- PXL_20260907_101953312.jpg -----
+(LL KZENÉRÉR LEARN AS VAY ÁRMÉKÉPZÉSBÁTÁTIR FÉL ZAPZT BEF VK AZ AL ÉTV EN SÍK ALÁR i ;
+- — 4 —Teljes oldal :
+1.1. 2. Szélsőséges és hibakezelési hesztek
+mbákat, és megfelelő visszajelzést adjon a felhusználóknak. Az alábbiakban néhány
+e Hiánvzó paraméterek közrplés
+e Helytelen bemenetek validálása
+s. 4 izualizációs nibák és kivételek kezelése
+1 kiányzó paramóéterek kezelése teszteli a rendszer képességét a Hiányzó paramé
+terek kezelésére és hihakezelősére. Az elvárt PTOLÍRLÉRLY AZ, HGRY a TEndsSzer megjelenít
+egy Hiballzenetet a hiányzó paraméterekről és nem en Erdj a felhasználót a tréning
+indítására. Az alábbi ábra egy példát inutat a hiányzó paraméterek kezelésére:
+Tazlsyerámrmezmiény ígpyerjel ze "FREET
+Asgzezeátllsenni ! Tepirg sszázer EHET
+pek fgpsrmte útrert ER
+eg Fi, En restepenpi: Hip
+Fepezeg égy [-:
+tt ! Feghjem Fupgyus pam hose BT
+ki EHE it] !
+zt ! fllggytneió; Hár reg AB
+] át] Den:
+] [BR ety ye ELER :
+! njapugrss is
+]  — tíáánbetíserer TAjRál
+HA kés föjeztsas
+elitek: fEféji
+7.4. ÁCA,. A program gyaliküs felhasználói felülete hiányzó paraméterekkel
+A helytelen bemenetek valldálása teszteli a rendkser képességét a helytelen beme-
+d netek kezelésére és hihaktzelésére, Az elvárt eredmény az, hogy a rendszer megjelenít
+
+----- PXL_20260907_101954717.jpg -----
+: ELER K ÉS ts AAA RB KV 23 EAK ELI VAY A? ha ÉGZŐ 5 EL ls MEL TÉRŐE KÉL la AK,
+- — 4 —oTeljes oldal :
+VANATAN MTE ÉNY vel Í fi Jel héhali KKEITAREL
+vgy Mlbátlzelhetet ún hkölvteléen ! Aa enetekrűl és ris eNzZedi na felhüsználi te A TYTÉNUID
+: Pa AN 4 t " 1 Ete 1 4 1 i j 1 i 13]E 7 " 1 E
+n HMTÁASÁATAÁ " alál Éj 4131 IK. öl led ákat HALE 24 e il Hé] ? félé VYETERTEÉTTEE ÉSE vVAJLTÁTÁSÁTA
+Meat HE
+feetula, venga hi Pégaápnásoj fispeat
+Bédag TÁ tírenszezstő ÉúZ
+coleggztnsetl Ezt: ő:
+DCC B tgerez Tssseyan
+! : eshet ejtene ejtés
+E Éz Ir z3- jiöbetgy ék
+LL
+H ja Fr5ES: t EH 1 i FELS E bls 18 1 HEAT 199932 főnyi 3 élés) szikáneátat Fe Dehat docAuthor Áe Fr] i a . FI z
+2.3. ábra. A program gralikus felhasználói felülete belvtelen bemenettel
+Diejezi Fa; (O Kgesirásd Tekla;
+tejet tg] EE L il Tupadrosrt tásra
+, elajtötást gjentjatt ; CC kukoszt baze — Ráketőő 2
+dájasó Alájtyián szánták dály HÉgzzEPTSEFRETTETETE :
+dddtejsyéeő: ÁdtALEHEJGt ) i Tuszépay Huspgiasc BÉKET
+i Hi ggsílásynés filosszísény kazit FR i
+dea Th, ktsprzrey E FIR
+! Hi MAT úl id41é1 ! eiáfléoj Nikjfagrüt. fojtd hgy?" PELN3
+/ jál fenti Éren Ez:
+[ TiougHoi Faj 9 :
+!
+finns Hg; éj) í.Ák
+ihéggágyteki Kejsseyn JENYTEVIK:
+éli 18 eltemet CALÍKEL
+o ANN]
+!
+:
+ALAN VÁLA
+KENAG "E 6. Ara, A progra érahikus felhasználói felülete túl nagy homenertel
+ffethelie Te EN EE sét stét Veld Eét sg elyet jell fél tét! 141 FAJÉTETTÉTETEI fElkötl Vég Hi KÁ! j e ALANT HAI Pá ki ki Kék felől Kg ül! 1) FAK ii S ,] a IA 4 3 1 4 [ZEF A Hy EKE E] 1 Hltári itél] I! ! teleétet [ők !
+AA WVákun látók Bihálk és kivételek kezelése teszteli a rendszer képességét a vid 04
+t : : , F ska áll As 2204 , t. " N í: ! ; ; / )" MÉvág s , .
+
+----- PXL_20260907_101956034.jpg -----
+2. 7), PR a Ár? A i Kt 2 [5 4 ! m kez, AK ÍV], ), mi SZÓL s z : :
+i Vesd A [ST VAR MSAT ABBA 72 AP ÁPE [2
+- — 4 — Teljes oldal :
+kh FH. - - 1
+MHERTER "it ogy hibáaisi netvl 4 vIáWU4 [kás V195 hibákról £11 kivőtöli kről, Ét FIÉEZTI dt [A 1
+felhasználó számára 5 hibák kezelésék, A alábbi álhrál példákat mutatnak 4 vizns
+tte va falon rect
+eng om te]
+nass látna DC Pessteg says] meny i
+üprtee főggrtyíaenre EZ
+[OC zta fs tesen úg
+Él EAN duh ákres st i
+bol gejtcalol Pite mi
+2.1. ADTA. A program erankus felhasználói felülete hiányzó metrikák fájl esetén
+
+----- PXL_20260907_101957724.jpg -----
+- — 4. —o Teljes oldal :
+ÁÁÁ A S PAN a beli fg ZOKÖNYi
+nert, mi RL át sot Répmapasé d tijetáp
+YVES beestítéssst —— bebztyT i
+3 mönsztégy Övasm Fezt ín tsses Ú yvégtstsst o]
+háesteset Eren hető 12 i
+[Zala Pl terénszéront ád
+Fegyítessgil jeéflsst §
+i ! Al ! b sabástlatésst pasi ÉGŐ
+2.5. ábra. A program eralikus felhasználói felülete hiányzó bemeneti réteg adatok
+1.2. Ilibakezelési tesztek
+F.aben a szakászhan azokat a hihakezelési teszteket mutatjuk he, amelyek a rend-
+szer aihakezelési képességeit vizsgálják. A tesztek célja annak hiztosítása hogy a
+rendszer helyesen kezelje a nem várt helyzeteket és hil lakat, és megfelelő visszajel
+ZÉst adjon a felhasználóknak.
+s Hibás paraméterek kezelése: Hilnüűzenet jelenik meg, hu
+1. £úl 50k tanítási / tesztelési példászáur van megádhvit, [245 BÚ GIGI. 1, DÉHII
+4: Túl kevés tanítási tesztelési példaszám van. mégadva. (min. 100/1000 !
+d. 74 tanításii tesztelési pálduszám nem porcitiv PALÉHÍ HÁTI,
+1
+1, "NitRatív ritkiítási sxint van megadva.
+194 44. Z0ü paraméter nem [1 és 1 közötti érték.
+UA FEJÉEHEL déúromók száma nem pozitív LLÉThi KÁLI, ök A ALANT
+elte 118; TEL et ál eltöltlfettéll fElfej Eltelt kál stl tetel ál ETEK elkel él he e LÉT ETETETT ETETETT 81] KITELTENTETI Í j kil JETETET Fil te TET Eltelt tél EE TELET Eéét Elet d kéj féltél!
+
+----- PXL_20260907_101959734.jpg -----
+ú ME E, bá : gk A
+- — 4 —oTeljes oldal s
+4, A dropout rátt nel 054 L KÖZÖL éktőle.
+IL. A tanulási rút ném pocitív értél
+Il. A momentum nem (és 1 közütti értők.
+12. A weight docAuthor posíth PTTÉK.
+e Hibás adatbetöltés kezelése; [ibunúzenet jelenik meg, ha i
+1. A betöltött adathalmaz nem található.
+e Hibás vizualizáció kezelése: Hibaüzenet jelenik meg, ha
+1. A kiválasztott vizuslizációhoz szükséges fájl nem található.
+Teszt eset ! Elvárt kimenet : Kapott eredmény
+CC rermeler mezőhen egész szam Ae- —— [doúAuthoR  [Hfihaüzenet
+" Hibaüzenet Hihaüzenet !
+: pezsESTSETTÉSTETTSTEZTETETESTETETTETESTETETTETESTSTETTÍTSTESTTTESTETÉÍTÉTETTSTESTÉTETT AES TTI tTETTB EIT TEITELFTELJSITVET TES féLFELYTTSTTLÍTET 1 e s s ae e s s s —]
+[ Negatív érték megadása a trndtdsi AL i
+Hihaizenet Hihaüszenet Í
+! példák szűrrrérik
+elokelo koll o yól ooálslelőjól o yöly oló hole eláelátááj BAKÁJÁKY ERKEL EB E Á AE  GHKÁEENI FLANAGAN NAA ! "
+I Negatív Érték megddásű 0 Keatéy [/ ! AN
+ HMihankenet Hiháüzenet :
+L Ész pÉldEk szdrrutrniak
+MAYA NNNNA] nikáll [ls E b zooo észre loero po eze pápa eg éz lee epen oszze szészznz zs: :
+1. Megatás Érték megdeláésű a idült JAN JAN!
+! [IDA G yen et Hibaüzenet
+ÉN UH szümének !
+MG AAN UV Mihaüzenet ! Hibaüzenet
+E A AA NAN [/ DAartr éle Aa méga rk a [ ÖN
+JÓ HÁN í H É í ! El i I ! Í E ! éj Elégtételt elterelte ET Elf GERE léklete feje tél Egérl s valyésl éyért vesd két énő téryündlél lelne elél éljelél élte BIBI ESTÉT ÍBI BIE SGI LIRI EI 1ÉL TE ED TÁN DTE TATE HI FTEZA ANGI EVA TET JEMATATELES YE TB HET ETETOTES FA TGTETEÍEZ OT ES ERSZ ÍRÁST
+
+----- PXL_20260907_102001065.jpg -----
+- — 4 — Teljes oldal :
+lssnáleltebst lt 1 WAR telhsl fégtA S ÁKT AL VERY A
+Teszt eset Kilvárt kimenet Kapott eredmény !
+i! Foi it HA vii ÁBA: MG NSZK ÁT ÁÁÁ 1 ki ! !
+Hot 1 POCÁAUTH SZÁLÁT TETT ! !
+A ÉVI JArÉS ALÉLT (44 ezés "ftdáÁA, Alélgej FE LÁL A EE SÍK 1 ARÉNA, ! !
+, HMibaüzeniet Hihi üzenet
+1 kk . 172 ÉT 171 MÁT ÉK Ki ITATTA ! !
+[A AZÍTÁ mérrlnöek !
+: , Hibaüzenet Hibaüzenet
+BORT TÚLV TIE EN !
+A s Hiba uzenet : Hibauzenet
+: E s E s ze EtestS St HE HETES EHE E ARE Szt te Fst ES tt sstS B SH EI ERTE! jolásksgkézköskdszásbáskáajtadástásláztosakskásksztzbéksészzkststststszsésíséskéásíslásó - FE zszslz sss STEZ SZT EÉ SE het sd ési Li 4. 118 : : !
+i I hanzenet  [Hihaüzenet
+6 OTŐsű !
+Helyes paraméterekkel indított $u. ! A tanulás sikeresen ) A tanulás sikeresen
+5 NEEHLCES olin:dul elindul
+) A szükséges fd! lélfezük u kivvileks e. ! Megjelenik a  kívi [Megjelenik a kívá !
+! R ! ! i " TEL AE i : ) kéllétlét, HAJA TEL
+1 LOV. HZYONÉZÓLr ÖN 28 lna tott viztialtááditó isztutt vizuallsásió
+1.1, tahlásat, Fhakezelési tesztek envlmmónyei
+"14 hiláakezelési tesztek ered Ényel alapján a Tendkszer sikeresen kezeli a hibás kost
+raméetereket, adatbetőltéseket és vizualizációkat. Nem találtunk : lyan Mihákat, ame
+Lyuk a rendszer működését bhidulyásolnák 1 ügy problémákat ukúzadnyak a felhísználók
+SEZVELMKL ÁKK !
+
+----- PXL_20260907_102003650.jpg -----
+- 4. —ofeljes oldal :
+at E ik
+0. lejezet
+ak
+ka]
+zik
+: an. am. 1 . ;
+Osszegzés
+Fo ; 8 E jük d EE Ta a LARA E ma
+9.1. A Sparse Fvolutionary Training jelentősége
+zatok tanítására, amely jelentősen csökkenti a számítási költségeket és a memó-
+riaipényt. A SET lényege, hogy a hálózat súlyait ritkítja. Igy csak a legföntosabb
+? x ; eri A Fi x [ gyik :
+kapcsolatok maradnak meg, ami gyersübbh és Nnatékonyvabb tanulást tesz lehetővé.
+Ez kültmösen fontos nAsy MÉretű adatháalíuázok és koraplex modellek esetén. ahol a
+hagyományos módszerek túl lassúak vigyy erődorrás igényesek lennének. A SET alkal
+mazása tévén a neutrális hálózatok szélesebb körben és hatékonyabban használhatók
+különböző területeken, mint például a képfelismérés, a temmnöszetés nyelv foldolsozás
+vagy az autonóm rendszerek.
+9.2. A dolgozat eredményei és jövőbeli kilátások
+A dolgozat során bémnutáttúuk a bparse Evolutionary Training (SÉT! módszerét
+és annak alkalmázásat különböző méretű neurális hálózati mudollekhen és adathal
+inazokkal. Az eredmények nizt IMULATJÁK. hogy a 5KT jelentősen vsökkenti a számítási
+Kköltségelet és A nmenmóriaigényt, miközben megtartja vagy akír javítja a modellek
+teljesítményét, A jövőbeli kutatások során érdemes lenge tövább vizsgálni a 4ET
+aAJKALMAZÁSÁL (án tíVüsú neurális hálózatokban, mint például 4 cenerütív modellek
+VAY 4 MEGGTŐSÍtÉses tanulás, kméellett fontos lenne kidülgózni olyan üuptuualládci.
+ús technikákat, amelyek még hatékonyabbá teszik a SET et, valamint megvizsgálni
+5 annak hatását különböző adatfeldolgozási felüdatokban, Összességében a skT egy
+a s s s : E s BEI Ál ! , A él Ki Fal : ; : ho LL át s o A
+
+----- PXL_20260907_102005632.MP.jpg -----
+"n ; ; ERTE TTRNTVTAODET TET DM; lése éter 22 í ! :
+I át
+-. — 4 — Teljes oldal .
+9 ! sk il E kli ehbözbii ás bi ddoádssbes e st GYÉSEE ESSZÉ fé) föllásds i
+; ; telik KN EE MA, 4 "111 ÉRTS 2 ÁAPÁLYÁKIA 1 VÉLI
+igéretes módszer, amely jolehtől ulo ést hözhüt 4 neurális hál
+köt : / fél [ 3
+; ivén még szélesebb körben válhat
+
+ban és alkálmazásálu 14 És EOVÁNN Kutatások révén még
+hasa MÖSSA,
+
+----- PXL_20260907_102007074.jpg -----
+ammmmmmmmmmmmmmmoe TTPK VÁZAT EZÉ ZTE TV 5, c : -
+-. 4 — Teljes oldal $
+Irodalomjegyzék
+Lé halsd WLY b
+I] anno Lel ún, Yosana Benzio és Cieolírev Hinton. ..Deep learning . nafure
+2] Jan Goodfellnw, Voshus lárngli és Aaron (öurville. Deep Learrüny. Acressed:
+AlZtHI4-13. MIIT Fress. 2015.
+13] Decebal Constantin Mocanu és tsai. .dalálló Training of Ártificial Neurai
+Aetwöorks with Ádaptíve Spar: £onnectívity inspired bv Network Science.
+éa ture Coamanntenttons (2018). AM icsssed: A IP4-14-23. fr I. 10. 1Ű038/ s41467-
+Ú15-9É31E-3.
+i ri "- [1 2 . : -. He Mi 1. . "1 miii F
+ii] Shiwei Liu és tsai. . Sparse ovalutronárv Leep Léeámins with over öne mil.
+Hon artificial neurons ún commodity handware, erXívl901 ú9757 (2019.
+ÁALfGssérl 2AI2Z4-ÚTIT
+[5] litkü Fil és tini. ige tí. hottenyi Afakunyg A Tickuts Minners Acressed
+Zé 742. 2UZI. arXivi 1911. 11134 Écs.LG1. URL: httDs:2/arxiv. org;
+aba/1911.11134.
+[5] Trevor Cale, Erich Klsen és Sari Hooker. fe St af Sur 94 Déen Neue
+https ://arxiv.org/abs/1902. 09574.
+ÍT] . tékbaatstnap. . Aetevseédi 2024 05.18. élét, URES httpa : / / ttkbootstrap .
+teRdthedőca . 107607 Latést/,
+átl LON TAT) PL93.) AKNA)! ALNoesserel e AA ÁL 4L4, 1 £9611 EK. 401" OD /10. 11059.
+I [9] Pauli Virtsnen 64. t5ni. ty 1.0: Fundamental A lgoríthois for mUTentilit d
+A  K/woutnK id Python Natunc Methods 17 (FU), Arcssand AURA 46] .
+TATA, OL D0rs 0, 1086/6441 690. 019, 06898-2. . ! — A
+
+----- PXL_20260907_102008977.MP.jpg -----
+- 4 — Teljes oldal .
+[10] seljma Curci. Tetoriul S LOS Sumner Sehnan 2202. ela hite 19) egy KAÉMTTTAÁTNE,
+https : / / gíthub , com/ SelimaG/Tutorial- SCADS. summer - School 2020.
+scalilabie-Deep-Learning. Accessed: 202404. 25, 2190.
+A ALK NN MANÁN MANN A A AA E AM LYA ÁT A ANN UN AN
+s
+
+----- PXL_20260907_102017779.MP.jpg -----
+— 4 — Teljesoldal ;
+k . . ! !
+i W
+2.1. Prthon telepítése [Vince kIAtbA ll ; ,. B
+2.2. A szükséges könyvtáruk siket telepítése . . . . ! 4 ls. s s s s...
+24. Python csomagkezelő telepítése Linux alatt. . . , , , . . . . . . . . . 8
+2.3. A program eralikus felhesználói felülete (GLI] , . . . , . . ., . e. 1
+26. A prosram sralkus felhasználói felülete az adathalmaz kiválasztása
+2.7. A program erahikus felnásználói felülete a tréning végeztével . .... [ÍI2
+28, 3 hemneneti réteg kapcsolatainak változása az epoch-ok során . . . . . [4j
+29 A tanylási 2nkhbe A Grénle Ar s s s s s
+3 jŰ. Az erőforrások használata a Eréeniny BOTÁN . . . , , , . , . . . . . . . . i4
+3.1. Hálózat tréningje felhmsználói eset MARTA . . . , . . . . , . . . . . . 18
+42. Eredmények vizpalizárciója felhísználói eset diagram . . , , , . . . . . 2
+1.1. A program grafikus felhüsználói felülete a tréning paraméterek beál
+1.3. A program grafikus felhasználói felüléte a ul tréningjével , , . , . d
+4.4. A program grafikus felhasználói felülete hiányzó paraméterekkel . ., . Ji
+4 FATER! PACI EE TKI sra 11 UN felhásználól felülete MeÍN telet Meénenettel SZAÁA g E MEÁK 31. :
+4.5. A program erafikúüs felhasználói felülete űl nagy AAA 9 1 ju A TATA KA AAA fé
+4.7. A program sralikus felhasználói felülete hiányzó motnikák fájl esetén , 44
+ALÁ, 44. KONC AKEACEKENI BedCAL AT ami felhasználót felülete hiánya Menyenyti réteg d
+TANÁR 9641) MAN VAN HA ALAIN KAY AN A AN AA RÉ KA LENA a Ok LA MIA NSKA AL NALTSAA
+I A
+

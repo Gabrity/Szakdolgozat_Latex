@@ -1,0 +1,1441 @@
+----- PXL_20260907_104212001.jpg -----
+DE PA Eötvös Loránd Fudományegyetem :
+: ri y Informatikai Kar
+! b. e PD Informatikatudományi Intézet
+ko OSAN, !
+ik kb Információs Rendszerek Fanszék
+Felhőfelismerő Androidos alkalmazás
+Szerző: Témavezető:
+Melegh Dóra Marianna Dr. Gombos Gergő
+Programtervező informatikus 159 adjunktus. Fh.11.
+Budapest, 2024
+
+----- PXL_20260907_104213244.jpg -----
+es ! "
+ítt I m-
+1 B bTATöTOS
+E. sevezetées 1
+1 ] / 1 $ ] Hi 1 1 t. 3 t e.
+2 "elhők ,
+3. Felhasználói dokumentáció ;
+Í ! B 2
+3.1. Szoftver követelmenyek Ú.. A
+E: . só i ; fi 2. ;
+3.2. — A program felepiítési altal. ll ;
+2.1 H
+3.2.1. Tome oldal .......... A ) ;
+3.2. 2 Classifv oldal :
+BŐ 1 JÁR WJÁR S ván VÁ. 1. " Et ks x hi .k k 2.3 k kv KAKI RK A ÁE BEN B A; HA A HK B AIR BEM BÁSA EH: ir 3i i t.i í i j TE:
+k 4 .
+BŐ JÁRÓ E AL 1 Mvt louds idaig s áá HIPH] 174 j í 1 Fi
+1 L
+"
+3.2.A uiz oldal 2
+tes 1 Áe 1 m : Ka ik a Xi6 7 4. 4.X. 4.ík 47 kíí hd szd 8 Tá ákó ÁG elk kek ők ls s ÁR kk kH Rk AEK K RK K8 MMK ER ÉKF BF FM EKE KR F REMEK FF KR MERRE RK 14 ő E : ]
+.- 1 ÉS , Uinen Adtl0 FÉtÍFEEREEG elf EEEEEÉ ETTEESEÉ ET SEGFEÉT SEPSEÉNÉÉT ZEYEÉL FEEL EE dáeysát :EEHS9-49- 19492 ETTE AR EEE BR ERTSE EÉV Egy" ERT ERT 29 Eb-n ég ár ap él E ÉR át 190 9 Ay Cd 9 szt HL B ÉT as ELLAE ELSE at JÉ dtvéfoéleltoátesőtettetételfesfogőtsztsítteitorttelőséltelei Alp zrttb zés tsstzttágtzzeták 28) 22 2
+z . FE séks :: :9-só, : 2 FIGER EE PTEHEHESZEREEHÉEEEB [ESEESÉH EEESSEÉ E ESEEFEÉÉÉ HERE EHE TS EFE EEHÁP SSE SZ KEHÉRYEÉ HÉT ZENET 2H1É1 99229 Ef EFA s81 ef tá1E Sgt 11 29281 4t S-YHT S él 9 c4 df cslókl áró B-s Há E A1 kH at HE Hát He dodhotlsőteílefősélétnétsétséte tfh etzőftteritellríttstséttsétttöni B -zE 129 3
+-
+4.1.1 1 ÖOLÖVS 12
+L kó . LL FÉHEZEETE EHE EE ESSEÉ EE tÉ tést tt EHtsszád [Esz EE HÉTEÉP EAT SZEMET EP ERTE EPE ES té 499 499 49. EVE HEJ tg9 jo tát ÉP KEEP EE Ég Eózó 49 929 Er tá SES EE S HEGEL AES HE EL EEL EHE Kos E altodsa osőetsrősketholtetoít stee rítodgyílertejírészélettnéleétesztetésülttérítssüty tsön I 29 18
+4.1.2 MobilNetY 2 3
+. ön 26 ha 8] 1 : s 9 LES HÉ HEGYE EEFESEEE ÉSE HEG SEE TES SÉEHETYÉ HÉNTEÉ Elő vgge kf ty kÉ HSZ ÉL! Kdo49-1É129-EVEY-ÉL $$$ AP 141 AE 141 .9 S49 élt Bv ógY 49 Hfoág [osz ffotés HEAT ÉL Gá Há EPS TELEL EGE ELSE afta jol s ozlrtfetbsfe is selorszáfojéseíásífodisetázásaíízlgzétséíattelászítoszztáryítyákatsa adözssssl
+[Li . Fal si
+412 Android alkalmazas 149
+5. ör ső. ; É 3 HlHEzst tHEsttt ést HESEE EE EHE EE] atát fEtát EYES E -ADYéé1 Ep ÉTELT ÉÉT49ó kétösy 49 E99.49 Et kt e41 $2 989 kt 19 9 ad éjt ap éb 9 BE ag 4p tát MESE AS HE Ear tt tostta ost élzlefistbőtz sőt feztettzéászítadösztsselaássásetorsegténtiasénélaslsztértsn sekos: sovt
+1
+1 1 a kt 20
+1 ze ka TO ]jek KK AMA AK lk KTK Sk RE Lk o kíík dí bk ék kkj kó 1 Aj bb cdk bbc cl jöke 8 öb os To 08 RE 30ó élő sákjálk dö eles SÉTA SA AY kk dók lk dok jé sk lk ATÁT RE kk lk sét Pl 2.) 1
+4122 Model 71
+Por Ti akol 13 em PAFHTESRI EEEPAFHEREÍ ESETE EPS PERE TEETEPELYEEFLF EHE 4£Y EE 49-99? V9s4 [9989 49 KG 49 EE9.H FÉM JEE 389 49 9 49 91 AGE AES JEGES É E ós eio ett fozéha hatti hetér hetet lzts Hatésg ássa toztégfogésonf zfntt részt Ésdzthoéntészls ásta szzsz fsz FEőtöltésst Szet EYK ESZE HET HZÉTHE: hoo melt 1
+123 N ez 2
+A 9 E e : Á 1 MAs HE [EAK ESÉST AGAlfésyptlHEEStbÍ ését] [pé] foksstl VAE-Eg) 9fosg9 Eat ÉP [9 AG MET EÉGYHÉTYÁ 967 49 BAY AES EGB NY) ÁLY AP K KAPJA JEGE Jtők it eá footfagfseétyt otta hatégfészétn azé fészéta azt fara) fopsáng fogás fsz Fámsáta ast fszt éssz JÉÉÉ Ft TOSK HSSÉRTESZÍTZÉS Do ni
+5 — Tesztelé 7
+1 2 ít
+He) 3 eszte aA s kaka taskat data hada da ja hata jagagatatajábajtatatatakotásáaíágköbya zás ömka kra ását 4 ö
+5.1 Black horx lé 2.
+E] Pi , C 02 teszte ÉS HERE FETT HGY FEGPA MEA MEA EPE RÉPÉHÁPAETÓPALHÉPEE EEEN 494) 49 497 4rtgvége t974gó 19 897 49-Áget ADAT S HA 99 1.8 1LBRE 9ES8 FEE, JAA fh jfsni o elogt bots Hrtéga szét fagétt ety FioséryKésat tése reál rpesáyl hoza jEsző sk fgsssa ége Példát wyK 1
+52. — White Box tesztelés 12
+al ito Bor tesztelés [VAL de latetatatabanánáb ák ga tadlabatakaltak ak ya tag aranya tatat aka átan át atan adat [ét
+A : 1
+6. — Összefoglalás tük
+. ! a REVE ég ÚGATASANFESSL S] VAGYAIPA5g94] VÉG RA EAN JAA] ak9y]PőAl PEN AAA ÉS AGYA AAAÁRAFRA ÁE 4939 499 EZ AE 998 H9-é JÉGRE AT IE) st 1 Eotősjfszéyjlsct tbe ijés atta iksátyítéstf fél héég]esály Jég ydésa élt sál péény ogy fágéóz szó gééyy Todél9éétá gél HÍ it sók ; Ai -A 1
+Fi 7 , 1 B . , " í HP Ai 1 45
+7. — További fejlesztési lehetőségek [ve prea t999091 19 ota etsooet
+jo ma As LA , A HITT FE: FFJIK
+£öszönetnyilvániítás 40
+ki 1 i : , EVANS FAS ARA VAK TAN JÁN EÉH VEG TANAN NVÉSN FERO PARÉAÉRA VAA AAS 1998) 4999 69 49 bb A Jég 99 JEG JEd oő jea eték its ortt kelni hó vélt hrétlőgióyytbi etén vak oh ászt nél ee knd rel tos aéay Tél 188 .
+al
+"Pm [tk ART !
+7 6 . 1 . Ű , -) A AkÁPFÁNÁMNYMÁA KKA AK ÁMEN ÁK ÁTKÁT 1 FA ASYALÁAANA] feREtLAAAA HADA JAG JösAbkÁseT EE AAGAAPAMAS JÉ fas) 49 49989 19-9K JÓÓ 99 JC TE 199 fe jé rely téte hoty fal fdéta ket lény hoéét esd vééay fel Jé Jetőy [ését yőélyó gé 1] 1Éé LA
+! ! Fi !!
+. brajegyzél 48
+il ! 10. Abrajegyzék KAL e s ak alkllalalb alk latba kAls A b AlR A E A AKK AA 4454 4.91 4-4 4 din A 4 hat A ATA TT ET TA TE E A TÉTETETT ! [dés [/ Í
+Elet et FEL EE esel VET YásZA fel! IP Mitet] HEHH ÁLATI TE IE] 11 Í 1? i Í HE Í Hell 11 Í Í HILL HET EZYHTES] I Í Í [HETEN TT] JELENT EH EHETI 1 TEK Í Alt
+MAAA W JAG itel ét gt fe fett E [FE VE él [vat vel ért Vég [LENT JÁRJRENIT ÁAATÉSAI JÁRNI TAN ÉL ANT YÉNY jú HETE het élezi E esel HE EST fotel És Ve IEEE TÉRA HE étket VE Héé VÉ Fés [végy kél kel keélktéél fesd EA tiláttd Mil
+1 Mkt]
+E f 4
+sági dts j
+1 1 1 Fel UA Í
+1 "
+pocs d. — e.
+AA A
+- p.
+[4 ,
+
+----- PXL_20260907_104214404.jpg -----
+I. Bevezetes
+4 felhők mindig 15 lenyügöztek minket. és évszázadok óta különböző tulajdonságaikat
+Manapság azonban bár rendelkezésünkre állnak pontosabb eszközök még mindiv kihívást
+jelent az ésbőölt meghigyelése és 4 felhők tipusamak azonosítása
+egy felhő telismerő alkalmazást, amivel tanulni. játszáni és természetesen azonosítani lehet
+A Cloud-Gaze (az alkalmazás neve) celja. hogy segítsen a felhasználóknak megérteni és
+azonosítam a felhőket, valamint lehetőséget biztosítson arra, hogy játékos módon bövítsek
+tudásukat Egy kviz. ahol további pontokért felhőkkel kapcsolatos állításokról dönthetik el
+hogy igaz vagy hamis. A kviz többször kitölthető. igy egyre jobb eredmény érhető el
+Baratainkat is tudjunk motiválni hogy menjenek ki és csodálják meg a gyönyörű eget ha
+megosztjuk velük a pontjainkat amiket a felhő gyüjtőgetésből szereztünk. ezzel kialakítva
+egy kisebb közösséget a felhő kedvelők közölt.
+Az alkalmazás fejlesztése során a mesterséges intelligencia és a gépi tanulás technologiait
+használtam fel Ezek lehetővé teszik az alkalmazás számára hogy intelligensen ertelmezze az
+ésboltot és azonosítsa a felhőket.
+VAA ! ; / !
+-  , Pp. 7 A je tóákl
+
+----- PXL_20260907_104215547.jpg -----
+2. Felhok
+A felhő a levevőbe felszálló vizpáraból kialakult. a légkörben lebegő apró vizcseppek
+és/vagy jégkristályok halmaza. amelyből Csapadék, eső, vagy jégeső keletkezhet [1]
+A felhőket több szempont alapján 15 lehet osztálvozni Magasságuk szerint 4 tipus, alakja
+szennt 3 tUDUS. CZzén Kivül 34 Meteoroloti 31 Világszervezet (WWIVIÓ,L elkészítette 2 felhők
+összesített rendszerezését A következő tablázat (1 táblázat) ezek elnevezését mutatja be [2]
+] . tablazat; 10 felhafüj
+Latin nev Magyar nev Jel Szint
+CHTUS pehelyfelho C1 magas
+cirrocumulus baranyfelho c magas
+cirröstratus fatyolfelhő (5 magas
+altocumulus parnafelhő Ac közép magas
+altostratus lepelfelhő Az közép magas
+nimbostratus esőretegfelhő ÍNB több szintet áífoz
+"s stratocumulus /goniolyos retegfelhő 5c alacsony
+stratus retegfelhő mi . alacsony
+cumulus gomolyfelhő — Cu alacsony
+cumulonmbus zivatarfelhő (b több szintet atfog
+Dolgozatomban ezeket hasznalom fel az klasszifikáláshoz. valamint meg egy plusz
+osztályt hozzáadva a ,.contrail" -t. ami az égen megfigyelhető repülőgepek altal hagyott
+nyomokra utal Igy összesen ! 1 osztályba sorolhatjuk majd a telhoket.
+A felhők további leírását később még részletezem a Model pont alatt. nehány keppel 15
+szemléeltetve.
+A latin nevek szerint történik a csoportosítás. mivel úgy gondolom. hogy ezek a nevek
+akár rávezethetik az embert a tulajdonságaikra, plusz ezek az univerzális neveik Fl alto a
+középmagas felhőkre jellemző, sirato az alacsony. curo pedig a magasabb retegek
+felhőzetének neve. Temnészetesen ezek a nevek a latinból erednek és jelentésük szinte
+] pontosan ezek.
+— DD, PT ———
+
+----- PXL_20260907_104216749.jpg -----
+E s. E
+A következő ábrán jól láthatóak és különithetőek el a különböző fajták mind kinézetre.
+: AMALNUN dyzs Ea Wa éld, s At
+dies i I egy BE Vo ÉT, zs
+Aa a.
+éke ül 6 , aA
+ön b Age. 6-6
+HELATE EE FE Hszt HETET HAT j VEZET) HT STT. FE4T4 227 441 egzzbettét ák 7 keEYEgésél ől Hz? 181 174411 jét 14111 iHHÁ41: 229999 jö " zett MIRYEEET YT He HETET 21 jöt zért zzz tHEl fétstsemz szsszEZESZZÉSSZ ét! Hszt kozos :
+69 mil alá LL aa d a
+éHÁN 1 HEG] ! gy) 13741 the lsástégőti [ösjoagfoótó ért ál [71 41981. hdklt sert ÁRA A : lesse ssgatti Eg játék sség [fttleszesttl szt er olosgsátsezdtl
+: r "HHE 1 KP Fa r
+2 1. abra Felhöttpusok OsSzígívozasa
+Ds
+1.
+s. ! 1 b)
+DN x
+
+----- PXL_20260907_104218125.jpg -----
+-. m : zo í , MILAN E
+3. Felhasznaloi dokumentáció
+3 1. Szoftver követelmények
+kömvezetben fejlesztettem. A prograni futtatásához minimum Android 14 (Android SDK/ÁPIÍ
+- kapcsoljuk át azt az alkalmazást, ahonnan telepítjük a fájlt. Ha USB segítségével peldául
+rámásoltuk a fájlok köze, akkor a My Files-nal kapcsoljuk be.
+: App: ma 3 T App jggary eséel e fEkáÉjAT £ — ápeciai acre ó( irszálluréneTT SzP
+stk lesel Elájt depapgesátr ért í3gé KeEtltá E gé TET EL EE ETL ád tl sé
+Üres dítsgt arpi Ehnsan deto ag et [da dot ató
+: fideyenpe rami : ész sr :
+STAEST IEP TETT mzegregiaj App SETÉTHEI E
+! Chasgt szeri jertEeő méri : a
+szó e 2 mstdér .. A E frR . d bár át At Ár út
+GC Pr űú . nu LJz8 prerpiEr tert mpessgye mervies pendífébzá
+: ai s én 2 vá Aytő TEGT Ed nden szent TÍPBE Ál ty £-909 Ez]
+d : Fogj mt EPS : LF LETTZ ETT i ! : nös92 hejz 1
+DD — Fé Aú
+Erre lé o lerezegert mazenz ás [ijaóa Skére s i
+s Fersen je Pc isozdi para
+is po fi Alesis Jusgps cl BR egál i
+E fé god siár Pőestésztsjet "Ha fiánál ott é E sag tsa d
+2.1. ábra Apps 3 2. ábra Special access 3.3. abra install unkown apps 3.4. abra Füjl telepítese
+Ha ez megtörtént az .apk fajl elindításával és az Install-ra kattintva telepiíli az
+aikalmazást és már használható is. A program néhány funkciójához szükség van a kamera es a
+galéria használatához, az első alkalommal engedélyt kér ezekhez és be lehet allítani egyszem
+vagy állandó hozzáférést.
+ÚN eLoUD-GAZE
+Da you want 16 intel his app
+Cancel kistadl
+3.3. abra install
+ATS JP ÁL PELLE ÍNÉK VX Sh JÁR UK) ÉL ALLAST ÉS AZ AAN ak SÁBA S LÉ (EAT LSÁSDAL ÉRA AA AVR EK ús SEL én ÁR REN SZERÉT LA i ! :
+
+----- PXL_20260907_104219296.jpg -----
+3.2. A program felepítése
+A program nagyon egyszerűen épül fel annak érdekében hogy felhasználóbarát legyen
+A 4 oldal van: Home. Classifv. MvClouds. Ouiz. mind a megfelelő funkciókkal és hozzájuk
+tartozó alsó navigációs menüvel. A kimézetnel törekedtem egy indie játék stílusra, ezzel 15
+iátékossá téve a felületet. Van leht és dark mode-hoz tartozó kinezet. amik alapértelmezetten
+:ikalmazkodnak a teleton beállításaihoz A dokumentációban a light mode szermti felületet
+hasznalom
+3.2.1. Home oldal
+Az első oldal a Home oldal. ami az alkalmazás megnyitásakor látható. Ez az oldal a
+funkcióit tekintve ismeretterjesztő jellegű. Jobbra vagy balra húzva az oldalt, olvasni lehet a
+különböző felhőtipusokról és a hozzájuk tartozó pontokról, ezt mutatja be az 3.6-3 .6-os abra.
+A pontok meghatározása az égbolton törtenő gyakoriságukhoz köthető, a 2. tablázatban
+olvasható a pontrendszer.
+Az itt felhasznált képek szerepelnek a guizben is, igy megkönnyítve a felismerést a
+iatin nevek miatt.
+00 ELOUDGÁAZE 0 adam ——CLÓUD-GAZE)—
+MEL RK —— HOME
+—— Gúlde ls o jot ád. a 5 Glpe elter íigk sr ld
+—— ago he cíferet lo Pe opus áfát elbídas ahoz fe célkeret
+—oooAuhR] ene A CA]
+——g] ay ll APON
+ApocdTtá NE Késélatis ve! 1 Mentett, elele) ve jakárNáljs Guga a etldese, any 32
+appeal 48 ARAÁNYAA vk 1 ag sztó JAR ÉGRE , HA RAK AAA TT lel y ae ou de hajo gáke sé ky (RzzE vélt,
+Hgjélet 5 -heélly rzktst  ZAhat je AEGNT AGA AARÁAK 4. o e Tel AA hajad Ae tften pzegsús sena zi ete
+EL TAL 4 1] VAA TÁTA l. I 6 e B
+RE 2 ll A ves A AA JAA Tt e.—
+; Flt aes] VAA d al fee] VAA AN JAJA Ááá]
+egyy ey ÁNANÁ 1 man AAN A TT
+3.6. abra Hame fragment 1. 311. 05ra Home fragment /I. 3.§. abra Home fragment II.
+
+----- PXL_20260907_104220329.jpg -----
+1. tablazat: Pontrenitfszer
+Felhotipus Pont
+altocaumu lis ! /
+altostíratus !,
+Ú irrocunimulhuis )
+örrrostritfiis i í 1
+CITTUS ! j
+COntrai ] I 1
+cumulonmibus ! , !
+cúumulus ! ]
+nun bostratus 3
+. stratocumulus ! 1
+3.2.2. Classify oldal
+A Classifv oldalon (3.9-es ábra) történik a klasszifikálás, igy két gombbal rendelkezik.
+amikkel a kamerát és a galériát lehet megnyitni. Az első használatkor, ahogy a Telepítés pont
+aiati E engedélyt kell adni, hogy használni lehessen őket. A következő lépések történnek
+az azonbáttáskor:
+] Kamera használatakor
+: a Camera gombra kattintás
+b Kép készítése
+c OK-ra kattintás
+2. Galéria használatakor
+a Gallery gombra kattintas
+b. Kép kiválasztása
+Fzek után elkezdődik az osztályozás. ami néhány másodpercig eltarthat Ha
+befejeződött. megjelenik a top 5 felhő (3.10. 3.11-es abra). amik a valószinüseg szenni
+csökkenő sorrendben helyezkednek el egymás alatt gombok formajaban. Alattuk
+példaképekkel lehet felismeri. hogy melyikhez hasonlít a legjobb. A felhasználó Ki tudja
+választani azt a típust. ami szerinte megfelelően úlhk az eredetihez. Az adott típushoz tartozó
+gombra való kattintással visszaáll az eredeti állapotába a képemyő és kiválasztott felhő kerül
+(4 beszámításba a MyC-louds oldalon lévő adatbázisba és pontokba.
+hl A
+
+----- PXL_20260907_104221403.jpg -----
+bo I OL 1 "1 9...
+A PL A L." "— 1 A s s;
+Kör hitén tá A A ! i oscsíóobonöl sal
+oli a ka ll Él Ciki ;
+egys szöse, jo csesanói E E i
+Altosíratus A LA WE ZE :
+"A Amy o Cerontetas A
+Id
+3.9 abra Classijy iragment 1. 3.10. abra Classiíy fragment 1. 3.11. ábra Classíy frogment Hi
+: As i
+3.2.3. ÁlfvClouds oldal
+A MyClouds oldalon (3.13-es ábra) találhatók az eddig összegyűjtött felhők. valamint
+a hozzajuk tartozó darabszámok. Ha elegendő pontunk van ezen az oldalon kapjuk az
+értesítést. hogy a kvíz elérhetővé valt. Minimuri 30 pont kell az első kitöltéshez, majd a
+következőhöz 60 majd 90 stb... (mod 30 2— 0 és mod 30 — 5).
+A .Points" alatt van egy Share gomb. amire kattintva. felugrik egy megosztás ablak.
+It ki lehet választani azt a platformot, ahol megosztásra kerül a következőhöz hasonló
+szöveg, mint az ábrán 15.
+" ! MM ! ! TAM
+! VAA! NN
+MANNY ! DD
+NNTTNTN o M
+VAAVUNYA NN
+NI ! ka , M
+! ; ! 1. TON
+ANYAT! I AM s
+ELL MM
+3. 12. abra sharing
+
+----- PXL_20260907_104222379.jpg -----
+HÁRZÁÁA MEGHA ÉSÁNAK s!
+ld elet tt
+3 13. abra MyClouds íragment
+3.2.4. Cuiz oldal
+A Ouiz oldalon (3. 14-es ábra) található az említett játék, ami 15 kérdesből all es a
+felhasználónak el kell döntenie. hogy igaz vagy hamis-e az adott allítas. A .Start gomb akkor
+indítja el a játékot. ha a pontszam mod 302— 0 és pontszám mod 30-— 3, ezen kivül az első
+lehetőséghez min. 30 pontra van szükség. A kitölthetőségről értesítés jelenik meg a MyClouds
+oldalon. mint a 3.15-es ábran 15 bemutatva. A válaszokat nem lehet módosítani viszont az
+. True/False" gombra való kattintás után. rögtön megjelenik egy kis üzenet, hogy az helyes
+volt-e vagy sem (3.17-as ábra) A végen kiírja a helyes válaszokat és az elert pontjamkat
+(3 18-ös ábra), ami hozzáadódik az MyClouds fülnél látható összesített pontokhoz.
+Példa kérdések:
+s — Cirrocumulus clouds are associated with stable atmospheric conditions.
+s — Nimbostratus clouds are capable of producing thungderstorms. "
+e — Currocumulus clouds are commonly seen during severe weather events such as
+tornadoes. "
+— NY — —
+
+----- PXL_20260907_104223296.jpg -----
+! MEZ: , 7 $szAtsAas tás s
+d ER EÉgd ját u kg] k
+3 BZ HHEset b KE ERTH [BE
+A we eckudőszenee
+; 2 13. abra Kviz elerhető
+3 14. abra GuIz Fradgment 3.13. :
+F
+e
+—— A] AR ó
+
+Ez HE ll] Medal fél iss őlsál get 5 ő kt pszítepszttistés -.
+Stratus ciouds are tilt. Stratus Clouds are Min, Fo have got
+aAsny clouds found ar ng" wispy clouds found ai high köoutolítá
+
+[ili
+
+fil:
+
+11941 !
+Í 17411
+[NT esnél Val
+11 1 1
+3.16. Gbra GUESS [ 4 17. ábra Cuestion Í 2 13. abra Eredmeny
+, ált
+At e ség TK bo 499 JIP PEP. FIA Fov A dt EN kV ! k.k WS FA als 595 fb b As tan hon Tie ie 111942 IN 2 TA KEEN: A FSZ FR Pe .£ AKÁRBÁS És wki aksi 2 , 2 GrA 4477
+
+----- PXL_20260907_104224332.jpg -----
+4. Fejlesztői dokumentacio
+A Fejlesztői dokumentáció fejezetben bemutatom a CNN modellt. amit a kepek
+klasszifikálásához használtam és részletesebben kifejtem a hozzá szükséves adathalmazt.
+A datvizualizációs eszközök segítségével elemzem az elkészült modellt és példa bemenetekkel
+tesztelem a pontosságát. Az alkalmazas dokumentációjánál kitérek külön a back end és front
+end részletezésére. ahol az osztályok és a hozzájuk tartozó metődüusok működését 15 leirom
+41. CNN modell
+A konvolúciós neurális hálózat (CNN) a gépi tanulás (machine learning) és 4
+meélytanulás (deep leaming) területéhez tartozik. A melytanulás egy speciális területe a Zepi
+tanulásnak amely olyan neurális hálózatokra összpontosít. amelyek több rétegből állnak
+Ezek a mély neurális hálózatok képesek nagy számú paraméter tanulására, és képesek
+bonvolult jellemzőket kinyemi a bemeneti adatokból anélkül hogy szükség lenne emberi
+beavatkozás. A konvolúciós neurális hálózat (CNN) egy mélytanulási modell. amelyet
+6 képfelismerési és képadatokon végzett feladatokra terveznek.
+Architekturális Felépítése:
+A CNN általában három fő típusú rétegből áll:
+1 Konvolúciós Rétegek; Ezek a rétegek alkotják a hálózat magjat A konvoluciós
+rétegek konvolúciós műveleteket hajtanak végre a bemeneti képeken, hogy
+kinyerjék a képek jellemzőit. Altalában több konvoluciós reteget 15 tartalmazhat
+a modell. amelyek rétegenként egyre magasabb szmtű absztrakciókat hoznak
+létre.
+2. Poolozási Rétegek: A poolozási rétegek a terbeli dimenziókat csökkentik a
+bemeneti adatokon. Fzáltal csökkentik a paraméterszámot és a számítasigenyt.
+miközben megtartják a fontos jellemzőket
+3. Teljesen Összekapcsolt Kétegek: Ezek a rétegek a konvolúciós részek altal
+kinyert jellemzőket alakítják át a kimeneti osztályokra vagy címkekre.
+A modellt Python 3.10.12-es környezetben a Google €-olab-on fejlesztettem, ami a
+felhőben lévő fejlesztő kömyezet. mert igy olyan GFU-val tudtam futtatni. ami a saját
+A mA —— vezs—537
+
+----- PXL_20260907_104225334.jpg -----
+sépemen nem volt elérhető ezzel felgyorsítva a futtatásokat. Ennek köszönhetően a rendszer
+RAM 62 .8§ GB a GPU RAM 22 5 GB és a lemez pedig 201 .2 GE-ra bővült.
+X cloud modelipynb fájlban szerepel minden köd, amit betanításhoz és a
+vizualizációhoz használtám. A futtátáshoz SZIK sédresek 1 következő módüilök telepítése:
+e NymPv([125.2)
+e. Pandas (20.33)
+e 05 (DOSIX)
+e Tensortlow (2 15.0)
+e MapPotlib (3 / [)
+A tanulásnál több forrásból is használtam képeket, így jelenleg egy 3543 képből álló
+adatbázist sikerült létrehozni a Kaggle [3] és CCSN-Database [4] alapján A ciouds zip
+(elérhető a [5] linken) fájlban megtalálható ez az összegyűjtött halmaz. amiben 3 almappa
+van külön a train. a val és a test. Mindegyikben 11 további almappa helyezkedik el a 11
+ösztaly szerint elnevezve (4.1 ábra).
+Páris ii Fates meéxdíőjei Fene RisF
+] fonroziássniltis TEFfŐZF ZA UJ kit Tolder
+ÍÉ arpoztratus 16/03/2024 09:05 , — Ftefolder
+i A £ 997435. ZO Z24 TERT Files Froirdser
+ÍR Conti 16/03/2024 09-12 Füe folder
+MM Cumulonimbus 16/03/2024 02-05 File folder
+a T gar004űé61 17/047702724 MERT Fila Troiciit
+I tüársbostratus 16/03/202£4 090 Fe folder
+Él fergtociarmlis 16/03/27024 09:08 File folder
+IR steak 16/04/70248 REN File holdüs
+2 1. abra clouds mappa
+
+----- PXL_20260907_104226322.jpg -----
+A Google Colab sajátossága, högy minden munkamenet indításakor fel kell tölteni a
+felhasznált fájlokat. ennék a könnyítése érdékében feltöltöttem Google Drive-ba 4 mappát.
+ahonnan könnyedén elértem a követező sorok futtatásával. :
+ha [ from goople toléb intoci dőlve
+"8 ardívő MöuATtI Z CONTOÓNt ? drive. )
+4 7. dbrü GY00/£ Drive-ül összekötés
+Két különböző ismert modellel probáltam pontosabb eredményt elérni, viszont kisebb
+akadályba ütköztem 4 fejlesztés Során. mivel az Android Sudio-ba implementalható
+modellnek tilite kiterjesztésünek kell lennie. A ket modell a YOLÉJVŐ és 4 Möodelőjetv A volt
+A végén a ModelNetV2-t használtam fel az alkalmazásban, így a YOLÖVGA és a vele
+felmerült problémát tömörebben mutatom be.
+Áii. rvOLGTT
+A YOLOS3 (You Only Look Once) áltálában objektumok detektálására használják de
+van kiasszifikálásra is alkalmazható funkciói Könnyű implementálhatósáza és ismeri
+teljesítménye miatt kezdtem vele foglalkozni ezen az adathalmazon. Azonban annak ellenére.
+hogy a 1 ontosság jobb lett a ModellNetV2-vel szemben, az exportálása tílíte formatumba még
+nem támogatott 10 epoch lefutása után, amely során egy sorrendet ad meg a valószműségek
+alapján a képekre ezt az eredményt kaptam:
+Enoch GPU ar train loss tost o 1nss tond aan Tap sor
+: 17333 1. 274 2.06 1.18 k.41 0.§79: 190X 47/47 T97:BS-GD:00. 3.öEs/iíti
+i 2738 1.203 1, 24 1.7 B.AZT 0.5E6; 100X 47747 TGG:GEBD 8, 3.6S81it/sl
+G/1Ő 1 , Z54a 1, A 1.61 0.522 0, 989: 1004 47747 [döcAtthoroR, 3.181t/s)
+2/ió 1, PÁ 1, 67 1.58 H., 47 0, 4449: 1004 AZ7/47 [dőzétcüb:öb, 7.GGit7s]
+19/19 1, 256 1. 3ő 1.55 B.,55 0.919: 1908 47747 [docAtthhoor]], 4.SBitjsi
+4.3. ábra Yolovs futtatása
+Erről leolvasható, hogy a tanítás végén 3594-os eséllyel találja el a felhő 19471 tipusát.
+valamint 9224-0s eséllyel. hogy az benne van az első 5 legvalószínűbb üpusban —
+
+—- Egy konkrét képre. legyen például clouds/ítrain Cumulonimbus(C40-NÚJI 1Pg-re futtatva igy ks
+néz ki: hl
+AAA ] Cumulonimbus 6.65, Cumulus 0.31, Altoztumulus 6.01, Cirrostrátus 9.81, Altostratus 6.81. BEGIN
+A A sees evesen en syn en eye st KAN VAL ALOL AN EN ALAYAAAÁATÁTÁTAÁAAÁARARÁAAÁÁAAÁARÁAAJE AE ÍÁPPNTÉTETT
+5 VAA A A ATA áyi 49ra EA NORA fuHtatva A AA LL
+a AÁLÁJ AY
+LA AAA A
+s S
+LA AAA A
+46
+
+----- PXL_20260907_104227282.jpg -----
+Kiirja az 5 legnagyobb valószműséggel rendelkező felhőnevet Ebben a példában el is
+találta 3 felhőt Több példára is futtattam és nagy arányban helyesen választotta a töpli-et
+Viszont. ahogy korábban említettem. a probléma az exportálásnál történt A modell pt
+kiterjesztésű és konvertálását nem sikerült megoldani, ezt az üzenetet jelenítette meg:
+AssertionÉrror: ClassificationModel export to TF formats not yet supported.
+7.3. OD ASZETtionErrőr
+Így ennek az felhasználását elvetettem és ehhez közelítő eredményt probáltam elérni a
+4 1.2. MobilNetV2
+A MobileNetV2 egy konvolúciós neurális hálózat (CNN). melyet kifejezetten mobil- és
+beágyazott látásra lett tervezve. Célja a mély tanulás alapú feladatok hatékony végrehajtása
+korlátozott erőforrásokkal rendelkező környezetben A MobilelNetV2 architektúrája inverted
+Residual Blocks-ból és Linear Bottlenecks-ból all amiknek köszönhetően hatékonyabb és
+egyszerübb lett Az architektúrája és működési elvei lehetővé teszik a gyors és pontos
+objektanífelismereést. [5]
+s. I d A gar . , .
+A modell tanítása előtt elvégeztem a szükséges beállításokat formázasokat ilyen volt
+az adatok betöltése train-. val-. test dataset-ekbe. 2947 kép áll rendelkezésre a tram dataset-
+ben 298-298 a val- és test dataset-ekben. Mindegyikben ahogy a CNN bevezetéseneil irtam. a
+11 osztályhoz tartozó almappák vannak Az osztály elnevezések a következők: Álfocumulus .
+"Altostratus. Cirroculumulus, "Cirrostratus. Cirrus, Contraf Cunulonimbus. Cunuius.
+imbostratus. "Stratocumulus, "Stratus. A képek 224x224-es méretűek nehany pelda a
+következő ábran láthatók:
+ANÍH Köfrl LA LJE KÖT KEET RK Tá la MÉRYYTH HFPÁTN lt ate KET RAL ÁK HAt] ég tp céh djétt Erkel 1
+mM A "! Ako ii Ű L ml oO
+EE MT fél MÉNE A fél al ú ÉS áMéYAN ! d als :
+áj szd [9.2 rá A AVIRÁNLÁS AM ANYAK SEA VAK ÚS SH TOCLAPÁLIUS !
+fél RA AT Pat AA NAAA KIÍTANACAK ATA AMNTTAAÉK KIMAKÉY EY SVE TAG TTÉGIAK MTnANY aA Cerasíratus
+ÁÁÁÁ 4.§. abra Minta képek ho
+k A
+ÁLYA AN A ÁT...
+Ka
+
+----- PXL_20260907_104228276.jpg -----
+A neurális háló kialakításához a tf kerás Segyential-t használtam, ami egymás után fűzi
+igazából a retegeket Most ismertetem a különböző retevseket
+I. base model: Ez egy előre betanított modell. amelyet a bemeneti reteskent használtam
+beállítottam a paraméterei alapján. Ezt tanítom tövább
+2. Conv2D: Két könvöolúciós reteg van. mindkettő 1728-as outputtal, 3233-as kemel
+3. BatchNormalization: A két konvolúciós reteg után batch ivormalhzation réteg
+következik a stabilitás és a gyorsabb tanulás erdekeben.
+4. MaxPoolimne2D: Egy Max Pooling réteget is alkalmaztam, amely a 2x7-es ablakok
+maximális értékét választja ki a konvolúciós retegek kimenetéből.
+5. Dropout: Egy Dropout réteg amely véletlenszerűen kikapcsol nehany neuron
+egységet hogy megelőzze a túltanulást ami sajnos túl gyakori volt a kiserietezés
+soran.
+ő. Fiatten Egy Flatten réteget is hozzáadtam. ami az adatokat egydimenzióssa alakitja ai
+2 teljesen összekapcsolt retegek szamara.
+L SA Majd 23 Denie réeles kövekezk eszuk 148 és másik 04
+outputokkai neuronokkal, relu aktivációs függvénnyel. Az utolsó réteg 11 kimeneti
+neuronból áll amelyek a softmax aktivációs függvényt használják a valószínűségi
+osztályozás érdekeben. Így lehet a 11 osztályra jellemző valószinüségeket megkapni
+A modell rétegeit összesítve a summary) függvényt meghívva rá, a 4./-es abran lathato
+az output.
+A konfigurációját a következők szennt állítottam be a compile() függvény segítségével
+1. Az optimizer paraméterben megadtam az optimalizáló algoritmust ami ebben az
+esetben az Adam. Az Adam egy hatékony optimalizáló algoritmus. a learning rate
+paraméterrel 0 0001 lett a tanulási értéke.
+2 A loss paraméterben a veszteségfüggvényt állítottam be, amelynek a minimalizálása
+lenne a cél a hálózat tanítása során Ebben az esetben a cafegorical crosseníropy
+veszteségfüggvényt használom, ami alkalmas több kategóriás osztályozási feladatokra.
+
+----- PXL_20260907_104229377.jpg -----
+3. A metrics paraméterben felsorölt metrikák segítenek értékelni a hálózat teljesítményet
+a tanítás során A 11 osztály miatt a CatevoricalAccuracy metrikát használom ami a
+1. a4 [4 "7 - li. 9 tér össág 9gpi 14 1 1 HF íi il 11 1 1 tsze Ítt
+kategorikus osztálvozás pontosságát méri. [7]
+Mode 5 sgt 1 hl, 4 !
+a
+fás yelldelés vil évf ks éo so s fékbe főgyestbyítj ő bb H109- fi 281744 SzI 14 E HERE 1 eősobf Eosa effe éld s41; b 19 Élő 4áő 4 d d af ső El tej sőpt ES e-f8 TÉL SZOL Á8) 1
+molbálanetel 1.64 214 [falgz — (Het, fi 7, 1121 A Pöndt
+VK okslutant ) :
+ov 44 [donát] (REA, Ft 247 :
+Eodtti a ÉG euktírrenák 4 A 41a0t kun MAR] dé 19 .Kétsztllbáttát 5 aE] ay A.A 3 12.
+1efMheorranjátátítt ;
+A enyébeb. SAN 44. Eau a Elst: Fa Fa 32] AZ FE 1
+ömydl a fa garartíánik 4. suti km [Ak [ál (FB, Ha a FREG kéri
+18 hájintasii útat] Hitt 4
+ma eoolinaid 7 [fux (fc. 44 4. át) ii
+keltzi ASZT Zotíék d fá  LHERE, déd EE
+: Táldesrasil a sat dási] .
+bejöhetne pedál
+getthi eto KOTTIIITÉS TI ITS TETSZ TIITETTI SELITITEDITTI TITEÉS TICSÉLTII SSE TEJ TESZTA SZETT SI STTTSSÍTTI ZS 11 EN IIZSTÉLTHBI EZTLTKT TESZT EESZEBI EZSSZTTI HELSÍTI SSSI FPIIZI ZT LISZT TELET LSZEZTIZ SSE
+4.7. abra Madell retegei
+5 : [4 1 ml 2. 8 isk HF i É zegékt Í E Ez 2. zlté 3 s s
+20 epoch futása után 063-ös értékű calegorical accuracy és Ú Z/-es értékü
+val categorical accuracyt kaptam. de ez az értek minden futtatás soran eltérhet.
+1 e Tovnl v— -.
+MAG HELLA figyel 285
+! eyzáaszdgá áz Hide] jt e. ii : jsassj4as köl. it 4 :
+ked kzt tti Mi si KEZI telt ő JoLÁTARL Kö 1
+I! 44 ? : Mt EA, ai 199441! í ) fi
+/ fi I váll ML
+Alá Fal :
+Fall I.
+Fi Pf ; 1 mi i
+! " Tél éli :
+A A I il " il 1] MIKI MM il Fi TÉNEK ÜdétT jet
+1] Á 1 I 1 Misi 1
+11 s 114 11658. jdssett ett AT Eeztd 1 EE kék [111 ekre HÓs Heep e ettel] mele] ii u IMÉNT] MENNE Tasi Í ] ll I Vik NET kéllli IE ! :
+félljési HALAK "je VERI MI est! LAVAL fe! Mt Al JÉ és ! A BE Kisz ÚK.1A fiáse il WáLJÁS MIR jálásabói At Elet :
+A 4.8. ábra Modell pontossága 4.9. ahra Madell vesztesége
+
+----- PXL_20260907_104230327.jpg -----
+Az 4.5-as és 4.9-eg ábráról leolvasható. hogy miként tanult a modell a tram és 4
+val dataset-en AZ eredmények nem tökéletesek. de egyelőre közelíteni szeretném 4
+YOLÖÓVŐ-ÖS eredményeket Továbbá meg látható hogy evészen arányosan követi a
+Valdiation a Train mértékeit. ami fontos a tánítás soran. Természetesen ez is mindig a futástól
+függ, lehet jobb eredményt ér el egy bizonyos adathalmazra, de egy másikra lehet már nem
+lesz ilyen pontos. A test datasét-re futtatva egy 0.39-es ertéket ad, ami körülbelül egy 4076-os
+pontosság. Ez azt jelenti. hogy a 298 képből 4070-nak jól találja el a típusát amit én jónak
+tartok és ezzel az értekkel haladok 15 tovább.
+Lefuttattam a , prediction" -t nehány felhőre, majd probáltam olyanokat kivalasztani
+amelyek eredménye érdekes lehet Ezt a következő abrakon szemléltettem. ahol a bal oldali a
+"tippelt és a jobb oldali név az igazi típusa. 9-ből átlagosan 4-et vagy 5-öt talál el. de most
+nem feltétlen ezeket mutatom be.
+jú sz 170 150 BŐ 290 204 350
+4.10. abra Contrail
+i Kmezi uns É era essél 1 Elejozuakírilás ! Abocumutis :
+as fá ! ! MW A ! , velt" e Wo, Áe, .
+Mi, IN ! A AM ! b NM mm ] A A l / kk ll "
+ha MNK I ANY ATA kN va ANAYANYAT 4 ! a AAL CL,
+A e NÉ SI Ze
+5 e 4 W ! ! 1 ! ! " 1 ölte] 2 ! ! . ! Wa
+! u. ! A. ! AN ! ! 4 Te dél] MEN AAL SGP pre
+HEJ 7 KÁR 14 MAN KKKNAL NPEAÁR
+AN 4.12 abra Altacumúulus
+VÁ A Aa Él ) 4.11. abra Cirrocumulus Ja 9 NI
+
+----- PXL_20260907_104231295.jpg -----
+bi A
+A modell 3 lesnigyobb arányban a .Contrail" tipust találja el mivel ez a főbbitől
+eltérőbb. (4 10-es ábra)
+A 4 12-es és 4 13-as ábrán láható felhők azért érdekesek, mert nagyon hasonlítanak
+egymásra és mégis az egyik eltalálja a másik nem. Ez a probléma amiatt merül fel, mert 4
+felhők magasságuk szerint is vannak csoportosítva és a képen nehéz a mélységet érzekelni
+Ennek következtében lesznek olyan esetek. ahol szinte ugyanazon kimézetű felhők vannak de
+más magassági szinteken és így nehéz öket megkülönböztetni Ilyesmi probléma merül fel
+akkor iss. amikor egy sölétebb [időszakban készüt kepekre utiatjuk — le
+A 4.13-as ábra ezt jeleníti meg. Mivel a . Nimbostratus egy sötétebb felhőfajta ezért más
+sötétebb képekkel 1s összekeverhető. Itt 185 ez történik.
+A részletesebb és átláthatóbb eredmények érdekében, készítettem még egy masik
+ábrákat is. ahol jól láthatók a valószínűségek eloszlása A címek ugyanúgy vannak elnevezve.
+mint az előzőnél Erdemes megfigyelni. hogy ha a helyes tipusát nem is sikerül eltalálnia. az
+első 5-ben benne van. Ezzel is szinte teljesen megközelítve a Yolovó modell pontossazat
+L GÉPÉN LTE LES 1 SETTLE 1462
+: ko
+6 : s
+] ll
+A
+s
+s.
+4.13. abra Nimbastroatus
+S ÁLY YA
+b
+AA AAA
+
+----- PXL_20260907_104232250.jpg -----
+köl ÁÁ ERETT ALL PAK VÉ 8 3 ÍOPSÍN TAK at 2 ts, s ;
+Az első diacrammon (4. 14-es ábra) a Contrail valószínűsésemek előszlása látható.
+Könnvedén leolvasható. hogy akár már túl pontosan találja el a megtelelő felhőt.
+TAN :
+: AA
+MATA
+3 14. abra Contrail valószínűsége
+A következő 2 kép eloszlása már erdekesebb. A 4 .15-ös és a 4 16-os abrak alapján
+megtudjuk mondani. hogy mig az elsőnél eltalálta hogy  Éirrocumulus . a masodik helyen
+állló valószínüség szintén az . Altocomulus lett. A második ábránál pedig nem talalta el a
+tipust ás második helven van a megfelelő.
+LA
+HT jjeos jell Eléetheta p [Élj 8 hál [RL ola attó Fast Mei
+via ii !! Ji? uit! " üti ál MV
+4.15. ábra Altocum ullus valaszínűsége
+Végül pedig a , Nimbustratus"-hoz tartozó diagramm (1 17-es ábra). Itt az mondható el. hogy
+a top 5-ben benne van a helyes felhófajta a 3.helyen. de mégis egy 70.3-ös valószínüséggel
+tippelte a , Stratocumulust. Az a következes vonható le. hogy mig a modellnek van egy
+ALAN --4094-0os eltalálási aránya. felmerülhetnek olyan hibák/anomáliák amik miatt egy pontosabb
+LL ————-.eredmény elérése nehéznek bizonyul. De mivel a felhasználónak van lehetősége kiválasztania  — /
+LL  — topó-bóől a rossz eredmények kiküszöbölhetők. A
+
+----- PXL_20260907_104233096.jpg -----
+kN lt e SZA VÁNYASARO LAJOS A SLÁGAÁ LAKÁSA ENSZ ASS Úh a Tk 9284 at Y :
+ninyw
+VIN
+Ú.N
+23.16. abra Cirrocumulus valószínűsége
+Ez 1 olttATEAJTKRRATTÉ. irveszyétzegyéntszzti FANS EESTTERS (ció Hi lsstkásss élés, ( ( ERAAKÁSAT YAH ; s Fbtszzthápstdássti : M .  nangtnaytantó , , EMELNE , MÉNE I
+E. Mal IF fell E ts. : :
+4.17. ábra Nimbostratus valaszínűsége
+4.2. Android alkalmazás
+A telefonos alkalmazás kialakításához az Android Studio-t (Jellyfish) fejlesztő
+környezetet használtam. A téma bejelentőmtől különbözden nem a Python Kivy könyviar
+segítségével fejlesztettem, mivel mikor leadtam azt, akkor meg kompatibilis volt a Linus cs a
+Windows-os konvertálás. Azonban nem sokkal ezután megszüntettek ezt és több napos
+debug-olás és kutakodás után, el kellett velnem ezt a megközelítést Így az Android studio
+! mellett döntöttem, ami jobbnak is bizonyult, mert egy sokkal felhasználóbaratabb és
+AAAR mindennapi használatra alkalmasabb alkalmazást tudtam igy lett ehozni. Korábban létrehozott
+egyszerűbb, de hasonló alkalmazások segítettek elindulni ebben az irányba [8] A
+MIERT 1éétt Eset ESEN EZÉ Müffert 1 jHEK
+AN telepítéséhez szükséges minimum: , 64-bít Microsoft Windows 8. 8 GB RAM. 7nd generabhon
+————cAmtel Corp 8 B (IDE and Android 87K and Emyator) fat éc ey 9
+
+----- PXL_20260907_104234145.jpg -----
+ss s zZépölesls lola st MNAKA WARÓ SOL MÉ AG ! Feka ro Ég REZA 04 113 AI, b st ÁL TS ts ; ;
+ME é cz] A. : !
+resolution . [9] A fejlesztésre használt számítógépen 64 bit-es Windows 10 Home operációs
+rendszer. 5 Gb KAM. ImntellK) Core TV) 17-7700HŐ CPLJ, 1970£1080 screen resolution állt
+rendelkezésre
+A ifuttatáshoz az Android Stúudio-ban a Device Manager fül alatt létrehoztam esv
+emulátort Virtual Device-t. aminek segítségével a gépen 15 látható az alkalmazás New
+DevicesPrsel 33-Api 342Fiish lépéseken mentem végig. Majd a kun Confisurations-aápp és
+az iment létrehozott eszköz kiválasztásával a Kuün-ra kattintva elindul a futás Kisebb idöt
+vehet igénybe az első futtatáskor az eszköz telepítése és az program lefordítása miatt.
+A program az MV (modelview) architektúrát követi ami a projektben a Cloudtsaze app java
+és a CloudGaze app res layout mappáknak felelnek meg Java 1.8-as verziójával irtam az
+osztályokat a model-hez mig a view osztályai XML nyelven irodtak A következő abra
+beriutatja az egész projekt mappa szerkezetet:
+[e ld,
+je elk ÁE seter táj ászkts
+A [I cgemramplerlőégae em
+: JG 13 14 zametmple.ciaudgaze eldreld el i
+2 MM ch ea mple lo adgazi [élő
+Ki Ell docAűhh :
+E lé miez
+2 Ál dreskis
+2 Klli layout
+? Él me
+4 flies]
+JI VÉ UIRÉLHAaNi
+Ál mel jelezett
+$ Al mi
+s AY Cyadlg kuryts
+MM pandgsssaskonalm pan fs éa susi Fi ; VA
+Aa arte ponperties Wesjert Éraperii
+dd Mi §lcjgtmetátóó 9 p09eEzEg yek 19 dög az gos yaéée E ztette AZ yen ési
+ál! sttínys-giydts ety é/080t seta yól
+4/1585. ábra Projekt szerkezete
+Minden mappa a megfelelő funkciókkal ellátott 14) lokat vagy almappákat tartalmazza.
+MT Az új üres projekt létrehozása után a következő beállításokat hajtottam vége A  —
+TT CloudGaze app build gradle kts-ben szerepelnek az alkalmazás követelményei. de em.
+,-——6— valamint az alkalmazás Gradle Seript-jeit automatikusan generálja az Android She Cse!
+
+----- PXL_20260907_104235112.jpg -----
+kisebb módosításokat írtam hozzá A fájlon belül . dependencies" részhez szükség volt a
+lensortlow és 3 JUnit hozzáadására a modell és a tesztelés fejlesztése vévett A manifests
+mappan belül az AndrordManitest xml 14)l felel az alkalmazás ikonjáért nevéért indításáért
+és a szükséges hozzáférésekert a telefonon. Az ikon képe a drawable mappában található és
+egyszerűen égy új ..vectőr asset hozzáadásával hoztam létre. Az alkalmazás összes ikonját
+ehhez hasonlóan csináltam meg. Ide kerültek meg a képek is. amikre a grafikai felülethez volt
+szükség. Továbbá az animált háttérhez szükséges fájl is itt helyezkedik el Ezeket rég 2
+Nézet-nél bővebben bemutatom.
+A IFlLiíte modellt New-Öther-Tensor Flow Litemodel segítségével adtam hozzá és
+automatikusan az ml mappába került Majd felugrik egy ablak. ami bemutatja, miként is lehet
+telhasznaáini gyakorlatban a betöltött modelt (4 19-es ábra).
+dates taste LeHTETEL ÉRE! 4 EFE ÉBE T
+]
+4.19. ábra Modell implementülása
+4.2.2. Xiodel
+Az alkalmazás megfelelő működéséhez előbb feltérképeztem. milyen funkciókra 15
+van szükség, milyen felhasználói eseteket szeretnék megvalósítani Ezeket a következő use-
+case diagram (4 .20-as ábra) szemlélteti.
+A felhasználó képes a kamera és a galéria megnyitására, majd a képek alapján felhőket
+azonosítani és végül kiválasztani a szerinte legjobban passzoló felhőttpust. Megismerheti a 11
+felhőtípust és pontokat/felhőket gyűjthet az azonosításokkal. valamint a kviz kitöltésével.
+JA Ezek a felhasználói esetek kerültek implementálásra, amiket a Model leírása közben
+PL! ismertetek
+A A A A NA A AN
+
+----- PXL_20260907_104236100.jpg -----
+LEALL AR RNS S MEZÉT AAA : [TÁMÁR ÁRA NÁL ÁRTÓ 5 FŐ 2553 [A Pr i
+SG by - jekl ls ) E c itták EAK
+MEL ELSE TA I
+! 1
+EGT VEN FÉLY
+i 1942 dí ET],
+es IfjE 2
+41 Tá tj P231 A a , Át Árz HA 1
+1. 11. 631
+NYÁRCINN KIK ÁKK it i
+Mg HÉsFékst
+m i KT! EH it! : TEAT TT EETY ZEF
+THESE ESSÉK .
+il 2] 1
+"ai 1 a HB i HE kisz tően gé k ! : ;
+4 Hi E :3 Féjü gt okteát bíáső 3]
+É KEPILELÉT ÉSE Á His A: : AGE GAL ARAT 2 A EG T5r8 Li ss odsit
+í - 1. Hir "1
+2 20. abra Felhasználói eset diagramm
+Ki ;
+Pat HH2113421 ztás El
+telalask ragi i 8 kentá aj 1 két tja s plákt: i BZ iszKilzösevákitetesf és
+CCA IRETV a FF éd LAKE enlÉG EE] : : i
+Í Í Í
+4.21. abra UML diagrammi
+sztályairól következik rövid leírás, ahol külön-külön összefoglalom az
+A Model osztályairól következik rövid leírás, ahol külön-külön Osszeloglalt
+. . v 4. "4 T " : 1 4 [4.19 4 1 9. REF: 2 Vá ifi : hi k kő 1! 1dal 2 : funk új kK
+adattagok és metódusok szerepét. Összesen 8 osztályom van. az oldalak es a funkció
+[4 FÁN a ti
+7 .
+megvalósítására.
+
+----- PXL_20260907_104236976.jpg -----
+PE e TÉS S E A A
+At zt] KGÁZÓ S KÁR e, DEL 5 AY
+1 4.21-es ábrán látható az osztály diagramm, ami az osztályok közötti kapcsolatokat
+szemlélteti A fő öldalakat a MamActivity köti össze [Itt jönnek létre ezek az osztályok és
+ennek a használják 3 pontszámításhoz és mentéshez szükséges metődusait A kisebb osztálvok
+a fő íragmentek részeirt képezik. és más osztályok funkcióiához nem köthetők
+A MamActivity felelős az alkalmazás fő felhasználói felületének kezeléséért és az alapvető
+muveletek végrehajtásáért. Az alsó navigációs menü segítségével lehet váltani az alkalmazás
+különböző funkciói között Az eredmenyeket egy json fájlba menti és innen tölti be a
+futtatáskor. ítt implementáltam a pont számítást 15. a betöltés és a központi elrendezés miatt.
+Majd az alkalmazás az azonosítás utan itt ad pontokat a felhasználónak.
+Adattagok:
+e Strings filePath: A my clouds json elérési útvonala.
+e Map-csString Integerz resultsMap: Map típus. amely tárolja az eredmenyeket a
+kiasszifikaláshoz.
+i he: points: Az megszerzett pontok.
+s BottomNavigationview —bottomlNavigationYview ÁZ aló navigacos menü
+implementálása.
+s  StartCOuizFragment startŐvizFragment:A kviz aloldal.
+s HomeFragment homeFragment: A home aloldal.
+Metódusok:
+e  onCreate(Bundle savedinstanceState): Az alkalmazás megnyitásakor iníicializalja az
+műveleteket és a nézeteket
+e  onNavigationltemSelectedőMenultem item)! A navigációs elemek kiválasztásának
+eseménykezelője
+e saveMapTolson(String resültlext): a Map-et konvertálja json formátumba es Hissiti a
+pomnts változót.
+s saveMapTlolson(): Az adatokat menti 1501 formátumban.
+e [JloadMapFrom!lson(String filePath): Betölti a tárolt adatokat a my clouds json fájlból
+I egy Map-be.
+AMATN e — getPoints(): Visszaadja a pontok számát. s
+
+----- PXL_20260907_104237940.jpg -----
+RE ALA JTK RK FR Flt  VAE EE TKA
+e setPomntsánit DOMTS ) Bezllítii A pontok szamat
+e  calculatePontsString resültleéxt): A felhőtipus alapján beállítja a pontot
+e cetkesültsMap(). A resultsíMáap-et adja vissza
+A Homefrragment osztály egy fragment. amely az alkalmazás főképernyőjét valósítja meg
+e  ViewPager viewPager: Egy ViewPager, ami a ! 1 felhőtípus iapozható felülete
+Metodusok:
+e  ontreateview(L avoutinfiater intlater, ViewGroup container. Bundle
+savedinstancesState): Az osztály fő nézetet állítja be és micializálja a ViewFager-t a
+felhőtipusok megjeleniítésehez.
+e setupViewPager(): Beállítja a ViewPager-t a felhőtipusok listájának megjelenítésére.
+s Lsd SONFromAsset(String filename): Betölti és visszaadja a ISON fájlból szarmazo
+adatot.
+Saját osztály: CloudTypePagerAdapter
+A CloudTypePagerAdapter osztály felel a felhótípusokat bemutató Hagment-ek kezeléséért a
+V1ewPager-ben.
+e addFragment(Fragment fragment, String title): Hozzáad egy új fragment-et a Lista
+végéhez a megadott címmel.
+s — getltem(int position): Visszaadja az adott pozícióban levő iragment-et.
+e  getCount(): Visszaadja a fragment-ek szamat.
+e  getPageTitlelint position): Visszaadja a fragment címet.
+Cloudsrragment java
+A CloudsFragment osztály egy fragment, amely a felhöfelismerés eredmenyet cs a
+pontszámot jeleníti meg [Itt van lehetőség a felhők és a pontszam megoszlásara mas
+NT alkalmazásokon keresztül. S
+
+----- PXL_20260907_104238869.jpg -----
+3, ZÁ EÁ CA vé A rl SL SELÉS Ő ET ANAS Ay (245412 sala A A súg éz o torest
+d
+Metődusök
+cel Mapzstmió. MMtiegeris ri sultsMiáp. int points) Az új ClondsFrasment
+létrehozása, amelynek beállítja a megadott Map-et és pontszámot
+e ont reatetijevwil avoutintílatei imtlater. ViewGroup FOntáHér E orrAla
+eredmeényemek megjelenítését
+ListAdapter java
+! a s - ét, a HLYEEEA E ESEÉZ LSB A " test [JEG : :
+A kKesultslistAdapter osztály egy ArravAdapter, amelyet felhőkkel kapcsolatos eredmények
+Hstazasahoz lett fejlesztve.
+a. list Egy Hsta amely tartalmazza a felhőtipusokat és az azokhoz tartozó
+darabszamokat.
+s context: Az aktuális Activity, amelyhez a listaelemek tartoznak.
+Metódul sk:
+e FesnltslistAdapter(Activity context  List-Maáp Entryostnng.  intege— — hst).
+Konstruktor. amely létrehozza a KesultslíistAdapter-t.
+e getViewűint position. View convertView, ViewGroup parent)" Visszaadja az adott
+pozícióban lévő listaelem megjelemítéset.
+CioudTypeFragment java
+A CloudTypeFragment osztály egy fragment, amely egy adott felhottpus nevet. letrasat az
+adott típushoz tartozó képet jelentti meg
+Adattagok
+s String cloudTypelName: A felhőtipus neve
+e String description! A felhő leurása
+Metódusok:
+AN e newlnstancelString cloudTypeName. String description)! Uj CloudTypefragment
+AAA , : létrehozása a megadott felhőtipus névvel és leírással. B
+
+----- PXL_20260907_104239727.jpg -----
+EAST mm á—
+ML e kr] A SA A e.
+SRL RTL ÉLÉN K-s ák Dá MOS ÁRA B a ad egy
+. ont reate(Bundle savedlnstanceSstaté): Az osztály példányosításakor inicializálja a
+felhőtipus nevet és leírásit
+1 Ouiztragment osztály egy fragment, amely kvizkérdéseket jelenít meg a felhasználónak és
+menti az eredmenyeket [10]
+Adattagok.
+e Cuestion[] guestions: A kérdések.
+e — Button lalsebutton: A , False" gomb.
+e — button truebutton: A . True" gomb.
+e [masebutton nextbutton: A tovább lépés gomb.
+. [masevVvijew mage: A kérdéshez megjelenített kép.
+s JextViewguestionlextView: A kerdés szövege.
+s int correct: Á kezdő helyes valaszok szama.
+e — 43 currentÜuestionindex: Az aktuális kérdés index.
+s [jist-Booclean- userÁnswers: A felhasználó valaszai.
+e [jnearíayount tableView: A helyes válaszok és eredmények kiirására szolgalo
+Table View.
+Metődusok:
+s onCreateView(l ayoutinílater intlater. Vi1ewGroup contamer, Bundle
+savedinstanceState): Az osztály példányosításakor inicializálja es alltja De a
+felhasználói felület nézetet
+e onClick(View v): A gombok eseménykezelője. Ellenőrzi a valaszok helyesseget es
+frissíti a felületet a következő kérdéshez
+s checkAnswer(boolean úser( ho0seét orrect )
+e  díisplavToastcint current uesttonlndex)
+e update uestton:
+e  díisablebuttons:
+4 e  displaykesults:
+AA e geg orrát
+hl 26 3
+
+----- PXL_20260907_104240588.jpg -----
+ASZ SA 94 ÁLMOS E ÁL,
+. set urrentOvnestionlúdexlint cürrentOvestionindex)
+Cuesttön java
+A uestion osztály a kérdések megvalósítására szoloál
+e answerkesld: A kérdés azonosítója
+e answer lirue: Boolean, ami megadja. hogy a válasz helyes-e vagy sem
+Könstruktor:
+e  Cuestiontint answerkesld, boolean answerlrue): Uj Ouestion létrehozása a megadott
+kerdes azonosítójával és valasszal
+Metodusok:
+s cetánswerkeslidő): Visszaadja a kérdés azonosítóját.
+s jzAÁnswerirue(l): Ellenőrzi. hogy a valasz helyes-e vagy sem.
+StartÓuiZrragment java
+A StartOuiszFragment osztály egy Hagment amelben ellenőrzöm, hogy a felhasznalo
+rendelkezik-e elegendő ponttal a kvíz megkezdéséhez, es ha igen akkor megkezdheti a kvizt
+Ádattagok-
+e [mageView backgroundOÖne: Az első háttérkép az anumacióhoz
+s [mageView backgroundTwo: Az második háttérkép az anumnaciohoz.
+s — Button startuizbutton; A kviz elindításához szükséges gomb
+e "TezxtView guizDescription A kviz leírása.
+e TextView textViewDescription: (/loud-Gaze cin.
+e TextViewtextViewPfage! Az oldal címe.
+e [mageView cloud: A kis felhő ikon
+Metóődusok:
+e] e  onCreateView(L avyoutinflater inflater. ViewGroup contamer. Bundle
+AN savedinstanceState): Az osztály létrehozásakor beállítja az osztályhoz tartozó nézetet /
+
+----- PXL_20260907_104241465.jpg -----
+ák ke lha b ÁLTAK Z 9 PÁ TE vág en PE kk  YOAAYÁNANAI
+A ÁSTA AT NÉK d hd [7 APIS sége 4, ERT Hz 10
+KAT 2 Érik etés Só Hl, pá ések ii dal rét LÁZ FEL BA Ft ; i
+e  onViewreaítedíView view, Bundlée savedinstanceStató: Az osztály nézetének
+letrejötte
+e startbackeroundAnimaittóonő. Inditja a háttérben futó animációt amelv mozgatja a
+háttérkeépeket
+e startGuiz ): Elkezdi a kvizt. ha a felhasználó rendelkezik elég ponttal
+Az utolsó osztaly 15 egy fragment, ahol az azonosítás logikáját valósítom meg Ez teszi
+lehetőöve a galéria. kamera használatát. majd a képek kiasszifikálását és az eredmeénvek
+megjelenítését.
+e Model model: A Model fejezetben letrehozott modell.
+e (lassConfidence[] classConfidences: Az osztályozás eredmenyeit. egy sajat osztályból
+álló tömbben tarolom, ami egy felhőnévből és a hozzátartozó valószínűségből all.
+s Button camerabutton: A kamera megnyitására alkalmas gomb.
+s hum gallervButton: A galéria gombja.
+s [jst-Buttonz buttons: A klasszifikailás utáni pontok szamításahoz tartozó gombok
+listaja.
+s [IisteTextViewc textViews: Az százalékokat megjelenítő lextview-k listaja.
+s [istelmageViewz imageViews: A mintaképeket megjelemtő Imagetvi1ew-k histaja. :
+s [mageView imageView: A felhasználó által készített vagy kivalasztott Kép
+megjelenítése.
+s TextView classified: . Classíified as -irja Ki.
+e TextView textViewDescription: Cloud-Gaze cim.
+e TextView textViewPage: Az oldal címe.
+s [mageView cloud: A kis felho ikon.
+Metődusok:
+e  ClassifyFragment newlnstance( ): Új Classífyrragment peldány létrehozása
+JAA a ! View . onCreateView(Layoutlnílater  inflater,  VIewGroup contaimer,  Hundle
+ll savedinstancestate): A nézet létrehozása.
+
+----- PXL_20260907_104242278.jpg -----
+A AT: st a AY tefelzoznbít 74) RA KET ÁR 9490 2 s i em Ri s. " AE Ella ebtgtátányástsításneanstzasza dést ényes slzskötéssztntékeó d lo gl ——— tl S.
+A EE Enzo
+e  0nActvitvkeésültíint regyestÜödée. int resültCöde Intent data): A kamera vagy oaléria
+használata utáni tevékenységet kézelj
+e  classitvImagéelBítmap image): A klassziífikálás megvalósítása
+és Image View-k létrehozása
+e l[oadimages(ClassContidence[] classConfidences)) Képek betöltése a — drawable
+mappaból
+e setlmagetjewíClassConfidence[] classConfidences, ImageView[] imaseViews. int
+index): A megfelelő képek beállítása a klasszifikálás eredménye alapján
+. — switchVisibilityánt on): Az eppen használható nézetek láthatóságának beállítása
+4.2.3. Nezet
+A nezet kialakítása előtt csináltam egy igen egyszerű tervet az alkalmazás felhasználói
+ielületeről Az oldalak aljára mindenképp terveztem egy menüsort amivel navigálni lehet.
+Ezek kinézete is konkretan megvolt már az elejétől kezdve. mivel egy modern indie jaték
+hatast stihist szerettem volna létrehozni Az egyes oldalak kinézete 1gazából a funkciók
+A biztosítják. a fejlesztés közben dolgoztam ki a kisebb reszleteket munt
+hattér szine. a szín paletta. amikkel baratságosabba és hiívogatóbbá alakítottam a felületet
+ada ma ? dada zi?
+JÁ 4.22. ábra Classífy oldal !. terv 4.23. abra Classify oldal H. terv
+
+----- PXL_20260907_104243170.jpg -----
+lsd
+1 akit : e: ÁK ÉS Ah kk 12 FŐ lsdfe xy xs "A AZA 4 át 27 Hi sZRA 32 Zs : (26 ; E e s ollo Aslan élttözásításbezztásoe balls KÉSZ nézést KA DES.
+4 AL ŐZ kh kor 1 BA Vá TÉL A köl VÁSÁR 2 AZÉ FÁS. : 32 o sz s ze pt zs ——Acc———— HL.
+ZF 3.4 5 ki, SZÁL SZÉT, 2 AZT EZ t2P. A I PÁVA AS S ÁG L b ÁSZOK a seg 2 :
+TÁ s kk! ÁSÁS at BI LA ER ze OK TS TAK VŐ
+E e kell FPS 0 2 e ÉHES ÍTANI 14 12 FT sss T2é FOGAT KÉL TŐK KAL AZÁLTAL
+hg ossz? A: hú. VA tk AKSY Mását: A
+17 eni aa 1 " "a, j 11 tá A ír v hi 2 [4 - v " 4 02331P- 4 / Á ÁT
+Z itt megjelenített / 3bra mutatja bé ézeket a kezdetleges terveket A 4 16-4 97. ec
+: br; ős 1 1 1 I 1 4 I 1 FC 11 Pb ! ll E Í: HITSAI ! de adása Faji [boci " bisyétki att) dltSt 2 JERÍJEN Fél E Kelt Hjtei IR
+abrakon jól látható. hogy egyszeri használatra lett tervézve és felhasználói eseteknek
+megstelelően van mplementilva !
+kh ] [
+Í E jés !
+; P
+i
+i
+; ALTE hr ÁÁ ÍR FÉLT LYVÉZÉSTŐ TETTEI
+; szfke ; LF ; ís he SZÁE a
+4.24. abra Hame oldal terv s. OOO KIV IGUGs 0L20I 1874
+ujjat 3. Hl:
+Kö ÉVI
+!
+1
+!
+j ! Í ipse fááoeggfzspeyosssgyottey opere AT AAA ARAMASÁRAN TATA STT STT" tes ssc] [931] 11]
+MÉ EÉNEI ! 4.26. abra O4iz alap oldal terv
+ME EE EH ét teret Het [e21111 Ess fest tét [FAT VÉT H VEN VEGA FESS ) FÉRT FERT [IE VEK (GNI JET 1! festi! MÉZ Í ! Í Í ! HE fel a E E ERTE Fé FÉRT ÉN EÉRTÉRTÉS] ii HET ÉTÉ E VÉ EFFELE EHETI E ke [ÉGE Elég Éz Fé [E VEstd félő VÉ e yttey VE
+11 Mil Tenitítibl li Héstti 11 í HEH HERE E FSI ISZ EE EÁ 111 TRENT ES TET TERI Í MIEN] Í TETTES]! 1 Í : ! ELT ESETI E EH HETE éz [11 [EJ fe EHE fi Í j /! HETE Melle 3] ii fellteltetti ffezHtztt dtetl! os Host ezt 1etLEse ftc tt Ait
+! Meta í VÉLE NYA FELTI ET közét feet keyata Hat [EE HE fitEsE I Fell Hasa [FEET ) FETT EésHA 11 ses 9 ell HIEE [EETTI FERT MEG TEET! ER EN HEZ HE 1 NER ÍEÉNTÉJHE FEJÉN MÉNE HÉ ETTE! HÉTNÉL TES hét El ét Ete HEH Este e fej sal FÉNYE EE [fested ét Felele táj tésl fe HEG YE EEEN élt fest eljes lelet fed etisettsi föl felt Best Hateltő áátszát í prisét
+
+----- PXL_20260907_104243937.jpg -----
+TETT ETT TT TT mm ————
+si koo kb s E ZÖtÉ Éb
+(1aAGD?I ada?
+E 4.27. abra Gyiz oldal I. terv 2 38 dbre Gus oldal u ferv
+A következőkben először irok a lavout fájlairól amik a felhasznalói felület alapjául
+szolgálnak majd jobban kitérek a többi nézetet befolyásoló elemek lerrására A Nezet
+kialakításához használt fájlok a CloudGaze app src mam ves layout mappaban talalhatoak es a
+következőek: activity mam xmil. fragment ciassífty xmi. fragment home smi
+íragmemt clouds xmil. fragment cloud tvpe.xmil. fragment guiz sol
+fragment start guiz xmil. list item xml. Az itt felhasznalt kepeket 3
+CloudGazeapp src main res drawable mappa tartalmazza Mivel a legtöbb nezet taj
+Relativel.avont-al rendelkezik, amiken belül helyezkednek el az elemek, ezert ezek leirasat
+kihagyom az ismétlés elkerülése érdekében. Rövid leírása és az elemet a nézeteknek.
+Ebben  implementáltam egy  (Constrainthayout-on belül FramelLavoutot és a
+JA] BottomNavigationView-t. amik Fragment-ek alapjául szolgálnak Ez az alap nezet amin
+AA mindig a Framel ayout része változik az oldalaktól függően
+
+----- PXL_20260907_104244700.jpg -----
+ERT TOO TT TT TT mmmmmmmmmmmmms——————
+ök ssáz dr. zó ka 1 7 ak, A
+S S S SL 2kő lő,
+Kömponensei
+e Cöonstrantl.avout A fo elrendezési könténer. amélyv tartalmazza a többi nézetet
+e FrameLavout (fIFragment)! Egy üres keret. ahol a fragmenteket cserélhetjük ki a
+felhasználói telületen
+alkalmazás alján jelenik meg. A layout aljához van rögzítve. Az app-menu attribütum
+segitségével vannak a menüelemek definiálva, amelyek megjelennek a navigációs
+savban
+Ez a ClassifvFragment java osztály felülete. itt jelenik meg a kiasszifikaláshoz szükseges
+funkciok sombjai. kepei.
+Köomponensel:
+s TextView (textViewDescription): Az alkalmazas cime.
+e TextView (textViewPage): Az aktuális oldal neve.
+s LextV jew (textViewClassificaion): A klasszíikalás leirása.
+e [ImageView (cioud): A kis felhő ikon
+e ScrollView: A fő elrendezési konténer, amely lehetővé teszi a felhasználói felület
+görgetését, ha az tartalmi területe túl nagy a képemyoön.
+s Kelatrvel 2yout
+e [JmageView (imageView): A klasszifikálandó kép megjelenítése a 1elso részen
+s TextView (classified): Egy szövegmező, amely az "Classified as: szöveget jelenti
+meg a kep alatt.
+e — Button (camera button, gallery button): Két gomb, amelyek az Open Camera és a2
+"Open Gallery" szövegekkel vannak ellátva.
+e Linearlayont: A képemyő középső részén talalhato, amely több sombot es kepet
+tartalmaz.
+a . Button (first button, second button. thurd button. fourth button. fifth button):
+Öt gomb. amelyek mindig a top 5 felhotípus nevet tartalmazzak.
+o. TextView (first textview, second fextvieW, third textview, fourth textvieWw.
+AAN fifth textview): Őt szövegmező a gombok mellett. amik pedig a valószínűséget
+
+----- PXL_20260907_104245405.jpg -----
+S et E ÉT AT MÁS ét ől VLAN 001 2.
+
+e [Magetjew (magel. image) imagej, imaged, Images, imageó, image/ imaves
+mage!. mageld. magell. magell, imageld, imagel4, imavelő): Tizenöt KED
+amelyek mindégyike az alapertelemezetten a drawable/f]l png nevü képet jeleníti meg
+és a gombok alatt helyezkednek el Azonosítás után a megfelelő mintaképekre
+allítódnak De
+
+A Hometrragment java nézete, ami tovább tartalmaz egy ViewPager-t a 11 felhőtipus jobbra-
+balra  huzogatható bemutatásához A felhők — leírásának — megjelenítése 4
+
+iragment cloud type.xmi fájlban található.
+Kömponensei
+
+. —Jextview (textViewOuiz Description): Az alkalmazás cime.
+
+e. JextVview (text ViewOuizPage): Az aktuális oldal neve.
+
+s [maseVview (cloud): A kis felhő ikon.
+
+s TextView (textYViewIlnfo): Az oldai leirasa.
+
+. node ay Ez teszi lehetőve a felhasználó szamara. hogy lapozzon a különböző
+felhőtípusokról szóló információk között.
+c ViewPager: A ViewPager tartalmazza az egyes felhőtipusokhoz tartozó
+információkat.
+fragrment cloud tvpe.xmi
+Itt csak 3 komponens van, név, leírás és kép. amik a felhő típusától függően valtoznak.
+K.Ormponensei
+
+s Kelattvel ayout
+
+s — TextView (cloudTypeNametTextView): Ez a felírat a felhő típusának nevevel.
+
+e TextView (descriptionTextView): Ez a szöveg a felhő típusának leírását tartalmazza
+
+e [mageView (imageView); Ez a kép megjelenti a felho típusához kapcsolódó kepet A
+forrás az alapbeállításban a drawable/tl png
+
+Ez a felület CloudsFragment java-hoz tartozik. Egy szintén külön a list item xml-ben
+megtalálható ListView található meg benne. ami az összegyűjtött felhőket és darabszamukat
+tartalmazza. Alatta pedig a pontszámlálóval meg egy Share gombbal rendelkezik.
+
+----- PXL_20260907_104246169.jpg -----
+SZÁN ÁLD EA ÍTÁSA ELÁLLT (ő
+Köomponensei
+e Kelatvelavout
+e.  [fextView ítextViewOviZzbleseription): Az alkalmazás címe
+e Textview (textViewOuizPage): Az aktuális oldal neve
+e [Magetijévw (cldud): A kis felhő ikon
+e [astVview (lstView): Listanézet, amely az összegyűjtött felhők adatait jeleníti meg
+e [fextView (textViewPomts): Szövegmező, amely a felhasználó pontjait jeleníti meg A
+szövege . Pomts: Ő .
+e — Dutton (share button): Egy gomb. amelyet $5hare" felirattal jelenítünk meg.
+Az előbb említett ListView elemet definialja ami a felhő tipusát es hozza tartozó
+darabszámot leíró lextView-bóől all A ListAdapter-hez tartozó nézetért felelős.
+Komponensei:
+s [41neari avout
+" o Tezxztview (cloudTypelextView): Szövegmező, amely megjelenti a felho
+tipusat.
+o TextView (countTexztView): Masik szövegmező. amely a felho tipusanak
+számát jeleníti meg.
+fragment start aguiz xmil
+A StartCOuizFragment java osztály felülete. Animált háttérrel és a start gombbal anuvel el
+lehet indítani a Cloud Chuzt.
+Kormponensei:
+e FKelativel ayout
+s FrameLayout (fragment container): Ez az a része az oldalnak. ahol megjelennek a
+különböző kérdések és képek
+e — TextView (textViewOuizDescription); Az alkalmazás cime
+A e  TextView (textViewOuizhage): Az aktuális oldal neve.
+! A e "[ImageView (cloud): A kis felhő ikon.
+.—oe TextView - (textViewOuizDeseription): Leírás a kviz tartalmáról és a
+ gatékszanályer tl MT
+
+----- PXL_20260907_104246941.jpg -----
+BÉG SAE, VÁG NYMAZTÓR [EKE A ATP SEL ZEZÁS LÉ ATÁT TAAST ESA SEC zoo OA oson OSAN ÉRÉ bzs B GYÁSAA 2;
+eg gets éke EE EG EAK LA
+. [MmageVvirew (background one. backeround two) Ezek a háttérképek. amelvek az
+anumatió soran felcserélődnek. Megvalósítása úgy történik. hovv 2-azer ugyanazok a
+Képek mozognak jobbról balra
+e — Button (start button): Gomb a kviz megkezdéséhez
+
+iíragment guiz smi
+
+Ez egy picit összetettebb nezet. mivel a kvizhez használt gombokat és képeket valamint a
+
+megoldasokat is tartalmazza
+
+komponensei.
+
+e [j1extview (textViewOuizDescription): Áz alkalmazás címe.
+e Jextview (textViewOuizPagej: Az aktuális oldal neve.
+e ScrollVview: A fel-le görgethetőséget biztosítja.
+e. [1neariayout (table view): A kérdések és a helyes valaszok, amik akkor valnak
+lathatóvá. amikor a felhasznaló befejezte a kvizt.
+e [maseView (myimage): A kérdésben szereplő felhő kepe.
+. feztview (answer text view): A kerdes szövegenek megjelenítése.
+s [jinearlavout (button contamer): Gombokat tartalmazza.
+e Button (true button, false button): Gombok a valaszok kiválasztásához.
+s [magebutton (next button): Egy gomb a következő kerdesre való lepeshez.
+
+A többi mappáról és fájlokról:
+
+Külön az also navigációs menühöz felhasznalt fajl
+CloudGaze app src main res meny bottom nav menu.xmi
+
+Itt vannak létrehozva a Menu Item-ek. de a formázásuk a man activity xmi fájlban törtenik.
+
+A  CloudGaze app srcimain res valuesíthemes. xml és (Cloudtáazeáppsromamios values-
+
+night themes xml fájlokban találhatóak a nézet általalános szín beállításai light es dark mode
+
+kivitelezésére. Ezeket csak személyre szabtam, hogy megfelelő legyen a felhős temahoz.
+
+Az Android Studio nyújtotta egyik automatizált és szerintem nagyon hasznos resze a values
+mappán belül található colors xmi. styles.xml és strings xml. Ezekben úgy tudunk megadni
+! szín, string változókat vagy akár teljes stilust. hogy csak egy rövidebb azonosítót adunk neki
+és arra hivatkozunk az egész projektben A string xml.ben találhatóak a kviz kérdései. címek.
+
+----- PXL_20260907_104247675.jpg -----
+NAON att Agg MÁLTA (216 VEN ÁLL ÉGG 6 1 a ÉR ls 84]
+AL AVES ÉLEK PÉZT ES ÁPYE SÁNTA [RL SÉNPLDÁ A É S PŐ OLAU KI a 23 E db 3, D.. ! : i :
+értesítések szövevei A colör xml-be 47 ötszes általam eovak ER : :
+ATC: 34 E : XC. AZ OS5SZzes altalam gyakran használt szint hozzágdtam. és
+a styleés.xmi-ben pedig 3 különböző többször felhasznált gombstilus található
+fúl FEZEEVEHETTVÉKESSRT! ESP1 : t ; H 4 21 "ii Al 12 HERE LESSEE LK mi vál] árú E.
+AZ assets mappában található a cloud dátajson fájl amit a HomeFrasmentiava és
+44 KK [nm HA Hl pa : A : á MEREK SE ENE [E tl i EE s : ki 1
+C-l10ud 1 vpetragment java osztályok használnak a felhőtipusok leírására
+ii ME
+NHL EA FETT ESET [1 ÚI Mi [MTE HÉ NÉ TETÉSI] JER ÉS TI É31]
+
+----- PXL_20260907_104248515.jpg -----
+E SÁR AZ háta ell ka 2 s ks ALÁ AT ŐT Áh st E EK PAN Lex 1-2 1" t ÁÁ A E E 99 GP 2: YT ESA SRL S —PO7—
+Kid 8. át 24 SÉT JÉR ELZ ÁROS EE
+EL AP ST E ÁS ÁK TE A SÁS
+S. leszteles
+Ebben a fejezetben az alkalmazás különböző teszteléseit mutatom be Az alkalmazás
+összetettsége miatt egyarant irtani az osztályok működését ellenőrző és a felhasználói felületet
+ellenörző teszteseteket
+5.1. Black Box tesztelés
+A i1elület tesztelése egyszerű forgatókönyvek alapján történik. Iovekeztem a legtöbb
+esetett lefedni. akar olyanokat 15, ahol az alkalmazást nem megfelelően használiák
+Alkalmazas megnyitása
+AS A felhasznalo: I WANT TŐ: megnyitni az alkalmazást
+GIVEN: telefon alkalmazásai képernyőről
+WHEN: rakattint az alkalmazas ikonjára
+THEN: az alkalmazas elindul és megjelenik a töltő oldal. majd a kezdőkepernyő
+Jobbra-balra húzogatás a Home oldalon
+ASZ A: felhasználó ! WANT TO: jobbra-balra húzogatni a felületen
+(TVEN: a Horne oldalon egy felhő leírása
+WHEN: jobbra vagy balra húz a képernyon a leírasoknal
+THEN: megjelenik balról vagy jobbról egy masik leiras
+" Másik oldalra navigálás a navigációs menű segítségével
+" AS A: felhasználó [/DVANT TO: megnyitni egy masik oldalt
+! GIVEN: az adott oldal alap képernyője
+) WHEN: rákattint a navigációs menüben egy másik menü elemre
+" THEN: átirányítódik egy másik oldalra, annak az oldalnak az alap kinezete jelenik meg !
+Í " 1
+
+----- PXL_20260907_104249334.jpg -----
+A A KA ÁL Fsttetvgeák RAL? KLÁRA SZFE AGE ET ; :
+sz ÉT A A ÉNÍG E ESEL SL LÁGÉ ]: ESR Ati ó 2 FEE :
+(CC lassif öldalon a kamera vomb működik :
+GIVEN: a Classifv oldalon a kamera és 3 saleria gomb
+WHEN: a kamera gombra kattini
+C-lassíiíy oldalon a galéria gomb muködik
+As Az felhasznaló I WANT TO: megnyitni a galériát
+GÍVEN: a Classífy oldal a kamera es a galéria gomb
+WHEN: a galéria gombra kattint
+IHEN: a galéria megnyilik
+1 ki
+Klaszzífikalás
+AS A: felhasznaló I WANT TO: egy képet beazonosítani
+GIVEN: a kamera vagy a galéria megnyitása utan a kivalasztott kep
+WHEN: OK-ra kattint
+" THEN: a lehetséges 3 felhőfajta gombjai megjelennek a képernyon
+. Klasszífikálás után a felhő gombok működnek
+" AS A: felhasználó I WANT TO: kiválasztani a megfelelő felhot
+" GIVEN: kiasszífikálás után az top 5 felhők gombjai és a valószínűségek
+" WHEN: kiválasztja az egyik: gombot !
+AAA ! THEN a képernyő visszaáll az alapértelmezett kinézetre, a pontok és a felhő típusa beszámítodnak
+i 1 1! ! ME! 1 ! ! Vétel ES tscszt sti 11 eten főt TES fet rés feat teát ty estt fr fess fős [s szít ktssé szal fé jszst je ÁÁÁÁ ÉRÁNESI ! !
+i ! Ú i / 1 heg ktssstesitt sott pessdt foszt fv sztó] [sót fyésdó [tos fost [tab ]f4e 3 keáó késsyól csádól ezt étsati Essstl kést dójacddf hocádó hozá ffocáó) kzt td hgoéód Év ped jkébdój poöbló Jééé há gét [ÖN ÁAK BÁÉS] Í Hé]
+
+----- PXL_20260907_104250145.jpg -----
+o Zs kb [LT ST ÁSTÁK ÁR : ;
+s E s ETÉSA ÉDI VÉLSZ YA A Ek 34
+ék 4 ai 1 4 HL E vre Húdá 597)
+(/u1z oldalon kviz nem indul. mert nincs még elég pont
+GÍVEN: a Ouz oldal alap megjelenése. start rormb
+WHEN: megnyomja a start gombot
+IHEN: nem törtenik semmi. mert nincs elég pont
+Cus aldalon kviz elmduül, van elegendő pont ARAT
+AS Az felhasznalo I WANT TŐ: kzt elindítani
+GiVEN: a uz oldal alap megjelenése. start gomb
+WHEN: megnyomja a start gorabot :
+IHEN: a kviz elmdul
+Eviz kérdéseknél igaz hamis gombok működnek
+AS A: felhasználó I WANT TŐ: igaz hamis valaszt adni a kerdesre
+(TVEN: a kviz egy kérdése, igaz és hamis gomb, valamint egy tovabb gomb :
+WHEN: igazhamis gombra kattint
+THEN: megjelenik egy értesítés, hogy helyes volt-e a válasz, a tovabb gomb elerhető lesz
+" Kivíz kérdéseknél tovább gomb müködik
+" AS A- felhasználó I WANT TO: tovább menni a következő kerdesre
+"GIVEN: az igazíhamis gombakra lett kattintva, azok már nem kattinthatók. de tovabb gomb igen
+" WHEN: a tovább gombra kattint
+új íT HEN: megjelenik a következő kérdés, és a igaz hamis gombok kattinthatók, a tovább gomb nem :
+! ! ! [ , 198244 reset H 414 já est Hy ses 121) fás [doctor] ) te 4421 EE 11 10) [dccAthor] fjkozj Hát) úr A] !
+I Í HÉ] köll jyezkáká Elé j jztd gájrédbl ) [os gyssátj jáezi )yf402011114 áll hokdő[4cAAgt] [szánt fjjezdá ján) ) jöRéA 9) jocó f [odát go éz VÉsET 1! 34) fé004) [docAuth kio) kánon ydcd je gdssypjdésyof ess ígábst] [dés ÉSA ÉSZHEZ 1115 111211
+
+----- PXL_20260907_104251442.jpg -----
+ERESZ SZE STAR AMAZT LEN EÁ YAALZN oág KR 992 kt :
+Bos ST
+$viz kérdeseknel igaz hamis gombok lenyomása után nem lehet változtatni
+15 A: felhasználó I WANT TO: választ módosítani
+GIVEN: az igazhamis gombokra lett kattintva. azok mar nem kattinthatók de tovább rob igeri
+WHEN: újra az igazhamis gombokra kattint
+Aviz kerdeseknel igaz harnis gombok lenyomása előtt nem lehet tovább menni
+As Az Telhasznaló ! WANT TŐ: tovább menni igaz hamis gorab lenyomása előtt
+GiVEN: a kerdes es igaz hamis gorabok, valamint a tovább gorab
+WHEN: tovább gombra kattint
+THEN: nem törtenik semmi
+MyClouds oldalon share gomb müködik
+AS A: felhasználó I WANT TO: megosztani az eredmenyeket
+GIVEN: MyClouds oldal. az összegyűjtött felhők és a share gomb
+WHEN: Share gombra kattint
+THEN: megjelennek a megosztásra alkalmas alkalmazasok
+" MyC-louds oldalon 5hare gomb lenyomaás után megosztas sikeres
+" AS A: felhasználó I WANT TO: a kiválasztott alkalmazáson megosztátu az eredmenyeket
+" GTVEN: a Share gonab lenyomása utan az alkalmazások ikonja
+" WHEN: rákattint a megfelelő alkalmzásra !
+JA ! THEN: a generalt szöveget elküldi üzenetben
+i ! ! ! HE 2111 seret en tése osdl yes TTsl foot fs fesl fess fő Hedl footíatt egén fésat gé jén jesz éz ts vont Jelly fenn ffoz fe fEÉ JARÁÁRAR !
+MÉR Úi Katát gosátossáét kés Jéyysákt kád Ftaktt] reád fett vsz84]  keból egőnddbó [jussát] lyes  fjooótó yééttó jö y főre [gyet t ese Est EE TÉTETETT E TE nert en Ét EG ERTSE i éji
+
+----- PXL_20260907_104252531.jpg -----
+15 Az felhasználó I WANT TO: le-fel görsetni az összes összegyüjtött felhők között
+WHEN: le-fel húz a kepernyön a felhők között
+IHEN: az eddig nem látható felhőtipusok láthatóva válnak. az eddig látható sorok eltűnnet
+Gombok többszörös megnyomása (kamera. menüsor. start)
+AS A: felhasznalo [ VANT TO: többször lenyomni a gombokat. amikre egyszer már rákattintott
+GIVEN: barmelyik látható gomb
+WHEN: rakattint többször egyrgás után
+IHEN: rögtön megtörténik. aminek meg kellene; a végén megtörténik
+Filasszífikalaás megszakítása
+ASZ A: felhasznalo I WANT TO: megszakítani a klasszifikalaást
+(GIVEN: galéria vagy kamera megnyitva :
+WHEN: visszalép az telefon alap visszalepo gombjával
+. THEN: üres képernyő, nem történt klasszifikalás. ismet visszalépve Classify alapértelmezett felülete
+" AS A: felhasználó ( WANT TO: lilépni az alkalmazásból
+" GIVEN: bármelyik oldalon megnyitva az alkalmazas
+! WHEN: a telefon alapértelemezett kilépés gombjára kattint
+VAA " THEN: kiléptet az alkalmazásból
+fell ! Í ! ! VHA21 1 Hássi 1ászí VARSAL VESSE FEÉSA (dáSEL 99931 196s2411804 1091 Est TÉS fe ENE E GY féej Ed [FELE EEG] essél Vést] segelyert] Í
+Í Me AE A esetet rests fejest 9] Esstg)fassdt [jptnasg) átad [fond jozbáty jj kétaő f gábo] yet jóvvanyy fg [E HELY ETET e TETT ETATS E ÉGETETT ! ! ! VEJE !
+
+----- PXL_20260907_104253327.jpg -----
+Az alkalmazás működése ezeknek a teszteseteknek megfelelő Lehetne még
+természetesen tövábbiakat imi. amik olyan szítuációkat írnak le ahol tenyleg az a cél hogy
+összedöljön a rendszer. de alap használatnak ennyi tesztelés elevendő
+5.2. White Box tesztelés
+nézettel foglalkoznak és ezek használatát már ellenőriztem a Black Box tesztelésnél ezért
+az osztályok peldául a Classíify. java, ahol a képek azonosítása történik, vagy a kvizhez tartozó
+osztályok tesztelése. valamint az adatok betöltése stb A teszteléshez kiegészítettem a
+build sradle fájlt:
+e —/androidx test espresso:espresso-intents:3 5.1"
+e —/androidx fragment:fragment-testing:1 7.1"
+e — piatform( org jetbrams kötlim:koötlin-bom: 1.8 0")
+e. — org mockito:mockito-core:3 112
+ka a hozzájuk tartozó függöőségekkel [11].
+Az fajlok között a sapp.srcandroidiest javai és appsrctestjava mappakon belül
+helyezkednek a tesztek. Az androldlest mappában vannak az instrumented lestek amik
+emulátort használnak a futtatáshoz Bevallom korabban nem volt dolgom ehhez hasonló
+tesztek írásával de a megtanulása sem bizonyult tul neheznek. A sima test mappaban pedig a
+Unit Test-ek találhatók. az egyszerübb funkciók vizsgalataára.
+MainActivityTest.java (Instrumented 1 est
+A .MaimwmnActivity java" tesztelésénél fontos volt a fájl mentés es betöltés ellenőrzése.
+valamint a pontok kiszámítása. Ehhez létrehoztam egy ,.cloud test son fájlt amiben 2 felho
+típus található és 3 ponttal rendelkezik. Ezt használom fel a funkciok probáalaásara.
+HomeFragmentT est. java (Instrumented lest)
+Itt tesztelem a . HomeFragment java" osztályt. ellenőrzöm, hogy jól töltődik be a felhő
+A 42 ANN s
+
+----- PXL_20260907_104254714.jpg -----
+szükségesek pl: context elemek. amik viszont Csak Instrumented Test-ek esetén elérhetők [ov
+hoztam létre a klasszifikálás szimulálását. ahol a CloudGaze 34DD SIC mam res drawable ac ip
+ellenőriztem, hogy a classífvŐ függvény megfelelően működik. hanem azt is hogsv a modell
+pontossága 1s helyes
+Cuestion 1 est.java (Unit Test)
+Ilyen Umnt Test a Ouestion java osztály tesztelése, ahol egy kérdés létrehozását az id
+lekerdezeset és a helyesség lekérdezéset tesztelem.
+Cuiztragment.java (Unit Test)
+A helyes es a helytelen válaszadást szimulalom. hogy megfelelően történik meg a kérdés
+ellenőrzése. Közben nézem. hogy megfelelően kapja-e a pontokat a felhasználó.
+A Ad JD A A
+
+----- PXL_20260907_104255541.jpg -----
+A dolgozatom megírásának elején fogalmam se volt milyen sok kutatómunkával jar majd
+egy ilyen kilasszifikáló Androidos alkalmazás megalkotása Úgy vondoltam hoz a
+programozo tudásom elegendő lesz. de sokszor ütköztem olyan problémákba amikkel mások
+IS csak mostanában találkoztak először, hiszen annyira Új még ez a terület De mint
+olyasvalaki, aki szereti a kihívásokat és az újdonságokat, élvezettel oldottam meg ezeket a
+problemákat és sikerelménynek éltem meg. ha sikerült. Sokat fejlődtem Java és Python
+nyelvekben, emellett hadd említsem meg. hogy ezelőtt nem nagyon csináltam telefonos
+alkalmazást, így ennek a folyamatnak a megtanulása is komolyabb időt igényelt Ennek
+köszönhetően most büszkén mutathatom meg ismerőseimnek. hogy mit is sikerült
+fejlesztenem. Erdekes volt megfigyelni. hogy ha az ember egyedül dolgozik egy projekten.
+mennyivel máshogy tudja beosztani az idejét és a tervezés is mennyivel másabb. Ami talán a
+legnagyobb kihívás volt, az a nézet megalkotása Ha az embernek van a szeme előtt egy
+elkepzelt felület és nem igazan tudja, hogyan is lehetne azt megvalósítani, akkor jó sok időt el
+lehet jatszani a reszletek tökéletesítéséével
+Jeldideg elégedett vagyok a végeredménnyel. de ez nem jelenti azt. hogy nem folvtatnam
+a fejlesztését A felhők iránti nagy érdeklődésem miatt szeretném. ha tenyleg olyan lemne.
+amivel mások is megtapasztalhatjaák milyen csodálatos az egbolt és mennyi mformaációt rejt
+magában Mindezek mellett úgy gondolom az alkalmazásom szórakoztató és erdekes tud
+lenni nem csak azert, mert modem eszközökkel motiválja az embert a természetbe való
+kimozdulásra valamint a körülöttünk lévő dolgok észrevételére, hanem tanulhat vele es
+élvezheti a gépi tanulás nyújtotta újabb és újabb felfedezéseket. Véleményem szert szkerült
+egy ennek megfelelő alkalmazást megalkotni.
+Lezárásul úgy érzem, ez egy tökéletes projekt volt a tanulmánya befejezesere.
+Megmutathattam, milyen szintre sikerült eljutnom különböző területeken valamint hogy az
+informatika sosem áll meg fejlődni és én is képes vagyok tartani vele a lepest Kivancsian
+várom mit hoz majd a jövő, milyen újítások várhatok,
+o 44
+
+----- PXL_20260907_104256433.jpg -----
+7. Tovabbi fejlesztési lehetőségek
+Az alkalmazás több része is fejleszthető a jövőben A modell és ezen technikák
+0s pontossággal tudjuk biztosra mondani, hogy az első típus valóban az a felhő. amit az éven
+látunk. de más-más modellek. mint a YOLÓ verzióival. ennel pontosabb is lehet az eredmény
+A itelhök telismerésével a felhasználó elő időjárás jelentésre tehet szert amitől més
+hasznosabbá válik a program. Ugy gondolom, hogy akár más open-source adatbázisok vagy
+meteorológiai előrejelzések segítségével olyan pontos időjárás jelentést lehetne megalkotni
+ami pontosan megmondja, milyen idő várható a következő órában.
+Az alkalmazas sokoldalúságának köszönhetően más funkciók is fejleszthetők A kviz
+kibövithető több kerdésre és különböző szintek létrehozásával elérhetővé válna egy . cloud-
+expert rang. amit a legmagasabb szint lenne a játékosok számára De mindenféle
+minijatekkal kibőviíthető, a lehetőségek száma szinte végtelen mert például azt is eltudom
+kepzelni. hogy egy időjárás szimulációt hozzááadva különböző helyzeteket lehetne lejátszani
+és közbe tanulni 15 belőle. Szerintem ez egy nagyon jó alapja lehet egy még komolvabb
+PIO] ektek. amiben mindenki megstalálhatna a neki megfelelő részt Az egyre gyarapodó felhő
+képekkel ott lesz a lehetőség, hogy fel lehet öket használni a modell folyamatos tanítására
+Aztán nem utolsó sorban, szeretném kiemelni hogy jelenleg kiasszihkációt hasznai az
+alkalmazás de át lehetne térni . object-detection  -re. és élőben a kamera mozgatásával
+felismerni a felhőket. :
+Összesítve azt mondhatom, hogy rengeteg fejlesztési lehetősége van, mivel egy könnyen
+befogadható és hasznosítható program Valamint a gépi tanulás gyors fejlődése mialt a
+pontosabb azonosítás sem tünik lehetetlen feladatnak Kemelem hogy a jövőben tovabb
+tudom fejleszteni és ugyanigy élvezni a folyamatát.
+k ]
+
+----- PXL_20260907_104257202.jpg -----
+- s. B .. 4 " " !
+S. köszönetnyilvaniítás
+SZzeremém mesköszönni Dr. Gömbös (ör gő Konzulensémnek 4 szakdóolvozat során
+adott hasznos ötleteit és jó tánácsáit, Köszötötn szüleitnnék 4 461 sondóosködást. ami elkísért
+3 tanulmányaim sor 14. válni köszönöm húgomnak A BévITSÉveT et 4 fireltnet 3
+miundennapokban
+mu !
+
+----- PXL_20260907_104257939.jpg -----
+9. Irodalomjegyzek
+í ! ! 11 adjhi A Ak.1öggyat él vélték ARNLÚNA HAN! Az 1 ÁNAK MI kov AG 1
+1 ( ) (1) in! 1 () 1 1 S hi 1
+DD]  aítps: ikelte-my.sharepomt com "3. £ personal horgtm inf elle huz ív nvp-
+ZIDNDP-Ó 1.50 DA FLOJY fnődiad 10 Hu e-ilett 11
+(2024 05 29)
+e ia sr ál LOL s élét hé 19 Het ág THHLOCHCDCI S 2
+EL ez
+A 4 27
+[7]  aHps/ ceras 107301
+(2024 [4 25.)
+[8] ktps: zithob com [-Apps Image.-( lassificattion-App-with ( ustom- ! ensor! ow- dolcsi
+1! pe:/Avow geeksforgeeks org/hnow-0-create-4-gut2-appoillhatlitot
+LL AJ ! VÉ AA AZ AN [I Lo
+AAA AÁATÁÁATTÁN VÉ AE VEK E AA KA MÉG E ÉN GY A ÉN NÉNYÉRNI! ! ! MAÉI AL A
+AAN
+e 2 1
+
+----- PXL_20260907_104258651.jpg -----
+10. Ábrajegyzék
+2.1. ábra Felhőtipusok osztályozása
+3.1. ábra [ústall unkövn apps
+3.2. abra Apps !
+3.3. ábra Special access
+3.4. ábra Fájl telepítése ;
+311 abra ( 19 si y Hasment HL /
+íj2 ata share /
+313 3b1a 217l ionds Hasmeni.... 3
+3 14. alga íz age e tetette I A
+ÉL. alak izelerhee. 6 o
+ÉIT8 ara élesn—o— 3
+a a eso seen enn -
+3 [5 abra Eredmény beee éa 9
+4 1 ábra cionds apa LL ee ete 3.
+4.2. abra G00g1e Drive-al összekötes .......... str [2
+43 ábra rolovó mlalása [ L egear egett F2
+4 4. 3bra (-b-ÍNŐ3 1-re RtatVa . ee gége 3.
+4 5 Abra Asserkonkron [es I
+4 6 ábra Minta képek! [LL 13
+4.7. ábra Modell rétegei : [1
+4.8. ábra Model! pontossága 15
+4 9 ábra Modell vesztesége o
+4.10. ábra Codtrall [LT emtetérr esse ose ÉR
+417 4áhbra A focin ulüs aba AA
+4 1 1 Sira Crodumulas [eegbeta tartoz senesszegerennzéronttonaeas szenator TT 16
+A 18. Sbra Nin büsbea tis [LL egentateleltet eger aram éses rasa rate E Áron gyon SS ZET TSZ 17
+6 48
+
+----- PXL_20260907_104259420.jpg -----
+Át [ná kzt ! : 8 svi A dot SÉTA
+41.14. ábra COntradl valószínűséve Ut.
+7.15. ábra Altocúumullus valószínűsége Es,
+1.16. ábra Ciírrocumulus valószínűsége 19
+7.17. ábra Niunbostratus valószínűsége Ű
+4.19. ábra Modell umplementálása
+47.22. abra Classily oldal I terv... A ,
+47.23. abra Classily oldal [d terv 9
+4 26 abra Home oldal terv 3Ű
+427 ara Ouzokál ili er. j]
+.T 25 abra (uz oldal ii te . 31
+
