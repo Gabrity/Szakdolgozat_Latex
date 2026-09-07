@@ -1,10 +1,10 @@
 # Project Guidelines
 
-Szakdolgozat repó: LaTeX dolgozat (gyökér) + Python demo-alkalmazás ([code/](../code/)).
+Szakdolgozat repó: LaTeX dolgozat ([dolgozat/](../dolgozat/)) + Python demo-alkalmazás ([code/](../code/)).
 
 ## Repo szerkezet
 
-- `Gabrity_Gabor_D9V09Z_Szakdolgozat.tex` — a dolgozat gyökér forrása. Fejezet-változtatás után **két** LaTeX fordítás kell a TOC frissüléséhez.
+- `dolgozat/Gabrity_Gabor_D9V09Z_Szakdolgozat.tex` — a dolgozat gyökér forrása. Fejezet-változtatás után **két** LaTeX fordítás kell a TOC frissüléséhez.
 - `code/` — a dolgozatban bemutatott alkalmazás (adversarial példák generálása/védelme ImageNet modelleken). `code/README.md` írja le a mappastruktúráját és indítását.
 - `input/szakdolgozatok/` — korábbi szakdolgozatok txt-i referenciaként (struktúra, stílus).
 - `input/kovetelmenyek/` — formai és tartalmi követelmények, általános tanácsok (BSc/MSc).
