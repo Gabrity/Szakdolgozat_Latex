@@ -1,0 +1,16 @@
+# --- code/ (Python) ---
+code/__pycache__/
+code/**/__pycache__/
+code/*.pyc
+code/*.pyo
+code/.venv/
+code/venv/
+code/env/
+code/.idea/
+code/.vscode/
+code/.vs/
+code/models/
+code/*.egg-info/
+code/build/
+code/dist/
+code/.pytest_cache/
