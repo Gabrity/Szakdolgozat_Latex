@@ -6,6 +6,7 @@ implementációs részletek:
 -normalizált pixeltér
 -softmax - miért azt használja az algoritmus
 -pgdnél véletlen pont választás
+-stepsize 2.5x szorzó
 
 költségfüggvény J
 
