@@ -72,6 +72,14 @@ class AppInterface(ctk.CTk):
 
         # Image references so PhotoImages aren't garbage collected.
         self._photo_refs: dict[str, ctk.CTkImage] = {}
+        # Persistent transparent placeholder: CTkLabel.configure(image=None) doesn't
+        # clear the underlying Tk image reference, so clearing to None and letting the
+        # old CTkImage get garbage-collected leaves a stale Tcl image name behind and
+        # crashes on the next configure() call. Reusing one never-collected blank image
+        # avoids that entirely.
+        blank = Image.new("RGBA", IMAGE_DISPLAY_SIZE, (0, 0, 0, 0))
+        self._blank_image = ctk.CTkImage(light_image=blank, dark_image=blank,
+                                         size=IMAGE_DISPLAY_SIZE)
 
         self._build_layout()
         self._bind_events()
@@ -270,7 +278,7 @@ class AppInterface(ctk.CTk):
 
     def _set_image(self, slot: int, pil_img: Optional[Image.Image]) -> None:
         if pil_img is None:
-            self.image_labels[slot].configure(image=None, text="(no image)")
+            self.image_labels[slot].configure(image=self._blank_image, text="(no image)")
             self._photo_refs.pop(str(slot), None)
             return
         display = pil_img.resize(IMAGE_DISPLAY_SIZE, Image.LANCZOS)
