@@ -46,7 +46,9 @@ hallgató aláírása
 \newpage
 
 \begin{abstract}
-A mesterséges intelligencia rohamos fejlődésével párhuzamosan kritikus kérdéssé vált a modellek biztonsága
+
+\iffalse
+  A mesterséges intelligencia rohamos fejlődésével párhuzamosan kritikus kérdéssé vált a modellek biztonsága
 és megbízhatósága. Kutatások kimutatták, hogy a modern konvolúciós neurális hálózati architektúrák
 sebezhetőek az ellenfél alapú támadásokkal szemben, mint például az FGSM (Fast Gradient Sign Method) és a
 PGD (Projected Gradient Descent). Ezek az algoritmusok a bemeneti adatot képesek olyan módon -- az emberi szem számára
@@ -66,6 +68,8 @@ Az alkalmazás hármas vizuális megjelenítést alkalmaz: megjeleníti az erede
 és a végső, támadott képet, miközben mutatja a modell predikcióinak változását. A rendszer kiegészülhet egy
 modellvédelmi modullal is, amely különböző képfeldolgozási szűrők -- például homályosítás -- segítségével
 próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezőképességét.
+\fi
+
 \end{abstract}
 \newpage
 
@@ -363,7 +367,7 @@ saját kódunk logikáját vizsgálja, nem a harmadik féltől származó archit
 Minden véletlent felhasználó fixture (pl. a bemeneti képet generáló \texttt{sample\_image\_tensor})
 maga hívja meg a \texttt{torch.manual\_seed}-et közvetlenül az adat előállítása előtt, így a
 determinizmus független a fixture-ök végrehajtási sorrendjétől. Az egységtesztek szintjén nem támadási sikerrátát mérünk (ehhez sok mintás, statisztikai kiértékelés
-kellene), hanem az algoritmusok \textit{tulajdonságait} és \textit{kontraktusait} ellenőrizzük
+kellene), hanem az algoritmusok tulajdonságait ellenőrizzük
 konkrét, kis méretű bemeneteken.
 
 Ebben a részben a számosságuk miatt nem mutatom be az összes egységtesztet, csak a középpontban álló \texttt{attack\_engine.py} 
@@ -561,25 +565,26 @@ konfidenciát) FGSM-re és PGD-re is parametrizált formában lett tesztelve
 
 \subsubsection{GUI és támadási motor összekötése}
 
-Az integrációs réteg feladata annak ellenőrzése, hogy a \texttt{src/gui/app\_interface.py} eseménykezelői
-(pl. az \texttt{Attack} gombhoz kötött \texttt{\_on\_attack}/\texttt{\_attack\_worker} páros) helyesen
+Az integrációs réteg feladata annak ellenőrzése, hogy az \texttt{app\_interface.py} eseménykezelői helyesen
 építik-e fel az \texttt{AttackContext}-et a ténylegesen betöltött \texttt{ModelBundle}-ből, és a
 \texttt{attack\_engine.attack()} hívás eredménye helyesen jelenik-e meg a felületen (kép- és
 predikció-frissítés). Ez a réteg már nem mockolja a modellt, de a valódi felhasználói interakciót
 (egérkattintás, csúszka-mozgatás) sem szimulálja még -- azt a GUI-tesztek rétege végzi.
 
-\subsubsection{Modellbetöltés és teljes támadási folyamat}
+\subsection{Automatizált GUI tesztek}
 
-Ezen a szinten a \texttt{ModelManager} valódi (nem mockolt) \texttt{ResNet50}/\texttt{MobileNetV2}
-betöltésével, a lemezen cache-elt súlyokkal fut le a teljes folyamat -- kép betöltése, előfeldolgozás,
-támadás, predikció --, hogy kiderüljön, a valódi architektúrák bemeneti/kimeneti alakjai
-(\texttt{shape}) és a normalizációs pipeline illeszkednek-e az \texttt{attack\_engine} elvárásaihoz.
+A GUI tesztek a felhasználói felületet magát, a ténylegesen megjelenő ablakot és widgeteket vizsgálják,
+programozott módon szimulálva a felhasználói interakciókat, majd
+ellenőrizi, hogy a felület a várt módon reagál-e. Ez a legfelső, egyben legköltségesebb és leglassabb
+réteg a tesztpiramisban, hiszen minden egyes esethez fel kell építeni a teljes grafikus felületet -- ezért
+csak kevés, a legfontosabb felhasználói forgatókönyveket lefedő tesztesetre érdemes szorítkozni, a
+részletesebb logikai ellenőrzést az alsóbb rétegekre (egység- és integrációs tesztek) hagyva.
 
 \subsection{Funkcionális tesztek és felhasználói validáció}
 
 A grafikus felület funkcionális, ,,fekete doboz'' teszteseteit a felhasználói forgatókönyvek alapján,
-\textit{Given--When--Then} formában fogalmazom meg. Az alábbi esetek a \texttt{src/gui/app\_interface.py} tényleges
-felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső) igazodnak, és egyelőre kézi
+\textit{Given--When--Then} formában fogalmazom meg. Az alábbi esetek a tényleges
+felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső) igazodnak, és kézi
 (manuális) végrehajtásra tervezettek.
 
 \begin{itemize}
