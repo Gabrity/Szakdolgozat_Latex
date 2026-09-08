@@ -64,26 +64,19 @@
 \select@language {magyar} \contentsline {subsubsection}{\numberline {4.9.6}Interaktív paraméterezés (csúszkák, célosztály választás)}{7}{}%
 \select@language {magyar} \contentsline {subsubsection}{\numberline {4.9.7}Védekezési modul (képfeldolgozási szűrők)}{7}{}%
 \select@language {magyar} \contentsline {section}{\numberline {5}Tesztelés}{8}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1}Tesztelési terv}{8}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.1.1}Tesztelési célok és lefedettség}{8}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.1.2}Teszt adatkészletek és modellek kiválasztása}{8}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.1.3}Mérési metrikák (támadási sikerráta, $\ell _\infty $ eltérés, konfidencia)}{8}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.2}Egységtesztek}{9}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.2.1}predict() és a diszpécser (attack()) tesztjei}{9}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.2.2}FGSM modul tesztjei (\texttt {\_fgsm})}{10}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.2.3}PGD modul tesztjei (\texttt {\_pgd})}{11}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.3}Integrációs tesztek}{13}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.3.1}GUI és támadási motor összekötése}{13}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.3.2}Modellbetöltés és teljes támadási folyamat}{13}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4}Funkcionális tesztek és felhasználói validáció}{13}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.5}Teszteredmények és értelmezésük}{15}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.5.1}FGSM eredmények különböző $\epsilon $ értékekre}{15}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.5.2}PGD eredmények különböző iterációszámokra}{15}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.5.3}Targeted vs. non-targeted összehasonlítás}{15}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.5.4}A védekezési modul hatásának mérése}{15}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.6}A tesztelés korlátai}{15}{}%
-\select@language {magyar} \contentsline {section}{\numberline {6}Összefoglalás}{16}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {6.1}Elért eredmények}{16}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {6.2}Következtetések}{16}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {6.3}Továbbfejlesztési lehetőségek}{16}{}%
-\select@language {magyar} \contentsline {section}{Mellékletek}{17}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1}Egységtesztek}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.2}Integrációs tesztek}{11}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {5.2.1}GUI és támadási motor összekötése}{11}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {5.2.2}Modellbetöltés és teljes támadási folyamat}{12}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3}Funkcionális tesztek és felhasználói validáció}{12}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4}Teszteredmények és értelmezésük}{14}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {5.4.1}FGSM eredmények különböző $\epsilon $ értékekre}{14}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {5.4.2}PGD eredmények különböző iterációszámokra}{14}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {5.4.3}Targeted vs. non-targeted összehasonlítás}{14}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {5.4.4}A védekezési modul hatásának mérése}{14}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.5}A tesztelés korlátai}{14}{}%
+\select@language {magyar} \contentsline {section}{\numberline {6}Összefoglalás}{15}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.1}Elért eredmények}{15}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.2}Következtetések}{15}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.3}Továbbfejlesztési lehetőségek}{15}{}%
+\select@language {magyar} \contentsline {section}{Mellékletek}{16}{}%
