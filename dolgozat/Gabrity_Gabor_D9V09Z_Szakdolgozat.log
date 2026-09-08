@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  9 SEP 2026 00:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  9 SEP 2026 00:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -286,63 +286,59 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {C:/Users/User/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-[3] (Gabrity_Gabor_D9V09Z_Szakdolgozat.toc [1] [2])
+[3] (Gabrity_Gabor_D9V09Z_Szakdolgozat.toc [1])
 \tf@toc=\write3
 \openout3 = `Gabrity_Gabor_D9V09Z_Szakdolgozat.toc'.
 
- [3] [4] [5] [6]
-Overfull \vbox (392.89081pt too high) has occurred while \output is active []
-
-
-[7]
-Overfull \hbox (21.92781pt too wide) in paragraph at lines 367--372
+ [2] [3] [4] [5] [6]
+Overfull \hbox (21.92781pt too wide) in paragraph at lines 285--290
 []\T1/cmr/m/n/12 Minden vé-let-lent fel-hasz-ná-ló fix-tu-re (pl. a be-me-ne-ti
  ké-pet ge-ne-rá-ló \T1/cmtt/m/n/12 sample_image_tensor\T1/cmr/m/n/12 )
  []
 
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 378.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 296.
 
-Overfull \hbox (36.73907pt too wide) in paragraph at lines 381--383
+Overfull \hbox (36.73907pt too wide) in paragraph at lines 299--301
 \T1/cmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/cmr/m/n/12 : El-len-®r-zi,
  hogy \T1/cmtt/m/n/12 topk=3 \T1/cmr/m/n/12 ese-tén a vissza-adott valószín¶ség
 -
  []
 
-[8]
-Overfull \hbox (49.28825pt too wide) in paragraph at lines 413--417
+[7]
+Overfull \hbox (49.28825pt too wide) in paragraph at lines 331--335
 \T1/cmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/cmr/m/n/12 : A
 n-nak el-le-né-re, hogy a hí-vó \T1/cmtt/m/n/12 iterations=99\T1/cmr/m/n/12 -
  []
 
 
-Overfull \hbox (33.44894pt too wide) in paragraph at lines 430--435
+Overfull \hbox (33.44894pt too wide) in paragraph at lines 348--353
 \T1/cmtt/m/n/12 wraps=_pgd \T1/cmr/m/n/12 spy-okkal fi-gye-li a hí-vá-so-kat: \
 T1/cmtt/m/n/12 method="FGSM" \T1/cmr/m/n/12 ese-tén \T1/cmtt/m/n/12 _fgsm.asser
 t_called_once()
  []
 
-[9] [10]
-Overfull \hbox (1.98862pt too wide) in paragraph at lines 532--536
+[8] [9]
+Overfull \hbox (1.98862pt too wide) in paragraph at lines 450--454
 \T1/cmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/cmr/m/n/12 : Ugyan-az 
 az er®s \T1/cmtt/m/n/12 detach\T1/cmr/m/n/12 -bizonyíték (\T1/cmtt/m/n/12 grad_
 fn
  []
 
 
-Overfull \hbox (46.76793pt too wide) in paragraph at lines 549--552
+Overfull \hbox (46.76793pt too wide) in paragraph at lines 467--470
 \T1/cmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/cmr/m
 /n/12 : Vi-sel-ke-dé-si bi-zo-nyí-ték \T1/cmtt/m/n/12 predict()\T1/cmr/m/n/12 -
 
  []
 
 
-Overfull \hbox (2.4371pt too wide) in paragraph at lines 557--561
+Overfull \hbox (2.4371pt too wide) in paragraph at lines 475--479
 \T1/cmr/m/n/12 osz-tály kon-fi-den-ci-á-ját nö-ve-li -- ugyan-azon tu-laj-don-s
 ág-pár (non-targeted csök-ken-ti/targeted
  []
 
-[11] [12] [13] [14] [15] [16] [17] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[10] [11] [12] [13] [14] [15] [16] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
@@ -351,7 +347,7 @@ L3 programming layer <2026-04-28>
 Here is how much of TeX's memory you used:
  4831 strings out of 467682
  79506 string characters out of 5415184
- 520678 words of memory out of 5000000
+ 517678 words of memory out of 5000000
  33864 multiletter control sequences out of 15000+600000
  645456 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -375,10 +371,10 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users
 pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmsy10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (20 pages, 250634 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (19 pages, 242046 bytes
 ).
 PDF statistics:
- 587 PDF objects out of 1000 (max. 8388607)
+ 574 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

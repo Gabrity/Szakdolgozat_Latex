@@ -100,33 +100,13 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 
 \subsection{A felhasznált módszerek rövid áttekintése}
 
-\subsubsection{FGSM (Fast Gradient Sign Method) röviden}
-
-\subsubsection{PGD (Projected Gradient Descent) röviden}
-
-\subsubsection{Non-targeted és targeted támadási módok}
-
 \subsection{Rendszerkövetelmények}
 
 \subsection{Telepítés és első indítás}
 
 \subsection{A grafikus felhasználói felület bemutatása}
 
-\subsubsection{Modell kiválasztása és kép betöltése}
-
-\subsubsection{Támadási paraméterek beállítása ($\epsilon$, iterációszám, célosztály)}
-
-\subsubsection{Az eredeti, a perturbáció és a támadott kép megjelenítése}
-
-\subsubsection{Predikciók és konfidenciák leolvasása}
-
 \subsection{Tipikus felhasználási forgatókönyvek}
-
-\subsubsection{Non-targeted támadás végrehajtása}
-
-\subsubsection{Targeted támadás egy adott célosztályra}
-
-\subsubsection{Védekezési modul használata (szűrők alkalmazása)}
 
 \subsection{Hibaüzenetek és gyakori problémák}
 
@@ -135,33 +115,9 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 
 \subsection{A probléma részletes specifikációja}
 
-\subsubsection{Funkcionális követelmények}
-
-\subsubsection{Nem funkcionális követelmények}
-
-\subsubsection{Használati esetek}
-
 \subsection{Tervezési döntések és indoklásuk}
 
-\subsubsection{Programozási nyelv és keretrendszer kiválasztása}
-
-\subsubsection{Modellarchitektúra és előtanított modellek választása}
-
-\subsubsection{FGSM és PGD támadások kiválasztásának indoklása}
-
-\subsubsection{GUI technológia és interakciós modell kiválasztása}
-
-\subsubsection{Védekezési eljárások kiválasztásának indoklása}
-
 \subsection{Elméleti háttér és a használt fogalmak definíciója}
-
-\subsubsection{Konvolúciós neurális hálózatok rövid áttekintése}
-
-\subsubsection{Veszteségfüggvény, gradiens és backpropagation}
-
-\subsubsection{Perturbáció, $\ell_\infty$ norma, ellenfél alapú példa}
-
-\subsubsection{AI Red Teaming módszertan}
 
 \subsection{Ellenfél alapú támadások áttekintése}
 
@@ -299,51 +255,13 @@ $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a szá
 
 \subsection{Kapcsolódó munkák és további támadási módszerek}
 
-\subsubsection{Iteratív FGSM (BIM) és Momentum-alapú változatok}
-
-\subsubsection{Carlini--Wagner és DeepFool támadások}
-
-\subsubsection{Transzferálhatóság és fekete dobozos támadások}
-
 \subsection{Védekezési stratégiák áttekintése}
-
-\subsubsection{Ellenfél alapú tanítás (adversarial training)}
-
-\subsubsection{Bemenet-előfeldolgozáson alapuló védekezés (szűrők, homályosítás)}
-
-\subsubsection{Detekció-alapú megközelítések}
 
 \subsection{A rendszer architektúrája}
 
-\subsubsection{Komponensek és modulfelbontás}
-
-\subsubsection{Adatfolyam a betöltéstől a támadott képig}
-
-\subsubsection{A GUI és a támadási motor kapcsolata}
-
 \subsection{A felhasznált technológiák}
 
-\subsubsection{Python és tudományos csomagok (NumPy, Matplotlib)}
-
-\subsubsection{Mélytanulási keretrendszer (PyTorch/TensorFlow)}
-
-\subsubsection{Grafikus felület (pl. Tkinter, PyQt vagy Streamlit)}
-
 \subsection{Az egyes komponensek megvalósítása}
-
-\subsubsection{Modellbetöltés és előfeldolgozás}
-
-\subsubsection{FGSM támadás implementációja}
-
-\subsubsection{PGD támadás implementációja}
-
-\subsubsection{Targeted és non-targeted mód kezelése}
-
-\subsubsection{Perturbáció megjelenítése és képnormalizálás}
-
-\subsubsection{Interaktív paraméterezés (csúszkák, célosztály választás)}
-
-\subsubsection{Védekezési modul (képfeldolgozási szűrők)}
 
 \newpage
 \section{Tesztelés}
@@ -666,14 +584,6 @@ felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső
 \end{itemize}
 
 \subsection{Teszteredmények és értelmezésük}
-
-\subsubsection{FGSM eredmények különböző $\epsilon$ értékekre}
-
-\subsubsection{PGD eredmények különböző iterációszámokra}
-
-\subsubsection{Targeted vs. non-targeted összehasonlítás}
-
-\subsubsection{A védekezési modul hatásának mérése}
 
 \subsection{A tesztelés korlátai}
 
