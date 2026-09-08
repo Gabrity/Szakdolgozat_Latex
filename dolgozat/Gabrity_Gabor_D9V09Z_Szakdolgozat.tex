@@ -7,6 +7,7 @@
 \usepackage{geometry}
 \geometry{margin=2.5cm}
 \usepackage{setspace}
+\usepackage{longtable}
 
 \title{Ellenfél alapú támadások (FGSM, PGD) implementációja\\
 konvolúciós neurális hálózatokhoz\\
@@ -159,6 +160,8 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 
 \subsection{Ellenfél alapú támadások áttekintése}
 
+\iffalse
+
 A mély neurális hálózatok -- különösen a képfelismerésben alkalmazott konvolúciós architektúrák -- rendkívül
 érzékenyek a bemeneti adatok apró, célzott módosításaira. Az ilyen módosításokat \textit{ellenfél alapú
 perturbációknak} (adversarial perturbations) nevezzük, az ezeket előállító eljárásokat pedig \textit{ellenfél
@@ -287,6 +290,8 @@ A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel t
 a lokális optimumot. A random restart technikával kombinálva különösen hatékony. Hátránya, hogy
 $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége.
 
+\fi
+
 \subsection{Kapcsolódó munkák és további támadási módszerek}
 
 \subsubsection{Iteratív FGSM (BIM) és Momentum-alapú változatok}
@@ -340,27 +345,246 @@ $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a szá
 
 \subsection{Tesztelési terv}
 
-\subsubsection{Tesztelési célok és lefedettség}
-
-\subsubsection{Teszt adatkészletek és modellek kiválasztása}
-
-\subsubsection{Mérési metrikák (támadási sikerráta, $\ell_\infty$ eltérés, konfidencia)}
-
 \subsection{Egységtesztek}
 
-\subsubsection{FGSM modul tesztjei}
+A program tesztkészletének felépítésénél a szoftvertesztelési szakirodalomból ismert \textit{tesztpiramisnak} nevezett
+hierarchiát követtem. Ennek alapját a gyorsabb és kevés komponenst érintő tesztek, az egységtesztek képezik, 
+melyek a lehető legkisebb elkülöníthető egységek a többi egységtől független tesztelését valósítják meg. Futási idejük 
+jellemzően ezredmásodperces tartományban mozog és számos esetet fednek le, mint például az inputok szélsőértékeit, 
+hibás működést, helyes működést. Az elkészítésüknél fontos szempont a többi egységtől való függetlenség (izoláció) és az 
+perfiériáktól való függetlenség, I/O, adatbázis, hálózat, stb. Ezeknek a teszteknek az elkészítésére érdemes nagy figyelmet 
+fordítani, mivel a szoftverek hibáinak jelentős része helyes egységtesztekkel megelőzhető lehetne.
 
-\subsubsection{PGD modul tesztjei}
+Eben a részben a számosságuk miatt nem mutatom be az összes egységtesztet, csak a központt álló \texttt{attack\_engine.py} 
+modult mivel ez valósítja meg az alkalmazás lényegi logikáját (az FGSM és PGD algoritmusokat,
+valamint az ezeket kiszolgáló \texttt{predict()} és \texttt{attack()} függvényeket). 
 
-\subsubsection{Segédfüggvények és képvágás tesztjei}
+Az egységtesztek tudatosan nem a valódi, előtanított ResNet50/MobileNetV2 modelleket használják. Az
+\texttt{attack\_engine} teszteknél egy \texttt{tiny\_model} fixture ad egy $5$ osztályos,
+$8\times8$ pixeles bemenetet feldolgozó, egyetlen lineáris rétegből álló hálót. Ez a döntés a tesztek sebességét 
+(a valódi háló letöltése és felépítése másodperces nagyságrendű lenne) és izoláltságát szolgálja: a teszt kizárólag a 
+saját kódunk logikáját vizsgálja, nem a harmadik féltől származó architektúra pontosságát. 
+
+Minden véletlent felhasználó fixture (pl. a bemeneti képet generáló \texttt{sample\_image\_tensor})
+maga hívja meg a \texttt{torch.manual\_seed}-et közvetlenül az adat előállítása előtt, így a
+determinizmus független a fixture-ök végrehajtási sorrendjétől. Az egységtesztek szintjén nem támadási sikerrátát mérünk (ehhez sok mintás, statisztikai kiértékelés
+kellene), hanem az algoritmusok \textit{tulajdonságait} és \textit{kontraktusait} ellenőrizzük
+konkrét, kis méretű bemeneteken.
+
+\begin{longtable}{p{0.40\textwidth}p{0.55\textwidth}}
+\textbf{Teszteset} & \textbf{Leírás} \\
+\hline
+\endhead
+\texttt{test\_predict\_re\-turns\_topk\_shapes} &
+  Ellenőrzi, hogy \texttt{topk=3} esetén a visszaadott valószínűség- és index-tenzor alakja
+  $(1, 3)$, azaz a batch- és $k$-dimenzió megfelel a kérésnek. \\
+\texttt{test\_predict\_re\-turns\_valid\_distribution} &
+  A \texttt{topk=5} valószínűségek mindegyike a $[0, 1]$ intervallumba esik, és -- mivel az 5
+  osztályos \texttt{tiny\_model} minden osztálya lekérdezésre kerül -- összegük $1{,}0$-ra
+  \texttt{allclose}. Ez a softmax kimenet valódi valószínűségi eloszlás voltát igazolja. \\
+\texttt{test\_predict\_top\-k\_returns\_highest\_first} &
+  A visszaadott valószínűségek csökkenő sorrendben szerepelnek
+  ($\mathrm{probs}[0, i] \geq \mathrm{probs}[0, i+1]$), vagyis a \texttt{topk} valóban a
+  legnagyobb konfidenciájú osztályokat adja vissza, méghozzá rendezetten. \\
+\texttt{test\_attack\_unk\-nown\_method\_raises} &
+  Határeset: egy nem létező módszernév (\texttt{"NEM VALID"}) megadásakor \texttt{ValueError}-t
+  vár, mielőtt bármilyen gradiensszámítás történne -- a bemenet-validáció a drága számítás előtt
+  fut le. \\
+\texttt{test\_attack\_fgsm\_ig\-nores\_iterations\_argument} &
+  Annak ellenére, hogy a hívó \texttt{iterations=99}-et ad át, FGSM esetén a visszaadott
+  \texttt{AttackResult.iterations\_run} értéke $1$ -- igazolva, hogy az FGSM valóban egylépéses,
+  és a paramétert a diszpécser figyelmen kívül hagyja erre a módszerre. \\
+\texttt{test\_attack\_pgd\_re\-ports\_requested\_iteration\_count} &
+  PGD esetén a kért iterációszám ($4$) változatlanul megjelenik az
+  \texttt{iterations\_run} mezőben, alátámasztva, hogy a diszpécser a paramétert továbbadja a
+  \texttt{\_pgd} implementációnak. \\
+\texttt{test\_attack\_fgsm\_dis\-patches\_only\_to\_fgsm} &
+  \texttt{mocker.patch(..., wraps=\_fgsm)} és \texttt{wraps=\_pgd} spy-okkal figyeli a hívásokat:
+  \texttt{method="FGSM"} esetén \texttt{\_fgsm.assert\_called\_once()} és
+  \texttt{\_pgd.assert\_not\_called()} teljesül. A \texttt{wraps} paraméter miatt a valódi
+  implementáció is lefut, tehát az \texttt{AttackResult} összeállítása is ellenőrzött marad. \\
+\texttt{test\_attack\_pgd\_dis\-patches\_only\_to\_pgd} &
+  Az előző teszt tükörképe: \texttt{method="PGD"} esetén kizárólag \texttt{\_pgd} hívódik meg,
+  \texttt{\_fgsm} nem. A két teszt együtt zárja ki, hogy a diszpécser valamelyik ágon
+  ,,átcsorogva'' mindkét algoritmust lefuttassa. \\
+\end{longtable}
+
+\begin{longtable}{p{0.40\textwidth}p{0.55\textwidth}}
+\textbf{Teszteset} & \textbf{Leírás} \\
+\hline
+\endhead
+\texttt{test\_fgsm\_targeted\_steps\_opposite\_direction\_of\_untargeted} &
+  Azonos bemeneten és $\epsilon$ mellett a targeted és non-targeted perturbáció pontosan
+  ellentétes előjelű ($x_{\text{untargeted}} - x = -(x_{\text{targeted}} - x)$), ami közvetlenül
+  a matematikai definícióból (a gradiens előjelének megfordításából) következik. \\
+\texttt{test\_fgsm\_clamps\_to\_valid\_pixel\_range} &
+  Szélsőséges bemenet (csupa nulla pixel) és nagy $\epsilon=0{,}5$ mellett is a kimenet minden
+  eleme a $[0, 1]$ tartományban marad -- igazolva, hogy a \texttt{clamp} lépés ténylegesen
+  érvényesül, nem csak elméletben szerepel a specifikációban. \\
+\texttt{test\_fgsm\_re\-sult\_is\_de\-tached\_from\_autograd} &
+  A visszaadott tenzor \texttt{requires\_grad} attribútuma \texttt{False}. \\
+\texttt{test\_fgsm\_re\-sult\_has\_no\_graph\_history} &
+  Szigorúbb bizonyíték az előzőnél: \texttt{grad\_fn is None} \emph{és} \texttt{is\_leaf is True}
+  egyszerre teljesül, ami kizárja azt az esetet is, amikor egy tenzor \texttt{requires\_grad}
+  értéke hamis, de mégis egy számítási gráf levele marad rejtett hivatkozásokkal. \\
+\texttt{test\_fgsm\_ze\-ro\_epsi\-lon\_re\-turns\_original} &
+  Határeset: $\epsilon=0$ esetén a perturbáció nulla, a kimenet \texttt{allclose} az eredeti
+  képpel -- az algoritmus degenerált esetben identitásként viselkedik. \\
+\texttt{test\_fgsm\_un\-targeted\_re\-duces\_confidence\_in\_true\_label} &
+  Viselkedési bizonyíték: a \texttt{predict()}-en keresztül lekérdezett, a valódi címkéhez tartozó
+  konfidencia a támadás \emph{után} szigorúan kisebb, mint előtte -- ez nem csak a
+  perturbáció létezését, hanem annak tényleges hatását igazolja a modell kimenetére. \\
+\texttt{test\_fgsm\_tar\-geted\_in\-creases\_confidence\_in\_target\_label} &
+  A targeted változat tükörpárja: a mesterségesen kiválasztott célosztály konfidenciája nő a
+  támadás hatására, alátámasztva, hogy a targeted mód valóban a célosztály felé tereli a
+  predikciót, nem csupán ,,valamerre'' téveszti meg a modellt. \\
+\end{longtable}
+
+\begin{longtable}{p{0.40\textwidth}p{0.55\textwidth}}
+\textbf{Teszteset} & \textbf{Leírás} \\
+\hline
+\endhead
+\texttt{test\_pgd\_re\-sult\_stays\_within\_epsilon\_ball} &
+  Mérsékelt lépésméret ($\alpha=0{,}02$) mellett a végső perturbáció minden pixelre
+  $|\delta| \leq \epsilon + 10^{-6}$ (a tolerancia a lebegőpontos kerekítést kompenzálja) --
+  ez az $\ell_\infty$-gömbbe való projekció alapvető helyességét igazolja. \\
+\texttt{test\_pgd\_hits\_ball\_when\_step\_too\_large} &
+  Szándékosan irreálisan nagy lépésméretet ($\alpha=10{,}0 \gg \epsilon=0{,}02$) ad meg, ami
+  minden iterációban túllövést okoz; ilyenkor a projekciós \texttt{clamp}-nek kell egyedül
+  biztosítania a korlátot, ezért a tesztben a végső $|\delta|$ pontosan (nem csak $\leq$)
+  $\epsilon$-nak adódik minden pixelen -- ez a projekció, nem a lépésméret helyes megválasztása
+  általi korlátozottságot bizonyítja. \\
+\texttt{test\_pgd\_clamps\_to\_valid\_pixel\_range} &
+  A pixeltartomány-korlátozás ugyanúgy teljesül PGD esetén is, mint FGSM-nél: szélsőséges (nulla)
+  bemeneten és nagy $\epsilon$ mellett a kimenet a $[0, 1]$ tartományban marad. \\
+\texttt{test\_pgd\_re\-sult\_has\_no\_graph\_history} &
+  Ugyanaz az erős \texttt{detach}-bizonyíték (\texttt{grad\_fn is None} és \texttt{is\_leaf is
+  True}), mint FGSM esetén -- fontos, mert a PGD több iterációt is végez, minden lépésben új
+  \texttt{requires\_grad\_(True)} hívással, így könnyebben ,,elszivároghatna'' egy hivatkozás a
+  gráfra, ha a ciklus végén elmaradna a leválasztás. \\
+\texttt{test\_pgd\_ze\-ro\_epsi\-lon\_re\-turns\_original} &
+  Határeset: $\epsilon=0$ esetén -- annak ellenére, hogy több iteráció is lefut -- a projekció
+  minden lépésben nulla szélességű intervallumra szorítja a perturbációt, így a végeredmény
+  megegyezik az eredeti képpel. \\
+\texttt{test\_pgd\_un\-targeted\_re\-duces\_confidence\_in\_true\_label} &
+  Viselkedési bizonyíték \texttt{predict()}-en keresztül: a valódi címke konfidenciája több
+  iteráció után is csökken -- ugyanaz az elv, mint FGSM-nél, de itt azt is igazolja, hogy az
+  iteratív frissítés nem ,,rontja el'' a kumulatív hatást. \\
+\texttt{test\_pgd\_tar\-geted\_in\-creases\_confidence\_in\_target\_label} &
+  A targeted PGD a célosztály konfidenciáját növeli -- ugyanazon tulajdonságpár (non-targeted
+  csökkenti/targeted növeli a releváns konfidenciát) FGSM-re és PGD-re is parametrizált formában
+  lett tesztelve (\texttt{@pytest.mark.parametrize}), elkerülve, hogy csak az egyik algoritmusra
+  íródjon le a viselkedés. \\
+\end{longtable}
 
 \subsection{Integrációs tesztek}
 
 \subsubsection{GUI és támadási motor összekötése}
 
+Az integrációs réteg feladata annak ellenőrzése, hogy a \texttt{src/gui/app\_interface.py} eseménykezelői
+(pl. az \texttt{Attack} gombhoz kötött \texttt{\_on\_attack}/\texttt{\_attack\_worker} páros) helyesen
+építik-e fel az \texttt{AttackContext}-et a ténylegesen betöltött \texttt{ModelBundle}-ből, és a
+\texttt{attack\_engine.attack()} hívás eredménye helyesen jelenik-e meg a felületen (kép- és
+predikció-frissítés). Ez a réteg már nem mockolja a modellt, de a valódi felhasználói interakciót
+(egérkattintás, csúszka-mozgatás) sem szimulálja még -- azt a GUI-tesztek rétege végzi.
+
 \subsubsection{Modellbetöltés és teljes támadási folyamat}
 
+Ezen a szinten a \texttt{ModelManager} valódi (nem mockolt) \texttt{ResNet50}/\texttt{MobileNetV2}
+betöltésével, a lemezen cache-elt súlyokkal fut le a teljes folyamat -- kép betöltése, előfeldolgozás,
+támadás, predikció --, hogy kiderüljön, a valódi architektúrák bemeneti/kimeneti alakjai
+(\texttt{shape}) és a normalizációs pipeline illeszkednek-e az \texttt{attack\_engine} elvárásaihoz.
+
 \subsection{Funkcionális tesztek és felhasználói validáció}
+
+A grafikus felület funkcionális, ,,fekete doboz'' teszteseteit a felhasználói forgatókönyvek alapján,
+\textit{Given--When--Then} formában fogalmazom meg. Az alábbi esetek a \texttt{src/gui/app\_interface.py} tényleges
+felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső) igazodnak, és egyelőre kézi
+(manuális) végrehajtásra tervezettek.
+
+\begin{itemize}
+  \item \textbf{Kép betöltése a ,,Load Image'' gombbal}\\
+    AS A: felhasználó \textsc{I want to}: egy képet betölteni a vizsgálathoz\\
+    \textsc{Given}: az alkalmazás elindítva, még nincs kép betöltve\\
+    \textsc{When}: a ,,Load Image'' gombra kattint, majd egy érvényes képfájlt választ ki\\
+    \textsc{Then}: az ,,Original'' képmezőben megjelenik a beolvasott, $224\times224$-re vágott
+      kép, és alatta a top-3 predikció és konfidencia frissül
+
+  \item \textbf{Kép betöltése húzd-és-ejtsd módon}\\
+    AS A: felhasználó \textsc{I want to}: gyorsan, fájlböngésző nélkül betölteni egy képet\\
+    \textsc{Given}: a \texttt{tkinterdnd2} csomag elérhető, az alkalmazás fut\\
+    \textsc{When}: egy képfájlt az ,,Original'' képmezőre húz és ott elenged\\
+    \textsc{Then}: ugyanaz történik, mintha a ,,Load Image'' gombbal töltötte volna be
+
+  \item \textbf{Modell váltása betöltött kép mellett}\\
+    AS A: felhasználó \textsc{I want to}: összehasonlítani, hogy más architektúra hogyan látja a képet\\
+    \textsc{Given}: egy kép már be van töltve, az ,,Original'' predikciós panel ki van töltve\\
+    \textsc{When}: a modell-választó legördülőben ,,MobileNetV2''-t választ ,,ResNet50'' helyett\\
+    \textsc{Then}: az ,,Original'' predikciók újraszámolódnak az új modellel; ha korábban már
+      futott támadás, az ,,Adversarial'' predikciók is frissülnek
+
+  \item \textbf{Non-targeted támadás végrehajtása}\\
+    AS A: felhasználó \textsc{I want to}: általános tévesztést előidézni a modellben\\
+    \textsc{Given}: kép betöltve, ,,Targeted attack'' jelölőnégyzet kikapcsolva, $\epsilon$ és
+      iterációszám csúszkák beállítva\\
+    \textsc{When}: az ,,Attack'' gombra kattint\\
+    \textsc{Then}: a státuszsor ,,Running...'' majd ,,Attack complete'' üzenetet mutat, megjelenik
+      a felnagyított perturbáció és a támadott kép, és az ,,Adversarial'' predikciós panelen az
+      eredeti top-1 osztály konfidenciája jellemzően csökken
+
+  \item \textbf{Targeted támadás célosztály kereséssel}\\
+    AS A: felhasználó \textsc{I want to}: egy konkrét osztályra rávenni a modellt\\
+    \textsc{Given}: kép betöltve, a célosztály-kereső mezőbe elkezd gépelni egy osztálynevet\\
+    \textsc{When}: a szűrt listából kiválaszt egy osztályt, majd az ,,Attack'' gombra kattint\\
+    \textsc{Then}: a ,,Targeted attack'' jelölőnégyzet automatikusan bejelölődik, a státuszsor a
+      kiválasztott osztály nevét mutatja, és a támadás után a célosztály konfidenciája nő
+
+  \item \textbf{Epsilon csúszka élő előnézete FGSM módban}\\
+    AS A: felhasználó \textsc{I want to}: interaktívan látni, hogyan változik a perturbáció
+      erőssége\\
+    \textsc{Given}: FGSM módszerrel már lefutott egy támadás (a gradiens előjele cache-elve van)\\
+    \textsc{When}: az $\epsilon$ csúszkát új értékre húzza, PGD-re váltás nélkül\\
+    \textsc{Then}: a perturbáció és az adversarial kép új gradiens-számítás \emph{nélkül},
+      azonnal újraszámolódik a cache-elt előjel alapján
+
+  \item \textbf{Attack gomb kép nélkül}\\
+    AS A: felhasználó \textsc{I want to}: (véletlenül) támadást indítani kép betöltése előtt\\
+    \textsc{Given}: az alkalmazás elindítva, nincs betöltött kép\\
+    \textsc{When}: az ,,Attack'' gombra kattint\\
+    \textsc{Then}: egy ,,No image'' információs párbeszédablak jelenik meg, a támadás nem indul el
+
+  \item \textbf{Védekezési szűrő alkalmazása (Blur / JPEG)}\\
+    AS A: felhasználó \textsc{I want to}: megvizsgálni, hogy egy egyszerű szűrő semlegesíti-e a
+      zajt\\
+    \textsc{Given}: egy sikeres támadás után az ,,Adversarial'' kép elérhető\\
+    \textsc{When}: a ,,Defend (Blur)'' vagy ,,Defend (JPEG)'' gombra kattint\\
+    \textsc{Then}: az ,,Adversarial'' képmező a szűrt képre frissül, és a predikciós panel az
+      újraosztályozott (a szűrés után kapott) eredményeket mutatja
+
+  \item \textbf{Defend gomb adversarial kép nélkül}\\
+    AS A: felhasználó \textsc{I want to}: (véletlenül) védekezést alkalmazni támadás előtt\\
+    \textsc{Given}: kép be van töltve, de még nem futott támadás\\
+    \textsc{When}: valamelyik ,,Defend'' gombra kattint\\
+    \textsc{Then}: egy ,,No adversarial'' információs párbeszédablak jelenik meg, semmilyen kép
+      nem változik
+
+  \item \textbf{Reset gomb}\\
+    AS A: felhasználó \textsc{I want to}: új kísérletet kezdeni ugyanazzal a képpel\\
+    \textsc{Given}: egy támadás és esetleg egy védekezés már lefutott\\
+    \textsc{When}: a ,,Reset'' gombra kattint\\
+    \textsc{Then}: a perturbáció és az ,,Adversarial'' képmező üresre vált, az ,,Adversarial''
+      predikciós panel névtelen (,,---'') állapotba áll vissza, az ,,Original'' kép és predikciói
+      változatlanok maradnak
+
+  \item \textbf{Hibakezelés támadás közben}\\
+    AS A: felhasználó \textsc{I want to}: érthető visszajelzést kapni, ha a támadás valamiért
+      meghiúsul\\
+    \textsc{Given}: kép betöltve, a háttérszálon futó \texttt{\_attack\_worker} kivételt dob (pl.
+      eszközhiba miatt)\\
+    \textsc{When}: az ,,Attack'' gombra kattint\\
+    \textsc{Then}: egy ,,Attack failed'' hibaablak jelenik meg a teljes veremkiíratással, a
+      státuszsor ,,Attack failed.'' szöveget mutat, az alkalmazás nem fagy le
+\end{itemize}
 
 \subsection{Teszteredmények és értelmezésük}
 
@@ -399,6 +623,7 @@ arXiv:1412.6572, 2015.
 Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, Adrian Vladu.
 \textit{Towards Deep Learning Models Resistant to Adversarial Attacks}.
 arXiv:1706.06083, 2018.
+
 \end{thebibliography}
 
 \end{document}

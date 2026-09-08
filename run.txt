@@ -1,5 +1,5 @@
 "C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe" -output-directory=toc "toc\tartalomjegyzek_terv.tex"
 
-"C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe" -output-directory=dolgozat "dolgozat\Gabrity_Gabor_D9V09Z_Szakdolgozat.tex"
+"C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe" -output-directory=dolgozat -interaction=nonstopmode "dolgozat\Gabrity_Gabor_D9V09Z_Szakdolgozat.tex"
 
 
