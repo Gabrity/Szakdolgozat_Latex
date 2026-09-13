@@ -1,4 +1,5 @@
 \documentclass[12pt,a4paper]{article}
+\usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[magyar]{babel}
@@ -118,7 +119,7 @@ Ebben a fejezetben szeretném a megvalósítandó szoftver célját és funkció
 Legyen adott egy $f$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje.
 Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában,
 az $y$ kimenet pedig a kép osztályának indexe, például $y=42$ az agámák osztályát reprezentálja.
-Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét vesszük $y$-nak.
+Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét vesszük $y$-nak. 
 Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az eredeti $x$-től szemmel csak alig látható perturbációban különbözik,
 viszont az $y_{\mathrm{adv}} = f(x_{\mathrm{adv}})$ az $y$ osztálytól vagy eltér, vagy a klasszifikáció elbizonytalanodik.
 Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot.
@@ -128,143 +129,39 @@ A támadás feltétele, hogy az $f$ modell gradienseihez, azaz a súlyokhoz telj
 Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban.
 
 E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különböző támadási algoritmusokkal (FGSM, PGD).
-A szoftver a PyTorch (torchvision) előtanított modelljeire épül; az architektúra tetszőleges torchvision-modellel 
-bővíthető, jelenleg kettő van integrálva (ResNet50, MobileNetV2).
-Beállíthatóak a futás paraméterei:
+A szoftver a PyTorch (torchvision) előtanított modelljeire épül; az architektúra tetszőleges torchvision-modellel
+bővíthető, jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállíthatóak a futás paraméterei:
 \begin{itemize}
+  \item modell: ResNet50 vagy MobileNetV2, amelyen a támadást végrehajtjuk,
   \item $\epsilon$, mely meghatározza a perturbáció maximális mértékét, tehát azt, hogy egy pixelen legfeljebb mekkora
-        változást tapasztalhatunk, azaz a változás felső határát;
-  \item cél osztály, $y_{\mathrm{target}}$, ha a mód targeted;
+        változást tapasztalhatunk, azaz a változás felső határát,
+  \item cél osztály, $y_{\mathrm{target}}$, ha a mód targeted,
   \item iterációszám (PGD esetén hány lépésig engedjük futtatni az algoritmust).
 \end{itemize}
 
-A vizuális megjelenítés céljai a következők:
+\subsubsection{A felhasználói funkciók vázlatos áttekintése}
+
+A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvetlenül elérhető funkciókkal valósítja meg:
 \begin{itemize}
-  \item a fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikálni tudjuk;
-  \item támadási algoritmus és paraméterek meghatározásával perturbációt és adversarial képet generálunk;
+  \item a fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikáljuk,
+  \item támadási algoritmus és paraméterek meghatározásával perturbációt és adversarial képet generálunk,
   \item megjelenítjük az eredeti képet, a perturbációt és az adversarial képet, továbbá mindkét (eredeti és
-        adversarial) képet osztályozzuk is;
-  \item a védekezési modulban hozzáadhatunk a képhez valamilyen filtert, amely csökkentheti a támadás hatékonyságát.
+        adversarial) képet osztályozzuk is,
+  \item a védekezési modulban JPEG-tömörítést vagy más képfeldolgozási szűrőt alkalmazhatunk az adversarial perturbáció 
+  hatásának utólagos csökkentésére vagy semlegesítésére.
 \end{itemize}
 
-
-
-
-
 \subsection{Elméleti háttér és a használt fogalmak definíciója}
+
+
 
 \subsection{Ellenfél alapú támadások áttekintése}
 
 
-A mély neurális hálózatok -- különösen a képfelismerésben alkalmazott konvolúciós architektúrák -- rendkívül
-érzékenyek a bemeneti adatok apró, célzott módosításaira. Az ilyen módosításokat \textit{ellenfél alapú
-perturbációknak} (adversarial perturbations) nevezzük, az ezeket előállító eljárásokat pedig \textit{ellenfél
-alapú támadásoknak} (adversarial attacks)~\cite{goodfellow2015explaining}.
-
-A támadások alapelve a következő: adott egy $f$ osztályozó modell, egy $x$ eredeti bemenet és annak helyes
-$y$ címkéje. A cél egy olyan $x_{\mathrm{adv}}$ módosított bemenet előállítása, amelyre
-$f(x_{\mathrm{adv}}) \neq y$, miközben a perturbáció $\delta = x_{\mathrm{adv}} - x$ valamilyen norma
-szerint kicsi marad: $\|\delta\|_p \leq \epsilon$. A gyakorlatban leggyakrabban az $\ell_\infty$ normát
-alkalmazzák, amely a pixelenkénti maximális eltérést korlátozza.
-
-A következő alfejezetekben a két legelterjedtebb gradiens alapú támadási módszert mutatom be részletesen.
-
 \subsection{FGSM (Fast Gradient Sign Method)}
-
-Az FGSM algoritmust Goodfellow és társai javasolták 2015-ben~\cite{goodfellow2015explaining}. Az eljárás
-egyetlen lépésben állítja elő a perturbációt a veszteségfüggvény bemenetre vonatkozó gradiensének
-előjelét felhasználva.
-
-\subsubsection{Matematikai háttér}
-
-Legyen $J(\theta, x, y)$ a modell veszteségfüggvénye (például keresztentrópia), ahol $\theta$ a hálózat
-tanult paraméterei, $x$ a bemeneti kép és $y$ az eredeti címke. Az FGSM a veszteségfüggvény
-$x$-re vonatkozó gradiensét számítja ki visszaterjesztéssel (backpropagation), majd a perturbációt
-a gradiens előjelének $\epsilon$-szorosával képezi:
-\[
-  x_{\mathrm{adv}} = x + \epsilon \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x, y)\bigr)
-\]
-
-A $\mathrm{sign}(\cdot)$ függvény elemenként az előjelet adja vissza ($-1$, $0$ vagy $+1$), így a
-perturbáció minden pixel esetén pontosan $\pm\epsilon$ lesz. Ez biztosítja, hogy a módosítás az
-$\ell_\infty$ norma szerint pontosan $\epsilon$ nagyságú.
-
-\subsubsection{Az algoritmus lépései}
-
-\begin{enumerate}
-  \item Előreterjesztés (forward pass): a modell kiszámítja az $x$ bemenethez tartozó predikciót és a
-        veszteségfüggvény $J(\theta, x, y)$ értékét.
-  \item Visszaterjesztés (backward pass): kiszámítjuk a gradienst $\nabla_x J(\theta, x, y)$.
-  \item Perturbáció előállítása: $\delta = \epsilon \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x, y)\bigr)$.
-  \item Támadott kép: $x_{\mathrm{adv}} = \mathrm{clip}(x + \delta,\; 0,\; 1)$, ahol a $\mathrm{clip}$
-        függvény biztosítja, hogy a pixelértékek a $[0, 1]$ tartományban maradjanak.
-\end{enumerate}
-
-\subsubsection{Célzott változat}
-
-Az alapváltozat (\textit{non-targeted}) a helyes osztály veszteségét maximalizálja. A \textit{targeted}
-változatban egy $y_{\mathrm{target}}$ célosztályt adunk meg, és a perturbációt úgy állítjuk elő, hogy a
-modell ebbe az osztályba sorolja a képet:
-\[
-  x_{\mathrm{adv}} = x - \epsilon \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x, y_{\mathrm{target}})\bigr)
-\]
-Az előjel megfordul, mert ebben az esetben a célosztályhoz tartozó veszteséget \textit{minimalizáljuk}.
-
-\subsubsection{Előnyök és korlátok}
-
-Az FGSM fő előnye a sebessége: egyetlen gradiens-számítás elegendő. Hátránya, hogy egyetlen nagy lépést tesz,
-így kisebb $\epsilon$ értékek mellett gyakran kevésbé hatékony, mint az iteratív módszerek. Emellett a
-perturbáció iránya nem feltétlenül optimális, csupán a gradiens előjelét követi.
 
 \subsection{PGD (Projected Gradient Descent)}
 
-A PGD algoritmust Madry és társai vezették be 2018-ban~\cite{madry2018towards} az FGSM iteratív
-általánosításaként. A módszert a szakirodalom gyakran a ,,legerősebb elsőrendű támadásnak'' tekinti
-az $\ell_\infty$ korlátos perturbációk között.
-
-\subsubsection{Matematikai háttér}
-
-A PGD a következő iteratív frissítési szabályt alkalmazza, $t = 0, 1, \ldots, T-1$ lépésben:
-\[
-  x^{(t+1)} = \Pi_{\mathcal{B}_\epsilon(x)} \Bigl(
-    x^{(t)} + \alpha \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x^{(t)}, y)\bigr)
-  \Bigr)
-\]
-ahol:
-\begin{itemize}
-  \item $\alpha$ a lépésnagyság (step size), jellemzően $\alpha < \epsilon$,
-  \item $T$ az iterációk száma,
-  \item $\Pi_{\mathcal{B}_\epsilon(x)}$ a projekciós operátor, amely a módosított mintát visszavetíti
-        az eredeti $x$ körüli $\epsilon$ sugarú $\ell_\infty$ gömbbe:
-        \[
-          \Pi_{\mathcal{B}_\epsilon(x)}(z) = \mathrm{clip}(z,\; x - \epsilon,\; x + \epsilon)
-        \]
-\end{itemize}
-
-\subsubsection{Az algoritmus lépései}
-
-\begin{enumerate}
-  \item Kezdeti pont megválasztása: $x^{(0)}$ lehet maga az eredeti $x$, vagy egy véletlen pont az
-        $\mathcal{B}_\epsilon(x)$ környezetből (random restart).
-  \item Iteráció ($t = 0, \ldots, T-1$):
-    \begin{enumerate}
-      \item Előreterjesztés és veszteségszámítás az aktuális $x^{(t)}$ pontra.
-      \item Gradiens számítása: $g^{(t)} = \nabla_x J(\theta, x^{(t)}, y)$.
-      \item Lépés a gradiens irányába: $\hat{x}^{(t+1)} = x^{(t)} + \alpha \cdot \mathrm{sign}(g^{(t)})$.
-      \item Projekció: $x^{(t+1)} = \Pi_{\mathcal{B}_\epsilon(x)}(\hat{x}^{(t+1)})$.
-      \item Pixelértékek vágása a $[0, 1]$ tartományba.
-    \end{enumerate}
-  \item A végső támadott kép: $x_{\mathrm{adv}} = x^{(T)}$.
-\end{enumerate}
-
-\subsubsection{Célzott változat}
-
-A targeted PGD a célzott FGSM-hez hasonlóan a célosztály veszteségét minimalizálja:
-\[
-  x^{(t+1)} = \Pi_{\mathcal{B}_\epsilon(x)} \Bigl(
-    x^{(t)} - \alpha \cdot \mathrm{sign}\bigl(\nabla_x J(\theta, x^{(t)}, y_{\mathrm{target}})\bigr)
-  \Bigr)
-\]
 
 \subsubsection{Hiperparaméterek hatása}
 
