@@ -1,5 +1,0 @@
-
-
-python.exe -m pytest tests/unit/test_attack_engine.py -v
-
-python.exe -m pytest
