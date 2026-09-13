@@ -114,14 +114,41 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 \section{Fejlesztői dokumentáció}
 
 \subsection{A probléma részletes specifikációja}
+Ebben a fejezetben szeretném a megvalósítandó szofver célját és funkcióit definiálni. 
+Legyen adott egy f neurális háló alapú osztályozó modell, melynek x egy bemenete és y annak helyes címkéje. 
+Az x bemenet ebben az esetben egy kép pixeleinek valmely három színű kódolása, vektoriális formában, 
+az y kimenet pedig a kép osztályának indexe, például y=42 az agámák osztályát reprezentálja. 
+Amennyiben a képhez tartozó y helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét vesszük y-nak. 
+Célunk, az x képre egy x_adv bemenet előállítása, mely az eredeti x-től szemmel csak alig látható pertubációban különbözik, 
+viszont az y_adv=f(x_adv) az y osztálytól viszont vagy eltér, vagy a klaszifikáció elbizonytalanodik. 
+Alapvetően két támadási módot különböztetünk meg, az ún. targeted és untargeted. 
+Untargeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson. 
+Targeted módban azt szeretnénk, hogy egy kijelölt y' irányba változzon a képünk. 
+A támadás feltétele, hogy az f modell gradienseihez, azaz a súlyokhoz teljes hozzáférésünk van. 
+Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban. 
 
-\subsection{Tervezési döntések és indoklásuk}
+E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különöző támadási algoritmusokkal (FGSM, PGD). 
+A szoftver hozzáférést ad modellek széleskörű listájához - pytorchon keresztül. 
+Beállíthatóak a futás paraméterei, például 
+-epsilon, mely meghatározza a perturbáció maximális mértékekét, tehát azt, hogy egy pixelen legfelejbb mekkora változást tapasztalhatunk, 
+azaz a változás felső határát. 
+-cél osztály, y' ha a mód targeted 
+-iteráció szám (PGD esetén hány lépésig engedjük futtatni az algoritmust)
+
+A vizuális megjelenítés a céljai a következők: 
+A fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikálni tudjuk. 
+Támadási algoritmus és paraméterek meghatározásával perturbációt és adversarial képet generálunk. 
+Megjelenítjük az eredeti és adversarial képet, valamint a perturbációt és az adversarial képet is osztályozza. 
+A védekezési modulban hozzáadhatunk a képhez valamilyen filtert amely csökkentheti a támadás hatékonyságát. 
+
+
+
+
 
 \subsection{Elméleti háttér és a használt fogalmak definíciója}
 
 \subsection{Ellenfél alapú támadások áttekintése}
 
-\iffalse
 
 A mély neurális hálózatok -- különösen a képfelismerésben alkalmazott konvolúciós architektúrák -- rendkívül
 érzékenyek a bemeneti adatok apró, célzott módosításaira. Az ilyen módosításokat \textit{ellenfél alapú
@@ -251,7 +278,7 @@ A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel t
 a lokális optimumot. A random restart technikával kombinálva különösen hatékony. Hátránya, hogy
 $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége.
 
-\fi
+\subsection{Tervezési döntések és indoklásuk}
 
 \subsection{Kapcsolódó munkák és további támadási módszerek}
 

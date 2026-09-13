@@ -2,7 +2,6 @@
 Szoftver release-ready állapot
 
 2. Mérföldkő: Elméleti alapok, bevezetés és felhasználói dokumentáció (szeptember 9 – szeptember 26 (18 nap)) (0%)
-(szeptember 9 – szeptember 26 (18 nap)) (0%)
 Elméleti háttér (FGSM, PGD, kapcsolódó munkák, védekezési stratégiák)
 Felhasználói dokumentáció (telepítés, GUI, használati esetek
 Bevezetés teljes kidolgozása (motiváció, feladat leírása, hozzájárulások)
