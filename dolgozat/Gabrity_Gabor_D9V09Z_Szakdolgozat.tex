@@ -114,32 +114,38 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 \section{Fejlesztői dokumentáció}
 
 \subsection{A probléma részletes specifikációja}
-Ebben a fejezetben szeretném a megvalósítandó szofver célját és funkcióit definiálni. 
-Legyen adott egy f neurális háló alapú osztályozó modell, melynek x egy bemenete és y annak helyes címkéje. 
-Az x bemenet ebben az esetben egy kép pixeleinek valmely három színű kódolása, vektoriális formában, 
-az y kimenet pedig a kép osztályának indexe, például y=42 az agámák osztályát reprezentálja. 
-Amennyiben a képhez tartozó y helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét vesszük y-nak. 
-Célunk, az x képre egy x_adv bemenet előállítása, mely az eredeti x-től szemmel csak alig látható pertubációban különbözik, 
-viszont az y_adv=f(x_adv) az y osztálytól viszont vagy eltér, vagy a klaszifikáció elbizonytalanodik. 
-Alapvetően két támadási módot különböztetünk meg, az ún. targeted és untargeted. 
-Untargeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson. 
-Targeted módban azt szeretnénk, hogy egy kijelölt y' irányba változzon a képünk. 
-A támadás feltétele, hogy az f modell gradienseihez, azaz a súlyokhoz teljes hozzáférésünk van. 
-Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban. 
+Ebben a fejezetben szeretném a megvalósítandó szoftver célját és funkcióit definiálni.
+Legyen adott egy $f$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje.
+Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában,
+az $y$ kimenet pedig a kép osztályának indexe, például $y=42$ az agámák osztályát reprezentálja.
+Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét vesszük $y$-nak.
+Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az eredeti $x$-től szemmel csak alig látható perturbációban különbözik,
+viszont az $y_{\mathrm{adv}} = f(x_{\mathrm{adv}})$ az $y$ osztálytól vagy eltér, vagy a klasszifikáció elbizonytalanodik.
+Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot.
+Non-targeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson.
+Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk. (pl. komodói varánusz)
+A támadás feltétele, hogy az $f$ modell gradienseihez, azaz a súlyokhoz teljes hozzáférésünk legyen.
+Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban.
 
-E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különöző támadási algoritmusokkal (FGSM, PGD). 
-A szoftver hozzáférést ad modellek széleskörű listájához - pytorchon keresztül. 
-Beállíthatóak a futás paraméterei, például 
--epsilon, mely meghatározza a perturbáció maximális mértékekét, tehát azt, hogy egy pixelen legfelejbb mekkora változást tapasztalhatunk, 
-azaz a változás felső határát. 
--cél osztály, y' ha a mód targeted 
--iteráció szám (PGD esetén hány lépésig engedjük futtatni az algoritmust)
+E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különböző támadási algoritmusokkal (FGSM, PGD).
+A szoftver a PyTorch (torchvision) előtanított modelljeire épül; az architektúra tetszőleges torchvision-modellel 
+bővíthető, jelenleg kettő van integrálva (ResNet50, MobileNetV2).
+Beállíthatóak a futás paraméterei:
+\begin{itemize}
+  \item $\epsilon$, mely meghatározza a perturbáció maximális mértékét, tehát azt, hogy egy pixelen legfeljebb mekkora
+        változást tapasztalhatunk, azaz a változás felső határát;
+  \item cél osztály, $y_{\mathrm{target}}$, ha a mód targeted;
+  \item iterációszám (PGD esetén hány lépésig engedjük futtatni az algoritmust).
+\end{itemize}
 
-A vizuális megjelenítés a céljai a következők: 
-A fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikálni tudjuk. 
-Támadási algoritmus és paraméterek meghatározásával perturbációt és adversarial képet generálunk. 
-Megjelenítjük az eredeti és adversarial képet, valamint a perturbációt és az adversarial képet is osztályozza. 
-A védekezési modulban hozzáadhatunk a képhez valamilyen filtert amely csökkentheti a támadás hatékonyságát. 
+A vizuális megjelenítés céljai a következők:
+\begin{itemize}
+  \item a fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikálni tudjuk;
+  \item támadási algoritmus és paraméterek meghatározásával perturbációt és adversarial képet generálunk;
+  \item megjelenítjük az eredeti képet, a perturbációt és az adversarial képet, továbbá mindkét (eredeti és
+        adversarial) képet osztályozzuk is;
+  \item a védekezési modulban hozzáadhatunk a képhez valamilyen filtert, amely csökkentheti a támadás hatékonyságát.
+\end{itemize}
 
 
 
