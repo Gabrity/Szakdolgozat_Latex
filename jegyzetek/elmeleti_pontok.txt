@@ -8,7 +8,6 @@ implementációs részletek:
 -pgdnél véletlen pont választás
 -stepsize 2.5x szorzó
 
-költségfüggvény J
 
 linearitás
 mitől lesz egy modell lin vagy nemlin - aktivációs fgv

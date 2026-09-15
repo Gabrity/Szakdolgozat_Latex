@@ -4,7 +4,7 @@ Szakdolgozat repó: LaTeX dolgozat ([dolgozat/](../dolgozat/)) + Python demo-alk
 
 ## Repo szerkezet
 
-- `dolgozat/Gabrity_Gabor_D9V09Z_Szakdolgozat.tex` — a dolgozat gyökér forrása. Fejezet-változtatás után **két** LaTeX fordítás kell a TOC frissüléséhez.
+- `dolgozat/Gabrity_Gabor_D9V09Z_Szakdolgozat.tex` — a dolgozat egyetlen gyökér forrása. Ezt a meglévő fájlt kell szerkeszteni és fordítani; új dolgozatfájlt nem szabad generálni. A fordítást a `dolgozat/` könyvtárban, vagy a fájl teljes elérési útjával kell indítani. Fejezet-változtatás után **két** LaTeX fordítás kell a TOC frissüléséhez.
 - `code/` — a dolgozatban bemutatott alkalmazás (adversarial példák generálása/védelme ImageNet modelleken). `code/README.md` írja le a mappastruktúráját és indítását.
 - `input/szakdolgozatok/` — korábbi szakdolgozatok txt-i referenciaként (struktúra, stílus).
 - `input/kovetelmenyek/` — formai és tartalmi követelmények, általános tanácsok (BSc/MSc).

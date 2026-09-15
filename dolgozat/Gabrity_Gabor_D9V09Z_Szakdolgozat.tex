@@ -153,11 +153,15 @@ A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvet
 
 \subsection{Elméleti háttér és a használt fogalmak definíciója}
 
+\subsubsection{Az osztályozó modell és a logitok}
+
 Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok száma. (ImageNet esetén $C=1000$) 
 Ezt logit vektornak is nevezzük, mely elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = \ln\frac{p}{1-p}$ függvény egy valószínűséget 
 képez le a valós számegyenesre. 
 A $z_i$ komponensek páronkénti különbsége éppen az $i$-edik és $j$-edik osztály esélyhányadosának logaritmusával egyezik meg, 
 $z_i - z_j = \ln\frac{p_i}{p_j}$, innen ez az elnevezés.
+
+\subsubsection{Valószínűségek és a modell predikciója}
 
 Mivel a $z$ logitok önmagukban nem valószínűségek, a $\mathrm{softmax}$ függvénnyel alakítjuk át őket valószínűségi eloszlássá: 
 \[
@@ -168,6 +172,8 @@ A modell által meghatározott legvalószínűbb osztály indexét a legnagyobb 
 \[
   \hat{y} = \arg\max_{i} p_i.
 \]
+
+\subsubsection{Veszteségfüggvény és bemeneti gradiens}
 
 A $J(\theta, x, y)$ veszteségfüggvény a modell predikciója és a megadott helyes címke közötti eltérést méri. 
 Esetünkben ez a keresztentrópia-veszteség 
@@ -180,6 +186,8 @@ Itt most a gradiensszámítást egy további lépéssel a legutolsó, bemeneti r
 Ez a mennyiség azt mutatja meg, hogy egy adott bemeneti pixel vagy jellemző változása milyen mértékben befolyásolja a veszteséget, ezért központi szerepe 
 lesz a későbbiekben az adversarial példák generálásának és az algoritmusok leírásának. 
 
+\subsubsection{Perturbáció és normakorlát}
+
 Pár mondat az adversarial képek definiálásánál használt $L_p$ normákról.   
 Egy perturbált kép általában az
 \[
@@ -190,11 +198,6 @@ A perturbáció nagyságát egy norma szerint korlátozzuk:
 \[
   \|\delta\|_p \leq \epsilon.
 \]
-Ebben a dolgozatban az $L_\infty$ normát használjuk, amelyre
-\[
-  \|\delta\|_\infty = \max_i |\delta_i|
-\]
-igaz. 
 Ez esetünkben nagyon kézenfekvő, mivel a bemeneti kép minden pixelén a változást külön-külön korlátozza. 
 
 \subsection{Ellenfél alapú támadások áttekintése}
