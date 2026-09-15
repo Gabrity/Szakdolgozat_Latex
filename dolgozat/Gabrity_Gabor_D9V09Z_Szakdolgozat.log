@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  15 SEP 2026 21:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  15 SEP 2026 21:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -378,62 +378,57 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 nc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] [7{C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:
-/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
-! Too many }'s.
-l.201 ...nk√°k √©s tov√°bbi t√°mad√°si m√≥dszerek}
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-[8]
+/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [8
+]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-25.
- (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+23.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (22.03973pt too wide) in paragraph at lines 230--235
+Overfull \hbox (22.03973pt too wide) in paragraph at lines 228--233
 []\T1/lmr/m/n/12 Minden vÈ-let-lent fel-hasz-n·-lÛ fix-tu-re (pl. a be-me-ne-ti
  kÈ-pet ge-ne-r·-lÛ \T1/lmtt/m/n/12 sample_image_tensor\T1/lmr/m/n/12 )
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 241.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 239.
 
-Overfull \hbox (36.80367pt too wide) in paragraph at lines 244--246
+Overfull \hbox (36.80367pt too wide) in paragraph at lines 242--244
 \T1/lmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/lmr/m/n/12 : El-len-Ær-zi,
  hogy \T1/lmtt/m/n/12 topk=3 \T1/lmr/m/n/12 ese-tÈn a vissza-adott valÛszÌn∂sÈg
 -
  []
 
 [9]
-Overfull \hbox (49.39777pt too wide) in paragraph at lines 276--280
+Overfull \hbox (49.39777pt too wide) in paragraph at lines 274--278
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 n-nak el-le-nÈ-re, hogy a hÌ-vÛ \T1/lmtt/m/n/12 iterations=99\T1/lmr/m/n/12 -
  []
 
 
-Overfull \hbox (34.93167pt too wide) in paragraph at lines 293--298
+Overfull \hbox (34.93167pt too wide) in paragraph at lines 291--296
 \T1/lmtt/m/n/12 wraps=_pgd \T1/lmr/m/n/12 spy-okkal fi-gye-li a hÌ-v·-so-kat: \
 T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tÈn \T1/lmtt/m/n/12 _fgsm.asser
 t_called_once()
  []
 
 [10] [11]
-Overfull \hbox (2.09953pt too wide) in paragraph at lines 395--399
+Overfull \hbox (2.09953pt too wide) in paragraph at lines 393--397
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyan-az 
 az erÆs \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyÌtÈk (\T1/lmtt/m/n/12 grad_
 fn
  []
 
 
-Overfull \hbox (47.02249pt too wide) in paragraph at lines 412--415
+Overfull \hbox (47.02249pt too wide) in paragraph at lines 410--413
 \T1/lmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/lmr/m
 /n/12 : Vi-sel-ke-dÈ-si bi-zo-nyÌ-tÈk \T1/lmtt/m/n/12 predict()\T1/lmr/m/n/12 -
 
  []
 
 
-Overfull \hbox (1.89616pt too wide) in paragraph at lines 420--424
+Overfull \hbox (1.89616pt too wide) in paragraph at lines 418--422
 \T1/lmr/m/n/12 osz-t·ly kon-fi-den-ci-·-j·t nˆ-ve-li -- ugyan-azon tu-laj-don-s
 ·g-p·r (non-targeted csˆk-ken-ti/targeted
  []
@@ -468,7 +463,7 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (21 pages, 325045 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (21 pages, 324766 bytes
 ).
 PDF statistics:
  165 PDF objects out of 1000 (max. 8388607)

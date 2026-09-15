@@ -116,16 +116,16 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 
 \subsection{A probléma részletes specifikációja}
 Ebben a fejezetben szeretném a megvalósítandó szoftver célját és funkcióit definiálni.
-Legyen adott egy $f$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje.
+Legyen adott egy $f_\theta$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje.
 Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában,
-az $y$ kimenet pedig a kép osztályának indexe, például $y=42$ az agámák osztályát reprezentálja.
-Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét vesszük $y$-nak. 
+az $y$ pedig a kép helyes osztályának indexe, például $y=42$ az agámák osztályát reprezentálja.
+Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét $\hat{y}$-nal jelöljük, és ezt használjuk referenciacímkeként. 
 Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az eredeti $x$-től szemmel csak alig látható perturbációban különbözik,
-viszont az $y_{\mathrm{adv}} = f(x_{\mathrm{adv}})$ az $y$ osztálytól vagy eltér, vagy a klasszifikáció elbizonytalanodik.
+viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a referenciaosztálytól eltér, vagy a klasszifikáció elbizonytalanodik.
 Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot.
 Non-targeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson.
 Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk. (pl. komodói varánusz)
-A támadás feltétele, hogy az $f$ modell gradienseihez, azaz a súlyokhoz teljes hozzáférésünk legyen.
+A támadás feltétele, hogy az $f_\theta$ modell gradienseihez és paramétereihez teljes hozzáférésünk legyen.
 Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban.
 
 E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különböző támadási algoritmusokkal (FGSM, PGD).
@@ -153,8 +153,6 @@ A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvet
 
 \subsection{Elméleti háttér és a használt fogalmak definíciója}
 
-A már korábban említett $f$ osztályozó modellünk pontos jelölése $f_\theta$, ahol $\theta$ a modellhez tartozó súlyokat jelöli, melyeket a 
-tanulás során szerez. 
 Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét (\textit{logit} vektort), ahol $z \in \mathbb{R}^C$ és $C$ az 
 osztályok száma. (ImageNet esetén $C=1000$) 
 Az elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = \ln\frac{p}{1-p}$ függvény egy valószínűséget képez le a valós 
@@ -162,17 +160,17 @@ számegyenesre.
 A $z_i$ komponensek páronkénti különbsége éppen az $i$-edik és $j$-edik osztály esélyhányadosának logaritmusával egyezik meg, 
 $z_i - z_j = \ln\frac{p_i}{p_j}$, innen ez az elnevezés.
 
-Mivel a $z$ logitok önmagukban nem valószínűségek, a $\mathrm{softmax}$ függvénnyel alakítjuk át őket valószínűségi eloszlássá:
+Mivel a $z$ logitok önmagukban nem valószínűségek, a $\mathrm{softmax}$ függvénnyel alakítjuk át őket valószínűségi eloszlássá: 
 \[
   p_i = \mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \qquad i = 1, \ldots, C.
 \]
 Tehát $p_i$ a modell szerint annak a valószínűsége, hogy $x$ az $i$-edik osztályba tartozik. 
-A modell által meghatározott legvalószínűbb osztály indexét a legnagyobb valószínűségű komponens
-kiválasztásával kapjuk:
+A modell által meghatározott legvalószínűbb osztály indexét a legnagyobb valószínűségű komponens kiválasztásával kapjuk: 
 \[
-  \hat{y} = \arg\max_{i} p_i = \arg\max_{i} z_i.
+  \hat{y} = \arg\max_{i} p_i.
 \]
-Ezzel pontosítható a 4.1 alfejezetben bevezetett $y$ jelölés: ismert címke hiányában $y := \hat{y}$.
+
+A J(θ,x,y) veszteségfüggvény 
 
 \subsection{Ellenfél alapú támadások áttekintése}
 
