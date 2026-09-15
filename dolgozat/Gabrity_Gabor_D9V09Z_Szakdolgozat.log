@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  13 SEP 2026 22:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  15 SEP 2026 21:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -378,72 +378,77 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 nc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] [7{C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:
-/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [8
-] [9]
-[10]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-16.
+/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
+! Too many }'s.
+l.201 ...nkÃ¡k Ã©s tovÃ¡bbi tÃ¡madÃ¡si mÃ³dszerek}
+                                                  
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+[8]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+25.
  (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (22.03973pt too wide) in paragraph at lines 321--326
+Overfull \hbox (22.03973pt too wide) in paragraph at lines 230--235
 []\T1/lmr/m/n/12 Minden vé-let-lent fel-hasz-ná-ló fix-tu-re (pl. a be-me-ne-ti
  ké-pet ge-ne-rá-ló \T1/lmtt/m/n/12 sample_image_tensor\T1/lmr/m/n/12 )
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 332.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 241.
 
-Overfull \hbox (36.80367pt too wide) in paragraph at lines 335--337
+Overfull \hbox (36.80367pt too wide) in paragraph at lines 244--246
 \T1/lmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/lmr/m/n/12 : El-len-®r-zi,
  hogy \T1/lmtt/m/n/12 topk=3 \T1/lmr/m/n/12 ese-tén a vissza-adott valószín¶ség
 -
  []
 
-[11]
-Overfull \hbox (49.39777pt too wide) in paragraph at lines 367--371
+[9]
+Overfull \hbox (49.39777pt too wide) in paragraph at lines 276--280
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 n-nak el-le-né-re, hogy a hí-vó \T1/lmtt/m/n/12 iterations=99\T1/lmr/m/n/12 -
  []
 
 
-Overfull \hbox (34.93167pt too wide) in paragraph at lines 384--389
+Overfull \hbox (34.93167pt too wide) in paragraph at lines 293--298
 \T1/lmtt/m/n/12 wraps=_pgd \T1/lmr/m/n/12 spy-okkal fi-gye-li a hí-vá-so-kat: \
 T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tén \T1/lmtt/m/n/12 _fgsm.asser
 t_called_once()
  []
 
-[12] [13]
-Overfull \hbox (2.09953pt too wide) in paragraph at lines 486--490
+[10] [11]
+Overfull \hbox (2.09953pt too wide) in paragraph at lines 395--399
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyan-az 
 az er®s \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyíték (\T1/lmtt/m/n/12 grad_
 fn
  []
 
 
-Overfull \hbox (47.02249pt too wide) in paragraph at lines 503--506
+Overfull \hbox (47.02249pt too wide) in paragraph at lines 412--415
 \T1/lmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/lmr/m
 /n/12 : Vi-sel-ke-dé-si bi-zo-nyí-ték \T1/lmtt/m/n/12 predict()\T1/lmr/m/n/12 -
 
  []
 
 
-Overfull \hbox (1.89616pt too wide) in paragraph at lines 511--515
+Overfull \hbox (1.89616pt too wide) in paragraph at lines 420--424
 \T1/lmr/m/n/12 osz-tály kon-fi-den-ci-á-ját nö-ve-li -- ugyan-azon tu-laj-don-s
 ág-pár (non-targeted csök-ken-ti/targeted
  []
 
-[14] [15] [16] [17] [18] [19] [20] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[12] [13] [14] [15] [16] [17] [18] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5050 strings out of 467682
- 84729 string characters out of 5415184
+ 5048 strings out of 467682
+ 84667 string characters out of 5415184
  518889 words of memory out of 5000000
- 34049 multiletter control sequences out of 15000+600000
+ 34047 multiletter control sequences out of 15000+600000
  693383 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,295b,363s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -461,11 +466,12 @@ r/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/User
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/User/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (23 pages, 329470 bytes
+Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (21 pages, 325045 bytes
 ).
 PDF statistics:
- 166 PDF objects out of 1000 (max. 8388607)
+ 165 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

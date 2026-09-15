@@ -153,15 +153,32 @@ A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvet
 
 \subsection{Elméleti háttér és a használt fogalmak definíciója}
 
+A már korábban említett $f$ osztályozó modellünk pontos jelölése $f_\theta$, ahol $\theta$ a modellhez tartozó súlyokat jelöli, melyeket a 
+tanulás során szerez. 
+Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét (\textit{logit} vektort), ahol $z \in \mathbb{R}^C$ és $C$ az 
+osztályok száma. (ImageNet esetén $C=1000$) 
+Az elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = \ln\frac{p}{1-p}$ függvény egy valószínűséget képez le a valós 
+számegyenesre. 
+A $z_i$ komponensek páronkénti különbsége éppen az $i$-edik és $j$-edik osztály esélyhányadosának logaritmusával egyezik meg, 
+$z_i - z_j = \ln\frac{p_i}{p_j}$, innen ez az elnevezés.
 
+Mivel a $z$ logitok önmagukban nem valószínűségek, a $\mathrm{softmax}$ függvénnyel alakítjuk át őket valószínűségi eloszlássá:
+\[
+  p_i = \mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \qquad i = 1, \ldots, C.
+\]
+Tehát $p_i$ a modell szerint annak a valószínűsége, hogy $x$ az $i$-edik osztályba tartozik. 
+A modell által meghatározott legvalószínűbb osztály indexét a legnagyobb valószínűségű komponens
+kiválasztásával kapjuk:
+\[
+  \hat{y} = \arg\max_{i} p_i = \arg\max_{i} z_i.
+\]
+Ezzel pontosítható a 4.1 alfejezetben bevezetett $y$ jelölés: ismert címke hiányában $y := \hat{y}$.
 
 \subsection{Ellenfél alapú támadások áttekintése}
-
 
 \subsection{FGSM (Fast Gradient Sign Method)}
 
 \subsection{PGD (Projected Gradient Descent)}
-
 
 \subsubsection{Hiperparaméterek hatása}
 
