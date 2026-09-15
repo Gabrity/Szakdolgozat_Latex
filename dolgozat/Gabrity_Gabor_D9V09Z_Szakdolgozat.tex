@@ -165,12 +165,24 @@ Mivel a $z$ logitok önmagukban nem valószínűségek, a $\mathrm{softmax}$ fü
   p_i = \mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \qquad i = 1, \ldots, C.
 \]
 Tehát $p_i$ a modell szerint annak a valószínűsége, hogy $x$ az $i$-edik osztályba tartozik. 
-A modell által meghatározott legvalószínűbb osztály indexét a legnagyobb valószínűségű komponens kiválasztásával kapjuk: 
+A modell által meghatározott legvalószínűbb osztály indexét a legnagyobb valószínűségű komponens alapján kapjuk: 
 \[
   \hat{y} = \arg\max_{i} p_i.
 \]
 
-A J(θ,x,y) veszteségfüggvény 
+A $J(\theta, x, y)$ veszteségfüggvény a modell predikciója és a megadott helyes címke közötti eltérést méri. 
+Esetünkben ez a keresztentrópia-veszteség 
+\[
+J(\theta, x, y) = -\log \frac{e^{z_y}}{\sum_{i=1}^{C} e^{z_i}},
+\]
+ahol $z = f_\theta(x)$ a logitvektor és $y$ a helyes osztály indexe. 
+A gradiens a súlyokra nézve, $\nabla_\theta J(\theta, x, y)$, az a gradiensvektor, amelyet a backpropagation során a tanításban használunk a súlyok módosítására. 
+Itt most a gradiensszámítást egy további lépéssel a legutolsó, bemeneti rétegig visszük, és megkapjuk a bemeneti vektorra vonatkozó érzékenységet, $\nabla_x J(\theta, x, y)$. 
+Ez a mennyiség azt mutatja meg, hogy egy adott bemeneti pixel vagy jellemző változása milyen mértékben befolyásolja a veszteséget, ezért központi szerepe 
+lesz a későbbiekben az adversarial példák generálásának és az algoritmusok leírásának. 
+
+A
+
 
 \subsection{Ellenfél alapú támadások áttekintése}
 
