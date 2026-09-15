@@ -37,3 +37,4 @@ Lásd [code/tests/conftest.py](../code/tests/conftest.py) és [code/pytest.ini](
 ## Dolgozat konvenciók
 
 Lásd a [repo memóriát](/memories/repo/thesis-requirements.md) is: kötelező önálló `Bevezetes`, `Felhasznaloi dokumentacio`, `Fejlesztoi dokumentacio`, `Teszteles` fejezetek, formai/tartalmi elvárások az `input/kovetelmenyek/` fájlokban.
+- LaTeX forrásban minden mondat új sorban kezdődjön; egy mondaton belül sortörés megengedett, ha a sor túllóg egy ésszerű hosszon. Minden mondat végén szerepeljen egy darab szóköz karakter
