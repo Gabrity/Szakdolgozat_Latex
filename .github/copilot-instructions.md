@@ -2,6 +2,10 @@
 
 Szakdolgozat repó: LaTeX dolgozat ([dolgozat/](../dolgozat/)) + Python demo-alkalmazás ([code/](../code/)).
 
+Ha bármely feladat (kódírás, lektorálás, dolgozatszerkesztés stb.) közben olyan kérdés merül fel, ami nem
+dönthető el egyértelműen a meglévő kontextusból (repo memória, jelen fájl, a fájlok tartalma), kérdezz vissza
+a felhasználótól végrehajtás előtt, ne találgass.
+
 ## Repo szerkezet
 
 - `dolgozat/Gabrity_Gabor_D9V09Z_Szakdolgozat.tex` — a dolgozat egyetlen gyökér forrása. Ezt a meglévő fájlt kell szerkeszteni és fordítani; új dolgozatfájlt nem szabad generálni. A fordítást a `dolgozat/` könyvtárban, vagy a fájl teljes elérési útjával kell indítani. Fejezet-változtatás után **két** LaTeX fordítás kell a TOC frissüléséhez.
@@ -38,3 +42,17 @@ Lásd [code/tests/conftest.py](../code/tests/conftest.py) és [code/pytest.ini](
 
 Lásd a [repo memóriát](/memories/repo/thesis-requirements.md) is: kötelező önálló `Bevezetes`, `Felhasznaloi dokumentacio`, `Fejlesztoi dokumentacio`, `Teszteles` fejezetek, formai/tartalmi elvárások az `input/kovetelmenyek/` fájlokban.
 - LaTeX forrásban minden mondat új sorban kezdődjön; egy mondaton belül sortörés megengedett, ha a sor túllóg egy ésszerű hosszon. Minden mondat végén szerepeljen egy darab szóköz karakter
+
+## Szöveg lektorálása (kulcsszó)
+
+Ha a felhasználó "szöveg lektorálása" kulcsszóval kér lektorálást (adott fejezetre/szakaszra vagy az egész dolgozatra), az alábbiakat végezd el:
+
+- **Értelmezően olvasás**: nézd át úgy, hogy a fogalmak bevezetése, felépítése megfelelő sorrendet követ-e. Ha ilyen hibát látsz annak a feloldására írj nekem chat válaszban összefoglalva.
+- **Alapvető átnézés**: helyesírás, elgépelés, nyelvtan, mondatszerkezet, magyar szórend javítása.
+- **Formulák TeX-esítése**: sima szövegbeWn szereplő matematikai kifejezéseket (pl. "epsilon", "x_adv", "argmax") alakítsd megfelelő LaTeX formulává (`$...$` inline vagy `\[...\]` display), a fájlban már meglévő jelölésekkel konzisztens módon.
+- **Jelölések egységesítése**: ellenőrizd, hogy ugyanazt a fogalmat mindenhol ugyanaz a szimbólum/elnevezés jelöli-e (pl. $y_{\mathrm{target}}$, "non-targeted" vs. "untargeted" — lásd a fentebbi terminológiai döntéseket), és javítsd az eltéréseket.
+- **Állítások pontosítása**: ha egy kijelentés pontatlan, túlzó vagy alá nem támasztott, pontosítsd — lehetőség szerint a hivatkozott cikkek (`input/cikkek/`) tartalma alapján.
+- **Hivatkozási hiányosságok jelzése**: ha egy állítás hivatkozást igényelne, de nincs, vagy egy `\cite` rossz/hiányzó, ne írj bele találgatást a szövegbe — ehelyett a chat válaszban, szövegesen sorold fel ezeket a helyeket a felhasználónak.
+- **Egyéb javítások**: bármi más, ami átnézés közben egyértelműen hibának vagy jobbítandó pontnak tűnik (pl. felesleges ismétlés, következetlen igeidő/szóhasználat), az is javítható.
+- **Inline utasítások**: a szövegben elhelyezett `%(utasítás)` formájú megjegyzések explicit szerkesztési utasítások — hajtsd végre a bennük foglaltakat, majd töröld magát a `%(...)` jelölést a fájlból.
+- Lektoráláskor ne változtass a fejezetstruktúrán vagy a tartalmi mondanivalón, csak a szöveg minőségén, pontosságán és formázásán.
