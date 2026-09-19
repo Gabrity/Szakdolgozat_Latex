@@ -43,6 +43,18 @@ Lásd [code/tests/conftest.py](../code/tests/conftest.py) és [code/pytest.ini](
 Lásd a [repo memóriát](/memories/repo/thesis-requirements.md) is: kötelező önálló `Bevezetes`, `Felhasznaloi dokumentacio`, `Fejlesztoi dokumentacio`, `Teszteles` fejezetek, formai/tartalmi elvárások az `input/kovetelmenyek/` fájlokban.
 - LaTeX forrásban minden mondat új sorban kezdődjön; egy mondaton belül sortörés megengedett, ha a sor túllóg egy ésszerű hosszon. Minden mondat végén szerepeljen egy darab szóköz karakter
 
+## Tartalmi hiányosságok kezelése (nem csak lektoráláskor)
+
+A Tex fordítást én magam végzem el, neked nem kell.
+Bármely feladat (nem csak explicit "szöveg lektorálása" kérés) közben, ha a dolgozat szövegében tartalmi hiányosságot
+vagy befejezetlenséget észlelsz — pl. egy fogalom/jelölés bevezetésre kerül, de a hozzá logikailag tartozó definíció,
+összefüggés vagy lépés kimarad (mint a $z \to p$ kapcsolat hiánya volt), vagy egy `\section`/`\subsection` bevezető
+szövege nem fedi le az alatta lévő teljes tartalmat —, a következőképp dönts:
+- ha a hiányosság egyértelműen, találgatás nélkül javítható a meglévő kontextusból (fájlok, korábbi szövegrészek,
+  hivatkozott cikkek), javítsd ki közvetlenül,
+- ha a javításhoz döntés vagy találgatás szükséges (pl. melyik irányba bővítsd, milyen hivatkozással), ne írj bele
+  találgatást, hanem kérdezz vissza vagy sorold fel a hiányosságot a chat válaszban.
+
 ## Szöveg lektorálása (kulcsszó)
 
 Ha a felhasználó "szöveg lektorálása" kulcsszóval kér lektorálást (adott fejezetre/szakaszra vagy az egész dolgozatra), az alábbiakat végezd el:

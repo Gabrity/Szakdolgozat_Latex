@@ -113,21 +113,38 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 
 \newpage
 \section{Fejlesztői dokumentáció}
+Ebben a fejezetben a megvalósítandó szoftver célját és funkcióit formális, matematikai keretben definiálom, mivel a későbbi fejezetekben tárgyalt 
+algoritmusok (FGSM, PGD) és a védekezési modul is ugyanerre a jelölésrendszerre épülnek majd. 
+Először a probléma szereplőit -- a modellt, a bemenetet és a hozzá tartozó címkét -- vezetem be, majd ezek segítségével pontosan megfogalmazom, mit 
+is jelent az ellenfél alapú perturbáció. 
+Ezután az itt bevezetett jelölésrendszerre épülve sorra bemutatom a két megvalósított támadási algoritmust (FGSM, PGD), a mögöttük álló tervezési 
+döntéseket, a kapcsolódó munkákat, a védekezési stratégiákat, végül a szoftver architektúráját, a felhasznált technológiákat és az egyes 
+komponensek megvalósítását. 
 
-\subsection{A probléma részletes specifikációja}  %(a fejezet elejét egy kicsit bővítsd ki, hogy ne egyből a Legyen adott... mélybe ugrás előtt)
-Ebben a fejezetben szeretném a megvalósítandó szoftver célját és funkcióit definiálni. 
-Legyen adott egy $f_\theta$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje.
+\subsection{A probléma részletes specifikációja}
+
+\subsubsection{A modell, a bemenet és a címke}
+Legyen adott egy $f_\theta$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje. 
 Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában,
 az $y$ pedig a kép helyes osztályának indexe, például $y=42$ az agámák osztályát reprezentálja. 
-Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét $\hat{y}$-nal jelöljük, és ezt használjuk referenciacímkeként. 
+Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét $\hat{y}$-nal jelöljük, és ezt 
+használjuk referenciacímkeként. 
+
+\subsubsection{A támadás célja}
 Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az eredeti $x$-től szemmel csak alig látható perturbációban különbözik,
-viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a referenciaosztálytól eltér, vagy a klasszifikáció elbizonytalanodik. 
+viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a referenciacímkétől eltér, vagy a 
+klasszifikáció elbizonytalanodik. 
+
+\subsubsection{Targeted és non-targeted mód}
 Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot. 
 Non-targeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson. 
-Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk. (pl. komodói varánusz) 
-A támadás feltétele, hogy az $f_\theta$ modell gradienseihez és paramétereihez teljes hozzáférésünk legyen. 
-Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban. 
+Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk (pl.\ a komodói varánusz osztálya felé). 
 
+\subsubsection{A white-box hozzáférési feltétel}
+A támadás feltétele, hogy az $f_\theta$ modell gradienseihez és paramétereihez teljes hozzáférésünk legyen. 
+Ezt white-box hozzáférésnek nevezzük az AI red teaming kontextusában. 
+
+\subsubsection{A szoftver célja és beállítható paraméterei}
 E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különböző támadási algoritmusokkal (FGSM, PGD). 
 A szoftver a PyTorch (torchvision) előtanított modelljeire épül, mely architektúra tetszőleges torchvision-modellel
 bővíthető. Jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállíthatóak a futás paraméterei:
@@ -135,7 +152,7 @@ bővíthető. Jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállít
   \item modell: ResNet50 vagy MobileNetV2, amelyen a támadást végrehajtjuk,
   \item $\epsilon$, mely meghatározza a perturbáció maximális mértékét, tehát azt, hogy egy pixelen legfeljebb mekkora
         változást tapasztalhatunk, azaz a változás felső határát,
-  \item cél osztály, $y_{\mathrm{target}}$, ha a mód targeted,
+  \item célosztály, $y_{\mathrm{target}}$, ha a mód targeted,
   \item iterációszám (PGD esetén hány lépésig engedjük futtatni az algoritmust).
 \end{itemize}
 
@@ -155,11 +172,11 @@ A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvet
 
 \subsubsection{Az osztályozó modell és a logitok}
 
-Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok száma. (ImageNet esetén $C=1000$) 
-Ezt logit vektornak is nevezzük, mely elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = \ln\frac{p}{1-p}$ függvény egy valószínűséget 
+Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok száma (ImageNet esetén $C=1000$). 
+Ezt logitvektornak is nevezzük, mely elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = \ln\frac{p}{1-p}$ függvény egy $p \in (0, 1)$ valószínűséget 
 képez le a valós számegyenesre. 
 A $z_i$ komponensek páronkénti különbsége éppen az $i$-edik és $j$-edik osztály esélyhányadosának logaritmusával egyezik meg, 
-$z_i - z_j = \ln\frac{p_i}{p_j}$, innen ez az elnevezés.
+$z_i - z_j = \ln\frac{p_i}{p_j}$, innen származik az elnevezés.
 
 \subsubsection{Valószínűségek és a modell predikciója}
 
@@ -181,51 +198,64 @@ Esetünkben ez a keresztentrópia-veszteség
 J(\theta, x, y) = -\log \frac{e^{z_y}}{\sum_{i=1}^{C} e^{z_i}},
 \]
 ahol $z = f_\theta(x)$ a logitvektor és $y$ a helyes osztály indexe. 
-A gradiens a súlyokra nézve, $\nabla_\theta J(\theta, x, y)$, az a gradiensvektor, amelyet a backpropagation során a tanításban használunk a súlyok módosítására. 
-Itt most a gradiensszámítást egy további lépéssel a legutolsó, bemeneti rétegig visszük, és megkapjuk a bemeneti vektorra vonatkozó érzékenységet, $\nabla_x J(\theta, x, y)$. 
-Ez a mennyiség azt mutatja meg, hogy egy adott bemeneti pixel vagy jellemző változása milyen mértékben befolyásolja a veszteséget, ezért központi szerepe 
-lesz a későbbiekben az adversarial példák generálásának és az algoritmusok leírásának. 
+A veszteségfüggvény súlyok szerinti gradiense, $\nabla_\theta J(\theta, x, y)$, az a gradiensvektor, amelyet a backpropagation során a tanítás közben használunk a súlyok módosítására. 
+Itt a gradiensszámítást egy további lépéssel a bemeneti rétegig visszük -- azaz a backpropagation folyamatát a hálón teljesen végigvezetjük --, és megkapjuk a bemeneti vektorra vonatkozó érzékenységet, $\nabla_x J(\theta, x, y)$. 
+Ez a mennyiség azt mutatja meg, hogy egy adott bemeneti pixel vagy jellemző változása milyen mértékben befolyásolja a veszteséget, ezért ennek a mennyiségnek központi szerepe 
+lesz a későbbiekben bemutatott adversarial-példa-generáló algoritmusok leírásában. 
 
 \subsubsection{Perturbáció és normakorlát}
 
-Pár mondat az adversarial képek definiálásánál használt $L_p$ normákról.   
+Az adversarial képek definíciójánál szokás a perturbáció nagyságát valamely $\ell_p$ normával jellemezni; ebben a dolgozatban a $\ell_\infty$ normát használjuk. 
 Egy perturbált kép általában az
 \[
   x_{\mathrm{adv}} = x + \delta
 \]
 formában írható le, ahol $\delta$ a zaj, vagyis a képpontokban okozott változás. 
-A perturbáció nagyságát egy norma szerint korlátozzuk:  %(ez rossz, L_inf normát akartam írni, illetve hiányzik a definíciója is)
+A $\ell_\infty$ normát a 
 \[
-  \|\delta\|_p \leq \epsilon.
+  \|\delta\|_\infty = \max_i |\delta_i|
 \]
-Ez esetünkben nagyon kézenfekvő, mivel a bemeneti kép minden pixelén a változást külön-külön korlátozza. 
+kifejezés definiálja, azaz a legnagyobb abszolút értékű komponens adja a norma értékét. 
+A perturbáció nagyságát ezzel a normával korlátozzuk: 
+\[
+  \|\delta\|_\infty \leq \epsilon.
+\]
+Ez esetünkben nagyon kézenfekvő, mivel a bemeneti kép minden pixelén (minden $\delta_i$ komponensen) külön-külön korlátozza a megengedett változást. 
 
 \subsection{Ellenfél alapú támadások áttekintése}
-A mély neurális hálók, köztük a képfelismerő modellek különösen érzékenyek a bemeneti adatok kicsi ám célzott módosításaira. %(hivatkozást add hozzá)
+A mély neurális hálók, köztük a képfelismerő modellek is, különösen érzékenyek a bemeneti adatok kicsi, ám célzott módosításaira~\cite{goodfellow2015explaining}. 
 Az ilyen módosításokat ellenfél alapú perturbációknak nevezzük. 
 Ezeknek a támadásoknak két algoritmusát fogjuk itt átvenni, melyek a taxonómiában a korábban említett white-box támadások közé tartoznak. 
 A következő fejezetekben egy egylépéses ellenfél alapú támadást mutatunk be (FGSM), utána erre építve egy többlépéses algoritmust (PGD). 
 
 \subsection{FGSM (Fast Gradient Sign Method)}
-Az FGSM algoritmust Goodfellow és társai javasolták a google-nél dolgozva. %(hivatkozás)
-Az előző fejezetben megjegyeztem, hogy a $\nabla_x J(\theta, x, y)$ célfüggvény gradiense az input értékre való érzékenységet jelenti. 
-Adja magát, hogy léptessük el a gradienssel ellenkező irányba az inputot, ami várhatóan rontani fogja a célfüggvény értékét. 
-Ehhez azt feltételezzük, hogy a modell az x kellően kis környezetében lineárisként viselkedik. %(ez miért lehet, lehetne erről egy külön fejezet?)
-Az FGSM algoritmusban az elmozdítást egyszerűen csak a sign előjel-függvény epszilonszorosával tesszük meg, tehát nem vesszük figyelembe a gradiens által adott érzékenységet, csak az irányt. 
-Viszont ilyen módon az epsilon x sign maximálizája az epsilon költsévgvetésünket minden xi-re. 
-Tehát az FGSM adversarial képet e módon kapjuk meg: 
-x adv =x+ϵ⋅sign ∇xJ (θ, x, y)
+Az FGSM algoritmust Goodfellow és szerzőtársai a Google-nél végzett kutatásaik alapján javasolták~\cite{goodfellow2015explaining}. 
+Az előző fejezetben megjegyeztem, hogy a $\nabla_x J(\theta, x, y)$ veszteségfüggvény gradiense az input értékre való érzékenységet jelenti. 
+Természetes ötlet, hogy a bemenetet a gradienssel ellentétes irányba mozdítsuk el, ami várhatóan növeli a veszteségfüggvény értékét, azaz rontja a 
+helyes osztályra adott predikciót. 
+Ehhez feltesszük, hogy a modell az $x$ pont kellően kis környezetében közelítőleg lineárisan viselkedik -- ez Goodfellow és társai linearitási 
+elmélete, amely szerint a modern neurális hálók, részben a szakaszonként lineáris aktivációk (pl.\ ReLU) miatt, lokálisan jól közelíthetők egy 
+lineáris függvénnyel, még ha globálisan erősen nemlineárisak is~\cite{goodfellow2015explaining}. 
+Az FGSM algoritmusban az elmozdítást egyszerűen csak az előjel-függvény ($\mathrm{sign}$) $\epsilon$-szorosával tesszük meg, tehát nem vesszük 
+figyelembe a gradiens nagysága által adott érzékenységet, csak az irányát. 
+Ily módon az $\epsilon \cdot \mathrm{sign}(\cdot)$ minden egyes $x_i$ komponensre kihasználja a teljes $\epsilon$ költségvetésünket. 
+Tehát az FGSM adversarial példát a következő módon kapjuk meg: 
+\[
+  x_{\mathrm{adv}} = x + \epsilon \cdot \mathrm{sign}\big(\nabla_x J(\theta, x, y)\big).
+\]
 
 \subsubsection{Célzott változat}
-Az alapváltozat a megadott helyes osztály veszteségét igyekszik maximalizálni, tehát minél inkább mást mutasson mint ami a képen van. 
-A célzott változatnál ytarget célosztályt adunk meg és azt szeretnénk, hogy a modell ebbe az osztályba sorolja az adversarial képet. 
-xadv = x − ϵ · sign ∇xJ (θ, x, ytarget)
-Tehát a képlet csak annyiban változik, hogy távolodás helyett közeledni szeretnénk és y helyett ytarget-hoz. 
+Az alapváltozat a megadott helyes osztály veszteségét igyekszik maximalizálni, tehát minél inkább mást mutasson, mint ami a képen van. 
+A célzott változatnál egy $y_{\mathrm{target}}$ célosztályt adunk meg, és azt szeretnénk, hogy a modell ebbe az osztályba sorolja az adversarial képet. 
+\[
+  x_{\mathrm{adv}} = x - \epsilon \cdot \mathrm{sign}\big(\nabla_x J(\theta, x, y_{\mathrm{target}})\big).
+\]
+Tehát a képlet csak annyiban változik, hogy távolodás helyett az $y_{\mathrm{target}}$-hoz tartozó veszteség minimuma felé közeledni szeretnénk, és $y$ helyett $y_{\mathrm{target}}$-ot használjuk. 
 
 \subsubsection{Előnyök és korlátok}
 Mivel a gradienst a tanításban is használt backpropagation segítségével hatékonyan tudjuk kiszámolni, ezért a támadás gyors. 
-Hátránya, hogy csak egy durva lépést tesz a megfelelő irányba, így adódhat, hogy kicsi változást érünk el vele az osztályozásban, 
-például az iteratív módszerekhez képest. 
+Hátránya, hogy csak egyetlen, durva lépést tesz a megfelelő irányba, ezért -- főleg az iteratív módszerekhez, például a PGD-hez képest -- 
+kevésbé hatékonyan képes megtéveszteni az osztályozót. 
 
 \subsection{PGD (Projected Gradient Descent)}
 
