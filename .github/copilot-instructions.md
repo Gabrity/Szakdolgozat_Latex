@@ -43,6 +43,16 @@ Lásd [code/tests/conftest.py](../code/tests/conftest.py) és [code/pytest.ini](
 Lásd a [repo memóriát](/memories/repo/thesis-requirements.md) is: kötelező önálló `Bevezetes`, `Felhasznaloi dokumentacio`, `Fejlesztoi dokumentacio`, `Teszteles` fejezetek, formai/tartalmi elvárások az `input/kovetelmenyek/` fájlokban.
 - LaTeX forrásban minden mondat új sorban kezdődjön; egy mondaton belül sortörés megengedett, ha a sor túllóg egy ésszerű hosszon. Minden mondat végén szerepeljen egy darab szóköz karakter
 
+## ELTE LaTeX referencia
+
+- Az ELTE Informatikai Kar LaTeX-sablon teljes helyi másolata az [input/elteikthesis/](../input/elteikthesis/) könyvtárban található. A könyvtár referenciaanyag; a benne lévő sablonfájlokat a jelenlegi dolgozat szerkesztésekor nem kell módosítani.
+- A [sablon összefoglalója](../input/elteikthesis/ELTEIKTHESIS_SUMMARY.md) a sablon formai beállításait, dokumentumszerkezetét, címlap-metaadatait, fordítási folyamatát, opcionális jegyzékeit és a jelenlegi dolgozattal való kapcsolatát írja le.
+- Formázási és dokumentumosztály-szintű részletekhez az [elteikthesis.cls](../input/elteikthesis/elteikthesis.cls) fájlt kell használni; a tényleges margó-, sortávolság-, oldalszámozási és címlap-beállítások ott találhatók.
+- A magyar használati útmutató és a fordítási lépések az [README_hu.md](../input/elteikthesis/README_hu.md) fájlban vannak.
+- A teljes magyar mintadokumentum és annak szerkezete az [elteikthesis_hu.tex](../input/elteikthesis/elteikthesis_hu.tex) fájlban, a magyar mintafejezetek a [samples_hu/](../input/elteikthesis/samples_hu/) könyvtárban találhatók.
+- Bibliográfiai példák az [elteikthesis.bib](../input/elteikthesis/elteikthesis.bib), képek és logók az [images/](../input/elteikthesis/images/), forráskód-formázási példa pedig az [elteikthesis_minted.tex](../input/elteikthesis/elteikthesis_minted.tex) fájlban található.
+- Az `elteikthesis` sablonra való teljes `report`/`chapter` alapú áttérés nem automatikus feladat; erre csak a felhasználó kifejezett döntése után kerüljön sor. A helyi, hivatalos követelmények az [input/kovetelmenyek/](../input/kovetelmenyek/) fájlokban elsőbbséget élveznek.
+
 ## Tartalmi hiányosságok kezelése (nem csak lektoráláskor)
 
 A Tex fordítást én magam végzem el, neked nem kell.

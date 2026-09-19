@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  20 SEP 2026 00:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  20 SEP 2026 00:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -364,26 +364,27 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 3.
- [1{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
-c}])
+ [1])
 \tf@toc=\write3
 \openout3 = `Gabrity_Gabor_D9V09Z_Szakdolgozat.toc'.
 
- [2] [3] [4] [5] [6{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
-/lm/lm-rm.enc}]
+ [2{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
+c}] [3] [4] [5] [6{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/
+lm/lm-rm.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 52.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [7{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}
-{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
- [8{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.en
+] [8{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.e
+nc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.en
 c}] [9]
-[10] [11]
+[10] [11] [12]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
 32.
- (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Overfull \hbox (22.03973pt too wide) in paragraph at lines 337--342
@@ -400,7 +401,7 @@ Overfull \hbox (36.80367pt too wide) in paragraph at lines 351--353
 -
  []
 
-[12]
+[13]
 Overfull \hbox (49.39777pt too wide) in paragraph at lines 383--387
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 n-nak el-le-né-re, hogy a hí-vó \T1/lmtt/m/n/12 iterations=99\T1/lmr/m/n/12 -
@@ -413,7 +414,7 @@ T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tén \T1/lmtt/m/n/12 _fgsm.asser
 t_called_once()
  []
 
-[13] [14]
+[14] [15]
 Overfull \hbox (2.09953pt too wide) in paragraph at lines 502--506
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyan-az 
 az er®s \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyíték (\T1/lmtt/m/n/12 grad_
@@ -433,7 +434,7 @@ Overfull \hbox (1.89616pt too wide) in paragraph at lines 527--531
 ág-pár (non-targeted csök-ken-ti/targeted
  []
 
-[15] [16] [17] [18] [19] [20] [21] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[16] [17] [18] [19] [20] [21] [22] [23] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
@@ -442,7 +443,7 @@ L3 programming layer <2026-04-28>
 Here is how much of TeX's memory you used:
  5048 strings out of 467682
  84667 string characters out of 5415184
- 518889 words of memory out of 5000000
+ 517889 words of memory out of 5000000
  34047 multiletter control sequences out of 15000+600000
  693383 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -463,10 +464,10 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (24 pages, 340851 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (26 pages, 341679 bytes
 ).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
+ 181 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
