@@ -258,24 +258,142 @@ Hátránya, hogy csak egyetlen, durva lépést tesz a megfelelő irányba, ezér
 kevésbé hatékonyan képes megtéveszteni az osztályozót. 
 
 \subsection{PGD (Projected Gradient Descent)}
+Ezt az módszert a Mandry és társai vezették be és lényegében az FGSM egylépéses ötletének iteratív változata. 
+Tehát az FGSM-et alkalmazva kapott adversarial képet alapul véve újra végrehajtjuk. 
+A motiváció emögött az, hogy az FGSM linearitási feltevés csak x kis környezetében állja meg a helyét, ezért előnyös ha T darab kisebb alfa lépéssel 
+dolgozunk és a gradienst minden alkalommal újraszámoljuk. 
+Mivel ez az eljrás túlléphet az epsilon sugarú l_p értelemben vett gömb korláton, az algoritmus minden lépés után visszavágja egy projekcióval a gömbre. 
+Ez az FGSM-nél a sign függvény maitt adaott volt, itt T és alfa megválasztásától függően szükséges lehet. 
+így az algoritmus formális definíciója 
 
-\subsubsection{Hiperparaméterek hatása}
+x 
+t+1
+ =Π 
+x+S
+​
+ (x 
+t
+ +α⋅sign(∇ 
+x
+​
+ J(θ,x 
+t
+ ,y))),x 
+0
+ =x,
 
-A PGD viselkedését három fő hiperparaméter határozza meg:
-\begin{itemize}
-  \item $\epsilon$: a megengedett maximális perturbáció. Nagyobb $\epsilon$ erősebb támadást tesz lehetővé,
-        de a módosítás emberi szemmel is láthatóvá válhat.
-  \item $\alpha$: a lépésnagyság. Túl kis $\alpha$ lassú konvergenciát eredményez, túl nagy $\alpha$ pedig
-        instabilitáshoz vezethet. Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2.5 \cdot \epsilon / T$.
-  \item $T$: az iterációk száma. Több iteráció általában erősebb támadást eredményez, de növeli a
-        számítási költséget.
-\end{itemize}
+ ahol 
+S
+=
+{
+δ
+:
+∥
+δ
+∥
+∞
+≤
+ϵ
+}
+S={δ:∥δ∥ 
+∞
+​
+ ≤ϵ} az engedélyezett perturbációk halmaza, 
+Π
+x
++
+S
+Π 
+x+S
+​
+  pedig az erre a halmazra való projekció (gyakorlatban egyszerű clamp/vágás).
+
+\subsubsection{Célzott változat}
+FGSM-hez hasonlóan a itt is definiálunk egy célzott változatot, ami az ottanival analóg módon definiálható. 
+
+x 
+t+1
+ =Π 
+x+S
+​
+ (x 
+t
+ −α⋅sign(∇ 
+x
+​
+ J(θ,x 
+t
+ ,y 
+target
+​
+ )))
+
+\subsubsection{T és alfa megválasztása}
+itt vezetjük be természetes módon 
+α
+α-t (lépésnagyság) és 
+T
+T-t (iterációszám) mint a formulában szereplő paramétereket, rögtön jelezve a szerepüket: nagyobb 
+T
+T általában erősebb támadást ad, de több gradiensszámítást igényel; 
+α
+α-t úgy kell megválasztani, hogy 
+T
+T lépés alatt be tudja járni az 
+ϵ
+ϵ-korlátozta teret (tipikusan 
+α
+≈
+ϵ
+/
+T
+α≈ϵ/T vagy 
+α
+≈
+2,5
+ϵ
+/
+T
+α≈2,5ϵ/T).
+
+\subsubsection{Véletlen kiindulási pont}
+Madry et al. kísérletileg mutatták, hogy a veszteségfelszín lokális maximumai jól koncentráltak, így egy véletlen kezdőpontból indított PGD is 
+megbízhatóan jó megoldást talál. 
+Ennek a szerepe a modellek robosztusságának a tesztelése, mivel a veszteségfelszínnek több egymástól távolabb eső lokális maximuma is lehet és itt a 
+kezdőponttól függően a szerencsének nagy szerepe lehet és nem feltétlenül mutatja a modell valódi sebezhetőségét. 
+Ebben az esetben a véletlen kezdőpontot az epsilon sugarú gömbön egyenletes eloszlással választjuk meg. 
+
+x 
+0
+ =Π 
+x+S
+​
+ (x+η), ahol 
+η
+∼
+U
+(
+−
+ϵ
+,
+ϵ
+)
+d
+η∼U(−ϵ,ϵ) 
+d
+
+\subsubsection{Alpha és T megválasztása}
+
+A PGD viselkedését három fő paraméter határozza meg. Ezek közül epsilont ismerjük, mint a perturbáció felső korlátját. 
+T az iteráció számát jelöli, tehát az algoritmus számítási költségét adja meg, de egyben erősebb támadást eredményez. 
+Az alpha megválasztása olyan kell legyen, hogy ha túl kicsi, akkor lassú a konvergencia, ám ha túl nagy, akkor instabilitáshoz vezethet. 
+Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2.5 \cdot \epsilon / T$.
 
 \subsubsection{Előnyök és korlátok}
 
-A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti
-a lokális optimumot. A random restart technikával kombinálva különösen hatékony. Hátránya, hogy
-$T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége.
+A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti a lokális optimumot. 
+A random restart technikával kombinálva különösen hatékony. 
+Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége. 
 
 \subsection{Tervezési döntések és indoklásuk}
 
