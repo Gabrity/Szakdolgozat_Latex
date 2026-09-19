@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  15 SEP 2026 23:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  19 SEP 2026 18:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -378,72 +378,176 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 nc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] [7{C
 :/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:
-/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [8
-] [9]
+/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
+
+! LaTeX Error: Unicode character Ïµ (U+03F5)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.217 x adv =x+Ïµ
+                 â‹…sign âˆ‡xJ (Î¸, x, y)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character â‹… (U+22C5)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.217 x adv =x+Ïµâ‹…
+                    sign âˆ‡xJ (Î¸, x, y)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character âˆ‡ (U+2207)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.217 x adv =x+Ïµâ‹…sign âˆ‡
+                            xJ (Î¸, x, y)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character Î¸ (U+03B8)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.217 x adv =x+Ïµâ‹…sign âˆ‡xJ (Î¸
+                                  , x, y)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character âˆ’ (U+2212)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 xadv = x âˆ’
+                   Ïµ Â· sign âˆ‡xJ (Î¸, x, ytarget)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character Ïµ (U+03F5)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 xadv = x âˆ’ Ïµ
+                      Â· sign âˆ‡xJ (Î¸, x, ytarget)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character âˆ‡ (U+2207)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 xadv = x âˆ’ Ïµ Â· sign âˆ‡
+                                 xJ (Î¸, x, ytarget)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+! LaTeX Error: Unicode character Î¸ (U+03B8)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 xadv = x âˆ’ Ïµ Â· sign âˆ‡xJ (Î¸
+                                       , x, ytarget)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[8] [9] [10]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-58.
+76.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (22.03973pt too wide) in paragraph at lines 263--268
+Overfull \hbox (22.03973pt too wide) in paragraph at lines 281--286
 []\T1/lmr/m/n/12 Minden vé-let-lent fel-hasz-ná-ló fix-tu-re (pl. a be-me-ne-ti
  ké-pet ge-ne-rá-ló \T1/lmtt/m/n/12 sample_image_tensor\T1/lmr/m/n/12 )
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 274.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 292.
 
-Overfull \hbox (36.80367pt too wide) in paragraph at lines 277--279
+Overfull \hbox (36.80367pt too wide) in paragraph at lines 295--297
 \T1/lmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/lmr/m/n/12 : El-len-®r-zi,
  hogy \T1/lmtt/m/n/12 topk=3 \T1/lmr/m/n/12 ese-tén a vissza-adott valószín¶ség
 -
  []
 
-[10]
-Overfull \hbox (49.39777pt too wide) in paragraph at lines 309--313
+[11]
+Overfull \hbox (49.39777pt too wide) in paragraph at lines 327--331
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 n-nak el-le-né-re, hogy a hí-vó \T1/lmtt/m/n/12 iterations=99\T1/lmr/m/n/12 -
  []
 
 
-Overfull \hbox (34.93167pt too wide) in paragraph at lines 326--331
+Overfull \hbox (34.93167pt too wide) in paragraph at lines 344--349
 \T1/lmtt/m/n/12 wraps=_pgd \T1/lmr/m/n/12 spy-okkal fi-gye-li a hí-vá-so-kat: \
 T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tén \T1/lmtt/m/n/12 _fgsm.asser
 t_called_once()
  []
 
-[11] [12]
-Overfull \hbox (2.09953pt too wide) in paragraph at lines 428--432
+[12] [13]
+Overfull \hbox (2.09953pt too wide) in paragraph at lines 446--450
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyan-az 
 az er®s \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyíték (\T1/lmtt/m/n/12 grad_
 fn
  []
 
 
-Overfull \hbox (47.02249pt too wide) in paragraph at lines 445--448
+Overfull \hbox (47.02249pt too wide) in paragraph at lines 463--466
 \T1/lmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/lmr/m
 /n/12 : Vi-sel-ke-dé-si bi-zo-nyí-ték \T1/lmtt/m/n/12 predict()\T1/lmr/m/n/12 -
 
  []
 
 
-Overfull \hbox (1.89616pt too wide) in paragraph at lines 453--457
+Overfull \hbox (1.89616pt too wide) in paragraph at lines 471--475
 \T1/lmr/m/n/12 osz-tály kon-fi-den-ci-á-ját nö-ve-li -- ugyan-azon tu-laj-don-s
 ág-pár (non-targeted csök-ken-ti/targeted
  []
 
-[13] [14] [15] [16] [17] [18] [19] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[14] [15] [16] [17] [18] [19] [20] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5048 strings out of 467682
- 84667 string characters out of 5415184
+ 5054 strings out of 467682
+ 84716 string characters out of 5415184
  518889 words of memory out of 5000000
- 34047 multiletter control sequences out of 15000+600000
+ 34053 multiletter control sequences out of 15000+600000
  693383 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,6n,65p,295b,363s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -463,10 +567,10 @@ AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/User/Ap
 pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (22 pages, 328985 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (23 pages, 331533 bytes
 ).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
+ 171 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

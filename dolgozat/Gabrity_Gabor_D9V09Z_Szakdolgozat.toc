@@ -22,25 +22,27 @@
 \select@language {magyar} \contentsline {subsubsection}{\numberline {4.2.4}Perturbáció és normakorlát}{8}{}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.3}Ellenfél alapú támadások áttekintése}{8}{}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.4}FGSM (Fast Gradient Sign Method)}{8}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.5}PGD (Projected Gradient Descent)}{8}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {4.5.1}Hiperparaméterek hatása}{8}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.4.1}Célzott változat}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.4.2}Előnyök és korlátok}{9}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.5}PGD (Projected Gradient Descent)}{9}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {4.5.1}Hiperparaméterek hatása}{9}{}%
 \select@language {magyar} \contentsline {subsubsection}{\numberline {4.5.2}Előnyök és korlátok}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.6}Tervezési döntések és indoklásuk}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.7}Kapcsolódó munkák és további támadási módszerek}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.8}Védekezési stratégiák áttekintése}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.9}A rendszer architektúrája}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.10}A felhasznált technológiák}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.11}Az egyes komponensek megvalósítása}{9}{}%
-\select@language {magyar} \contentsline {section}{\numberline {5}Tesztelés}{10}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1}Egységtesztek}{10}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.2}Integrációs tesztek}{13}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {5.2.1}GUI és támadási motor összekötése}{13}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.3}Automatizált GUI tesztek}{14}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4}Funkcionális tesztek és felhasználói validáció}{14}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.5}Teszteredmények és értelmezésük}{16}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.6}A tesztelés korlátai}{16}{}%
-\select@language {magyar} \contentsline {section}{\numberline {6}Összefoglalás}{17}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {6.1}Elért eredmények}{17}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {6.2}Következtetések}{17}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {6.3}Továbbfejlesztési lehetőségek}{17}{}%
-\select@language {magyar} \contentsline {section}{Mellékletek}{18}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.6}Tervezési döntések és indoklásuk}{10}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.7}Kapcsolódó munkák és további támadási módszerek}{10}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.8}Védekezési stratégiák áttekintése}{10}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.9}A rendszer architektúrája}{10}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.10}A felhasznált technológiák}{10}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.11}Az egyes komponensek megvalósítása}{10}{}%
+\select@language {magyar} \contentsline {section}{\numberline {5}Tesztelés}{11}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1}Egységtesztek}{11}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.2}Integrációs tesztek}{14}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {5.2.1}GUI és támadási motor összekötése}{14}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3}Automatizált GUI tesztek}{15}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4}Funkcionális tesztek és felhasználói validáció}{15}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.5}Teszteredmények és értelmezésük}{17}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.6}A tesztelés korlátai}{17}{}%
+\select@language {magyar} \contentsline {section}{\numberline {6}Összefoglalás}{18}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.1}Elért eredmények}{18}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.2}Következtetések}{18}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.3}Továbbfejlesztési lehetőségek}{18}{}%
+\select@language {magyar} \contentsline {section}{Mellékletek}{19}{}%

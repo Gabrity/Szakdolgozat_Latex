@@ -114,23 +114,23 @@ próbálja megsemmisíteni a beágyazott zajt, mérve ezzel a modell védekezők
 \newpage
 \section{Fejlesztői dokumentáció}
 
-\subsection{A probléma részletes specifikációja}
-Ebben a fejezetben szeretném a megvalósítandó szoftver célját és funkcióit definiálni.
+\subsection{A probléma részletes specifikációja}  %(a fejezet elejét egy kicsit bővítsd ki, hogy ne egyből a Legyen adott... mélybe ugrás előtt)
+Ebben a fejezetben szeretném a megvalósítandó szoftver célját és funkcióit definiálni. 
 Legyen adott egy $f_\theta$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje.
 Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában,
-az $y$ pedig a kép helyes osztályának indexe, például $y=42$ az agámák osztályát reprezentálja.
+az $y$ pedig a kép helyes osztályának indexe, például $y=42$ az agámák osztályát reprezentálja. 
 Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét $\hat{y}$-nal jelöljük, és ezt használjuk referenciacímkeként. 
 Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az eredeti $x$-től szemmel csak alig látható perturbációban különbözik,
-viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a referenciaosztálytól eltér, vagy a klasszifikáció elbizonytalanodik.
-Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot.
-Non-targeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson.
-Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk. (pl. komodói varánusz)
-A támadás feltétele, hogy az $f_\theta$ modell gradienseihez és paramétereihez teljes hozzáférésünk legyen.
-Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban.
+viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a referenciaosztálytól eltér, vagy a klasszifikáció elbizonytalanodik. 
+Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot. 
+Non-targeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson. 
+Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk. (pl. komodói varánusz) 
+A támadás feltétele, hogy az $f_\theta$ modell gradienseihez és paramétereihez teljes hozzáférésünk legyen. 
+Ezt white-box hozzáférésnek nevezzük AI red teaming kontextusban. 
 
-E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különböző támadási algoritmusokkal (FGSM, PGD).
-A szoftver a PyTorch (torchvision) előtanított modelljeire épül; az architektúra tetszőleges torchvision-modellel
-bővíthető, jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállíthatóak a futás paraméterei:
+E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különböző támadási algoritmusokkal (FGSM, PGD). 
+A szoftver a PyTorch (torchvision) előtanított modelljeire épül, mely architektúra tetszőleges torchvision-modellel
+bővíthető. Jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállíthatóak a futás paraméterei:
 \begin{itemize}
   \item modell: ResNet50 vagy MobileNetV2, amelyen a támadást végrehajtjuk,
   \item $\epsilon$, mely meghatározza a perturbáció maximális mértékét, tehát azt, hogy egy pixelen legfeljebb mekkora
@@ -194,15 +194,38 @@ Egy perturbált kép általában az
   x_{\mathrm{adv}} = x + \delta
 \]
 formában írható le, ahol $\delta$ a zaj, vagyis a képpontokban okozott változás. 
-A perturbáció nagyságát egy norma szerint korlátozzuk:
+A perturbáció nagyságát egy norma szerint korlátozzuk:  %(ez rossz, L_inf normát akartam írni, illetve hiányzik a definíciója is)
 \[
   \|\delta\|_p \leq \epsilon.
 \]
 Ez esetünkben nagyon kézenfekvő, mivel a bemeneti kép minden pixelén a változást külön-külön korlátozza. 
 
 \subsection{Ellenfél alapú támadások áttekintése}
+A mély neurális hálók, köztük a képfelismerő modellek különösen érzékenyek a bemeneti adatok kicsi ám célzott módosításaira. %(hivatkozást add hozzá)
+Az ilyen módosításokat ellenfél alapú perturbációknak nevezzük. 
+Ezeknek a támadásoknak két algoritmusát fogjuk itt átvenni, melyek a taxonómiában a korábban említett white-box támadások közé tartoznak. 
+A következő fejezetekben egy egylépéses ellenfél alapú támadást mutatunk be (FGSM), utána erre építve egy többlépéses algoritmust (PGD). 
 
 \subsection{FGSM (Fast Gradient Sign Method)}
+Az FGSM algoritmust Goodfellow és társai javasolták a google-nél dolgozva. %(hivatkozás)
+Az előző fejezetben megjegyeztem, hogy a $\nabla_x J(\theta, x, y)$ célfüggvény gradiense az input értékre való érzékenységet jelenti. 
+Adja magát, hogy léptessük el a gradienssel ellenkező irányba az inputot, ami várhatóan rontani fogja a célfüggvény értékét. 
+Ehhez azt feltételezzük, hogy a modell az x kellően kis környezetében lineárisként viselkedik. %(ez miért lehet, lehetne erről egy külön fejezet?)
+Az FGSM algoritmusban az elmozdítást egyszerűen csak a sign előjel-függvény epszilonszorosával tesszük meg, tehát nem vesszük figyelembe a gradiens által adott érzékenységet, csak az irányt. 
+Viszont ilyen módon az epsilon x sign maximálizája az epsilon költsévgvetésünket minden xi-re. 
+Tehát az FGSM adversarial képet e módon kapjuk meg: 
+x adv =x+ϵ⋅sign ∇xJ (θ, x, y)
+
+\subsubsection{Célzott változat}
+Az alapváltozat a megadott helyes osztály veszteségét igyekszik maximalizálni, tehát minél inkább mást mutasson mint ami a képen van. 
+A célzott változatnál ytarget célosztályt adunk meg és azt szeretnénk, hogy a modell ebbe az osztályba sorolja az adversarial képet. 
+xadv = x − ϵ · sign ∇xJ (θ, x, ytarget)
+Tehát a képlet csak annyiban változik, hogy távolodás helyett közeledni szeretnénk és y helyett ytarget-hoz. 
+
+\subsubsection{Előnyök és korlátok}
+Mivel a gradienst a tanításban is használt backpropagation segítségével hatékonyan tudjuk kiszámolni, ezért a támadás gyors. 
+Hátránya, hogy csak egy durva lépést tesz a megfelelő irányba, így adódhat, hogy kicsi változást érünk el vele az osztályozásban, 
+például az iteratív módszerekhez képest. 
 
 \subsection{PGD (Projected Gradient Descent)}
 

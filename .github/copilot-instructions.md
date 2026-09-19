@@ -46,7 +46,7 @@ Lásd a [repo memóriát](/memories/repo/thesis-requirements.md) is: kötelező 
 ## Szöveg lektorálása (kulcsszó)
 
 Ha a felhasználó "szöveg lektorálása" kulcsszóval kér lektorálást (adott fejezetre/szakaszra vagy az egész dolgozatra), az alábbiakat végezd el:
-
+- **Tekints a szövegre úgy, mintha a dolgozatot átnéző bíráló lennél**
 - **Értelmezően olvasás**: nézd át úgy, hogy a fogalmak bevezetése, felépítése megfelelő sorrendet követ-e. Ha ilyen hibát látsz annak a feloldására írj nekem chat válaszban összefoglalva.
 - **Alapvető átnézés**: helyesírás, elgépelés, nyelvtan, mondatszerkezet, magyar szórend javítása.
 - **Formulák TeX-esítése**: sima szövegbeWn szereplő matematikai kifejezéseket (pl. "epsilon", "x_adv", "argmax") alakítsd megfelelő LaTeX formulává (`$...$` inline vagy `\[...\]` display), a fájlban már meglévő jelölésekkel konzisztens módon.
