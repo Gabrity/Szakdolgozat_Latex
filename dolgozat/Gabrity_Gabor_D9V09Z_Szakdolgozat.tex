@@ -258,141 +258,49 @@ Hátránya, hogy csak egyetlen, durva lépést tesz a megfelelő irányba, ezér
 kevésbé hatékonyan képes megtéveszteni az osztályozót. 
 
 \subsection{PGD (Projected Gradient Descent)}
-Ezt az módszert a Mandry és társai vezették be és lényegében az FGSM egylépéses ötletének iteratív változata. 
-Tehát az FGSM-et alkalmazva kapott adversarial képet alapul véve újra végrehajtjuk. 
-A motiváció emögött az, hogy az FGSM linearitási feltevés csak x kis környezetében állja meg a helyét, ezért előnyös ha T darab kisebb alfa lépéssel 
-dolgozunk és a gradienst minden alkalommal újraszámoljuk. 
-Mivel ez az eljrás túlléphet az epsilon sugarú l_p értelemben vett gömb korláton, az algoritmus minden lépés után visszavágja egy projekcióval a gömbre. 
-Ez az FGSM-nél a sign függvény maitt adaott volt, itt T és alfa megválasztásától függően szükséges lehet. 
-így az algoritmus formális definíciója 
-
-x 
-t+1
- =Π 
-x+S
-​
- (x 
-t
- +α⋅sign(∇ 
-x
-​
- J(θ,x 
-t
- ,y))),x 
-0
- =x,
-
- ahol 
-S
-=
-{
-δ
-:
-∥
-δ
-∥
-∞
-≤
-ϵ
-}
-S={δ:∥δ∥ 
-∞
-​
- ≤ϵ} az engedélyezett perturbációk halmaza, 
-Π
-x
-+
-S
-Π 
-x+S
-​
-  pedig az erre a halmazra való projekció (gyakorlatban egyszerű clamp/vágás).
+Ezt a módszert Madry és társai vezették be~\cite{madry2018towards}, és lényegében az FGSM egylépéses ötletének iteratív általánosítása. 
+Nem egyetlen nagy lépést teszünk a gradiens előjele irányába, hanem ugyanabba az irányba több, kisebb lépést hajtunk végre egymás után. 
+A motiváció emögött az, hogy az FGSM linearitási feltevése csak $x$ kellően kis környezetében állja meg a helyét, ezért előnyösebb, ha $T$ darab 
+kisebb, $\alpha$ nagyságú lépéssel dolgozunk, és a gradienst minden lépésben újraszámoljuk. 
+Legyen $S = \{\delta : \|\delta\|_\infty \leq \epsilon\}$ a megengedett perturbációk halmaza; ekkor $x+S$ adja meg az $x$ körüli, $\epsilon$ 
+sugarú gömbbe eső, engedélyezett bemenetek halmazát. 
+($\ell_\infty$ norma esetén ez geometriailag valójában egy kocka, de általános $\ell_p$ értelemben vett gömbként hivatkozunk rá.) 
+Mivel az iteráció túlléphet $x+S$ korlátján, az algoritmus minden lépés után egy projekcióval visszavetíti az eredményt erre a halmazra. 
+Ez FGSM esetén a $\mathrm{sign}$ függvény miatt automatikusan teljesült, itt viszont $T$ és $\alpha$ megválasztásától függően külön biztosítani kell. 
+Az algoritmus formális definíciója tehát 
+\[
+  x^{t+1} = \Pi_{x+S}\big(x^t + \alpha \cdot \mathrm{sign}(\nabla_x J(\theta, x^t, y))\big), \qquad x^0 = x,
+\]
+ahol $\Pi_{x+S}$ az $x+S$ halmazra való projekció.
 
 \subsubsection{Célzott változat}
-FGSM-hez hasonlóan a itt is definiálunk egy célzott változatot, ami az ottanival analóg módon definiálható. 
-
-x 
-t+1
- =Π 
-x+S
-​
- (x 
-t
- −α⋅sign(∇ 
-x
-​
- J(θ,x 
-t
- ,y 
-target
-​
- )))
-
-\subsubsection{T és alfa megválasztása}
-itt vezetjük be természetes módon 
-α
-α-t (lépésnagyság) és 
-T
-T-t (iterációszám) mint a formulában szereplő paramétereket, rögtön jelezve a szerepüket: nagyobb 
-T
-T általában erősebb támadást ad, de több gradiensszámítást igényel; 
-α
-α-t úgy kell megválasztani, hogy 
-T
-T lépés alatt be tudja járni az 
-ϵ
-ϵ-korlátozta teret (tipikusan 
-α
-≈
-ϵ
-/
-T
-α≈ϵ/T vagy 
-α
-≈
-2,5
-ϵ
-/
-T
-α≈2,5ϵ/T).
+Az FGSM-hez hasonlóan itt is definiálunk egy célzott változatot, amely az ottanival analóg módon adható meg: 
+\[
+  x^{t+1} = \Pi_{x+S}\big(x^t - \alpha \cdot \mathrm{sign}(\nabla_x J(\theta, x^t, y_{\mathrm{target}}))\big).
+\]
 
 \subsubsection{Véletlen kiindulási pont}
-Madry et al. kísérletileg mutatták, hogy a veszteségfelszín lokális maximumai jól koncentráltak, így egy véletlen kezdőpontból indított PGD is 
-megbízhatóan jó megoldást talál. 
-Ennek a szerepe a modellek robosztusságának a tesztelése, mivel a veszteségfelszínnek több egymástól távolabb eső lokális maximuma is lehet és itt a 
-kezdőponttól függően a szerencsének nagy szerepe lehet és nem feltétlenül mutatja a modell valódi sebezhetőségét. 
-Ebben az esetben a véletlen kezdőpontot az epsilon sugarú gömbön egyenletes eloszlással választjuk meg. 
+Madry és társai kísérletileg mutatták meg, hogy a veszteségfelszín lokális maximumai jól koncentráltak, így egy véletlen kezdőpontból indított PGD 
+is megbízhatóan jó megoldást talál~\cite{madry2018towards}. 
+Ennek a modellek robusztusságának tesztelésében is van szerepe: mivel a veszteségfelszínnek több, egymástól távol eső lokális maximuma is lehet, egy 
+fix (pl.\ magából $x$-ből induló) kezdőpont esetén a szerencsének nagy szerepe lehetne, és az eredmény nem feltétlenül mutatná a modell valódi 
+sebezhetőségét. 
+Ezért a véletlen kezdőpontot az $\epsilon$ sugarú gömbön egyenletes eloszlással választjuk meg: 
+\[
+  x^0 = \Pi_{x+S}(x + \eta), \qquad \eta \sim \mathcal{U}(-\epsilon, \epsilon)^d.
+\]
 
-x 
-0
- =Π 
-x+S
-​
- (x+η), ahol 
-η
-∼
-U
-(
-−
-ϵ
-,
-ϵ
-)
-d
-η∼U(−ϵ,ϵ) 
-d
-
-\subsubsection{Alpha és T megválasztása}
-
-A PGD viselkedését három fő paraméter határozza meg. Ezek közül epsilont ismerjük, mint a perturbáció felső korlátját. 
-T az iteráció számát jelöli, tehát az algoritmus számítási költségét adja meg, de egyben erősebb támadást eredményez. 
-Az alpha megválasztása olyan kell legyen, hogy ha túl kicsi, akkor lassú a konvergencia, ám ha túl nagy, akkor instabilitáshoz vezethet. 
-Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2.5 \cdot \epsilon / T$.
+\subsubsection{Az $\alpha$ és $T$ paraméterek megválasztása}
+A PGD viselkedését -- az $\epsilon$ perturbációs korláton felül -- két további paraméter határozza meg. 
+$T$ az iterációk számát jelöli, ez adja meg az algoritmus számítási költségét, ugyanakkor több iteráció jellemzően erősebb támadást eredményez. 
+Az $\alpha$ lépésnagyságot úgy kell megválasztani, hogy túl kicsi érték esetén lassú a konvergencia, túl nagy érték esetén pedig instabilitáshoz 
+vezethet. 
+Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2{,}5 \cdot \epsilon / T$.
 
 \subsubsection{Előnyök és korlátok}
 
 A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti a lokális optimumot. 
-A random restart technikával kombinálva különösen hatékony. 
+A véletlen kezdőponttal kombinálva különösen hatékony a robusztusság kiértékelésében. 
 Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége. 
 
 \subsection{Tervezési döntések és indoklásuk}
