@@ -215,9 +215,34 @@ A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel t
 A véletlen kezdőponttal kombinálva különösen hatékony a robusztusság kiértékelésében. 
 Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége. 
 
-\section{Tervezési döntések és indoklásuk}
+\section{Továbbmutató elméleti vonatkozások}
 
-\section{Kapcsolódó munkák és további támadási módszerek}
+\subsection{Transzferálhatóság}
+% TODO: az adversarial példák azon tulajdonsága, hogy egy modellre generált perturbáció gyakran más,
+% eltérő architektúrájú vagy más adathalmazon tanított modelleket is megtéveszt -- ez a jelenség
+% teszi lehetővé a black-box támadásokat, és mindkét cikk (Goodfellow, Madry) tárgyalja.
+
+\subsection{Adversarial training}
+Ezeknek a módszereknek a szerepe nem csak a támadás, hanem felhasználhatóak a tanítás során a modellek robosztusságá tételére is. 
+Ez úgy történik, hogy az eredeti és az adversarial képből egy kombinált veszteségfüggvényt állítunk elő az alábbi módon: 
+(J~ = alpha*J(x,y) + (1-alpha)*J(x+eta,y)),
+itt az lambda paraméter a súlyozás arányát jelöli. 
+A formula egyetlen adversarial képeet integrál a a költségfüggvénybe, majd az így kapottat használja fel újra rekurzívan. 
+A ódszer eredményességét kísérletekkel igazolták, FGSM-alapú ellenfél-alapú példákon mért hibaarány 89,4%-ról 17,9%-ra csökkent. 
+
+\subsection{Linearitás}
+% TODO: a linearitási hipotézis részletesebb kifejtése -- miért viselkednek a modern neurális hálók
+% (ReLU, maxout stb. miatt) lokálisan lineárisan, és ez hogyan magyarázza az adversarial példák
+% létezését magas dimenziószámú bemeneteken (Goodfellow et al. levezetése lineáris modellekre).
+
+%\subsection{Saddle point}
+% TODO: Madry et al. min-max (saddle point) optimalizálási kerete: a belső maximalizálás a
+% legrosszabb esetű perturbáció megtalálása (támadás), a külső minimalizálás a robusztus modell
+% tanítása (védekezés) -- ez adja a PGD elméleti indoklását mint "univerzális első rendű ellenfél".
+
+\subsection{Kapcsolódó munkák és további támadási módszerek}
+
+\section{Tervezési döntések és indoklásuk}
 
 \section{Védekezési stratégiák áttekintése}
 
@@ -225,7 +250,7 @@ Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, í
 
 \section{A felhasznált technológiák}
 
-\section{Az egyes komponensek megvalósítása}
+\section{Az egyes komponensek megvalósítási részletei}
 
 \chapter{Tesztelés}
 
