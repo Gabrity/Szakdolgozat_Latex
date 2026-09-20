@@ -119,8 +119,8 @@
       \strng{authornamehash}{312ac886938a9b2be4f8eb607567fe4c}
       \strng{authorfullhash}{312ac886938a9b2be4f8eb607567fe4c}
       \strng{authorfullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{martinfowler.com}
@@ -159,8 +159,8 @@
       \strng{authornamehash}{4eb9933fc180b1f96d9b346bb55d3d30}
       \strng{authorfullhash}{4eb9933fc180b1f96d9b346bb55d3d30}
       \strng{authorfullhashraw}{4eb9933fc180b1f96d9b346bb55d3d30}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}

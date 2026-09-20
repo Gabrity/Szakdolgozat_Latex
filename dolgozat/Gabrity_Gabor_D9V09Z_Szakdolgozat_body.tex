@@ -125,7 +125,7 @@ Egy perturbált kép általában az
 formában írható le, ahol $\delta$ a zaj, vagyis a képpontokban okozott változás. 
 A $\ell_\infty$ normát a 
 \[
-  \|\x|_\infty = \max_i |\x_i|
+  \|v\|_\infty = \max_i |v_i|
 \]
 kifejezés definiálja, azaz a legnagyobb abszolút értékű komponens adja a norma értékét. 
 A perturbáció nagyságát ezzel a normával korlátozzuk: 
@@ -197,7 +197,7 @@ is megbízhatóan jó megoldást talál~\cite{madry2018towards}.
 Ennek a modellek robusztusságának tesztelésében is van szerepe: mivel a veszteségfelszínnek több, egymástól távol eső lokális maximuma is lehet, egy 
 fix (pl.\ magából $x$-ből induló) kezdőpont esetén a szerencsének nagy szerepe lehetne, és az eredmény nem feltétlenül mutatná a modell valódi 
 sebezhetőségét. 
-Ezért a véletlen kezdőpontot az $\epsilon$ sugarú gömbön egyenletes eloszlással választjuk meg: 
+Ezért a véletlen kezdőpontot az $\epsilon$ sugarú gömbben egyenletes eloszlással választjuk meg: 
 \[
   x^0 = \Pi_{x+S}(x + \eta), \qquad \eta \sim \mathcal{U}(-\epsilon, \epsilon)^d.
 \]
@@ -207,7 +207,7 @@ A PGD viselkedését az $\epsilon$ perturbációs korláton felül két további
 $T$ az iterációk számát jelöli, ez adja meg az algoritmus számítási költségét, ugyanakkor több iteráció jellemzően erősebb támadást eredményez. 
 Az $\alpha$ lépésnagyságot úgy kell megválasztani, hogy túl kicsi érték esetén lassú a konvergencia, túl nagy érték esetén pedig instabilitáshoz 
 vezethet. 
-Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2{,}5 \cdot \epsilon / T$.
+Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2{,}5 \cdot \epsilon / T$~\cite{madry2018towards}.
 
 \subsection{Előnyök és korlátok}
 A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti a lokális optimumot. 
@@ -215,7 +215,7 @@ A véletlen kezdőponttal kombinálva különösen hatékony a robusztusság ki�
 Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége. 
 
 \section{Továbbmutató elméleti vonatkozások}
-Ebben a fejezetben azokat az elméleti vontkozásokat foglalom össze, amelyek nem képezik szigorúan a dolgozatban megvaósított szoftver részét, ám fontos 
+Ebben a fejezetben azokat az elméleti vonatkozásokat foglalom össze, amelyek nem képezik szigorúan a dolgozatban megvalósított szoftver részét, ám fontos 
 kiegészítői annak.
 
 \subsection{Transzferálhatóság}
@@ -257,13 +257,13 @@ feltétlenül igaz.
 
 \subsection{Kapcsolódó munkák és további támadási módszerek}
 
-\section{Tervezési döntések és indoklásuk}
-
 \section{Védekezési stratégiák áttekintése}
 
 \section{A rendszer architektúrája}
 
 \section{A felhasznált technológiák}
+
+\section{Tervezési döntések és indoklásuk}
 
 \section{Az egyes komponensek megvalósítási részletei}
 

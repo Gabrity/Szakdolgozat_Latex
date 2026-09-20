@@ -2378,10 +2378,11 @@
     <bcf:citekey order="3" intorder="1">goodfellow2015explaining</bcf:citekey>
     <bcf:citekey order="4" intorder="1">madry2018towards</bcf:citekey>
     <bcf:citekey order="5" intorder="1">madry2018towards</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">goodfellow2015explaining</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">madry2018towards</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">fowler2012testpyramid</bcf:citekey>
-    <bcf:citekey order="9" intorder="1" nocite="1">dziugaite2016jpeg</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">madry2018towards</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">goodfellow2015explaining</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">madry2018towards</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">fowler2012testpyramid</bcf:citekey>
+    <bcf:citekey order="10" intorder="1" nocite="1">dziugaite2016jpeg</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

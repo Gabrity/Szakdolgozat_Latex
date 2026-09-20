@@ -39,10 +39,10 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.2}Ellenfél alapú tanítás}{14}{subsection.3.6.2}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.3}Linearitás}{15}{subsection.3.6.3}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.4}Kapcsolódó munkák és további támadási módszerek}{15}{subsection.3.6.4}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.7}Tervezési döntések és indoklásuk}{15}{section.3.7}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.8}Védekezési stratégiák áttekintése}{15}{section.3.8}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.9}A rendszer architektúrája}{15}{section.3.9}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.10}A felhasznált technológiák}{15}{section.3.10}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.7}Védekezési stratégiák áttekintése}{15}{section.3.7}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.8}A rendszer architektúrája}{15}{section.3.8}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.9}A felhasznált technológiák}{15}{section.3.9}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.10}Tervezési döntések és indoklásuk}{15}{section.3.10}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.11}Az egyes komponensek megvalósítási részletei}{15}{section.3.11}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{16}{chapter.4}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{16}{section.4.1}%
