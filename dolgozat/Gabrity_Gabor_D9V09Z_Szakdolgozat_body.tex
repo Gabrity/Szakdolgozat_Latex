@@ -110,8 +110,8 @@ Esetünkben ez a keresztentrópia-veszteség
 J(\theta, x, y) = -\log \frac{e^{z_y}}{\sum_{i=1}^{C} e^{z_i}},
 \]
 ahol $z = f_\theta(x)$ a logitvektor és $y$ a helyes osztály indexe. 
-A veszteségfüggvény súlyok szerinti gradiense, $\nabla_\theta J(\theta, x, y)$, az a gradiensvektor, amelyet a backpropagation során a tanítás közben használunk a súlyok módosítására. 
-Itt a gradiensszámítást egy további lépéssel a bemeneti rétegig visszük -- azaz a backpropagation folyamatát a hálón teljesen végigvezetjük --, és megkapjuk a bemeneti vektorra vonatkozó érzékenységet, $\nabla_x J(\theta, x, y)$. 
+A veszteségfüggvény súlyok szerinti gradiense, $\nabla_\theta J(\theta, x, y)$, az a gradiensvektor, amelyet a hiba-visszaterjesztés (angolul \textit{backpropagation}) során a tanítás közben használunk a súlyok módosítására. 
+Itt a gradiensszámítást egy további lépéssel a bemeneti rétegig visszük -- azaz a hiba-visszaterjesztés folyamatát a hálón teljesen végigvezetjük --, és megkapjuk a bemeneti vektorra vonatkozó érzékenységet, $\nabla_x J(\theta, x, y)$. 
 Ez a mennyiség azt mutatja meg, hogy egy adott bemeneti pixel vagy jellemző változása milyen mértékben befolyásolja a veszteséget, ezért ennek a mennyiségnek központi szerepe 
 lesz a későbbiekben bemutatott, ellenfél alapú példát generáló algoritmusok leírásában. 
 
@@ -165,7 +165,7 @@ A célzott változatnál egy $y_{\mathrm{target}}$ célosztályt adunk meg, és 
 Tehát a képlet csak annyiban változik, hogy távolodás helyett az $y_{\mathrm{target}}$-hoz tartozó veszteség minimuma felé közeledni szeretnénk, és $y$ helyett $y_{\mathrm{target}}$-ot használjuk. 
 
 \subsection{Előnyök és korlátok}
-Mivel a gradienst a tanításban is használt backpropagation segítségével hatékonyan tudjuk kiszámolni, ezért a támadás gyors. 
+Mivel a gradienst a tanításban is használt hiba-visszaterjesztés segítségével hatékonyan tudjuk kiszámolni, ezért a támadás gyors. 
 Hátránya, hogy csak egyetlen, durva lépést tesz a megfelelő irányba, ezért -- főleg az iteratív módszerekhez, például a PGD-hez képest -- 
 kevésbé hatékonyan képes megtéveszteni az osztályozót. 
 
