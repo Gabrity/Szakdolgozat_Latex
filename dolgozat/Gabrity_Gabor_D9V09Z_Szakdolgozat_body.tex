@@ -1,0 +1,559 @@
+\chapter{Bevezetés}
+
+\section{Motiváció és a témaválasztás indoklása}
+
+\section{A megoldandó feladat rövid, közérthető leírása}
+
+\section{A dolgozat célja és hozzájárulásai}
+
+\section{A dolgozat felépítése}
+
+\chapter{Felhasználói dokumentáció}
+
+\section{A megoldott probléma rövid megfogalmazása}
+
+\section{A felhasznált módszerek rövid áttekintése}
+
+\section{Rendszerkövetelmények}
+
+\section{Telepítés és első indítás}
+
+\section{A grafikus felhasználói felület bemutatása}
+
+\section{Tipikus felhasználási forgatókönyvek}
+
+\section{Hibaüzenetek és gyakori problémák}
+
+\chapter{Fejlesztői dokumentáció}
+Ebben a fejezetben a megvalósítandó szoftver célját és funkcióit formális, matematikai keretben definiálom, mivel a későbbi fejezetekben tárgyalt 
+algoritmusok (FGSM, PGD) és a védekezési modul is ugyanerre a jelölésrendszerre épülnek majd. 
+Először a probléma szereplőit, a modellt, a bemenetet és a hozzá tartozó címkét vezetem be, majd ezek segítségével pontosan megfogalmazom, mit 
+is jelent az ellenfél alapú perturbáció. 
+Ezután az itt bevezetett jelölésrendszerre épülve sorra bemutatom a két megvalósított támadási algoritmust (FGSM, PGD), a mögöttük álló tervezési 
+döntéseket, a kapcsolódó munkákat, a védekezési stratégiákat, végül a szoftver architektúráját, a felhasznált technológiákat és az egyes 
+komponensek megvalósítását. 
+
+\section{A probléma részletes specifikációja}
+
+\subsection{A modell, a bemenet és a címke}
+Legyen adott egy $f_\theta$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje. 
+Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában,
+az $y$ pedig a kép helyes osztályának indexe, például $y=42$ az agámák osztályát reprezentálja. 
+Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét $\hat{y}$-nal jelöljük, és ezt 
+használjuk referenciacímkeként. 
+
+\subsection{A támadás célja}
+Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az eredeti $x$-től szemmel csak alig látható perturbációban különbözik,
+viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a referenciacímkétől eltér, vagy a 
+klasszifikáció elbizonytalanodik. 
+
+\subsection{Targeted és non-targeted mód}
+Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot. 
+Non-targeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson. 
+Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk (pl.\ a komodói varánusz osztálya felé). 
+
+\subsection{A white-box hozzáférési feltétel}
+A támadás feltétele, hogy az $f_\theta$ modell gradienseihez és paramétereihez teljes hozzáférésünk legyen. 
+Ezt white-box hozzáférésnek nevezzük az AI red teaming kontextusában. 
+
+\subsection{A szoftver célja és beállítható paraméterei}
+E szoftver célja a fenti ellenfél alapú támadó tesztkörnyezet szoftveres megvalósítása, különböző támadási algoritmusokkal (FGSM, PGD). 
+A szoftver a PyTorch (torchvision) előtanított modelljeire épül, mely architektúra tetszőleges torchvision-modellel
+bővíthető. Jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállíthatóak a futás paraméterei:
+\begin{itemize}
+  \item modell: ResNet50 vagy MobileNetV2, amelyen a támadást végrehajtjuk,
+  \item $\epsilon$, mely meghatározza a perturbáció maximális mértékét, tehát azt, hogy egy pixelen legfeljebb mekkora
+        változást tapasztalhatunk, azaz a változás felső határát,
+  \item célosztály, $y_{\mathrm{target}}$, ha a mód targeted,
+  \item iterációszám (PGD esetén hány lépésig engedjük futtatni az algoritmust).
+\end{itemize}
+
+\subsection{A felhasználói funkciók vázlatos áttekintése}
+
+A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvetlenül elérhető funkciókkal valósítja meg:
+\begin{itemize}
+  \item a fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikáljuk,
+  \item támadási algoritmus és paraméterek meghatározásával perturbációt és adversarial képet generálunk,
+  \item megjelenítjük az eredeti képet, a perturbációt és az adversarial képet, továbbá mindkét (eredeti és
+        adversarial) képet osztályozzuk is,
+  \item a védekezési modulban JPEG-tömörítést vagy más képfeldolgozási szűrőt alkalmazhatunk az adversarial perturbáció 
+  hatásának utólagos csökkentésére vagy semlegesítésére.
+\end{itemize}
+
+\section{Elméleti háttér és a használt fogalmak definíciója}
+
+\subsection{Az osztályozó modell és a logitok}
+
+Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok száma (ImageNet esetén $C=1000$). 
+Ezt logitvektornak is nevezzük, mely elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = \ln\frac{p}{1-p}$ függvény egy $p \in (0, 1)$ valószínűséget 
+képez le a valós számegyenesre. 
+A $z_i$ komponensek páronkénti különbsége éppen az $i$-edik és $j$-edik osztály esélyhányadosának logaritmusával egyezik meg, 
+$z_i - z_j = \ln\frac{p_i}{p_j}$, innen származik az elnevezés.
+
+\subsection{Valószínűségek és a modell predikciója}
+
+Mivel a $z$ logitok önmagukban nem valószínűségek, a $\mathrm{softmax}$ függvénnyel alakítjuk át őket valószínűségi eloszlássá: 
+\[
+  p_i = \mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \qquad i = 1, \ldots, C.
+\]
+Tehát $p_i$ a modell szerint annak a valószínűsége, hogy $x$ az $i$-edik osztályba tartozik. 
+A modell által meghatározott legvalószínűbb osztály indexét a legnagyobb valószínűségű komponens alapján kapjuk: 
+\[
+  \hat{y} = \arg\max_{i} p_i.
+\]
+
+\subsection{Veszteségfüggvény és bemeneti gradiens}
+
+A $J(\theta, x, y)$ veszteségfüggvény a modell predikciója és a megadott helyes címke közötti eltérést méri. 
+Esetünkben ez a keresztentrópia-veszteség 
+\[
+J(\theta, x, y) = -\log \frac{e^{z_y}}{\sum_{i=1}^{C} e^{z_i}},
+\]
+ahol $z = f_\theta(x)$ a logitvektor és $y$ a helyes osztály indexe. 
+A veszteségfüggvény súlyok szerinti gradiense, $\nabla_\theta J(\theta, x, y)$, az a gradiensvektor, amelyet a backpropagation során a tanítás közben használunk a súlyok módosítására. 
+Itt a gradiensszámítást egy további lépéssel a bemeneti rétegig visszük -- azaz a backpropagation folyamatát a hálón teljesen végigvezetjük --, és megkapjuk a bemeneti vektorra vonatkozó érzékenységet, $\nabla_x J(\theta, x, y)$. 
+Ez a mennyiség azt mutatja meg, hogy egy adott bemeneti pixel vagy jellemző változása milyen mértékben befolyásolja a veszteséget, ezért ennek a mennyiségnek központi szerepe 
+lesz a későbbiekben bemutatott adversarial-példa-generáló algoritmusok leírásában. 
+
+\subsection{Perturbáció és normakorlát}
+
+Az adversarial képek definíciójánál szokás a perturbáció nagyságát valamely $\ell_p$ normával jellemezni; ebben a dolgozatban a $\ell_\infty$ normát használjuk. 
+Egy perturbált kép általában az
+\[
+  x_{\mathrm{adv}} = x + \delta
+\]
+formában írható le, ahol $\delta$ a zaj, vagyis a képpontokban okozott változás. 
+A $\ell_\infty$ normát a 
+\[
+  \|\delta\|_\infty = \max_i |\delta_i|
+\]
+kifejezés definiálja, azaz a legnagyobb abszolút értékű komponens adja a norma értékét. 
+A perturbáció nagyságát ezzel a normával korlátozzuk: 
+\[
+  \|\delta\|_\infty \leq \epsilon.
+\]
+Ez esetünkben nagyon kézenfekvő, mivel a bemeneti kép minden pixelén (minden $\delta_i$ komponensen) külön-külön korlátozza a megengedett változást. 
+
+\section{Ellenfél alapú támadások áttekintése}
+A mély neurális hálók, köztük a képfelismerő modellek is, különösen érzékenyek a bemeneti adatok kicsi, ám célzott módosításaira~\cite{goodfellow2015explaining}. 
+Az ilyen módosításokat ellenfél alapú perturbációknak nevezzük. 
+Ezeknek a támadásoknak két algoritmusát fogjuk itt átvenni, melyek a taxonómiában a korábban említett white-box támadások közé tartoznak. 
+A következő fejezetekben egy egylépéses ellenfél alapú támadást mutatunk be (FGSM), utána erre építve egy többlépéses algoritmust (PGD). 
+
+\section{FGSM (Fast Gradient Sign Method)}
+Az FGSM algoritmust Goodfellow és szerzőtársai a Google-nél végzett kutatásaik alapján javasolták~\cite{goodfellow2015explaining}. 
+Az előző fejezetben megjegyeztem, hogy a $\nabla_x J(\theta, x, y)$ veszteségfüggvény gradiense az input értékre való érzékenységet jelenti. 
+Természetes ötlet, hogy a bemenetet a gradienssel ellentétes irányba mozdítsuk el, ami várhatóan növeli a veszteségfüggvény értékét, azaz rontja a 
+helyes osztályra adott predikciót. 
+Ehhez feltesszük, hogy a modell az $x$ pont kellően kis környezetében közelítőleg lineárisan viselkedik -- ez Goodfellow és társai linearitási 
+elmélete, amely szerint a modern neurális hálók, részben a szakaszonként lineáris aktivációk (pl.\ ReLU) miatt, lokálisan jól közelíthetők egy 
+lineáris függvénnyel, még ha globálisan erősen nemlineárisak is~\cite{goodfellow2015explaining}. 
+Az FGSM algoritmusban az elmozdítást egyszerűen csak az előjel-függvény ($\mathrm{sign}$) $\epsilon$-szorosával tesszük meg, tehát nem vesszük 
+figyelembe a gradiens nagysága által adott érzékenységet, csak az irányát. 
+Ily módon az $\epsilon \cdot \mathrm{sign}(\cdot)$ minden egyes $x_i$ komponensre kihasználja a teljes $\epsilon$ költségvetésünket. 
+Tehát az FGSM adversarial példát a következő módon kapjuk meg: 
+\[
+  x_{\mathrm{adv}} = x + \epsilon \cdot \mathrm{sign}\big(\nabla_x J(\theta, x, y)\big).
+\]
+
+\subsection{Célzott változat}
+Az alapváltozat a megadott helyes osztály veszteségét igyekszik maximalizálni, tehát minél inkább mást mutasson, mint ami a képen van. 
+A célzott változatnál egy $y_{\mathrm{target}}$ célosztályt adunk meg, és azt szeretnénk, hogy a modell ebbe az osztályba sorolja az adversarial képet. 
+\[
+  x_{\mathrm{adv}} = x - \epsilon \cdot \mathrm{sign}\big(\nabla_x J(\theta, x, y_{\mathrm{target}})\big).
+\]
+Tehát a képlet csak annyiban változik, hogy távolodás helyett az $y_{\mathrm{target}}$-hoz tartozó veszteség minimuma felé közeledni szeretnénk, és $y$ helyett $y_{\mathrm{target}}$-ot használjuk. 
+
+\subsection{Előnyök és korlátok}
+Mivel a gradienst a tanításban is használt backpropagation segítségével hatékonyan tudjuk kiszámolni, ezért a támadás gyors. 
+Hátránya, hogy csak egyetlen, durva lépést tesz a megfelelő irányba, ezért -- főleg az iteratív módszerekhez, például a PGD-hez képest -- 
+kevésbé hatékonyan képes megtéveszteni az osztályozót. 
+
+\section{PGD (Projected Gradient Descent)}
+Ezt a módszert Madry és társai vezették be~\cite{madry2018towards}, és lényegében az FGSM egylépéses ötletének iteratív általánosítása. 
+Nem egyetlen nagy lépést teszünk a gradiens előjele irányába, hanem ugyanabba az irányba több, kisebb lépést hajtunk végre egymás után. 
+A motiváció emögött az, hogy az FGSM linearitási feltevése csak $x$ kellően kis környezetében állja meg a helyét, ezért előnyösebb, ha $T$ darab 
+kisebb, $\alpha$ nagyságú lépéssel dolgozunk, és a gradienst minden lépésben újraszámoljuk. 
+Legyen $S = \{\delta : \|\delta\|_\infty \leq \epsilon\}$ a megengedett perturbációk halmaza; ekkor $x+S$ adja meg az $x$ körüli, $\epsilon$ 
+sugarú gömbbe eső, engedélyezett bemenetek halmazát. 
+($\ell_\infty$ norma esetén ez geometriailag valójában egy kocka, de általános $\ell_p$ értelemben vett gömbként hivatkozunk rá.) 
+Mivel az iteráció túlléphet $x+S$ korlátján, az algoritmus minden lépés után egy projekcióval visszavetíti az eredményt erre a halmazra. 
+Ez FGSM esetén a $\mathrm{sign}$ függvény miatt automatikusan teljesült, itt viszont $T$ és $\alpha$ megválasztásától függően külön biztosítani kell. 
+Az algoritmus formális definíciója tehát 
+\[
+  x^{t+1} = \Pi_{x+S}\big(x^t + \alpha \cdot \mathrm{sign}(\nabla_x J(\theta, x^t, y))\big), \qquad x^0 = x,
+\]
+ahol $\Pi_{x+S}$ az $x+S$ halmazra való projekció.
+
+\subsection{Célzott változat}
+Az FGSM-hez hasonlóan itt is definiálunk egy célzott változatot, amely az ottanival analóg módon adható meg: 
+\[
+  x^{t+1} = \Pi_{x+S}\big(x^t - \alpha \cdot \mathrm{sign}(\nabla_x J(\theta, x^t, y_{\mathrm{target}}))\big).
+\]
+
+\subsection{Véletlen kiindulási pont}
+Madry és társai kísérletileg mutatták meg, hogy a veszteségfelszín lokális maximumai jól koncentráltak, így egy véletlen kezdőpontból indított PGD 
+is megbízhatóan jó megoldást talál~\cite{madry2018towards}. 
+Ennek a modellek robusztusságának tesztelésében is van szerepe: mivel a veszteségfelszínnek több, egymástól távol eső lokális maximuma is lehet, egy 
+fix (pl.\ magából $x$-ből induló) kezdőpont esetén a szerencsének nagy szerepe lehetne, és az eredmény nem feltétlenül mutatná a modell valódi 
+sebezhetőségét. 
+Ezért a véletlen kezdőpontot az $\epsilon$ sugarú gömbön egyenletes eloszlással választjuk meg: 
+\[
+  x^0 = \Pi_{x+S}(x + \eta), \qquad \eta \sim \mathcal{U}(-\epsilon, \epsilon)^d.
+\]
+
+\subsection{Az $\alpha$ és $T$ paraméterek megválasztása}
+A PGD viselkedését -- az $\epsilon$ perturbációs korláton felül -- két további paraméter határozza meg. 
+$T$ az iterációk számát jelöli, ez adja meg az algoritmus számítási költségét, ugyanakkor több iteráció jellemzően erősebb támadást eredményez. 
+Az $\alpha$ lépésnagyságot úgy kell megválasztani, hogy túl kicsi érték esetén lassú a konvergencia, túl nagy érték esetén pedig instabilitáshoz 
+vezethet. 
+Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2{,}5 \cdot \epsilon / T$.
+
+\subsection{Előnyök és korlátok}
+
+A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti a lokális optimumot. 
+A véletlen kezdőponttal kombinálva különösen hatékony a robusztusság kiértékelésében. 
+Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége. 
+
+\section{Tervezési döntések és indoklásuk}
+
+\section{Kapcsolódó munkák és további támadási módszerek}
+
+\section{Védekezési stratégiák áttekintése}
+
+\section{A rendszer architektúrája}
+
+\section{A felhasznált technológiák}
+
+\section{Az egyes komponensek megvalósítása}
+
+\chapter{Tesztelés}
+
+\section{Egységtesztek}
+
+A program tesztkészletének felépítésénél a szakirodalomból ismert \textit{tesztpiramisnak} nevezett
+hierarchiát követtem~\cite{fowler2012testpyramid}. Ennek alapját a gyorsabb és kevés komponenst érintő tesztek, az egységtesztek képezik, 
+melyek a lehető legkisebb elkülöníthető egységek tesztelését valósítják meg. Futási idejük 
+jellemzően ezredmásodperces tartományban mozog és akár lefedhetik az input paraméterek teljes értékkészletét. Az elkészítésüknél fontos szempont a 
+többi egységtől való függetlenség (izoláció) és az perifériáktól való függetlenség, I/O, adatbázis, hálózat, stb. Ezeknek a teszteknek az elkészítésére 
+érdemes nagy figyelmet fordítani, mivel a korai szakaszban feltárt hibák javítása általában lényegesen olcsóbb, mint a később, integráció vagy éles 
+környezetben felfedezetteké.
+
+Az egységtesztek tudatosan nem a valódi, előtanított ResNet50/MobileNetV2 modelleket használják. Az
+\texttt{attack\_engine} teszteknél egy \texttt{tiny\_model} fixture ad egy $5$ osztályos,
+$8\times8$ pixeles bemenetet feldolgozó, egyetlen lineáris rétegből álló hálót. Ez a döntés a tesztek sebességét 
+(a valódi háló letöltése és felépítése másodperces nagyságrendű lenne) és izoláltságát szolgálja: a teszt kizárólag a 
+saját kódunk logikáját vizsgálja, nem a harmadik féltől származó architektúra pontosságát. 
+
+Minden véletlent felhasználó fixture (pl. a bemeneti képet generáló \texttt{sample\_image\_tensor})
+maga hívja meg a \texttt{torch.manual\_seed}-et közvetlenül az adat előállítása előtt, így a
+determinizmus független a fixture-ök végrehajtási sorrendjétől. Az egységtesztek szintjén nem támadási sikerrátát mérünk (ehhez sok mintás, statisztikai kiértékelés
+kellene), hanem az algoritmusok tulajdonságait ellenőrizzük
+konkrét, kis méretű bemeneteken.
+
+Ebben a részben a számosságuk miatt nem mutatom be az összes egységtesztet, csak a középpontban álló \texttt{attack\_engine.py} 
+modult mivel ez valósítja meg az alkalmazás lényegi logikáját (az FGSM és PGD algoritmusokat,
+valamint az ezeket kiszolgáló \texttt{predict()} és \texttt{attack()} függvényeket). 
+
+\bigskip
+\noindent\textbf{A \texttt{predict()} és a diszpécser (\texttt{attack()}) tesztjei}
+
+\medskip
+\noindent\texttt{test\_predict\_re\-turns\_topk\_shapes}: Ellenőrzi, hogy \texttt{topk=3} esetén a visszaadott
+valószínűség- és index-tenzor alakja $(1, 3)$, azaz a batch- és $k$-dimenzió megfelel a kérésnek.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_predict\_re\-turns\_valid\_distribution}: A \texttt{topk=5} valószínűségek mindegyike a
+$[0, 1]$ intervallumba esik, és -- mivel az 5 osztályos \texttt{tiny\_model} minden osztálya lekérdezésre
+kerül -- összegük $1{,}0$-ra \texttt{allclose}. Ez a softmax kimenet valódi valószínűségi eloszlás voltát
+igazolja.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_predict\_top\-k\_returns\_highest\_first}: A visszaadott valószínűségek csökkenő
+sorrendben szerepelnek ($\mathrm{probs}[0, i] \geq \mathrm{probs}[0, i+1]$), vagyis a \texttt{topk} valóban a
+legnagyobb konfidenciájú osztályokat adja vissza, méghozzá rendezetten.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_attack\_unk\-nown\_method\_raises}: Határeset: egy nem létező módszernév
+(\texttt{"NEM VALID"}) megadásakor \texttt{ValueError}-t vár, mielőtt bármilyen gradiensszámítás történne --
+a bemenet-validáció a drága számítás előtt fut le.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_attack\_fgsm\_ig\-nores\_iterations\_argument}: Annak ellenére, hogy a hívó
+\texttt{iterations=99}-et ad át, FGSM esetén a visszaadott \texttt{AttackResult.iterations\_run} értéke $1$ --
+igazolva, hogy az FGSM valóban egylépéses, és a paramétert a diszpécser figyelmen kívül hagyja erre a
+módszerre.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_attack\_pgd\_re\-ports\_requested\_iteration\_count}: PGD esetén a kért iterációszám
+($4$) változatlanul megjelenik az \texttt{iterations\_run} mezőben, alátámasztva, hogy a diszpécser a
+paramétert továbbadja a \texttt{\_pgd} implementációnak.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_attack\_fgsm\_dis\-patches\_only\_to\_fgsm}: \texttt{mocker.patch(..., wraps=\_fgsm)} és
+\texttt{wraps=\_pgd} spy-okkal figyeli a hívásokat: \texttt{method="FGSM"} esetén
+\texttt{\_fgsm.assert\_called\_once()} és \texttt{\_pgd.assert\_not\_called()} teljesül. A \texttt{wraps}
+paraméter miatt a valódi implementáció is lefut, tehát az \texttt{AttackResult} összeállítása is ellenőrzött
+marad.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_attack\_pgd\_dis\-patches\_only\_to\_pgd}: Az előző teszt tükörképe:
+\texttt{method="PGD"} esetén kizárólag \texttt{\_pgd} hívódik meg, \texttt{\_fgsm} nem. A két teszt együtt
+zárja ki, hogy a diszpécser valamelyik ágon ,,átcsorogva'' mindkét algoritmust lefuttassa.
+
+\bigskip
+\noindent\textbf{Az FGSM implementáció (\texttt{\_fgsm}) tesztjei}
+
+\medskip
+\noindent\texttt{test\_fgsm\_targeted\_steps\_opposite\_direction\_of\_untargeted}: Azonos bemeneten és
+$\epsilon$ mellett a targeted és non-targeted perturbáció pontosan ellentétes előjelű
+($x_{\text{untargeted}} - x = -(x_{\text{targeted}} - x)$), ami közvetlenül a matematikai definícióból (a
+gradiens előjelének megfordításából) következik.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_fgsm\_clamps\_to\_valid\_pixel\_range}: Szélsőséges bemenet (csupa nulla pixel) és
+nagy $\epsilon=0{,}5$ mellett is a kimenet minden eleme a $[0, 1]$ tartományban marad -- igazolva, hogy a
+\texttt{clamp} lépés ténylegesen érvényesül, nem csak elméletben szerepel a specifikációban.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_fgsm\_re\-sult\_is\_de\-tached\_from\_autograd}: A visszaadott tenzor
+\texttt{requires\_grad} attribútuma \texttt{False}.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_fgsm\_re\-sult\_has\_no\_graph\_history}: Szigorúbb bizonyíték az előzőnél:
+\texttt{grad\_fn is None} \emph{és} \texttt{is\_leaf is True} egyszerre teljesül, ami kizárja azt az esetet
+is, amikor egy tenzor \texttt{requires\_grad} értéke hamis, de mégis egy számítási gráf levele marad rejtett
+hivatkozásokkal.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_fgsm\_ze\-ro\_epsi\-lon\_re\-turns\_original}: Határeset: $\epsilon=0$ esetén a perturbáció
+nulla, a kimenet \texttt{allclose} az eredeti képpel -- az algoritmus degenerált esetben identitásként
+viselkedik.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_fgsm\_un\-targeted\_re\-duces\_confidence\_in\_true\_label}: Viselkedési bizonyíték: a
+\texttt{predict()}-en keresztül lekérdezett, a valódi címkéhez tartozó konfidencia a támadás \emph{után}
+szigorúan kisebb, mint előtte -- ez nem csak a perturbáció létezését, hanem annak tényleges hatását igazolja
+a modell kimenetére.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_fgsm\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A targeted változat
+tükörpárja: a mesterségesen kiválasztott célosztály konfidenciája nő a támadás hatására, alátámasztva, hogy a
+targeted mód valóban a célosztály felé tereli a predikciót, nem csupán ,,valamerre'' téveszti meg a modellt.
+
+\bigskip
+\noindent\textbf{A PGD implementáció (\texttt{\_pgd}) tesztjei}
+
+\medskip
+\noindent\texttt{test\_pgd\_re\-sult\_stays\_within\_epsilon\_ball}: Mérsékelt lépésméret ($\alpha=0{,}02$)
+mellett a végső perturbáció minden pixelre $|\delta| \leq \epsilon + 10^{-6}$ (a tolerancia a lebegőpontos
+kerekítést kompenzálja) -- ez az $\ell_\infty$-gömbbe való projekció alapvető helyességét igazolja.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_pgd\_hits\_ball\_when\_step\_too\_large}: Szándékosan irreálisan nagy lépésméretet
+($\alpha=10{,}0 \gg \epsilon=0{,}02$) ad meg, ami minden iterációban túllövést okoz; ilyenkor a projekciós
+\texttt{clamp}-nek kell egyedül biztosítania a korlátot, ezért a tesztben a végső $|\delta|$ pontosan (nem
+csak $\leq$) $\epsilon$-nak adódik minden pixelen -- ez a projekció, nem a lépésméret helyes megválasztása
+általi korlátozottságot bizonyítja.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_pgd\_clamps\_to\_valid\_pixel\_range}: A pixeltartomány-korlátozás ugyanúgy teljesül
+PGD esetén is, mint FGSM-nél: szélsőséges (nulla) bemeneten és nagy $\epsilon$ mellett a kimenet a $[0, 1]$
+tartományban marad.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_pgd\_re\-sult\_has\_no\_graph\_history}: Ugyanaz az erős \texttt{detach}-bizonyíték
+(\texttt{grad\_fn is None} és \texttt{is\_leaf is True}), mint FGSM esetén -- fontos, mert a PGD több
+iterációt is végez, minden lépésben új \texttt{requires\_grad\_(True)} hívással, így könnyebben
+,,elszivároghatna'' egy hivatkozás a gráfra, ha a ciklus végén elmaradna a leválasztás.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_pgd\_ze\-ro\_epsi\-lon\_re\-turns\_original}: Határeset: $\epsilon=0$ esetén -- annak
+ellenére, hogy több iteráció is lefut -- a projekció minden lépésben nulla szélességű intervallumra
+szorítja a perturbációt, így a végeredmény megegyezik az eredeti képpel.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_pgd\_un\-targeted\_re\-duces\_confidence\_in\_true\_label}: Viselkedési bizonyíték
+\texttt{predict()}-en keresztül: a valódi címke konfidenciája több iteráció után is csökken -- ugyanaz az
+elv, mint FGSM-nél, de itt azt is igazolja, hogy az iteratív frissítés nem ,,rontja el'' a kumulatív hatást.
+
+\medskip
+\noindent\rule{\linewidth}{0.3pt}
+
+\medskip
+\noindent\texttt{test\_pgd\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A targeted PGD a célosztály
+konfidenciáját növeli -- ugyanazon tulajdonságpár (non-targeted csökkenti/targeted növeli a releváns
+konfidenciát) FGSM-re és PGD-re is parametrizált formában lett tesztelve
+(\texttt{@pytest.mark.parametrize}), elkerülve, hogy csak az egyik algoritmusra íródjon le a viselkedés.
+
+\bigskip
+
+\section{Integrációs tesztek}
+
+\subsection{GUI és támadási motor összekötése}
+
+Az integrációs réteg feladata annak ellenőrzése, hogy az \texttt{app\_interface.py} eseménykezelői helyesen
+építik-e fel az \texttt{AttackContext}-et a ténylegesen betöltött \texttt{ModelBundle}-ből, és a
+\texttt{attack\_engine.attack()} hívás eredménye helyesen jelenik-e meg a felületen (kép- és
+predikció-frissítés). Ez a réteg már nem mockolja a modellt, de a valódi felhasználói interakciót
+(egérkattintás, csúszka-mozgatás) sem szimulálja még -- azt a GUI-tesztek rétege végzi.
+
+\section{Automatizált GUI tesztek}
+
+A GUI tesztek a felhasználói felületet magát, a ténylegesen megjelenő ablakot és widgeteket vizsgálják,
+programozott módon szimulálva a felhasználói interakciókat, majd
+ellenőrizi, hogy a felület a várt módon reagál-e. Ez a legfelső, egyben legköltségesebb és leglassabb
+réteg a tesztpiramisban, hiszen minden egyes esethez fel kell építeni a teljes grafikus felületet -- ezért
+csak kevés, a legfontosabb felhasználói forgatókönyveket lefedő tesztesetre érdemes szorítkozni, a
+részletesebb logikai ellenőrzést az alsóbb rétegekre (egység- és integrációs tesztek) hagyva.
+
+\section{Funkcionális tesztek és felhasználói validáció}
+
+A grafikus felület funkcionális, ,,fekete doboz'' teszteseteit a felhasználói forgatókönyvek alapján,
+\textit{Given--When--Then} formában fogalmazom meg. Az alábbi esetek a tényleges
+felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső) igazodnak, és kézi
+(manuális) végrehajtásra tervezettek.
+
+\begin{itemize}
+  \item \textbf{Kép betöltése a ,,Load Image'' gombbal}\\
+    AS A: felhasználó \textsc{I want to}: egy képet betölteni a vizsgálathoz\\
+    \textsc{Given}: az alkalmazás elindítva, még nincs kép betöltve\\
+    \textsc{When}: a ,,Load Image'' gombra kattint, majd egy érvényes képfájlt választ ki\\
+    \textsc{Then}: az ,,Original'' képmezőben megjelenik a beolvasott, $224\times224$-re vágott
+      kép, és alatta a top-3 predikció és konfidencia frissül
+
+  \item \textbf{Modell váltása betöltött kép mellett}\\
+    AS A: felhasználó \textsc{I want to}: összehasonlítani, hogy más architektúra hogyan látja a képet\\
+    \textsc{Given}: egy kép már be van töltve, az ,,Original'' predikciós panel ki van töltve\\
+    \textsc{When}: a modell-választó legördülőben ,,MobileNetV2''-t választ ,,ResNet50'' helyett\\
+    \textsc{Then}: az ,,Original'' predikciók újraszámolódnak az új modellel; ha korábban már
+      futott támadás, az ,,Adversarial'' predikciók is frissülnek
+
+  \item \textbf{Non-targeted támadás végrehajtása}\\
+    AS A: felhasználó \textsc{I want to}: általános tévesztést előidézni a modellben\\
+    \textsc{Given}: kép betöltve, ,,Targeted attack'' jelölőnégyzet kikapcsolva, $\epsilon$ és
+      iterációszám csúszkák beállítva\\
+    \textsc{When}: az ,,Attack'' gombra kattint\\
+    \textsc{Then}: a státuszsor ,,Running...'' majd ,,Attack complete'' üzenetet mutat, megjelenik
+      a felnagyított perturbáció és a támadott kép, és az ,,Adversarial'' predikciós panelen az
+      eredeti top-1 osztály konfidenciája jellemzően csökken
+
+  \item \textbf{Targeted támadás célosztály kereséssel}\\
+    AS A: felhasználó \textsc{I want to}: egy konkrét osztályra rávenni a modellt\\
+    \textsc{Given}: kép betöltve, a célosztály-kereső mezőbe elkezd gépelni egy osztálynevet\\
+    \textsc{When}: a szűrt listából kiválaszt egy osztályt, majd az ,,Attack'' gombra kattint\\
+    \textsc{Then}: a ,,Targeted attack'' jelölőnégyzet automatikusan bejelölődik, a státuszsor a
+      kiválasztott osztály nevét mutatja, és a támadás után a célosztály konfidenciája nő
+
+  \item \textbf{Epsilon csúszka élő előnézete FGSM módban}\\
+    AS A: felhasználó \textsc{I want to}: interaktívan látni, hogyan változik a perturbáció
+      erőssége\\
+    \textsc{Given}: FGSM módszerrel már lefutott egy támadás (a gradiens előjele cache-elve van)\\
+    \textsc{When}: az $\epsilon$ csúszkát új értékre húzza, PGD-re váltás nélkül\\
+    \textsc{Then}: a perturbáció és az adversarial kép új gradiens-számítás \emph{nélkül},
+      azonnal újraszámolódik a cache-elt előjel alapján
+
+  \item \textbf{Attack gomb kép nélkül}\\
+    AS A: felhasználó \textsc{I want to}: (véletlenül) támadást indítani kép betöltése előtt\\
+    \textsc{Given}: az alkalmazás elindítva, nincs betöltött kép\\
+    \textsc{When}: az ,,Attack'' gombra kattint\\
+    \textsc{Then}: egy ,,No image'' információs párbeszédablak jelenik meg, a támadás nem indul el
+
+  \item \textbf{Védekezési szűrő alkalmazása (Blur / JPEG)}\\
+    AS A: felhasználó \textsc{I want to}: megvizsgálni, hogy egy egyszerű szűrő semlegesíti-e a
+      zajt\\
+    \textsc{Given}: egy sikeres támadás után az ,,Adversarial'' kép elérhető\\
+    \textsc{When}: a ,,Defend (Blur)'' vagy ,,Defend (JPEG)'' gombra kattint\\
+    \textsc{Then}: az ,,Adversarial'' képmező a szűrt képre frissül, és a predikciós panel az
+      újraosztályozott (a szűrés után kapott) eredményeket mutatja
+
+  \item \textbf{Defend gomb adversarial kép nélkül}\\
+    AS A: felhasználó \textsc{I want to}: (véletlenül) védekezést alkalmazni támadás előtt\\
+    \textsc{Given}: kép be van töltve, de még nem futott támadás\\
+    \textsc{When}: valamelyik ,,Defend'' gombra kattint\\
+    \textsc{Then}: egy ,,No adversarial'' információs párbeszédablak jelenik meg, semmilyen kép
+      nem változik
+
+  \item \textbf{Reset gomb}\\
+    AS A: felhasználó \textsc{I want to}: új kísérletet kezdeni ugyanazzal a képpel\\
+    \textsc{Given}: egy támadás és esetleg egy védekezés már lefutott\\
+    \textsc{When}: a ,,Reset'' gombra kattint\\
+    \textsc{Then}: a perturbáció és az ,,Adversarial'' képmező üresre vált, az ,,Adversarial''
+      predikciós panel névtelen (,,---'') állapotba áll vissza, az ,,Original'' kép és predikciói
+      változatlanok maradnak
+
+  \item \textbf{Hibakezelés támadás közben}\\
+    AS A: felhasználó \textsc{I want to}: érthető visszajelzést kapni, ha a támadás valamiért
+      meghiúsul\\
+    \textsc{Given}: kép betöltve, a háttérszálon futó \texttt{\_attack\_worker} kivételt dob (pl.
+      eszközhiba miatt)\\
+    \textsc{When}: az ,,Attack'' gombra kattint\\
+    \textsc{Then}: egy ,,Attack failed'' hibaablak jelenik meg a teljes veremkiíratással, a
+      státuszsor ,,Attack failed.'' szöveget mutat, az alkalmazás nem fagy le
+\end{itemize}
+
+\section{Teszteredmények és értelmezésük}
+
+\section{A tesztelés korlátai}
+
+\chapter{Összefoglalás}
+
+\section{Elért eredmények}
+
+\section{Következtetések}
+
+\section{Továbbfejlesztési lehetőségek}

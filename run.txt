@@ -4,7 +4,12 @@
 
 & "C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe" -interaction=nonstopmode "Gabrity_Gabor_D9V09Z_Szakdolgozat.tex" 
 
-
+# elteikthesis sablon (biblatex/biber) teljes fordítási sorrendje a dolgozat/ mappában:
+Set-Location "C:\Users\User\Desktop\Szakdolgozat_Latex\dolgozat"
+& "C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe" -interaction=nonstopmode "Gabrity_Gabor_D9V09Z_Szakdolgozat.tex"
+& "C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\biber.exe" "Gabrity_Gabor_D9V09Z_Szakdolgozat"
+& "C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe" -interaction=nonstopmode "Gabrity_Gabor_D9V09Z_Szakdolgozat.tex"
+& "C:\Users\User\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe" -interaction=nonstopmode "Gabrity_Gabor_D9V09Z_Szakdolgozat.tex"
 
 python.exe -m pytest tests/unit/test_attack_engine.py -v
 

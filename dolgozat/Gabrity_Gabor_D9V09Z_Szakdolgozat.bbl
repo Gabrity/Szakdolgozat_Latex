@@ -1,0 +1,177 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{goodfellow2015explaining}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=d4f74ef4c79f3bb1e51e378184d8850e}{%
+           family={Goodfellow},
+           familyi={G\bibinitperiod},
+           given={Ian\bibnamedelima J.},
+           giveni={I\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=8f128e70084608a2c29c497ebd794f87}{%
+           family={Shlens},
+           familyi={S\bibinitperiod},
+           given={Jonathon},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ed568d9c3bb059e6bf22899fbf170f86}{%
+           family={Szegedy},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \strng{fullhash}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \strng{fullhashraw}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \strng{bibnamehash}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \strng{authorbibnamehash}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \strng{authornamehash}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \strng{authorfullhash}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \strng{authorfullhashraw}{07b2928cf9addb6cf2d09332e9d7ce18}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Explaining and Harnessing Adversarial Examples}
+      \field{year}{2015}
+      \verb{eprint}
+      \verb 1412.6572
+      \endverb
+    \endentry
+    \entry{madry2018towards}{misc}{}{}
+      \name{author}{5}{}{%
+        {{hash=155359c985c7d112498d27d32ad89bfe}{%
+           family={Madry},
+           familyi={M\bibinitperiod},
+           given={Aleksander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0cbd9bf3ec2c5306948fe3da351748fc}{%
+           family={Makelov},
+           familyi={M\bibinitperiod},
+           given={Aleksandar},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bca2cf46e9eed1a3bcc54f4286b4e013}{%
+           family={Schmidt},
+           familyi={S\bibinitperiod},
+           given={Ludwig},
+           giveni={L\bibinitperiod}}}%
+        {{hash=240422b4c9d0d047da2b6f51d9220b59}{%
+           family={Tsipras},
+           familyi={T\bibinitperiod},
+           given={Dimitris},
+           giveni={D\bibinitperiod}}}%
+        {{hash=097451a2aff1de6e5880f0cb1d8b6030}{%
+           family={Vladu},
+           familyi={V\bibinitperiod},
+           given={Adrian},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e33786bf52938f374c7e70f07a5fd7fb}
+      \strng{fullhash}{e33786bf52938f374c7e70f07a5fd7fb}
+      \strng{fullhashraw}{e33786bf52938f374c7e70f07a5fd7fb}
+      \strng{bibnamehash}{e33786bf52938f374c7e70f07a5fd7fb}
+      \strng{authorbibnamehash}{e33786bf52938f374c7e70f07a5fd7fb}
+      \strng{authornamehash}{e33786bf52938f374c7e70f07a5fd7fb}
+      \strng{authorfullhash}{e33786bf52938f374c7e70f07a5fd7fb}
+      \strng{authorfullhashraw}{e33786bf52938f374c7e70f07a5fd7fb}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Towards Deep Learning Models Resistant to Adversarial Attacks}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1706.06083
+      \endverb
+    \endentry
+    \entry{fowler2012testpyramid}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=312ac886938a9b2be4f8eb607567fe4c}{%
+           family={Fowler},
+           familyi={F\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{fullhash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{fullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{bibnamehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authorbibnamehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authornamehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authorfullhash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authorfullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{martinfowler.com}
+      \field{title}{TestPyramid}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://martinfowler.com/bliki/TestPyramid.html
+      \endverb
+      \verb{url}
+      \verb https://martinfowler.com/bliki/TestPyramid.html
+      \endverb
+    \endentry
+    \entry{dziugaite2016jpeg}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=9226e3e9f40624082119487c644bc224}{%
+           family={Dziugaite},
+           familyi={D\bibinitperiod},
+           given={Gintare\bibnamedelima Karolina},
+           giveni={G\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=bf5cf30deddddad00a6341ad7a414445}{%
+           family={Ghahramani},
+           familyi={G\bibinitperiod},
+           given={Zoubin},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=8c119ee3a501e8daf8a47ae46559c666}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Daniel\bibnamedelima M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \strng{fullhash}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \strng{fullhashraw}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \strng{bibnamehash}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \strng{authorbibnamehash}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \strng{authornamehash}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \strng{authorfullhash}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \strng{authorfullhashraw}{4eb9933fc180b1f96d9b346bb55d3d30}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{A study of the effect of JPG compression on adversarial images}
+      \field{year}{2016}
+      \true{nocite}
+      \verb{eprint}
+      \verb 1608.00853
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
