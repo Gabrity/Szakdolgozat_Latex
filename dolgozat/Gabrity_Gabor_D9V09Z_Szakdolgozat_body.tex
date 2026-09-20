@@ -73,10 +73,10 @@ bővíthető. Jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállít
 A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvetlenül elérhető funkciókkal valósítja meg:
 \begin{itemize}
   \item a fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikáljuk,
-  \item támadási algoritmus és paraméterek meghatározásával perturbációt és adversarial képet generálunk,
-  \item megjelenítjük az eredeti képet, a perturbációt és az adversarial képet, továbbá mindkét (eredeti és
-        adversarial) képet osztályozzuk is,
-  \item a védekezési modulban JPEG-tömörítést vagy más képfeldolgozási szűrőt alkalmazhatunk az adversarial perturbáció 
+  \item támadási algoritmus és paraméterek meghatározásával perturbációt és ellenfél alapú képet generálunk,
+  \item megjelenítjük az eredeti képet, a perturbációt és az ellenfél alapú képet, továbbá mindkét (eredeti és
+        ellenfél alapú) képet osztályozzuk is,
+  \item a védekezési modulban JPEG-tömörítést vagy más képfeldolgozási szűrőt alkalmazhatunk az ellenfél alapú perturbáció 
   hatásának utólagos csökkentésére vagy semlegesítésére.
 \end{itemize}
 
@@ -113,11 +113,11 @@ ahol $z = f_\theta(x)$ a logitvektor és $y$ a helyes osztály indexe.
 A veszteségfüggvény súlyok szerinti gradiense, $\nabla_\theta J(\theta, x, y)$, az a gradiensvektor, amelyet a backpropagation során a tanítás közben használunk a súlyok módosítására. 
 Itt a gradiensszámítást egy további lépéssel a bemeneti rétegig visszük -- azaz a backpropagation folyamatát a hálón teljesen végigvezetjük --, és megkapjuk a bemeneti vektorra vonatkozó érzékenységet, $\nabla_x J(\theta, x, y)$. 
 Ez a mennyiség azt mutatja meg, hogy egy adott bemeneti pixel vagy jellemző változása milyen mértékben befolyásolja a veszteséget, ezért ennek a mennyiségnek központi szerepe 
-lesz a későbbiekben bemutatott adversarial-példa-generáló algoritmusok leírásában. 
+lesz a későbbiekben bemutatott, ellenfél alapú példát generáló algoritmusok leírásában. 
 
 \subsection{Perturbáció és normakorlát}
 
-Az adversarial képek definíciójánál szokás a perturbáció nagyságát valamely $\ell_p$ normával jellemezni; ebben a dolgozatban a $\ell_\infty$ normát használjuk. 
+Az ellenfél alapú képek definíciójánál szokás a perturbáció nagyságát valamely $\ell_p$ normával jellemezni; ebben a dolgozatban a $\ell_\infty$ normát használjuk. 
 Egy perturbált kép általában az
 \[
   x_{\mathrm{adv}} = x + \delta
@@ -151,14 +151,14 @@ lineáris függvénnyel, még ha globálisan erősen nemlineárisak is~\cite{goo
 Az FGSM algoritmusban az elmozdítást egyszerűen csak az előjel-függvény ($\mathrm{sign}$) $\epsilon$-szorosával tesszük meg, tehát nem vesszük 
 figyelembe a gradiens nagysága által adott érzékenységet, csak az irányát. 
 Ily módon az $\epsilon \cdot \mathrm{sign}(\cdot)$ minden egyes $x_i$ komponensre kihasználja a teljes $\epsilon$ költségvetésünket. 
-Tehát az FGSM adversarial példát a következő módon kapjuk meg: 
+Tehát az FGSM ellenfél alapú példát a következő módon kapjuk meg: 
 \[
   x_{\mathrm{adv}} = x + \epsilon \cdot \mathrm{sign}\big(\nabla_x J(\theta, x, y)\big).
 \]
 
 \subsection{Célzott változat}
 Az alapváltozat a megadott helyes osztály veszteségét igyekszik maximalizálni, tehát minél inkább mást mutasson, mint ami a képen van. 
-A célzott változatnál egy $y_{\mathrm{target}}$ célosztályt adunk meg, és azt szeretnénk, hogy a modell ebbe az osztályba sorolja az adversarial képet. 
+A célzott változatnál egy $y_{\mathrm{target}}$ célosztályt adunk meg, és azt szeretnénk, hogy a modell ebbe az osztályba sorolja az ellenfél alapú képet. 
 \[
   x_{\mathrm{adv}} = x - \epsilon \cdot \mathrm{sign}\big(\nabla_x J(\theta, x, y_{\mathrm{target}})\big).
 \]
@@ -203,7 +203,7 @@ Ezért a véletlen kezdőpontot az $\epsilon$ sugarú gömbön egyenletes eloszl
 \]
 
 \subsection{Az $\alpha$ és $T$ paraméterek megválasztása}
-A PGD viselkedését -- az $\epsilon$ perturbációs korláton felül -- két további paraméter határozza meg. 
+A PGD viselkedését az $\epsilon$ perturbációs korláton felül két további paraméter határozza meg. 
 $T$ az iterációk számát jelöli, ez adja meg az algoritmus számítási költségét, ugyanakkor több iteráció jellemzően erősebb támadást eredményez. 
 Az $\alpha$ lépésnagyságot úgy kell megválasztani, hogy túl kicsi érték esetén lassú a konvergencia, túl nagy érték esetén pedig instabilitáshoz 
 vezethet. 
@@ -219,13 +219,13 @@ Ebben a fejezetben azokat az elméleti vontkozásokat foglalom össze, amelyek n
 kiegészítői annak.
 
 \subsection{Transzferálhatóság}
-% TODO: az adversarial példák azon tulajdonsága, hogy egy modellre generált perturbáció gyakran más,
+% TODO: az ellenfél alapú példák azon tulajdonsága, hogy egy modellre generált perturbáció gyakran más,
 % eltérő architektúrájú vagy más adathalmazon tanított modelleket is megtéveszt -- ez a jelenség
 % teszi lehetővé a black-box támadásokat, és mindkét cikk (Goodfellow, Madry) tárgyalja.
 
-\subsection{Adversarial training}
+\subsection{Ellenfél alapú tanítás}
 Ezeknek a támadási algoritmusoknak a szerepe nem csak a modell megtévesztése, hanem felhasználhatók a tanítás során a modell robusztusabbá tételére is. 
-Ennek lényege, hogy a tiszta $x$ kép mellett a hozzá tartozó $x_{\mathrm{adv}}$ adversarial képet is bevonjuk a veszteségfüggvénybe, és a modell 
+Ennek lényege, hogy a tiszta $x$ kép mellett a hozzá tartozó $x_{\mathrm{adv}}$ ellenfél alapú képet is bevonjuk a veszteségfüggvénybe, és a modell 
 paramétereit az így kapott kombinált célfüggvényre optimalizáljuk. 
 
 Goodfellow és társai az FGSM-mel előállított $x_{\mathrm{adv}}$ perturbációra a következő kombinált veszteségfüggvényt 
@@ -233,21 +233,21 @@ javasolták~\cite{goodfellow2015explaining}:
 \[
 \tilde{J}(\theta, x, y) = \lambda \, J(\theta, x, y) + (1-\lambda)\, J(\theta, x_{\mathrm{adv}}, y), \qquad \lambda = 0{,}5.
 \]
-Az új veszteségfüggvény tehát a tiszta és az adversarial minta hibáját egyaránt bünteti, méghozzá úgy, hogy $x_{\mathrm{adv}}$-ot minden tanítási lépésben a 
+Az új veszteségfüggvény tehát a tiszta és az ellenfél alapú minta hibáját egyaránt bünteti, méghozzá úgy, hogy $x_{\mathrm{adv}}$-ot minden tanítási lépésben a 
 modell aktuális $\theta$ paramétereivel újraszámolják. 
-Így tehát a modell a tanítás során folyamatosan fejlődik, és az aktuális állapota által generált adversarial példákon tanul tovább dinamikusan, nem pedig 
-egy előre legyártott, statikus adversarial halmazon. 
-Kísérleteik megmutatták, hogy ez egy hatékony módszer: az FGSM-alapú adversarial példákon mért hibaarány 89,4\%-ról 17,9\%-ra csökkent. 
+Így tehát a modell a tanítás során folyamatosan fejlődik, és az aktuális állapota által generált ellenfél alapú példákon tanul tovább dinamikusan, nem pedig 
+egy előre legyártott, statikus ellenfél alapú halmazon. 
+Kísérleteik megmutatták, hogy ez egy hatékony módszer: az FGSM-mel előállított ellenfél alapú példákon mért hibaarány 89,4\%-ról 17,9\%-ra csökkent. 
 
-Madry és társai megmutatták, hogy PGD-vel is alkalmazható az adversarial training, és erősebb védekezést eredményez~\cite{madry2018towards}. 
-Itt azonban a tiszta és adversarial veszteséget kombináló FGSM-formulával ellentétben nincs szó keverésről: a tanítás során a tiszta $x$ kép 
-helyett kizárólag a hozzá tartozó, PGD-vel előállított $x_{\mathrm{adv}}$-on számolják a veszteséget, tehát a modell csak az adversarial bemeneteken tanul. 
+Madry és társai megmutatták, hogy PGD-vel is alkalmazható az ellenfél alapú tanítás, és erősebb védekezést eredményez~\cite{madry2018towards}. 
+Itt azonban a tiszta és ellenfél alapú veszteséget kombináló FGSM-formulával ellentétben nincs szó keverésről: a tanítás során a tiszta $x$ kép 
+helyett kizárólag a hozzá tartozó, PGD-vel előállított $x_{\mathrm{adv}}$-on számolják a veszteséget, tehát a modell csak az ellenfél alapú bemeneteken tanul. 
 Mivel a PGD erősebb támadás, mint az FGSM, az ellene edzett modell a gyengébb, egylépéses támadásokkal szemben is ellenállóbb marad, míg a fordítottja nem 
 feltétlenül igaz. 
 
 \subsection{Linearitás}
 % TODO: a linearitási hipotézis részletesebb kifejtése -- miért viselkednek a modern neurális hálók
-% (ReLU, maxout stb. miatt) lokálisan lineárisan, és ez hogyan magyarázza az adversarial példák
+% (ReLU, maxout stb. miatt) lokálisan lineárisan, és ez hogyan magyarázza az ellenfél alapú példák
 % létezését magas dimenziószámú bemeneteken (Goodfellow et al. levezetése lineáris modellekre).
 
 %\subsection{Saddle point}
@@ -544,7 +544,7 @@ felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső
       erőssége\\
     \textsc{Given}: FGSM módszerrel már lefutott egy támadás (a gradiens előjele cache-elve van)\\
     \textsc{When}: az $\epsilon$ csúszkát új értékre húzza, PGD-re váltás nélkül\\
-    \textsc{Then}: a perturbáció és az adversarial kép új gradiens-számítás \emph{nélkül},
+    \textsc{Then}: a perturbáció és az ellenfél alapú kép új gradiens-számítás \emph{nélkül},
       azonnal újraszámolódik a cache-elt előjel alapján
 
   \item \textbf{Attack gomb kép nélkül}\\
@@ -561,7 +561,7 @@ felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső
     \textsc{Then}: az ,,Adversarial'' képmező a szűrt képre frissül, és a predikciós panel az
       újraosztályozott (a szűrés után kapott) eredményeket mutatja
 
-  \item \textbf{Defend gomb adversarial kép nélkül}\\
+  \item \textbf{Defend gomb ellenfél alapú kép nélkül}\\
     AS A: felhasználó \textsc{I want to}: (véletlenül) védekezést alkalmazni támadás előtt\\
     \textsc{Given}: kép be van töltve, de még nem futott támadás\\
     \textsc{When}: valamelyik ,,Defend'' gombra kattint\\
