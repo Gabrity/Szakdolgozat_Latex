@@ -210,12 +210,13 @@ vezethet.
 Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2{,}5 \cdot \epsilon / T$.
 
 \subsection{Előnyök és korlátok}
-
 A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti a lokális optimumot. 
 A véletlen kezdőponttal kombinálva különösen hatékony a robusztusság kiértékelésében. 
 Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége. 
 
 \section{Továbbmutató elméleti vonatkozások}
+Ebben a fejezetben azokat az elméleti vontkozásokat foglalom össze, amelyek nem képezik szigorúan a dolgozatban megvaósított szoftver részét, ám fontos 
+kiegészítői annak.
 
 \subsection{Transzferálhatóság}
 % TODO: az adversarial példák azon tulajdonsága, hogy egy modellre generált perturbáció gyakran más,
@@ -223,12 +224,26 @@ Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, í
 % teszi lehetővé a black-box támadásokat, és mindkét cikk (Goodfellow, Madry) tárgyalja.
 
 \subsection{Adversarial training}
-Ezeknek a módszereknek a szerepe nem csak a támadás, hanem felhasználhatóak a tanítás során a modellek robosztusságá tételére is. 
-Ez úgy történik, hogy az eredeti és az adversarial képből egy kombinált veszteségfüggvényt állítunk elő az alábbi módon: 
-(J~ = alpha*J(x,y) + (1-alpha)*J(x+eta,y)),
-itt az lambda paraméter a súlyozás arányát jelöli. 
-A formula egyetlen adversarial képeet integrál a a költségfüggvénybe, majd az így kapottat használja fel újra rekurzívan. 
-A ódszer eredményességét kísérletekkel igazolták, FGSM-alapú ellenfél-alapú példákon mért hibaarány 89,4%-ról 17,9%-ra csökkent. 
+Ezeknek a támadási algoritmusoknak a szerepe nem csak a modell megtévesztése, hanem felhasználhatók a tanítás során a modell robusztusabbá tételére is. 
+Ennek lényege, hogy a tiszta $x$ kép mellett a hozzá tartozó $x_{\mathrm{adv}}$ adversarial képet is bevonjuk a veszteségfüggvénybe, és a modell 
+paramétereit az így kapott kombinált célfüggvényre optimalizáljuk. 
+
+Goodfellow és társai az FGSM-mel előállított $x_{\mathrm{adv}}$ perturbációra a következő kombinált veszteségfüggvényt 
+javasolták~\cite{goodfellow2015explaining}: 
+\[
+\tilde{J}(\theta, x, y) = \lambda \, J(\theta, x, y) + (1-\lambda)\, J(\theta, x_{\mathrm{adv}}, y), \qquad \lambda = 0{,}5.
+\]
+Az új veszteségfüggvény tehát a tiszta és az adversarial minta hibáját egyaránt bünteti, méghozzá úgy, hogy $x_{\mathrm{adv}}$-ot minden tanítási lépésben a 
+modell aktuális $\theta$ paramétereivel újraszámolják. 
+Így tehát a modell a tanítás során folyamatosan fejlődik, és az aktuális állapota által generált adversarial példákon tanul tovább dinamikusan, nem pedig 
+egy előre legyártott, statikus adversarial halmazon. 
+Kísérleteik megmutatták, hogy ez egy hatékony módszer: az FGSM-alapú adversarial példákon mért hibaarány 89,4\%-ról 17,9\%-ra csökkent. 
+
+Madry és társai megmutatták, hogy PGD-vel is alkalmazható az adversarial training, és erősebb védekezést eredményez~\cite{madry2018towards}. 
+Itt azonban a tiszta és adversarial veszteséget kombináló FGSM-formulával ellentétben nincs szó keverésről: a tanítás során a tiszta $x$ kép 
+helyett kizárólag a hozzá tartozó, PGD-vel előállított $x_{\mathrm{adv}}$-on számolják a veszteséget, tehát a modell csak az adversarial bemeneteken tanul. 
+Mivel a PGD erősebb támadás, mint az FGSM, az ellene edzett modell a gyengébb, egylépéses támadásokkal szemben is ellenállóbb marad, míg a fordítottja nem 
+feltétlenül igaz. 
 
 \subsection{Linearitás}
 % TODO: a linearitási hipotézis részletesebb kifejtése -- miért viselkednek a modern neurális hálók
