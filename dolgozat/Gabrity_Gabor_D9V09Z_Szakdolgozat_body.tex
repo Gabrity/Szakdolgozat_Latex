@@ -38,7 +38,7 @@ komponensek megvalósítását.
 \subsection{A modell, a bemenet és a címke}
 Legyen adott egy $f_\theta$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje. 
 Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában,
-az $y$ pedig a kép helyes osztályának indexe, például $y=42$ az agámák osztályát reprezentálja. 
+az $y$ pedig a kép helyes osztályának indexe (például $y=42$ az agámák ImageNet-1k osztályát reprezentálja). 
 Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét $\hat{y}$-nal jelöljük, és ezt 
 használjuk referenciacímkeként. 
 
@@ -84,7 +84,7 @@ A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvet
 
 \subsection{Az osztályozó modell és a logitok}
 
-Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok száma (ImageNet esetén $C=1000$). 
+Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok száma (ImageNet-1k esetén $C=1000$). 
 Ezt logitvektornak is nevezzük, mely elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = \ln\frac{p}{1-p}$ függvény egy $p \in (0, 1)$ valószínűséget 
 képez le a valós számegyenesre. 
 A $z_i$ komponensek páronkénti különbsége éppen az $i$-edik és $j$-edik osztály esélyhányadosának logaritmusával egyezik meg, 
@@ -125,7 +125,7 @@ Egy perturbált kép általában az
 formában írható le, ahol $\delta$ a zaj, vagyis a képpontokban okozott változás. 
 A $\ell_\infty$ normát a 
 \[
-  \|\delta\|_\infty = \max_i |\delta_i|
+  \|\x|_\infty = \max_i |\x_i|
 \]
 kifejezés definiálja, azaz a legnagyobb abszolút értékű komponens adja a norma értékét. 
 A perturbáció nagyságát ezzel a normával korlátozzuk: 
