@@ -119,8 +119,8 @@
       \strng{authornamehash}{312ac886938a9b2be4f8eb607567fe4c}
       \strng{authorfullhash}{312ac886938a9b2be4f8eb607567fe4c}
       \strng{authorfullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{martinfowler.com}

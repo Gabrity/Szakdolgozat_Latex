@@ -193,7 +193,7 @@ Az FGSM-hez hasonlóan itt is definiálunk egy célzott változatot, amely az ot
 
 \subsection{Véletlen kiindulási pont}
 Madry és társai kísérletileg mutatták meg, hogy a veszteségfelszín lokális maximumai jól koncentráltak, így egy véletlen kezdőpontból indított PGD 
-is megbízhatóan jó megoldást talál~\cite{madry2018towards}. 
+is megbízhatóan jó megoldást talál~\cite{madry2018towards} (a jelenség hátterét a \ref{sec:saddle-point-landscape}. alfejezet tárgyalja részletesen). 
 Ennek a modellek robusztusságának tesztelésében is van szerepe: mivel a veszteségfelszínnek több, egymástól távol eső lokális maximuma is lehet, egy 
 fix (pl.\ magából $x$-ből induló) kezdőpont esetén a szerencsének nagy szerepe lehetne, és az eredmény nem feltétlenül mutatná a modell valódi 
 sebezhetőségét. 
@@ -218,15 +218,127 @@ Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, í
 Ebben a fejezetben azokat az elméleti vonatkozásokat foglalom össze, amelyek nem képezik szigorúan a dolgozatban megvalósított szoftver részét, ám fontos 
 kiegészítői annak.
 
+\subsection{Linearitás}
+\label{sec:linearity}
+Goodfellow és társai az ellenfél alapú példák létezésére nem a neurális hálók feltételezett, extrém nemlinearitásán vagy túltanulásán alapuló 
+magyarázatot adnak. 
+Ehelyett ennek éppen az ellenkezőjét állítják. 
+Szerintük a jelenség hátterében a modern modellek meglepően lineáris viselkedése 
+áll~\cite{goodfellow2015explaining}. 
+
+A legegyszerűbb esetben tekintsünk egy lineáris klasszifikátort $w$ súlyvektorral, tehát egy egyrétegű modellt. Vizsgáljuk az ellenfél alapú
+ $\tilde{x} = x + \eta$ bemenet aktivációját. 
+\[
+  w^\top \tilde{x} = w^\top x + w^\top \eta.
+\]
+A $\|\eta\|_\infty \leq \epsilon$ korlát mellett a $w^\top \eta$ növekmény akkor maximális, ha $\eta = \epsilon \cdot \mathrm{sign}(w)$. 
+Ez pontosan az FGSM képletének lineáris modellre vonatkozó speciális esete. 
+Ha $w$ dimenziója $n$, és egy komponensének átlagos nagysága $m$, akkor az aktiváció növekménye $\epsilon m n$ nagyságrendű. 
+Mivel $\|\eta\|_\infty$ maga nem nő a dimenziószámmal, az általa okozott aktivációváltozás viszont lineárisan nő $n$-nel, ezért elég nagy 
+dimenziójú bemenet esetén sok, egyenként elhanyagolhatóan kicsi (a pixelek $8$ bites kódolási pontosságánál is kisebb) elmozdítás összegződve 
+tetszőlegesen nagy kimeneti változást okozhat. 
+Ez azt mutatja, hogy már egy egyszerű lineáris modellnek is lehetnek ellenfél alapú példái, ha a bemenete elég nagy dimenziójú. 
+
+Goodfellow és társai szerint a modern neurális hálók (pl.\ ReLU, maxout, LSTM) tudatosan lineáris viselkedésre vannak 
+tervezve, mivel ez megkönnyíti az optimalizálásukat.
+Emiatt ezek a hálók, megfogalmazásuk szerint "túl lineárisak" ahhoz, hogy ellenálljanak egy lineáris ellenfél alapú perturbációnak. 
+Ez a megfigyelés adja a korábban bemutatott FGSM elméleti alapját. 
+
 \subsection{Transzferálhatóság}
-% TODO: az ellenfél alapú példák azon tulajdonsága, hogy egy modellre generált perturbáció gyakran más,
-% eltérő architektúrájú vagy más adathalmazon tanított modelleket is megtéveszt -- ez a jelenség
-% teszi lehetővé a black-box támadásokat, és mindkét cikk (Goodfellow, Madry) tárgyalja.
+Az ellenfél alapú perturbációk egyik legfontosabb tulajdonsága a transzferálhatóság, ami azt jelenti, hogy egy adott $f_\theta$ modellre 
+kiszámított $x_{\mathrm{adv}}$ sokszor egy másik, eltérő architektúrájú, más inicializálású, vagy akár más adathalmazon tanított modellt is 
+megtéveszthet.
+Tehát a megtévesztés úgy is megtörténhet, hogy a perturbációt nem az ő gradienseiből számoltuk, azaz lehetővé teszi a black-box támadásokat. 
+Ehhez elég egy hasonló feladatra tanított modellen white-box módon (pl.\ FGSM vagy PGD segítségével) előállítani a perturbációt, majd azt a 
+célmodellen felhasználni. 
+Goodfellow és társai a jelenség magyarázatát is a \ref{sec:linearity}. alfejezetben bemutatott linearitási hipotézisre vezetik vissza. 
+Szerintük a különböző architektúrájú modellek ugyanazon adathalmazon hasonló, közelítőleg lineáris döntési határt tanulnak meg, ezért egy adott 
+modellre számolt perturbáció a hasonló döntési határ miatt más modelleket is megtéveszt~\cite{goodfellow2015explaining}. 
+
+Goodfellow és társai kísérletileg igazolták a transzferálhatóságot. 
+Az FGSM-mel az eredeti modellre generált ellenfél alapú példák 19,6\%-os hibaarányt okoztak egy másik, ellenfél alapú tanítással robusztusabbá 
+tett modellen, míg az utóbbi modellre generált példák 40,9\%-os hibaarányt okoztak az eredetin. 
+Ezek szerint a robusztusabb modellről származó perturbációk erősebbnek bizonyultak a transzfer irányban is~\cite{goodfellow2015explaining}. 
+
+Madry és társai ezt a jelenséget rendszerezettebben, több modellpár és mindkét vizsgált algoritmus (FGSM, PGD) összehasonlításával vizsgálták, és 
+két fő tendenciát azonosítottak. 
+Minél erősebb az a támadó (adversary), amellyel a forrásmodellt tanították, illetve minél nagyobb a modell 
+kapacitása, annál kevésbé transzferálhatóak a rá generált ellenfél alapú példák más modellekre~\cite{madry2018towards}. 
+Ennek oka, hogy a nagyobb kapacitású, erősebb támadó ellen (pl.\ PGD-vel) tanított modellek veszteségfelszíne kevésbé korrelál a többi modellével, 
+így a rájuk kiszámított gradiensirány egyre kevésbé lesz általánosan érvényes. 
+
+
+\subsection{A nyeregpont (saddle point) optimalizálási keret és a lokális maximumok koncentrációja}
+\label{sec:saddle-point-landscape}
+Madry és társai az ellenfél alapú robusztusságot a robusztus optimalizálás nyelvén, egy úgynevezett nyeregpont- (angolul \textit{saddle point}, 
+más néven min-max) feladatként fogalmazzák meg~\cite{madry2018towards}: 
+\[
+  \min_\theta \; \rho(\theta), \qquad \rho(\theta) = \mathbb{E}_{(x,y)\sim \mathcal{D}} \Big[ \max_{\delta \in S} J(\theta, x+\delta, y) \Big],
+\]
+ahol $S = \{\delta : \|\delta\|_\infty \leq \epsilon\}$ a korábban bevezetett, megengedett perturbációk halmaza. 
+A belső maximalizálási feladat a támadás problémáját írja le. 
+Ez az adott $\theta$ paraméterű modellhez a veszteséget maximalizáló $\delta$ perturbáció megtalálását jelenti. 
+A külső minimalizálási feladat a védekezés problémája, tehát olyan $\theta$ paraméterek keresése, amelyek mellett a belső maximalizálás által adott 
+a legrosszabb esetű veszteség is minél kisebb. 
+Ez a maximum minimalizálás pontosan az ellenfél alapú tanítás célja. 
+
+Mivel a belső feladat egy erősen nem konkáv függvény maximalizálása, elsőre nem várnánk, hogy megbízhatóan megoldható. 
+Az ilyen feladatoknak sokszor egymástól távol eső lokális maximumai lehetnek, és nincs rá garancia, hogy egy gradiens alapú módszer 
+a globális maximum közelébe jut. 
+Madry és társai ezt a kérdést kísérletileg vizsgálták. 
+Ebben sok, független, véletlenszerűen választott kezdőpontból indítottak PGD-t ugyanazon $x$ bemenet $\epsilon$ sugarú gömbön belül, és 
+a talált lokális maximumok tulajdonságait figyelték~\cite{madry2018towards}. 
+Azt találták, hogy bár a talált lokális maximumok ténylegesen különbözőek, az általuk elért veszteségértékek meglepően szűk sávban 
+koncentrálódnak, extrém kiugró érték nélkül. 
+A veszteség emellett viszonylag kevés iteráció után platóra ér, tehát a PGD gyorsan konvergál egy, a globálishoz közeli értékhez, függetlenül a 
+konkrét kezdőponttól. 
+Ez a jelenség rokon azzal a tapasztalati megfigyeléssel, hogy a neurális hálók tanítása azért működik jól annak ellenére, hogy a 
+veszteségfelszín is sok lokális minimumot tartalmaz. 
+Ezek a lokális minimumok ugyanis szintén hasonló értékűek egymáshoz. 
+Ugyanez a regularitás jelentkezik itt a bemeneti perturbáció szerinti belső maximalizálásra vonatkozóan is. 
+Ez azt mutatja, hogy a belső feladat a nem konkávsága ellenére is jól kezelhető, ,,szelíd'' szerkezetű (\ref{fig:loss-landscape-local-maxima}. ábra). 
+
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.85\textwidth,
+    height=5.5cm,
+    domain=-4:4,
+    samples=300,
+    axis lines=middle,
+    xlabel={$\delta$},
+    ylabel={$J(\theta, x+\delta, y)$},
+    xtick=\empty,
+    ytick=\empty,
+    ymin=-0.3, ymax=3.3,
+    xmin=-4.3, xmax=4.3,
+    clip=false,
+]
+\fill[red!10] (axis cs:-4,2.05) rectangle (axis cs:4,2.65);
+\draw[dashed, red!70!black] (axis cs:-4,2.05) -- (axis cs:4,2.05);
+\draw[dashed, red!70!black] (axis cs:-4,2.65) -- (axis cs:4,2.65);
+\addplot[thick, blue!70!black] {1.6 + 0.85*sin(deg(2.3*x)) + 0.35*sin(deg(5*x+0.7)) + 0.18*sin(deg(9*x+2))};
+\node[red!70!black, anchor=west, font=\footnotesize] at (axis cs:4.05,2.35) {koncentrált sáv};
+\end{axis}
+\end{tikzpicture}
+\caption{Sematikus ábra a veszteségfüggvény $\delta$ perturbáció szerinti. Sok, egymástól távol eső lokális 
+maximum létezik, ezek értékei egy szűk sávban koncentrálódnak.}
+\label{fig:loss-landscape-local-maxima}
+\end{figure}
+
+Ez a felismerés adja a PGD elméleti indoklását mint a legrosszabb esetű, kizárólag elsőrendű (gradiens-) információt felhasználó ellenfelek közül 
+a legerősebbet, az ún.\ ,,univerzális első rendű ellenfelet''. 
+Ez azért van, mert a kezdőponttól függetlenül megbízhatóan hasonlóan jó, a globálishoz közeli megoldást talál. 
+
 
 \subsection{Ellenfél alapú tanítás}
-Ezeknek a támadási algoritmusoknak a szerepe nem csak a modell megtévesztése, hanem felhasználhatók a tanítás során a modell robusztusabbá tételére is. 
-Ennek lényege, hogy a tiszta $x$ kép mellett a hozzá tartozó $x_{\mathrm{adv}}$ ellenfél alapú képet is bevonjuk a veszteségfüggvénybe, és a modell 
-paramétereit az így kapott kombinált célfüggvényre optimalizáljuk. 
+A \ref{sec:saddle-point-landscape}. alfejezetben bemutatott nyeregpont-feladat külső minimalizálási része pontosan az ellenfél alapú tanítás 
+elméleti megfogalmazása. 
+Ez azon $\theta$ paraméterek keresését jelenti, amelyek mellett a belső maximalizálás által adott, legrosszabb esetű veszteség is 
+minél kisebb. 
+Ennek gyakorlati megvalósításához a tiszta $x$ kép mellett a hozzá tartozó $x_{\mathrm{adv}}$ ellenfél alapú képet is bevonjuk a 
+veszteségfüggvénybe, és a modell paramétereit az így kapott kombinált célfüggvényre optimalizáljuk. 
 
 Goodfellow és társai az FGSM-mel előállított $x_{\mathrm{adv}}$ perturbációra a következő kombinált veszteségfüggvényt 
 javasolták~\cite{goodfellow2015explaining}: 
@@ -237,23 +349,27 @@ Az új veszteségfüggvény tehát a tiszta és az ellenfél alapú minta hibáj
 modell aktuális $\theta$ paramétereivel újraszámolják. 
 Így tehát a modell a tanítás során folyamatosan fejlődik, és az aktuális állapota által generált ellenfél alapú példákon tanul tovább dinamikusan, nem pedig 
 egy előre legyártott, statikus ellenfél alapú halmazon. 
-Kísérleteik megmutatták, hogy ez egy hatékony módszer: az FGSM-mel előállított ellenfél alapú példákon mért hibaarány 89,4\%-ról 17,9\%-ra csökkent. 
+Kísérleteik megmutatták, hogy ez egy hatékony módszer. 
+Az FGSM-mel előállított ellenfél alapú példákon mért hibaarány 89,4\%-ról 17,9\%-ra csökkent. 
 
 Madry és társai megmutatták, hogy PGD-vel is alkalmazható az ellenfél alapú tanítás, és erősebb védekezést eredményez~\cite{madry2018towards}. 
-Itt azonban a tiszta és ellenfél alapú veszteséget kombináló FGSM-formulával ellentétben nincs szó keverésről: a tanítás során a tiszta $x$ kép 
-helyett kizárólag a hozzá tartozó, PGD-vel előállított $x_{\mathrm{adv}}$-on számolják a veszteséget, tehát a modell csak az ellenfél alapú bemeneteken tanul. 
+Itt azonban a tiszta és ellenfél alapú veszteséget kombináló FGSM-formulával ellentétben nincs szó keverésről. 
+A tanítás során a tiszta $x$ kép helyett kizárólag a hozzá tartozó, PGD-vel előállított $x_{\mathrm{adv}}$-on számolják a veszteséget, tehát a modell csak az ellenfél alapú bemeneteken tanul. 
 Mivel a PGD erősebb támadás, mint az FGSM, az ellene edzett modell a gyengébb, egylépéses támadásokkal szemben is ellenállóbb marad, míg a fordítottja nem 
 feltétlenül igaz. 
 
-\subsection{Linearitás}
-% TODO: a linearitási hipotézis részletesebb kifejtése -- miért viselkednek a modern neurális hálók
-% (ReLU, maxout stb. miatt) lokálisan lineárisan, és ez hogyan magyarázza az ellenfél alapú példák
-% létezését magas dimenziószámú bemeneteken (Goodfellow et al. levezetése lineáris modellekre).
-
-%\subsection{Saddle point}
-% TODO: Madry et al. min-max (saddle point) optimalizálási kerete: a belső maximalizálás a
-% legrosszabb esetű perturbáció megtalálása (támadás), a külső minimalizálás a robusztus modell
-% tanítása (védekezés) -- ez adja a PGD elméleti indoklását mint "univerzális első rendű ellenfél".
+\subsection{Madry és társai következtetései}
+Madry és társai eredményei azt igazolják, hogy a mély neurális hálók ellenálló képessége az ellenfél alapú támadásokkal szemben megbízhatóan 
+növelhető. 
+Kísérleti eredményeik alapján megbízható ellenfél alapú tanítási módszerek tervezhetők~\cite{madry2018towards}. 
+Ennek egyik kulcsfontosságú alapja a fenti felismerés, miszerint a PGD adja az univerzális első rendű ellenfelet. 
+Mindezek alapján a szerzők úgy vélik, hogy az ellenfél alapú támadásokkal szemben robusztus mély tanulási modellek a jelenlegi eszközökkel is 
+elérhetőek. 
+Kísérleti eredményeik ugyanakkor azt is megmutatták, hogy ez a robusztusság adathalmaz-függő. 
+MNIST adathalmazon (szürkeárnyalatos kézzel írott számjegyek) a hálóik igen robusztusnak bizonyultak, és nagy pontosságukat erős 
+$\ell_\infty$-korlátos ellenfelek és nagy perturbációk esetén is megtartották. 
+A bonyolultabb CIFAR10 adathalmazon (színes, természetes fényképek 10 kategóiában) a kísérleteik ezt a szintet még nem érték el. 
+Az eredményeik azonban itt is jelentős javulást mutattak a robusztusságban.
 
 \subsection{Kapcsolódó munkák és további támadási módszerek}
 
