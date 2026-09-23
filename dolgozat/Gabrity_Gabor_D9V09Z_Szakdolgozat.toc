@@ -40,22 +40,23 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.3}A nyeregpont (saddle point) optimalizálási keret és a lokális maximumok koncentrációja}{15}{subsection.3.6.3}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.4}Ellenfél alapú tanítás}{16}{subsection.3.6.4}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.5}Madry és társai következtetései}{17}{subsection.3.6.5}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.6.6}Kapcsolódó munkák és további támadási módszerek}{18}{subsection.3.6.6}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.7}Védekezési stratégiák áttekintése}{18}{section.3.7}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.8}A rendszer architektúrája}{18}{section.3.8}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.9}A felhasznált technológiák}{18}{section.3.9}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.10}Tervezési döntések és indoklásuk}{18}{section.3.10}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.11}Az egyes komponensek megvalósítási részletei}{18}{section.3.11}%
-\select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{19}{chapter.4}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{19}{section.4.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.2}Integrációs tesztek}{23}{section.4.2}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {4.2.1}GUI és támadási motor összekötése}{23}{subsection.4.2.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{23}{section.4.3}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{24}{section.4.4}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.5}Teszteredmények és értelmezésük}{26}{section.4.5}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{26}{section.4.6}%
-\select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{27}{chapter.5}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{27}{section.5.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{27}{section.5.2}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{27}{section.5.3}%
-\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{28}{section*.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.7}Kapcsolódó munkák és további támadási módszerek}{18}{section.3.7}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.7.1}Optimalizáció-alapú korai módszerek}{18}{subsection.3.7.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.8}Védekezési stratégiák áttekintése}{19}{section.3.8}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.9}A rendszer architektúrája}{19}{section.3.9}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.10}A felhasznált technológiák}{19}{section.3.10}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.11}Tervezési döntések és indoklásuk}{19}{section.3.11}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.12}Az egyes komponensek megvalósítási részletei}{19}{section.3.12}%
+\select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{20}{chapter.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{20}{section.4.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.2}Integrációs tesztek}{24}{section.4.2}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {4.2.1}GUI és támadási motor összekötése}{24}{subsection.4.2.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{24}{section.4.3}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{25}{section.4.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.5}Teszteredmények és értelmezésük}{27}{section.4.5}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{27}{section.4.6}%
+\select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{28}{chapter.5}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{28}{section.5.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{28}{section.5.2}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{28}{section.5.3}%
+\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{29}{section*.4}%

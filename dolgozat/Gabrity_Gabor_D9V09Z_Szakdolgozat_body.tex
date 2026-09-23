@@ -371,7 +371,28 @@ $\ell_\infty$-korlátos ellenfelek és nagy perturbációk esetén is megtartott
 A bonyolultabb CIFAR10 adathalmazon (színes, természetes fényképek 10 kategóiában) a kísérleteik ezt a szintet még nem érték el. 
 Az eredményeik azonban itt is jelentős javulást mutattak a robusztusságban.
 
-\subsection{Kapcsolódó munkák és további támadási módszerek}
+\section{Kapcsolódó munkák és további támadási módszerek}
+
+\subsection{Optimalizáció-alapú korai módszerek}
+Az ellenfél alapú perturbáció fogalmának első dokumentált megjelenése Szegedy és társai nevéhez fűződik~\cite{szegedy2014intriguing}. 
+Módszerük a támadást egy explicit optimalizálási feladatként fogalmazza meg. 
+A cél egy olyan, $\ell_2$ normában minimális $\delta$ perturbáció megtalálása, amely mellett a modell predikciója egy előre megadott $y_{\mathrm{target}}$ 
+célosztályra változik.
+\[
+  \min_{\delta} \|\delta\|_2 \qquad \text{úgy, hogy} \qquad \arg\max_i f_\theta(x+\delta)_i = y_{\mathrm{target}}, \quad x+\delta \in [0,1]^n.
+\]
+Ezt a feltételes feladatot Szegedy és társai a korlátozott memóriaigényű Broyden--Fletcher--Goldfarb--Shanno módszer (L-BFGS) egy dobozkorlátos 
+változatával közelítették, amely egy kvázi-Newton típusú numerikus optimalizálási technika. 
+Kísérleteikben mutatták meg először a korábban tárgyalt transzferálhatóságot, mint a neurális hálók egyik tulajdonságát. 
+
+Ez a korai módszer white-box hozzáférést és gradiens alapú optimalizálást igényelt, hasonlóan a korábban bemutatott FGSM-hez és PGD-hez. 
+A lényegi különbség az, hogy itt egy konvergenciáig futó optimalizálási feladatot kell megoldani. 
+Ez számításigényesebb, mint az FGSM egyetlen lépése vagy a PGD rögzített iterációszáma. 
+Ez a számítási költség adta a motivációt Goodfellow és társai számára egy hatékonyabb, egylépéses módszer kidolgozásához, amit a korábban 
+bemutatott FGSM-ként ismerünk~\cite{goodfellow2015explaining}. 
+A NIST 2025-ös, ellenfél alapú gépi tanulásról szóló átfogó jelentése szerint jól dokumentált történeti fejlődési láncot alkot a szakirodalomban 
+az optimalizáció-alapú korai módszerektől (Szegedy és társai) az FGSM-en és Kurakin és társai iteratív FGSM-változatán át egészen a 
+PGD-ig~\cite{nist2025aml}. 
 
 \section{Védekezési stratégiák áttekintése}
 

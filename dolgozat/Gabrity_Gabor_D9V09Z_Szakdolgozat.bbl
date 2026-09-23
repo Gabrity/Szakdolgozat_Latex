@@ -103,6 +103,118 @@
       \verb 1706.06083
       \endverb
     \endentry
+    \entry{szegedy2014intriguing}{misc}{}{}
+      \name{author}{7}{}{%
+        {{hash=ed568d9c3bb059e6bf22899fbf170f86}{%
+           family={Szegedy},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e9fec85bbce1b087a6ebefe26e73f7bf}{%
+           family={Zaremba},
+           familyi={Z\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=c83b564e32475f10dcc91be7e66d3e81}{%
+           family={Bruna},
+           familyi={B\bibinitperiod},
+           given={Joan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=8bbc4c5d96f205bada839e74e0202146}{%
+           family={Erhan},
+           familyi={E\bibinitperiod},
+           given={Dumitru},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5d2585c11210cf1d4512e6e0a03ec315}{%
+           family={Goodfellow},
+           familyi={G\bibinitperiod},
+           given={Ian},
+           giveni={I\bibinitperiod}}}%
+        {{hash=a6784304d1cc890b2cb6c6c7f2f3fd76}{%
+           family={Fergus},
+           familyi={F\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{c8c3e9b8f095d055ce92294b35ff475c}
+      \strng{fullhash}{c8c3e9b8f095d055ce92294b35ff475c}
+      \strng{fullhashraw}{c8c3e9b8f095d055ce92294b35ff475c}
+      \strng{bibnamehash}{c8c3e9b8f095d055ce92294b35ff475c}
+      \strng{authorbibnamehash}{c8c3e9b8f095d055ce92294b35ff475c}
+      \strng{authornamehash}{c8c3e9b8f095d055ce92294b35ff475c}
+      \strng{authorfullhash}{c8c3e9b8f095d055ce92294b35ff475c}
+      \strng{authorfullhashraw}{c8c3e9b8f095d055ce92294b35ff475c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Intriguing properties of neural networks}
+      \field{year}{2014}
+      \verb{eprint}
+      \verb 1312.6199
+      \endverb
+    \endentry
+    \entry{nist2025aml}{misc}{}{}
+      \name{author}{6}{}{%
+        {{hash=3e292d47bd15df97291ff3240e170153}{%
+           family={Vassilev},
+           familyi={V\bibinitperiod},
+           given={Apostol},
+           giveni={A\bibinitperiod}}}%
+        {{hash=521fcb5635d3f86a1e771877c4a0fc43}{%
+           family={Oprea},
+           familyi={O\bibinitperiod},
+           given={Alina},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b5b7a768686a216bf4133ff1fc1285f2}{%
+           family={Fordyce},
+           familyi={F\bibinitperiod},
+           given={Alie},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fc0aa80f94bc81afe67e9976d93a2b65}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={Hyrum},
+           giveni={H\bibinitperiod}}}%
+        {{hash=289e6941420ce1003991e393ab41c00e}{%
+           family={Davies},
+           familyi={D\bibinitperiod},
+           given={Xander},
+           giveni={X\bibinitperiod}}}%
+        {{hash=86f8497b62ca872fba02a696d23e70cc}{%
+           family={Hamin},
+           familyi={H\bibinitperiod},
+           given={Maia},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{b11b93d2126ca64b779a54c49fad29b3}
+      \strng{fullhash}{b11b93d2126ca64b779a54c49fad29b3}
+      \strng{fullhashraw}{b11b93d2126ca64b779a54c49fad29b3}
+      \strng{bibnamehash}{b11b93d2126ca64b779a54c49fad29b3}
+      \strng{authorbibnamehash}{b11b93d2126ca64b779a54c49fad29b3}
+      \strng{authornamehash}{b11b93d2126ca64b779a54c49fad29b3}
+      \strng{authorfullhash}{b11b93d2126ca64b779a54c49fad29b3}
+      \strng{authorfullhashraw}{b11b93d2126ca64b779a54c49fad29b3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{NIST AI 100-2e2025}
+      \field{title}{Adversarial Machine Learning: A Taxonomy and Terminology of Attacks and Mitigations}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://doi.org/10.6028/NIST.AI.100-2e2025
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.6028/NIST.AI.100-2e2025
+      \endverb
+    \endentry
     \entry{fowler2012testpyramid}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=312ac886938a9b2be4f8eb607567fe4c}{%
@@ -159,8 +271,8 @@
       \strng{authornamehash}{4eb9933fc180b1f96d9b346bb55d3d30}
       \strng{authorfullhash}{4eb9933fc180b1f96d9b346bb55d3d30}
       \strng{authorfullhashraw}{4eb9933fc180b1f96d9b346bb55d3d30}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}
