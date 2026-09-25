@@ -18,14 +18,6 @@ from src.imagenet_classes import get_imagenet_classes
 from src.model_manager import ModelManager
 from src.utils import load_image_as_tensor, perturbation_to_pil, tensor_to_pil
 
-# Optional drag-and-drop support.
-try:
-    from tkinterdnd2 import DND_FILES, TkinterDnD  # type: ignore
-
-    _DND_AVAILABLE = True
-except Exception:  # pragma: no cover - optional dep
-    _DND_AVAILABLE = False
-
 
 IMAGE_DISPLAY_SIZE = (260, 260)
 
@@ -34,14 +26,6 @@ class AppInterface(ctk.CTk):
     """Main application window."""
 
     def __init__(self) -> None:
-        # Optional DnD support: TkinterDnD must wrap the root.
-        if _DND_AVAILABLE:
-            # CustomTkinter's CTk inherits from tk.Tk; we patch DnD onto it.
-            try:
-                TkinterDnD._require(self)
-            except Exception:
-                pass
-
         super().__init__()
 
         ctk.set_appearance_mode("dark")
@@ -262,14 +246,6 @@ class AppInterface(ctk.CTk):
             self.target_search.get()
         ))
 
-        # Drag & drop onto the original-image label.
-        if _DND_AVAILABLE:
-            try:
-                self.image_labels[0].drop_target_register(DND_FILES)  # type: ignore[attr-defined]
-                self.image_labels[0].dnd_bind("<<Drop>>", self._on_drop)  # type: ignore[attr-defined]
-            except Exception:
-                pass
-
     # ====================================================================
     # Status / display helpers
     # ====================================================================
@@ -374,14 +350,6 @@ class AppInterface(ctk.CTk):
             ],
         )
         if path:
-            self._load_path(path)
-
-    def _on_drop(self, event) -> None:  # pragma: no cover - GUI
-        raw = event.data.strip()
-        if raw.startswith("{") and raw.endswith("}"):
-            raw = raw[1:-1]
-        path = raw.split("} {")[0] if "} {" in raw else raw
-        if os.path.isfile(path):
             self._load_path(path)
 
     def _load_path(self, path: str) -> None:

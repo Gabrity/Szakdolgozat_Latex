@@ -550,6 +550,34 @@ Az egyetlen, lemezen megmaradó adat az előtanított modellek súlya, amelyet a
 egy adott modell csak az első használatakor töltődik le, utána a helyi cache-ből érhető el. 
 
 \section{A felhasznált technológiák}
+A szoftver Python nyelven készült, mivel a gépi tanulási ökoszisztéma, ezen belül is a PyTorch keretrendszer, natívan ehhez a nyelvhez kötődik. 
+
+\subsection{Gépi tanulási keretrendszer}
+A projekt gerincét a \textbf{PyTorch} adja. 
+Az FGSM és a PGD algoritmus egyaránt a bemeneti kép szerinti gradiensre épül, amit PyTorch automatikus deriválási (\textit{autograd}) mechanizmusa 
+számol ki, emiatt a keretrendszer választása lényegében adott volt. 
+A \textbf{torchvision} könyvtár biztosítja az előtanított ResNet50 és MobileNetV2 modelleket, valamint az ehhez tartozó, ImageNet-1k-n megszokott 
+előfeldolgozó lépéseket (átméretezés, középre vágás, normalizálás). 
+
+\subsection{Grafikus felület}
+A felület a \textbf{CustomTkinter} könyvtárra épül, amely a szabványos Tkinter egy modernizált rétege. 
+Ez sötét témát, lekerekített gombokat és csúszkákat ad, miközben a mögöttes eseménykezelési modell megegyezik a natív Tkinterével, így a Python 
+standard könyvtárán kívül nem igényel súlyosabb GUI-függőséget. 
+
+\subsection{Képfeldolgozás}
+A \textbf{Pillow} könyvtár felelős a tenzor és a képfájl közötti átalakításokért, valamint a védekezési modul JPEG-tömörítés és Gauss-elmosás 
+szűrőinek megvalósításáért. 
+
+\subsection{Tesztelési eszközök}
+A tesztkészlet a \textbf{pytest} keretrendszerre épül, amely a fixture-alapú tesztadat-előállítást és a tesztek szintek (egység, integráció, GUI) 
+szerinti csoportosítását teszi lehetővé. 
+A diszpécser-függvény viselkedésének ellenőrzéséhez a \textbf{pytest-mock} könyvtár \texttt{mocker} fixture-je szükséges, amely a valódi 
+implementációt burkoló (\textit{wraps}) helyettesítő objektumok (\textit{spy}) létrehozását teszi egyszerűvé. 
+
+\subsection{Fejlesztői környezet}
+A függőségek izolálására Python virtuális környezet (\texttt{.venv}) szolgál. 
+NVIDIA GPU esetén a PyTorch és torchvision CUDA-alapú buildje opcionálisan tovább gyorsítja mind a klasszifikációt, mind a támadások 
+gradiensszámítását. 
 
 \section{Tervezési döntések és indoklásuk}
 

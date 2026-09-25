@@ -26,7 +26,7 @@ python main.py
 
 ## Használat
 
-1. Tölts be egy képet (Drag & Drop vagy *Load Image* gomb).
+1. Tölts be egy képet a *Load Image* gombbal.
 2. Válaszd ki a modellt (ResNet50 / MobileNetV2) és a támadási algoritmust (FGSM / PGD).
 3. Állítsd be az **epsilon** és (PGD esetén) **iterations** csúszkákat.
 4. Opcionálisan válassz **target** osztályt a targeted támadáshoz.
