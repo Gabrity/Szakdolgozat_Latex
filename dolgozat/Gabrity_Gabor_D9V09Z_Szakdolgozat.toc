@@ -45,22 +45,22 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.7.2}Univerzális perturbációk}{18}{subsection.3.7.2}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.7.3}Fizikailag megvalósítható támadások}{19}{subsection.3.7.3}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.8}Védekezési stratégiák áttekintése}{20}{section.3.8}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.8.1}A JPEG-tömörítés mint védekezés}{21}{subsection.3.8.1}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.8.1}A JPEG-tömörítés mint védekezés}{20}{subsection.3.8.1}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.8.2}A Gauss-elmosás mint védekezés}{21}{subsection.3.8.2}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.9}A rendszer architektúrája}{22}{section.3.9}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.10}A felhasznált technológiák}{22}{section.3.10}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.11}Tervezési döntések és indoklásuk}{22}{section.3.11}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.12}Az egyes komponensek megvalósítási részletei}{22}{section.3.12}%
-\select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{23}{chapter.4}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{23}{section.4.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.2}Integrációs tesztek}{27}{section.4.2}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {4.2.1}GUI és támadási motor összekötése}{27}{subsection.4.2.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{27}{section.4.3}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{28}{section.4.4}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.5}Teszteredmények és értelmezésük}{30}{section.4.5}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{30}{section.4.6}%
-\select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{31}{chapter.5}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{31}{section.5.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{31}{section.5.2}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{31}{section.5.3}%
-\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{32}{section*.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.9}A rendszer architektúrája}{21}{section.3.9}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.10}A felhasznált technológiák}{23}{section.3.10}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.11}Tervezési döntések és indoklásuk}{23}{section.3.11}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.12}Az egyes komponensek megvalósítási részletei}{23}{section.3.12}%
+\select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{24}{chapter.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{24}{section.4.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.2}Integrációs tesztek}{28}{section.4.2}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {4.2.1}GUI és támadási motor összekötése}{28}{subsection.4.2.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{28}{section.4.3}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{29}{section.4.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.5}Teszteredmények és értelmezésük}{31}{section.4.5}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{31}{section.4.6}%
+\select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{32}{chapter.5}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{32}{section.5.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{32}{section.5.2}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{32}{section.5.3}%
+\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{33}{section*.5}%

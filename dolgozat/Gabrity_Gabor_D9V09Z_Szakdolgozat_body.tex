@@ -479,6 +479,75 @@ védekezési módszereket~\cite{dziugaite2016jpeg}.
 Ez a hivatkozott vizsgálat azt találta, hogy az FGSM-perturbációk viszonylag ellenállóak az ilyen képtranszformációkkal szemben. 
 
 \section{A rendszer architektúrája}
+A szoftver egyetlen, önálló asztali alkalmazásként fut, hálózati backend nélkül, ezért architektúrája nem a megszokott kliens--szerver 
+felosztást követi, hanem a felelősségek szerint különül el belső rétegekre. 
+A rétegek a következők, a belépési ponttól a legmélyebb logikáig haladva: 
+
+\begin{itemize}
+  \item \textbf{Belépési pont} (\texttt{main.py}): egyetlen feladata az alkalmazás ablakának példányosítása és a
+        Tkinter eseményhurok elindítása. 
+  \item \textbf{Prezentációs réteg} (\texttt{gui/app\_interface.py}): CustomTkinter alapú grafikus felület, amely
+        a felhasználói bemenetet (gombok, csúszkák, célosztály-kereső) eseménykezelőkre köti. 
+        Ez kezeli az alkalmazás állapotát (betöltött kép, utolsó támadás eredménye, perturbáció), és a hosszabb futású támadást külön szálra szervezi ki, hogy a felület a 
+        számítás alatt is válaszképes maradjon. 
+  \item \textbf{Alkalmazáslogikai réteg} (\texttt{model\_manager.py}, \texttt{attack\_engine.py},
+        \texttt{defense\_module.py}, \texttt{utils.py}): ez a réteg tartalmazza a prezentációs réteg által hívott legalsó szintű műveleteket, 
+        a modellbetöltést, -cache-elést, a támadási algoritmusokat, a védekezési szűrőket és a kép-előfeldolgozást. 
+  \item \textbf{torchvision modellek}: ez a réteg már nem képezi az alkalmazás szigorúan vett részét. 
+        A különböző modelleket egy külső torchvision könyvtár segítségével érjük el. 
+\end{itemize}
+
+A rétegek közötti függőség egyirányú, a prezentációs réteg ismeri és hívja az alkalmazáslogikai réteg függvényeit, 
+fordítva viszont az alkalmazáslogikai réteg semmit sem tud a GUI létezéséről. 
+Ez a függetlenség lehetővé teszi, hogy az üzleti logika komponensei önállóan, a felület felépítése nélkül is
+egységtesztelhetők legyenek. 
+A \ref{fig:architecture-layers}. ábra ezt a rétegződést és a fő adatfolyást szemlélteti. 
+
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, minimum width=6.2cm, minimum height=1cm,
+                align=center, font=\footnotesize},
+    arr/.style={-{Latex}, thick},
+]
+\node[box, fill=blue!8] (main) {\texttt{main.py}\\ belépési pont};
+\node[box, fill=orange!12, below=0.55cm of main] (gui)
+  {\texttt{gui/app\_interface.py}\\ prezentációs réteg};
+\node[box, fill=green!10, below=0.55cm of gui] (logic)
+  {\texttt{model\_manager.py} / \texttt{attack\_engine.py} /\\
+   \texttt{defense\_module.py} / \texttt{utils.py}\\ alkalmazáslogikai réteg};
+\node[box, fill=gray!12, below=0.55cm of logic] (weights)
+  {torchvision előtanított modellsúlyok\\ (lokális \texttt{models/} cache)};
+
+\draw[arr] (main) -- (gui);
+\draw[arr] (gui) -- (logic);
+\draw[arr] (logic) -- (weights);
+\end{tikzpicture}
+\caption{A szoftver rétegei és a köztük lévő függés iránya.}
+\label{fig:architecture-layers}
+\end{figure}
+
+\subsection{Az adatfolyam}
+Egy tipikus támadás végrehajtása során az adat a következő lépéseken halad végig.
+\begin{enumerate}
+  \item A GUI a kiválasztott modellnév alapján lekéri a megfelelő \texttt{ModelBundle}-t a \texttt{ModelManager}-től,
+        és ebből összeállítja az \texttt{AttackContext}-et, amely a modellt és a normalizációs paramétereket
+        (átlag, szórás) fogja össze. 
+  \item Az ,,Attack'' gomb megnyomásakor a GUI egy külön szálon meghívja az \texttt{attack\_engine.attack()}
+        diszpécser függvényt a betöltött kép tenzorával, a kiválasztott módszerrel (FGSM vagy PGD) és paraméterekkel. 
+  \item Az \texttt{attack\_engine} a kapott kontextus segítségével végrehajtja a támadást, majd egy
+        \texttt{AttackResult}-ot (ellenfél alapú kép, perturbáció, tényleges iterációszám) ad vissza. 
+  \item A háttérszál a főszálra ütemezve frissíti a felületet, megjeleníti az ellenfél alapú képet, a felnagyított
+        perturbációt, valamint az újraszámolt predikciókat. 
+  \item Amennyiben a felhasználó ezt követően védekezést is alkalmaz, a \texttt{defense\_module} az ellenfél alapú
+        képre Gauss-elmosást vagy JPEG-tömörítést hajt végre, és az eredmény ugyanazon az úton kerül vissza a
+        felületre. 
+\end{enumerate}
+
+Az alkalmazásnak nincs saját adatbázisa vagy perzisztens állapota. 
+Az egyetlen, lemezen megmaradó adat az előtanított modellek súlya, amelyet a \texttt{ModelManager} a
+\texttt{TORCH\_HOME} környezeti változó beállításával a projekt saját \texttt{models/} könyvtárába irányít, így
+egy adott modell csak az első használatakor töltődik le, utána a helyi cache-ből érhető el. 
 
 \section{A felhasznált technológiák}
 
@@ -489,7 +558,6 @@ Ez a hivatkozott vizsgálat azt találta, hogy az FGSM-perturbációk viszonylag
 \chapter{Tesztelés}
 
 \section{Egységtesztek}
-
 A program tesztkészletének felépítésénél a szakirodalomból ismert \textit{tesztpiramisnak} nevezett
 hierarchiát követtem~\cite{fowler2012testpyramid}. Ennek alapját a gyorsabb és kevés komponenst érintő tesztek, az egységtesztek képezik, 
 melyek a lehető legkisebb elkülöníthető egységek tesztelését valósítják meg. Futási idejük 
