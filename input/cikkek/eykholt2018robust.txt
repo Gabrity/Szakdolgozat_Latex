@@ -1,0 +1,686 @@
+                                                                                       This paper appears at CVPR 2018
+
+
+                                                 Robust Physical-World Attacks on Deep Learning Visual Classification
+
+
+                                                             Kevin Eykholt∗1 , Ivan Evtimov*2 , Earlence Fernandes2 , Bo Li3 ,
+                                                     Amir Rahmati4 , Chaowei Xiao1 , Atul Prakash1 , Tadayoshi Kohno2 , and Dawn Song3
+                                                                                   1
+                                                                                    University of Michigan, Ann Arbor
+                                                                                        2
+                                                                                          University of Washington
+arXiv:1707.08945v5 [cs.CR] 10 Apr 2018
+
+
+
+
+                                                                                    3
+                                                                                      University of California, Berkeley
+                                                                          4
+                                                                            Samsung Research America and Stony Brook University
+
+
+
+                                                                      Abstract                            these successes, they are increasingly being used as part
+                                                                                                          of control pipelines in physical systems such as cars [8, 17],
+                                             Recent studies show that the state-of-the-art deep neural    UAVs [4, 24], and robots [40]. Recent work, however, has
+                                         networks (DNNs) are vulnerable to adversarial examples,          demonstrated that DNNs are vulnerable to adversarial per-
+                                         resulting from small-magnitude perturbations added to the        turbations [5, 9, 10, 15, 16, 22, 25, 29, 30, 35]. These carefully
+                                         input. Given that that emerging physical systems are us-         crafted modifications to the (visual) input of DNNs can cause
+                                         ing DNNs in safety-critical situations, adversarial examples     the systems they control to misbehave in unexpected and
+                                         could mislead these systems and cause dangerous situations.      potentially dangerous ways.
+                                         Therefore, understanding adversarial examples in the physi-
+                                                                                                              This threat has gained recent attention, and work in
+                                         cal world is an important step towards developing resilient
+                                                                                                          computer vision has made great progress in understanding
+                                         learning algorithms. We propose a general attack algorithm,
+                                                                                                          the space of adversarial examples, beginning in the digi-
+                                         Robust Physical Perturbations (RP2 ), to generate robust
+                                                                                                          tal domain (e.g. by modifying images corresponding to a
+                                         visual adversarial perturbations under different physical
+                                                                                                          scene) [9, 22, 25, 35], and more recently in the physical do-
+                                         conditions. Using the real-world case of road sign classifi-
+                                                                                                          main [1, 2, 13, 32]. Along similar lines, our work contributes
+                                         cation, we show that adversarial examples generated using
+                                                                                                          to the understanding of adversarial examples when pertur-
+                                         RP2 achieve high targeted misclassification rates against
+                                                                                                          bations are physically added to the objects themselves. We
+                                         standard-architecture road sign classifiers in the physical
+                                                                                                          choose road sign classification as our target domain for sev-
+                                         world under various environmental conditions, including
+                                                                                                          eral reasons: (1) The relative visual simplicity of road signs
+                                         viewpoints. Due to the current lack of a standardized testing
+                                                                                                          make it challenging to hide perturbations. (2) Road signs
+                                         method, we propose a two-stage evaluation methodology for
+                                                                                                          exist in a noisy unconstrained environment with changing
+                                         robust physical adversarial examples consisting of lab and
+                                                                                                          physical conditions such as the distance and angle of the
+                                         field tests. Using this methodology, we evaluate the efficacy
+                                                                                                          viewing camera, implying that physical adversarial perturba-
+                                         of physical adversarial manipulations on real objects. With
+                                                                                                          tions should be robust against considerable environmental
+                                         a perturbation in the form of only black and white stickers,
+                                                                                                          instability. (3) Road signs play an important role in trans-
+                                         we attack a real stop sign, causing targeted misclassification
+                                                                                                          portation safety. (4) A reasonable threat model for transporta-
+                                         in 100% of the images obtained in lab settings, and in 84.8%
+                                                                                                          tion is that an attacker might not have control over a vehicle’s
+                                         of the captured video frames obtained on a moving vehicle
+                                                                                                          systems, but is able to modify the objects in the physical
+                                         (field test) for the target classifier.
+                                                                                                          world that a vehicle might depend on to make crucial safety
+                                                                                                          decisions.
+                                         1. Introduction                                                      The main challenge with generating robust physical per-
+                                                                                                          turbations is environmental variability. Cyber-physical sys-
+                                            Deep Neural Networks (DNNs) have achieved state-of-           tems operate in noisy physical environments that can de-
+                                         the-art, and sometimes human-competitive, performance            stroy perturbations created using current digital-only algo-
+                                         on many computer vision tasks [11, 14, 36]. Based on             rithms [19]. For our chosen application area, the most dy-
+                                           ∗ These authors contributed equally.                           namic environmental change is the distance and angle of
+Figure 1: The left image shows real graffiti on a Stop sign,
+something that most humans would not think is suspicious.
+The right image shows our a physical perturbation applied        Figure 2: RP2 pipeline overview. The input is the target Stop
+to a Stop sign. We design our perturbations to mimic graffiti,   sign. RP2 samples from a distribution that models physical
+and thus “hide in the human psyche.”                             dynamics (in this case, varying distances and angles), and
+                                                                 uses a mask to project computed perturbations to a shape
+                                                                 that resembles graffiti. The adversary prints out the resulting
+the viewing camera. Additionally, other practicality chal-       perturbations and sticks them to the target Stop sign.
+lenges exist: (1) Perturbations in the digital world can be
+so small in magnitude that it is likely that a camera will not
+be able to perceive them due to sensor imperfections. (2)        physical attacks, we draw on standard techniques from the
+Current algorithms produce perturbations that occupy the         physical sciences and propose a two-stage experiment de-
+background imagery of an object. It is extremely difficult       sign: (1) A lab test where the viewing camera is kept at
+to create a robust attack with background modifications be-      various distance/angle configurations; and (2) A field test
+cause a real object can have varying backgrounds depending       where we drive a car towards an intersection in uncontrolled
+on the viewpoint. (3) The fabrication process (e.g., printing    conditions to simulate an autonomous vehicle. We test our
+of perturbations) is imperfect.                                  attack algorithm using this evaluation pipeline and find that
+    Informed by the challenges above, we design Robust           the perturbations are robust to a variety of distances and
+Physical Perturbations (RP2 ), which can generate perturba-      angles.
+tions robust to widely changing distances and angles of the      Our Contributions. Figure 2 shows an overview of our
+viewing camera. RP2 creates a visible, but inconspicuous         pipeline to generate and evaluate robust physical adversarial
+perturbation that only perturbs the object (e.g. a road sign)    perturbations.
+and not the object’s environment. To create robust perturba-
+tions, the algorithm draws samples from a distribution that        1. We introduce Robust Physical Perturbations (RP2 ) to
+models physical dynamics (e.g. varying distances and an-              generate physical perturbations for physical-world ob-
+gles) using experimental data and synthetic transformations           jects that can consistently cause misclassification in a
+(Figure 2).                                                           DNN-based classifier under a range of dynamic physi-
+    Using the proposed algorithm, we evaluate the effective-          cal conditions, including different viewpoint angles and
+ness of perturbations on physical objects, and show that              distances (Section 3).
+adversaries can physically modify objects using low-cost
+techniques to reliably cause classification errors in DNN-         2. Given the lack of a standardized methodology in eval-
+based classifiers under widely varying distances and angles.          uating physical adversarial perturbations, we propose
+For example, our attacks cause a classifier to interpret a            an evaluation methodology to study the effectiveness
+subtly-modified physical Stop sign as a Speed Limit 45 sign.          of physical perturbations in real world scenarios (Sec-
+Specifically, our final form of perturbation is a set of black        tion 4.2).
+and white stickers that an adversary can attach to a physical
+road sign (Stop sign). We designed our perturbations to re-        3. We evaluate our attacks against two standard-
+semble graffiti, a relatively common form of vandalism. It            architecture classifiers that we built: LISA-CNN with
+is common to see road signs with random graffiti or color             91% accuracy on the LISA test set and GTSRB-CNN
+alterations in the real world as shown in Figure 1 (the left          with 95.7% accuracy on the GTSRB test set. Using two
+image is of a real sign in a city). If these random patterns          types of attacks (object-constrained poster and sticker
+were adversarial perturbations (right side of Figure 1 shows          attacks) that we introduce, we show that RP2 produces
+our example perturbation), they could lead to severe conse-           robust perturbations for real road signs. For example,
+quences for autonomous driving systems, without arousing              poster attacks are successful in 100% of stationary and
+suspicion in human operators.                                         drive-by tests against LISA-CNN, and sticker attacks
+    Given the lack of a standardized method for evaluating            are successful in 80% of stationary testing conditions
+     and in 87.5% of the extracted video frames against             viewed through a smartphone camera [13]. Athalye and
+     GTSRB-CNN.                                                     Sutskever improved upon the work of Kurakin et al. and pre-
+                                                                    sented an attack algorithm that produces adversarial exam-
+  4. To show the generality of our approach, we generate the        ples robust to a set of two-dimensional synthetic transforma-
+     robust physical adversarial example by manipulating            tions [1]. These works do not modify physical objects—an
+     general physical objects, such as a microwave. We show         adversary prints out a digitally-perturbed image on paper.
+     that the pre-trained Inception-v3 classifier misclassifies     However, there is value in studying the effectiveness of such
+     the microwave as “phone" by adding a single sticker.           attacks when subject to environmental variability. Our object-
+    Our work, thus, contributes to understanding the sus-           constrained poster printing attack is a reproduced version of
+ceptibility of image classifiers to robust adversarial mod-         this type of attack, with the additional physical-world con-
+ifications of physical objects. These results provide a             straint of confining perturbations to the surface area of the
+case for the potential consequences of adversarial exam-            sign. Additionally, our work goes further and examines how
+ples on deep learning models that interact with the physi-          to effectively create adversarial examples where the object
+cal world through vision. Our overarching goal with this            itself is physically perturbed by placing stickers on it.
+work is to inform research in building robust vision mod-
+                                                                       Concurrent to our work,1 Athalye et al. improved upon
+els and to raise awareness on the risks that future phys-
+                                                                    their original attack, and created 3D-printed replicas of per-
+ical learning systems might face. We include more ex-
+                                                                    turbed objects [2]. The main intellectual differences include:
+amples and videos of the drive-by tests on our webpage
+                                                                    (1) Athalye et al. only use a set of synthetic transforma-
+https://iotsecurity.eecs.umich.edu/#roadsigns
+                                                                    tions during optimization, which can miss subtle physical
+                                                                    effects, while our work samples from a distribution modeling
+2. Related Work
+                                                                    both physical and synthetic transformations. (2) Our work
+    We survey the related work in generating adversarial ex-        modifies existing true-sized objects. Athalye et al. 3D-print
+amples. Specifically, given a classifier fθ (·) with parameters     small-scale replicas. (3) Our work simulates realistic testing
+θ and an input x with ground truth label y for x, an ad-            conditions appropriate to the use-case at hand.
+versarial example x0 is generated so that it is close to x in
+                                                                        Sharif et al. attacked face recognition systems by printing
+terms of certain distance, such as Lp norm distance. x0 will
+                                                                    adversarial perturbations on the frames of eyeglasses [32].
+also cause the classifier to make an incorrect prediction as
+                                                                    Their work demonstrated successful physical attacks in rela-
+fθ (x0 ) 6= y (untargeted attacks), or fθ (x0 ) = y ∗ (targeted
+                                                                    tively stable physical conditions with little variation in pose,
+attacks) for a specific y ∗ 6= y. We also discuss recent efforts
+                                                                    distance/angle from the camera, and lighting. This con-
+at understanding the space of physical adversarial examples.
+                                                                    tributes an interesting understanding of physical examples
+Digital Adversarial Examples. Different methods have
+                                                                    in stable environments. However, environmental conditions
+been proposed to generate adversarial examples in the white-
+                                                                    can vary widely in general and can contribute to reducing
+box setting, where the adversary has full access to the classi-
+                                                                    the effectiveness of perturbations. Therefore, we choose the
+fier [3, 5, 9, 13, 23, 29, 35]. We focus on the white-box setting
+                                                                    inherently unconstrained environment of road-sign classifi-
+as well for two reasons: (1) In our chosen autonomous ve-
+                                                                    cation. In our work, we explicitly design our perturbations
+hicle domain, an attacker can obtain a close approximation
+                                                                    to be effective in the presence of diverse physical-world con-
+of the model by reverse engineering the vehicle’s systems
+                                                                    ditions (specifically, large distances/angles and resolution
+using model extraction attacks [37]. (2) To develop a foun-
+                                                                    changes).
+dation for future defenses, we must assess the abilities of
+powerful adversaries, and this can be done in a white-box               Finally, Lu et al. performed experiments with physical
+setting. Given that recent work has examined the black-box          adversarial examples of road sign images against detectors
+transferability of digital adversarial examples [27], physical      and show current detectors cannot be attacked [19]. In this
+black-box attacks may also be possible.                             work, we focus on classifiers to demonstrate the physical
+    Goodfellow et al. proposed the fast gradient method that        attack effectiveness and to highlight their security vulnera-
+applies a first-order approximation of the loss function to con-    bility in the real world. Attacking detectors are out of the
+struct adversarial samples [9]. Optimization based methods          scope of this paper, though recent work has generated digital
+have also been proposed to create adversarial perturbations         adversarial examples against detection/segmentation algo-
+for targeted attacks [5, 18]. These methods contribute to           rithms [6, 20, 38], and our recent work has extended RP2 to
+understanding digital adversarial examples. By contrast, our        attack the YOLO detector [7].
+work examines physical perturbations on real objects under
+varying environmental conditions.
+Physical Adversarial Examples. Kurakin et al. showed
+that printed adversarial examples can be misclassified when           1 This work appeared at arXiv on 30 Oct 2017.
+3. Adversarial Examples for Physical Objects                      3.2. Robust Physical Perturbation
+   Our goal is to examine whether it is possible to create           We derive our algorithm starting with the optimization
+robust physical perturbations for real-world objects that mis-    method that generates a perturbation for a single image x,
+lead classifiers to make incorrect predictions even when          without considering other physical conditions; then, we de-
+images are taken in a range of varying physical conditions.       scribe how to update the algorithm taking the physical chal-
+We first present an analysis of environmental conditions that     lenges above into account. This single-image optimization
+physical learning systems might encounter, and then present       problem searches for perturbation δ to be added to the input
+our algorithm to generate physical adversarial perturbations      x, such that the perturbed instance x0 = x+δ is misclassified
+taking these challenges into account.                             by the target classifier fθ (·):
+3.1. Physical World Challenges                                             min H(x + δ, x),            s.t. fθ (x + δ) = y ∗
+    Physical attacks on an object must be able to survive         where H is a chosen distance function, and y ∗ is the target
+changing conditions and remain effective at fooling the clas-     class.2 To solve the above constrained optimization problem
+sifier. We structure our discussion of these conditions around    efficiently, we reformulate it in the Lagrangian-relaxed form
+the chosen example of road sign classification, which could       similar to prior work [5, 18].
+be potentially applied in autonomous vehicles and other
+safety sensitive domains. A subset of these conditions can                      argmin λ||δ||p + J(fθ (x + δ), y ∗ )                   (1)
+                                                                                    δ
+also be applied to other types of physical learning systems
+such as drones, and robots.                                            Here J(· , ·) is the loss function, which measures the dif-
+Environmental Conditions. The distance and angle of a             ference between the model’s prediction and the target label
+camera in an autonomous vehicle with respect to a road            y ∗ . λ is a hyper-parameter that controls the regularization of
+sign varies continuously. The resulting images that are fed       the distortion. We specify the distance function H as ||δ||p ,
+into a classifier are taken at different distances and angles.    denoting the `p norm of δ.
+Therefore, any perturbation that an attacker physically adds           Next, we will discuss how the objective function can be
+to a road sign must be able to survive these transformations      modified to account for the environmental conditions. We
+of the image. Other environmental factors include changes         model the distribution of images containing object o under
+in lighting/weather conditions, and the presence of debris on     both physical and digital transformations X V . We sample
+the camera or on the road sign.                                   different instances xi drawn from X V . A physical perturba-
+Spatial Constraints. Current algorithms focusing on digital       tion can only be added to a specific object o within xi . In
+images add adversarial perturbations to all parts of the image,   the example of road sign classification, o is the stop sign that
+including background imagery. However, for a physical road        we target to manipulate. Given images taken in the physical
+sign, the attacker cannot manipulate background imagery.          world, we need to make sure that a single perturbation δ,
+Furthermore, the attacker cannot count on there being a           which is added to o, can fool the classifier under different
+fixed background imagery as it will change depending on           physical conditions. Concurrent work [2] only applies a
+the distance and angle of the viewing camera.                     set of transformation functions to synthetically sample such
+Physical Limits on Imperceptibility. An attractive feature        a distribution. However, modeling physical phenomena is
+of current adversarial deep learning algorithms is that their     complex and such synthetic transformations may miss physi-
+perturbations to a digital image are often so small in magni-     cal effects. Therefore, to better capture the effects of chang-
+tude that they are almost imperceptible to the casual observer.   ing physical conditions, we sample instance xi from X V
+However, when transferring such minute perturbations to the       by both generating experimental data that contains actual
+real world, we must ensure that a camera is able to perceive      physical condition variability as well as synthetic transfor-
+the perturbations. Therefore, there are physical limits on        mations. For road sign physical conditions, this involves
+how imperceptible perturbations can be, and is dependent          taking images of road signs under various conditions, such
+on the sensing hardware.                                          as changing distances, angles, and lightning. This approach
+Fabrication Error. To fabricate the computed perturbation,        aims to approximate physical world dynamics more closely.
+all perturbation values must be valid colors that can be repro-   For synthetic variations, we randomly crop the object within
+duced in the real world. Furthermore, even if a fabrication       the image, change the brightness, and add spatial transfor-
+device, such as a printer, can produce certain colors, there      mations to simulate other possible conditions.
+will be some reproduction error [32].                                  To ensure that the perturbations are only applied to the
+    In order to successfully physically attack deep learning      surface area of the target object o (considering the spatial
+classifiers, an attacker should account for the above cate-          2 For untargeted attacks, we can modify the objective function to max-
+gories of physical world variations that can reduce the effec-    imize the distance between the model prediction and the true class. We
+tiveness of perturbations.                                        focus on targeted attacks in the rest of the paper.
+constraints and physical limits on imperceptibility), we in-        variety of viewpoints.3
+troduce a mask. This mask serves to project the computed
+perturbations to a physical region on the surface of the object     4. Experiments
+(i.e. road sign). In addition to providing spatial locality, the
+mask also helps generate perturbations that are visible but            In this section, we will empirically evaluate the proposed
+inconspicuous to human observers. To do this, an attacker           RP2 . We first evaluate a safety sensitive example, Stop sign
+can shape the mask to look like graffiti—commonplace van-           recognition, to demonstrate the robustness of the proposed
+dalism on the street that most humans expect and ignore,            physical perturbation. To demonstrate the generality of our
+therefore hiding the perturbations “in the human psyche.”           approach, we then attack Inception-v3 to misclassify a mi-
+Formally, the perturbation mask is a matrix Mx whose di-            crowave as a phone.
+mensions are the same as the size of input to the road sign
+classifier. Mx contains zeroes in regions where no perturba-        4.1. Dataset and Classifiers
+tion is added, and ones in regions where the perturbation is            We built two classifiers based on a standard crop-resize-
+added during optimization.                                          then-classify pipeline for road sign classification as described
+    In the course of our experiments, we empirically observed       in [28, 31]. Our LISA-CNN uses LISA, a U.S. traffic sign
+that the position of the mask has an impact on the effective-       dataset containing 47 different road signs [21]. However, the
+ness of an attack. We therefore hypothesize that objects            dataset is not well-balanced, resulting is large disparities in
+have strong and weak physical features from a classification        representation for different signs. To alleviate this problem,
+perspective, and we position masks to attack the weak areas.        we chose the 17 most common signs based on the number
+Specifically, we use the following pipeline to discover mask        of training examples. LISA-CNN’s architecture is defined
+positions: (1) Compute perturbations using the L1 regular-          in the Cleverhans library [26] and consists of three convolu-
+ization and with a mask that occupies the entire surface area       tional layers and an FC layer. It has an accuracy of 91% on
+of the sign. L1 makes the optimizer favor a sparse pertur-          the test set.
+bation vector, therefore concentrating the perturbations on
+                                                                        Our second classifier is GTSRB-CNN, that is trained
+regions that are most vulnerable. Visualizing the resulting
+                                                                    on the German Traffic Sign Recognition Benchmark (GT-
+perturbation provides guidance on mask placement. (2) Re-
+                                                                    SRB) [33]. We use a publicly available implementation [39]
+compute perturbations using L2 with a mask positioned on
+                                                                    of a multi-scale CNN architecture that has been known to
+the vulnerable regions identified from the earlier step.
+                                                                    perform well on road sign recognition [31]. Because we did
+    To account for fabrication error, we add an additional          not have access to German Stop signs for our physical exper-
+term to our objective function that models printer color repro-     iments, we replaced the German Stop signs in the training,
+duction errors. This term is based upon the Non-Printability        validation, and test sets of GTSRB with the U.S. Stop sign
+Score (NPS) by Sharif et al. [32]. Given a set of printable         images in LISA. GTSRB-CNN achieves 95.7% accuracy on
+colors (RGB triples) P and a set R(δ) of (unique) RGB               the test set. When evaluating GTSRB-CNN on our own 181
+triples used in the perturbation that need to be printed out in     stop sign images, it achieves 99.4% accuracy.
+physical world, the non-printability score is given by:
+                            X     Y                                 4.2. Experimental Design
+                 NPS =                    |p̂ − p0 |         (2)
+                          p̂∈R(δ) p0 ∈P                                To the best of our knowledge, there is currently no stan-
+                                                                    dardized methodology of evaluating physical adversarial
+   Based on the above discussion, our final robust spatially-       perturbations. Based on our discussion from Section 3.1,
+constrained perturbation is thus optimized as:                      we focus on angles and distances because they are the most
+                                                                    rapidly changing elements for our use case. A camera in
+         argmin λ||Mx · δ||p + NPS                                  a vehicle approaching a sign will take a series of images
+             δ                                               (3)    at regular intervals. These images will be taken at differ-
+             + Exi ∼X V J(fθ (xi + Ti (Mx · δ)), y ∗ )              ent angles and distances, therefore changing the amount of
+                                                                    detail present in any given image. Any successful physi-
+Here we use function Ti (·) to denote the alignment function
+                                                                    cal perturbation must cause targeted misclassification in a
+that maps transformations on the object to transformations on
+                                                                    range of distances and angles because a vehicle will likely
+the perturbation (e.g. if the object is rotated, the perturbation
+                                                                    perform voting on a set of frames (images) from a video
+is rotated as well).
+                                                                    before issuing a controller action. Our current experiments
+    Finally, an attacker will print out the optimization result     do not explicitly control ambient light, and as is evident from
+on paper, cut out the perturbation (Mx ), and put it onto the
+target object o. As our experiments demonstrate in the next            3 For our attacks, we use the ADAM optimizer with the following pa-
+
+section, this kind of perturbation fools the classifier in a        rameters: β1 = 0.9, β2 = 0.999,  = 10−8 , η ∈ [10−4 , 100 ]
+experimental data (Section 4), lighting varied from indoor                  would classify every j-th frame, and then perform simple
+lighting to outdoor lighting.                                               majority voting. Hence, an open question is to determine
+   Drawing on standard practice in the physical sciences, our               whether the choice of frame (j) affects attack accuracy. In
+experimental design encapsulates the above physical factors                 our experiments, we use j = 10. We also tried j = 15 and
+into a two-stage evaluation consisting of controlled lab tests              did not observe any significant change in the attack success
+and field tests.                                                            rates. If both types of tests produce high success rates, the
+Stationary (Lab) Tests. This involves classifying images                    attack is likely to be successful in commonly experienced
+of objects from stationary, fixed positions.                                physical conditions for cars.
+
+  1. Obtain a set of clean images C and a set of adversar-                  4.3. Results for LISA-CNN
+     ially perturbed images ({A (c)}, ∀c ∈ C) at varying
+     distances d ∈ D, and varying angles g ∈ G. We use                          We evaluate the effectiveness of our algorithm by gen-
+     cd,g here to denote the image taken from distance d and                erating three types of adversarial examples on LISA-CNN
+     angle g. The camera’s vertical elevation should be kept                (91% accuracy on test-set). For all types, we observe high
+     approximately constant. Changes in the camera angle                    attack success rates with high confidence. Table 1 summa-
+     relative the the sign will normally occur when the car                 rizes a sampling of stationary attack images. In all testing
+     is turning, changing lanes, or following a curved road.                conditions, our baseline of unperturbed road signs achieves
+                                                                            a 100% classification rate into the true class.
+  2. Compute the attack success rate of the physical pertur-                Object-Constrained Poster-Printing Attacks. This in-
+     bation using the following formula:                                    volves reproducing the attack of Kurakin et al. [13]. The
+                                                                            crucial difference is that in our attack, the perturbations
+             1{fθ (A(cd,g ))=y∗ ∧fθ (cd,g )=y}
+         P
+        c∈C
+                                                                            are confined to the surface area of the sign excluding the
+                              1{fθ (cd,g )=y}           (4)                 background, and are robust against large angle and distance
+                    P
+                       c∈C                                                  variations. The Stop sign is misclassified into the attack’s
+                                                                            target class of Speed Limit 45 in 100% of the images taken
+      where d and g denote the camera distance and angle for                according to our evaluation methodology. The average con-
+      the image, y is the ground truth, and y ∗ is the targeted             fidence of predicting the manipulated sign as the target class
+      attacking class.4                                                     is 80.51% (second column of Table 2).
+                                                                                For the Right Turn warning sign, we choose a mask that
+    Note that an image A (c) that causes misclassification is               covers only the arrow since we intend to generate subtle
+considered as a successful attack only if the original image                perturbations. In order to achieve this goal, we increase the
+c with the same camera distance and angle is correctly clas-                regularization parameter λ in equation (3) to demonstrate
+sified, which ensures that the misclassification is caused by               small magnitude perturbations. Table 4 summarizes our at-
+the added perturbation instead of other factors.                            tack results—we achieve a 73.33% targeted-attack success
+Drive-By (Field) Tests. We place a camera on a moving                       rate (Table 1). Out of 15 distance/angle configurations, four
+platform, and obtain data at realistic driving speeds. For our              instances were not classified into the target. However, they
+experiments, we use a smartphone camera mounted on a car.                   were still misclassified into other classes that were not the
+                                                                            true label (Yield, Added Lane). Three of these four instances
+  1. Begin recording video at approximately 250 ft away
+                                                                            were an Added Lane sign—a different type of warning. We
+     from the sign. Our driving track was straight without
+                                                                            hypothesize that given the similar appearance of warning
+     curves. Drive toward the sign at normal driving speeds
+                                                                            signs, small perturbations are sufficient to confuse the classi-
+     and stop recording once the vehicle passes the sign. In
+                                                                            fier.
+     our experiments, our speed varied between 0 mph and
+                                                                            Sticker Attacks. Next, we demonstrate how effective it is
+     20 mph. This simulates a human driver approaching a
+                                                                            to generate physical perturbations in the form of stickers, by
+     sign in a large city.
+                                                                            constraining the modifications to a region resembling graffiti
+  2. Perform video recording as above for a “clean” sign and                or art. The fourth and fifth columns of Table 1 show a sample
+     for a sign with perturbations applied, and then apply                  of images, and Table 2 (columns 4 and 6) shows detailed
+     similar formula as Eq. 4 to calculate the attack success               success rates with confidences. In the stationary setting, we
+     rate, where C here represents the sampled frames.                      achieve a 66.67% targeted-attack success rate for the graffiti
+                                                                            sticker attack and a 100% targeted-attack success rate for the
+   An autonomous vehicle will likely not run classification                 sticker camouflage art attack. Some region mismatches may
+on every frame due to performance constraints, but rather,                  lead to the lower performance of the LOVE-HATE graffiti.
+    4 For untargeted adversarial perturbations, change f (ed,g ) = y ∗ to
+                                                        θ
+                                                                            Drive-By Testing. Per our evaluation methodology, we con-
+fθ (ed,g ) 6= y.                                                            duct drive-by testing for the perturbation of a Stop sign. In
+                 Table 1: Sample of physical adversarial examples against LISA-CNN and GTSRB-CNN.
+
+                                                          Subtle Poster     Camouflage          Camouflage Art   Camouflage Art
+             Distance/Angle          Subtle Poster
+                                                           Right Turn         Graffiti           (LISA-CNN)      (GTSRB-CNN)
+
+
+                  5’ 0◦
+
+
+
+
+                 5’ 15◦
+
+
+
+
+                 10’ 0◦
+
+
+
+
+                 10’ 30◦
+
+
+
+
+                 40’ 0◦
+
+
+         Targeted-Attack Success         100%               73.33%               66.67%             100%              80%
+
+Table 2: Targeted physical perturbation experiment results on LISA-CNN using a poster-printed Stop sign (subtle attacks) and
+a real Stop sign (camouflage graffiti attacks, camouflage art attacks). For each image, the top two labels and their associated
+confidence values are shown. The misclassification target was Speed Limit 45. See Table 1 for example images of each attack.
+Legend: SL45 = Speed Limit 45, STP = Stop, YLD = Yield, ADL = Added Lane, SA = Signal Ahead, LE = Lane Ends.
+
+             Distance & Angle           Poster-Printing                                     Sticker
+                                            Subtle                    Camouflage–Graffiti               Camouflage–Art
+                       ◦
+                  5’ 0             SL45 (0.86)   ADL (0.03)        STP (0.40)      SL45 (0.27)     SL45 (0.64)    LE (0.11)
+                  5’ 15◦           SL45 (0.86)   ADL (0.02)        STP (0.40)      YLD (0.26)      SL45 (0.39)    STP (0.30)
+                  5’ 30◦           SL45 (0.57)   STP (0.18)        SL45 (0.25)     SA (0.18)       SL45 (0.43)    STP (0.29)
+                  5’ 45◦           SL45 (0.80)   STP (0.09)        YLD (0.21)      STP (0.20)      SL45 (0.37)    STP (0.31)
+                  5’ 60◦           SL45 (0.61)   STP (0.19)        STP (0.39)      YLD (0.19)      SL45 (0.53)    STP (0.16)
+                  10’ 0◦           SL45 (0.86)   ADL (0.02)        SL45 (0.48)     STP (0.23)      SL45 (0.77)    LE (0.04)
+                 10’ 15◦           SL45 (0.90)   STP (0.02)        SL45 (0.58)     STP (0.21)      SL45 (0.71)    STP (0.08)
+                 10’ 30◦           SL45 (0.93)   STP (0.01)        STP (0.34)      SL45 (0.26)     SL45 (0.47)    STP (0.30)
+                  15’ 0◦           SL45 (0.81)   LE (0.05)         SL45 (0.54)     STP (0.22)      SL45 (0.79)    STP (0.05)
+                 15’ 15◦           SL45 (0.92)   ADL (0.01)        SL45 (0.67)     STP (0.15)      SL45 (0.79)    STP (0.06)
+                  20’ 0◦           SL45 (0.83)   ADL (0.03)        SL45 (0.62)     STP (0.18)      SL45 (0.68)    STP (0.12)
+                 20’ 15◦           SL45 (0.88)   STP (0.02)        SL45 (0.70)     STP (0.08)      SL45 (0.67)    STP (0.11)
+                  25’ 0◦           SL45 (0.76)   STP (0.04)        SL45 (0.58)     STP (0.17)      SL45 (0.67)    STP (0.08)
+                  30’ 0◦           SL45 (0.71)   STP (0.07)        SL45 (0.60)     STP (0.19)      SL45 (0.76)    STP (0.10)
+                  40’ 0◦           SL45 (0.78)   LE (0.04)         SL45 (0.54)     STP (0.21)      SL45 (0.68)    STP (0.14)
+Table 3: Drive-by testing summary for LISA-CNN. In our baseline test, all frames were correctly classified as a Stop sign. In
+all attack cases, the perturbations are the same as in Table 2. We have added the yellow boxes as a visual guide manually.
+
+      Perturbation          Attack Success                            A Subset of Sampled Frames k = 10
+
+
+
+
+      Subtle poster             100%
+
+
+
+
+ Camouflage abstract art        84.8%
+
+
+
+Table 4: Poster-printed perturbation (faded arrow) attack             Table 5: A camouflage art attack on GTSRB-CNN. See
+against the LISA-CNN for a Right Turn sign at varying                 example images in Table 1. The targeted-attack success rate
+distances and angles. See example images in Table 1 of the            is 80% (true class label: Stop, target: Speed Limit 80).
+main text. Our targeted-attack success rate is 73.33%.
+                                                                       Distance & Angle   Top Class (Confid.)     Second Class (Confid.)
+ Distance & Angle     Top Class (Confid.)    Second Class (Confid.)          5’ 0◦        Speed Limit 80 (0.88)   Speed Limit 70 (0.07)
+          ◦
+       5’ 0           Stop (0.39)            Speed Limit 45 (0.10)          5’ 15◦        Speed Limit 80 (0.94)   Stop (0.03)
+                                                                            5’ 30◦        Speed Limit 80 (0.86)   Keep Right (0.03)
+      5’ 15◦          Yield (0.20)           Stop (0.18)
+                                                                            5’ 45◦        Keep Right (0.82)       Speed Limit 80 (0.12)
+      5’ 30◦          Stop (0.13)            Yield (0.13)
+                                                                            5’ 60◦        Speed Limit 80 (0.55)   Stop (0.31)
+      5’ 45◦          Stop (0.25)            Yield (0.18)
+      5’ 60◦          Added Lane (0.15)      Stop (0.13)                   10’ 0◦         Speed Limit 80 (0.98)   Speed Limit 100 (0.006)
+           ◦
+                                                                           10’ 15◦        Stop (0.75)             Speed Limit 80 (0.20)
+      10’ 0           Stop (0.29)            Added Lane (0.16)             10’ 30◦        Speed Limit 80 (0.77)   Speed Limit 100 (0.11)
+      10’ 15◦         Stop (0.43)            Added Lane (0.09)
+      10’ 30◦         Added Lane (0.19)      Speed limit 45 (0.16)         15’ 0◦         Speed Limit 80 (0.98)   Speed Limit 100 (0.01)
+                                                                           15’ 15◦        Stop (0.90)             Speed Limit 80 (0.06)
+           ◦
+      15’ 0           Stop (0.33)            Added Lane (0.19)
+                                                                           20’ 0◦         Speed Limit 80 (0.95)   Speed Limit 100 (0.03)
+      15’ 15◦         Stop (0.52)            Right Turn (0.08)
+                                                                           20’ 15◦        Speed Limit 80 (0.97)   Speed Limit 100 (0.01)
+      20’ 0◦          Stop (0.39)            Added Lane (0.15)
+                                                                            25’ 0◦        Speed Limit 80 (0.99)   Speed Limit 70 (0.0008)
+      20’ 15◦         Stop (0.38)            Right Turn (0.11)              30’ 0◦        Speed Limit 80 (0.99)   Speed Limit 100 (0.002)
+      25’ 0◦          Stop (0.23)            Added Lane (0.12)              40’ 0◦        Speed Limit 80 (0.99)   Speed Limit 100 (0.002)
+      30’ 0◦          Stop (0.23)            Added Lane (0.15)
+      40’ 0◦          Added Lane (0.18)      Stop (0.16)
+                                                                      attacks, we create similar abstract art sticker perturbations.
+                                                                      The last column of Table 1 shows a subset of experimental
+our baseline test we record two consecutive videos of a clean         images. Table 5 summarizes our attack results—our attack
+Stop sign from a moving vehicle, perform frame grabs at               fools the classifier into believing that a Stop sign is a Speed
+k = 10, and crop the sign. We observe that the Stop sign              Limit 80 sign in 80% of the stationary testing conditions.
+is correctly classified in all frames. We similarly test subtle       Per our evaluation methodology, we also conduct a drive-by
+and abstract art perturbations for LISA-CNN using k = 10.             test (k = 10, two consecutive video recordings). The attack
+Our attack achieves a targeted-attack success rate of 100%            fools the classifier 87.5% of the time.
+for the subtle poster attack, and a targeted-attack success rate
+of 84.8% for the camouflage abstract art attack. See Table 3          4.5. Results for Inception-v3
+for sample frames from the drive-by video.
+                                                                         To demonstrate generality of RP2 , we computed physical
+                                                                      perturbations for the standard Inception-v3 classifier [12, 34]
+4.4. Results for GTSRB-CNN
+                                                                      using two different objects, a microwave and a coffee mug.
+   To show the versatility of our attack algorithms, we create        We chose a sticker attack since poster printing an entirely
+and test attacks for GTSRB-CNN (95.7% accuracy on test-               new surface for the objects may raise suspicions. Note that
+set). Based on our high success rates with the camouflage-art         for both attacks, we have reduced the range of distances
+Table 6: Sticker perturbation attack on the Inception-v3           Table 8: Uncropped images of the microwave with an adver-
+classifier. The original classification is microwave and the       sarial sticker designed for Inception-v3.
+attacker’s target is phone. See example images in Table 8.
+Our targeted-attack success rate is 90%                             Distance/Angle    Image        Distance/Angle      Image
+
+
+ Distance & Angle   Top Class (Confid.)   Second Class (Confid.)        2’0◦                           2’15◦
+      2’ 0◦         Phone (0.78)          Microwave (0.03)
+     2’ 15◦         Phone (0.60)          Microwave (0.11)
+      5’ 0◦         Phone (0.71)          Microwave (0.07)
+     5’ 15◦         Phone (0.53)          Microwave (0.25)
+                                                                        5’0◦                           5’15◦
+      7’ 0◦         Phone (0.47)          Microwave (0.26)
+     7’ 15◦         Phone (0.59)          Microwave (0.18)
+     10’ 0◦         Phone (0.70)          Microwave (0.09)
+     10’ 15◦        Phone (0.43)          Microwave (0.28)
+     15’ 0◦         Microwave (0.36)      Phone (0.20)                  7’0◦                           7’15◦
+     20’ 0◦         Phone (0.31)          Microwave (0.10)
+
+
+Table 7: Sticker perturbation attack on the Inception-v3
+classifier. The original classification is coffee mug and the           10’0◦                         10’15◦
+attacker’s target is cash machine. See example images in
+Table 9. Our targeted-attack success rate is 71.4%.
+
+ Distance & Angle   Top Class (Confid.)   Second Class (Confid.)        15’0◦                          20’0◦
+
+      8” 0◦         Cash Machine (0.53)   Pitcher (0.33)
+      8” 15◦        Cash Machine (0.94)   Vase (0.04)
+      12” 0◦        Cash Machine (0.66)   Pitcher (0.25)
+     12” 15◦        Cash Machine (0.99)   Vase (<0.01)
+      16” 0◦        Cash Machine (0.62)   Pitcher (0.28)
+     16” 15◦        Cash Machine (0.94)   Vase (0.01)              strongest attacker model and better inform future defenses.
+      20” 0◦        Cash Machine (0.84)   Pitcher (0.09)           Evaluating RP2 in a black-box setting is an open question.
+     20” 15◦        Cash Machine (0.42)   Pitcher (0.38)           Image Cropping and Attacking Detectors. When evaluat-
+      24” 0◦        Cash Machine (0.70)   Pitcher (0.20)           ing RP2 , we manually controlled the cropping of each image
+     24” 15◦        Pitcher (0.38)        Water Jug (0.18)
+      28” 0◦        Pitcher (0.59)        Cash Machine (0.09)
+                                                                   every time before classification. This was done so the adver-
+     28” 15◦        Cash Machine (0.23)   Pitcher (0.20)           sarial images would match the clean sign images provided
+      32” 0◦        Pitcher (0.50)        Cash Machine (0.15)      to RP2 . Later, we evaluated the camouflage art attack using
+     32” 15◦        Pitcher (0.27)        Mug (0.14)               a pseudo-random crop with the guarantee that at least most
+                                                                   of the sign was in the image. Against LISA-CNN, we ob-
+                                                                   served an average targeted attack rate of 70% and untargeted
+used due to the smaller size of the cup and microwave com-         attack rate of 90%. Against GTSRB-CNN, we observed an
+pared to a road sign (e.g. Coffee Mug height- 11.2cm, Mi-          average targeted attack rate of 60% and untargeted attack
+crowave height- 24cm, Right Turn sign height- 45cm, Stop           rate of 100%. We include the untargeted attack success rates
+Sign- 76cm). Table 6 summarizes our attack results on the          because causing the classifier to not output the correct traffic
+microwave and Table 7 summarizes our attack results on the         sign label is still a safety risk. Although image cropping has
+coffee mug. For the microwave, the targeted attack success         some effect on the targeted attack success rate, our recent
+rate is 90%. For the coffee mug, the targeted attack success       work shows that an improved version of RP2 can successfully
+rate is 71.4% and the untargeted success rate is 100%. Ex-         attack object detectors, where cropping is not needed [7].
+ample images of the adversarials stickers for the microwave
+and cup can be seen in Tables 8 and 9.                             6. Conclusion
+5. Discussion                                                         We introduced an algorithm (RP2 ) that generates robust,
+                                                                   physically realizable adversarial perturbations. Using RP2 ,
+Black-Box Attacks. Given access to the target classifier’s         and a two-stage experimental design consisting of lab and
+network architecture and model weights, RP2 can generate a         drive-by tests, we contribute to understanding the space of
+variety of robust physical perturbations that fool the classi-     physical adversarial examples when the objects themselves
+fier. Through studying a white-box attack like RP2 , we can        are physically perturbed. We target road-sign classification
+analyze the requirements for a successful attack using the         because of its importance in safety, and the naturally noisy
+Table 9: Cropped Images of the coffee mug with an adver-             [3] B. Biggio, I. Corona, D. Maiorca, B. Nelson, N. Šrndić,
+sarial sticker designed for Inception-v3.                                P. Laskov, G. Giacinto, and F. Roli. Evasion attacks against
+                                                                         machine learning at test time. In Joint European Confer-
+ Distance/Angle    Image        Distance/Angle      Image                ence on Machine Learning and Knowledge Discovery in
+                                                                         Databases, pages 387–402. Springer, 2013.
+                                                                     [4] H. Bou-Ammar, H. Voos, and W. Ertel. Controller design
+     8”0◦                           8”15◦
+                                                                         for quadrotor uavs using reinforcement learning. In Control
+                                                                         Applications (CCA), 2010 IEEE International Conference on,
+                                                                         pages 2130–2135. IEEE, 2010.
+                                                                     [5] N. Carlini and D. Wagner. Towards evaluating the robustness
+     12”0◦                         12”15◦                                of neural networks. In Security and Privacy (SP), 2017 IEEE
+                                                                         Symposium on, pages 39–57. IEEE, 2017.
+                                                                     [6] M. Cisse, Y. Adi, N. Neverova, and J. Keshet. Houdini:
+                                                                         Fooling deep structured prediction models. arXiv preprint
+     16”0◦                         16”15◦                                arXiv:1707.05373, 2017.
+                                                                     [7] K. Eykholt, I. Evtimov, E. Fernandes, B. Li, D. Song,
+                                                                         T. Kohno, A. Rahmati, A. Prakash, and F. Tramer. Note on
+                                                                         Attacking Object Detectors with Adversarial Stickers. Dec.
+     20”0◦                         20”15◦                                2017.
+                                                                     [8] A. Geiger, P. Lenz, and R. Urtasun. Are we ready for au-
+                                                                         tonomous driving? the kitti vision benchmark suite. In Com-
+                                                                         puter Vision and Pattern Recognition (CVPR), 2012 IEEE
+                                                                         Conference on, pages 3354–3361. IEEE, 2012.
+     24”0◦                         24”15◦
+                                                                     [9] I. J. Goodfellow, J. Shlens, and C. Szegedy. Explain-
+                                                                         ing and harnessing adversarial examples. arXiv preprint
+                                                                         arXiv:1412.6572, 2014.
+                                                                    [10] J. Kos, I. Fischer, and D. Song. Adversarial examples for
+     28”0◦                         28”15◦
+                                                                         generative models. arXiv preprint arXiv:1702.06832, 2017.
+                                                                    [11] A. Krizhevsky, I. Sutskever, and G. E. Hinton. Imagenet
+                                                                         classification with deep convolutional neural networks. In
+                                                                         Advances in neural information processing systems, pages
+     32”0◦                         32”15◦                                1097–1105, 2012.
+                                                                    [12] A. Krizhevsky, I. Sutskever, and G. E. Hinton. Imagenet
+                                                                         classification with deep convolutional neural networks. In
+                                                                         Advances in Neural Information Processing Systems 25, pages
+                                                                         1097–1105. Curran Associates, Inc., 2012.
+                                                                    [13] A. Kurakin, I. Goodfellow, and S. Bengio. Adversarial exam-
+environment of road signs. Our work shows that it is possible            ples in the physical world. arXiv preprint arXiv:1607.02533,
+to generate physical adversarial examples robust to widely               2016.
+varying distances/angles. This implies that future defenses         [14] Q. V. Le, W. Y. Zou, S. Y. Yeung, and A. Y. Ng. Learn-
+should not rely on physical sources of noise as protection               ing hierarchical invariant spatio-temporal features for action
+against physical adversarial examples.                                   recognition with independent subspace analysis. In Proceed-
+Acknowledgements. We thank the reviewers for their in-                   ings of the 2011 IEEE Conference on Computer Vision and
+sightful feedback. This work was supported in part by NSF                Pattern Recognition, CVPR ’11, pages 3361–3368, Washing-
+grants 1422211, 1616575, 1646392, 1740897, 1565252,                      ton, DC, USA, 2011. IEEE Computer Society.
+Berkeley Deep Drive, the Center for Long-Term Cyberse-              [15] B. Li and Y. Vorobeychik. Feature cross-substitution in ad-
+                                                                         versarial classification. In Advances in Neural Information
+curity, FORCES (which receives support from the NSF),
+                                                                         Processing Systems, pages 2087–2095, 2014.
+the Hewlett Foundation, the MacArthur Foundation, a UM-
+                                                                    [16] B. Li and Y. Vorobeychik. Scalable optimization of random-
+SJTU grant, and the UW Tech Policy Lab.                                  ized operational decisions in adversarial classification settings.
+                                                                         In AISTATS, 2015.
+References                                                          [17] T. P. Lillicrap, J. J. Hunt, A. Pritzel, N. Heess, T. Erez,
+                                                                         Y. Tassa, D. Silver, and D. Wierstra. Continuous con-
+ [1] A. Athalye. Robust adversarial examples. https://blog.              trol with deep reinforcement learning. arXiv preprint
+     openai.com/robust-adversarial-inputs/,                              arXiv:1509.02971, 2015.
+     2017.                                                          [18] Y. Liu, X. Chen, C. Liu, and D. Song. Delving into trans-
+ [2] A. Athalye and I. Sutskever. Synthesizing robust adversarial        ferable adversarial examples and black-box attacks. arXiv
+     examples. arXiv preprint arXiv:1707.07397, 2017.                    preprint arXiv:1611.02770, 2016.
+[19] J. Lu, H. Sibai, E. Fabry, and D. Forsyth. No need to worry        [34] C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens, and Z. Wojna.
+     about adversarial examples in object detection in autonomous            Rethinking the inception architecture for computer vision.
+     vehicles. arXiv preprint arXiv:1707.03501, 2017.                        CoRR, 2015.
+[20] J. H. Metzen, M. C. Kumar, T. Brox, and V. Fischer. Universal      [35] C. Szegedy, W. Zaremba, I. Sutskever, J. Bruna, D. Erhan,
+     adversarial perturbations against semantic image segmenta-              I. Goodfellow, and R. Fergus. Intriguing properties of neural
+     tion. arXiv preprint arXiv:1704.05712, 2017.                            networks. In International Conference on Learning Repre-
+[21] A. Mogelmose, M. M. Trivedi, and T. B. Moeslund. Vision-                sentations, 2014.
+     based traffic sign detection and analysis for intelligent driver   [36] Y. Taigman, M. Yang, M. Ranzato, and L. Wolf. Deepface:
+     assistance systems: Perspectives and survey. Trans. Intell.             Closing the gap to human-level performance in face verifica-
+     Transport. Sys., 13(4):1484–1497, Dec. 2012.                            tion. In Proceedings of the IEEE Conference on Computer
+[22] S. Moosavi-Dezfooli, A. Fawzi, O. Fawzi, and P. Frossard.               Vision and Pattern Recognition, pages 1701–1708, 2014.
+     Universal adversarial perturbations. CoRR, abs/1610.08401,         [37] F. Tramèr, F. Zhang, A. Juels, M. K. Reiter, and T. Ristenpart.
+     2016.                                                                   Stealing machine learning models via prediction apis. In
+[23] S.-M. Moosavi-Dezfooli, A. Fawzi, and P. Frossard. Deepfool:            USENIX Security, 2016.
+     a simple and accurate method to fool deep neural networks.         [38] C. Xie, J. Wang, Z. Zhang, Y. Zhou, L. Xie, and A. Yuille.
+     arXiv preprint arXiv:1511.04599, 2015.                                  Adversarial examples for semantic segmentation and object
+[24] C. Mostegel, M. Rumpler, F. Fraundorfer, and H. Bischof.                detection. arXiv preprint arXiv:1703.08603, 2017.
+     Uav-based autonomous image acquisition with multi-view             [39] V. Yadav. p2-trafficsigns. https://github.com/
+     stereo quality assurance by confidence prediction. In Proceed-          vxy10/p2-TrafficSigns, 2016.
+     ings of the IEEE Conference on Computer Vision and Pattern         [40] F. Zhang, J. Leitner, M. Milford, B. Upcroft, and P. Corke.
+     Recognition Workshops, pages 1–10, 2016.                                Towards vision-based deep reinforcement learning for robotic
+[25] A. Nguyen, J. Yosinski, and J. Clune. Deep neural networks              motion control. arXiv preprint arXiv:1511.03791, 2015.
+     are easily fooled: High confidence predictions for unrecog-
+     nizable images. In Proceedings of the IEEE Conference on
+     Computer Vision and Pattern Recognition, pages 427–436,
+     2015.
+[26] N. Papernot, I. Goodfellow, R. Sheatsley, R. Feinman, and
+     P. McDaniel. cleverhans v1.0.0: an adversarial machine
+     learning library. arXiv preprint arXiv:1610.00768, 2016.
+[27] N. Papernot, P. McDaniel, and I. Goodfellow. Transferability
+     in machine learning: from phenomena to black-box attacks
+     using adversarial samples. arXiv preprint arXiv:1605.07277,
+     2016.
+[28] N. Papernot, P. McDaniel, I. Goodfellow, S. Jha, Z. B. Celik,
+     and A. Swami. Practical black-box attacks against machine
+     learning. In Proceedings of the 2017 ACM on Asia Conference
+     on Computer and Communications Security, pages 506–519.
+     ACM, 2017.
+[29] N. Papernot, P. McDaniel, S. Jha, M. Fredrikson, Z. B. Celik,
+     and A. Swami. The limitations of deep learning in adversarial
+     settings. In Security and Privacy (EuroS&P), 2016 IEEE
+     European Symposium on, pages 372–387. IEEE, 2016.
+[30] S. Sabour, Y. Cao, F. Faghri, and D. J. Fleet. Adversar-
+     ial manipulation of deep representations. arXiv preprint
+     arXiv:1511.05122, 2015.
+[31] P. Sermanet and Y. LeCun. Traffic sign recognition with multi-
+     scale convolutional networks. In Neural Networks (IJCNN),
+     The 2011 International Joint Conference on, pages 2809–
+     2813. IEEE, 2011.
+[32] M. Sharif, S. Bhagavatula, L. Bauer, and M. K. Reiter. Ac-
+     cessorize to a crime: Real and stealthy attacks on state-of-
+     the-art face recognition. In Proceedings of the 2016 ACM
+     SIGSAC Conference on Computer and Communications Se-
+     curity, pages 1528–1540. ACM, 2016.
+[33] J. Stallkamp, M. Schlipsing, J. Salmen, and C. Igel. Man vs.
+     computer: Benchmarking machine learning algorithms for
+     traffic sign recognition. Neural Networks, 2012.
+

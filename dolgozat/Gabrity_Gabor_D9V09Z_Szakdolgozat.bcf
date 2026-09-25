@@ -2391,8 +2391,14 @@
     <bcf:citekey order="16" intorder="1">szegedy2014intriguing</bcf:citekey>
     <bcf:citekey order="17" intorder="1">goodfellow2015explaining</bcf:citekey>
     <bcf:citekey order="18" intorder="1">nist2025aml</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">fowler2012testpyramid</bcf:citekey>
-    <bcf:citekey order="20" intorder="1" nocite="1">dziugaite2016jpeg</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">moosavidezfooli2017universal</bcf:citekey>
+    <bcf:citekey order="20" intorder="1">sharif2016accessorize</bcf:citekey>
+    <bcf:citekey order="21" intorder="1">eykholt2018robust</bcf:citekey>
+    <bcf:citekey order="22" intorder="1">chen2018shapeshifter</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">dziugaite2016jpeg</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">dziugaite2016jpeg</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">fowler2012testpyramid</bcf:citekey>
+    <bcf:citekey order="26" intorder="1">dziugaite2016jpeg</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

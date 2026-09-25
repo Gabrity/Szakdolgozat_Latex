@@ -215,34 +215,197 @@
       \verb https://doi.org/10.6028/NIST.AI.100-2e2025
       \endverb
     \endentry
-    \entry{fowler2012testpyramid}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=312ac886938a9b2be4f8eb607567fe4c}{%
-           family={Fowler},
+    \entry{moosavidezfooli2017universal}{misc}{}{}
+      \name{author}{4}{}{%
+        {{hash=b2a80319cbff4700e4d19ca2cd795eaf}{%
+           family={Moosavi-Dezfooli},
+           familyi={M\bibinithyphendelim D\bibinitperiod},
+           given={Seyed-Mohsen},
+           giveni={S\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=8d0a51ac9b8292a50431f9ee0b663937}{%
+           family={Fawzi},
            familyi={F\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod}}}%
+           given={Alhussein},
+           giveni={A\bibinitperiod}}}%
+        {{hash=55f394b61ad2322e8304d2c41d5e38aa}{%
+           family={Fawzi},
+           familyi={F\bibinitperiod},
+           given={Omar},
+           giveni={O\bibinitperiod}}}%
+        {{hash=e3ffdb452de6d0eeff420ceb94f14446}{%
+           family={Frossard},
+           familyi={F\bibinitperiod},
+           given={Pascal},
+           giveni={P\bibinitperiod}}}%
       }
-      \strng{namehash}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{fullhash}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{fullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{bibnamehash}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{authorbibnamehash}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{authornamehash}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{authorfullhash}{312ac886938a9b2be4f8eb607567fe4c}
-      \strng{authorfullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{namehash}{b4fd72231bc6a5341283b8803d1bcdb2}
+      \strng{fullhash}{b4fd72231bc6a5341283b8803d1bcdb2}
+      \strng{fullhashraw}{b4fd72231bc6a5341283b8803d1bcdb2}
+      \strng{bibnamehash}{b4fd72231bc6a5341283b8803d1bcdb2}
+      \strng{authorbibnamehash}{b4fd72231bc6a5341283b8803d1bcdb2}
+      \strng{authornamehash}{b4fd72231bc6a5341283b8803d1bcdb2}
+      \strng{authorfullhash}{b4fd72231bc6a5341283b8803d1bcdb2}
+      \strng{authorfullhashraw}{b4fd72231bc6a5341283b8803d1bcdb2}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{martinfowler.com}
-      \field{title}{TestPyramid}
-      \field{year}{2012}
-      \verb{urlraw}
-      \verb https://martinfowler.com/bliki/TestPyramid.html
+      \field{eprinttype}{arXiv}
+      \field{title}{Universal adversarial perturbations}
+      \field{year}{2017}
+      \verb{eprint}
+      \verb 1610.08401
       \endverb
-      \verb{url}
-      \verb https://martinfowler.com/bliki/TestPyramid.html
+    \endentry
+    \entry{sharif2016accessorize}{misc}{}{}
+      \name{author}{4}{}{%
+        {{hash=cce1efa146609d8b583e2e8c007c1d34}{%
+           family={Sharif},
+           familyi={S\bibinitperiod},
+           given={Mahmood},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3672a7521fbf472d336271b41adce31a}{%
+           family={Bhagavatula},
+           familyi={B\bibinitperiod},
+           given={Sruti},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0fddc2a59cf81f3ad0ba2cfde598ee2a}{%
+           family={Bauer},
+           familyi={B\bibinitperiod},
+           given={Lujo},
+           giveni={L\bibinitperiod}}}%
+        {{hash=278f8fdde9d1c6899936576e4fad26c6}{%
+           family={Reiter},
+           familyi={R\bibinitperiod},
+           given={Michael\bibnamedelima K.},
+           giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{398609b2c773d2c8a82ac6152190f549}
+      \strng{fullhash}{398609b2c773d2c8a82ac6152190f549}
+      \strng{fullhashraw}{398609b2c773d2c8a82ac6152190f549}
+      \strng{bibnamehash}{398609b2c773d2c8a82ac6152190f549}
+      \strng{authorbibnamehash}{398609b2c773d2c8a82ac6152190f549}
+      \strng{authornamehash}{398609b2c773d2c8a82ac6152190f549}
+      \strng{authorfullhash}{398609b2c773d2c8a82ac6152190f549}
+      \strng{authorfullhashraw}{398609b2c773d2c8a82ac6152190f549}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Proceedings of the 23rd ACM SIGSAC Conference on Computer and Communications Security (CCS 2016)}
+      \field{title}{Accessorize to a Crime: Real and Stealthy Attacks on State-of-the-Art Face Recognition}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1145/2976749.2978392
+      \endverb
+    \endentry
+    \entry{eykholt2018robust}{misc}{}{}
+      \name{author}{9}{}{%
+        {{hash=9df15e2c5aa8543fafc249a0b16c76ba}{%
+           family={Eykholt},
+           familyi={E\bibinitperiod},
+           given={Kevin},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f9a895918de323357927b1d34c9f157c}{%
+           family={Evtimov},
+           familyi={E\bibinitperiod},
+           given={Ivan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=504ac35476166c48e513187adca9b339}{%
+           family={Fernandes},
+           familyi={F\bibinitperiod},
+           given={Earlence},
+           giveni={E\bibinitperiod}}}%
+        {{hash=a9c8728e355996d027a7e56b60820a18}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=9f8eceb49054deaa1535d2b5a175c0cd}{%
+           family={Rahmati},
+           familyi={R\bibinitperiod},
+           given={Amir},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7e448b096cfe1a4a2f77e359632a2613}{%
+           family={Xiao},
+           familyi={X\bibinitperiod},
+           given={Chaowei},
+           giveni={C\bibinitperiod}}}%
+        {{hash=cb5c4eb075994cb444b08b6c54872280}{%
+           family={Prakash},
+           familyi={P\bibinitperiod},
+           given={Atul},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ac531ee83558be0e3798db153ad74d17}{%
+           family={Kohno},
+           familyi={K\bibinitperiod},
+           given={Tadayoshi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d458d5f9b64652055bd81d57e4777b22}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Dawn},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{e9bf89bfccff0af471b8b002711214b7}
+      \strng{fullhash}{e9bf89bfccff0af471b8b002711214b7}
+      \strng{fullhashraw}{e9bf89bfccff0af471b8b002711214b7}
+      \strng{bibnamehash}{e9bf89bfccff0af471b8b002711214b7}
+      \strng{authorbibnamehash}{e9bf89bfccff0af471b8b002711214b7}
+      \strng{authornamehash}{e9bf89bfccff0af471b8b002711214b7}
+      \strng{authorfullhash}{e9bf89bfccff0af471b8b002711214b7}
+      \strng{authorfullhashraw}{e9bf89bfccff0af471b8b002711214b7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Robust Physical-World Attacks on Deep Learning Visual Classification}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1707.08945
+      \endverb
+    \endentry
+    \entry{chen2018shapeshifter}{misc}{}{}
+      \name{author}{4}{}{%
+        {{hash=2919ce7dc48d4c897e0300308cf5ae2f}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Shang-Tse},
+           giveni={S\bibinithyphendelim T\bibinitperiod}}}%
+        {{hash=d28ead9bcbb6e52c3f8ea8a05cca8c47}{%
+           family={Cornelius},
+           familyi={C\bibinitperiod},
+           given={Cory},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1fdd453076cac014130f90a368042e6f}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+        {{hash=f4c4b4c06aa7b1d5c9f6c1fc6c256fa1}{%
+           family={Chau},
+           familyi={C\bibinitperiod},
+           given={Duen\bibnamedelima Horng},
+           giveni={D\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{17d957c8784a3b257fc1240066d608a9}
+      \strng{fullhash}{17d957c8784a3b257fc1240066d608a9}
+      \strng{fullhashraw}{17d957c8784a3b257fc1240066d608a9}
+      \strng{bibnamehash}{17d957c8784a3b257fc1240066d608a9}
+      \strng{authorbibnamehash}{17d957c8784a3b257fc1240066d608a9}
+      \strng{authornamehash}{17d957c8784a3b257fc1240066d608a9}
+      \strng{authorfullhash}{17d957c8784a3b257fc1240066d608a9}
+      \strng{authorfullhashraw}{17d957c8784a3b257fc1240066d608a9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{ShapeShifter: Robust Physical Adversarial Attack on Faster R-CNN Object Detector}
+      \field{year}{2018}
+      \verb{eprint}
+      \verb 1804.05810
       \endverb
     \endentry
     \entry{dziugaite2016jpeg}{misc}{}{}
@@ -278,9 +441,38 @@
       \field{eprinttype}{arXiv}
       \field{title}{A study of the effect of JPG compression on adversarial images}
       \field{year}{2016}
-      \true{nocite}
       \verb{eprint}
       \verb 1608.00853
+      \endverb
+    \endentry
+    \entry{fowler2012testpyramid}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=312ac886938a9b2be4f8eb607567fe4c}{%
+           family={Fowler},
+           familyi={F\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{fullhash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{fullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{bibnamehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authorbibnamehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authornamehash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authorfullhash}{312ac886938a9b2be4f8eb607567fe4c}
+      \strng{authorfullhashraw}{312ac886938a9b2be4f8eb607567fe4c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{martinfowler.com}
+      \field{title}{TestPyramid}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://martinfowler.com/bliki/TestPyramid.html
+      \endverb
+      \verb{url}
+      \verb https://martinfowler.com/bliki/TestPyramid.html
       \endverb
     \endentry
   \enddatalist

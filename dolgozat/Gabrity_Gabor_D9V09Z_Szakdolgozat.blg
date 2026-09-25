@@ -1,15 +1,15 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
-[0] Config.pm:331> INFO - Logfile is 'Gabrity_Gabor_D9V09Z_Szakdolgozat.blg'
-[194] biber-MSWIN64:342> INFO - === 
-[260] Biber.pm:421> INFO - Reading 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bcf'
-[462] Biber.pm:1002> INFO - Found 6 citekeys in bib section 0
-[495] Biber.pm:4487> INFO - Processing section 0
-[520] Biber.pm:4678> INFO - Looking for bibtex file 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bib' for section 0
-[603] bibtex.pm:1713> INFO - LaTeX decoding ...
-[619] bibtex.pm:1519> INFO - Found BibTeX data source 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bib'
-[746] UCollate.pm:68> INFO - Overriding locale 'hungarian' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[746] UCollate.pm:68> INFO - Overriding locale 'hungarian' defaults 'variable = shifted' with 'variable = non-ignorable'
-[747] Biber.pm:4307> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'hungarian'
-[747] Biber.pm:4313> INFO - No sort tailoring available for locale 'hungarian'
-[770] bbl.pm:676> INFO - Writing 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bbl' with encoding 'UTF-8'
-[784] bbl.pm:779> INFO - Output to Gabrity_Gabor_D9V09Z_Szakdolgozat.bbl
+[1] Config.pm:331> INFO - Logfile is 'Gabrity_Gabor_D9V09Z_Szakdolgozat.blg'
+[538] biber-MSWIN64:342> INFO - === 
+[705] Biber.pm:421> INFO - Reading 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bcf'
+[1166] Biber.pm:1002> INFO - Found 10 citekeys in bib section 0
+[1214] Biber.pm:4487> INFO - Processing section 0
+[1253] Biber.pm:4678> INFO - Looking for bibtex file 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bib' for section 0
+[1364] bibtex.pm:1713> INFO - LaTeX decoding ...
+[1412] bibtex.pm:1519> INFO - Found BibTeX data source 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bib'
+[1747] UCollate.pm:68> INFO - Overriding locale 'hungarian' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1747] UCollate.pm:68> INFO - Overriding locale 'hungarian' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1748] Biber.pm:4307> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'hungarian'
+[1748] Biber.pm:4313> INFO - No sort tailoring available for locale 'hungarian'
+[1829] bbl.pm:676> INFO - Writing 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bbl' with encoding 'UTF-8'
+[1848] bbl.pm:779> INFO - Output to Gabrity_Gabor_D9V09Z_Szakdolgozat.bbl

@@ -1,0 +1,883 @@
+        Accessorize to a Crime: Real and Stealthy Attacks on
+                 State-of-the-Art Face Recognition
+
+                      Mahmood Sharif                                       Sruti Bhagavatula                            Lujo Bauer
+                Carnegie Mellon University                             Carnegie Mellon University               Carnegie Mellon University
+                   Pittsburgh, PA, USA                                    Pittsburgh, PA, USA                      Pittsburgh, PA, USA
+                 mahmoods@cmu.edu                                           srutib@cmu.edu                         lbauer@cmu.edu
+                                                                            Michael K. Reiter
+                                                                      University of North Carolina
+                                                                         Chapel Hill, NC, USA
+                                                                           reiter@cs.unc.edu
+
+ABSTRACT                                                                                    ogy and ML (sometime trusting them even with their own
+Machine learning is enabling a myriad innovations, including                                lives [36]). The domains that received the majority of the at-
+new algorithms for cancer diagnosis and self-driving cars.                                  tention have a common characteristic: the adversary is able
+The broad use of machine learning makes it important to                                     to precisely control the digital representation of the input to
+understand the extent to which machine-learning algorithms                                  the ML tools. For instance, in spam detection, the attacker
+are subject to attack, particularly when used in applications                               can control the contents of the email and the address of the
+where physical security or safety is at risk.                                               sender. Hence, unsurprisingly, it has been shown that at-
+   In this paper, we focus on facial biometric systems, which                               tacks in many of these domains can be effective at evading
+are widely used in surveillance and access control. We de-                                  ML classifiers designed to detect them [23, 35, 43].
+fine and investigate a novel class of attacks: attacks that                                    In this paper, we explore the extent to which facial bio-
+are physically realizable and inconspicuous, and allow an at-                               metric systems are vulnerable to attacks. These systems are
+tacker to evade recognition or impersonate another individ-                                 widely used for various sensitive purposes, including surveil-
+ual. We develop a systematic method to automatically gen-                                   lance and access control [26, 27, 28]. Thus, attackers who
+erate such attacks, which are realized through printing a pair                              mislead them can cause severe ramifications.
+of eyeglass frames. When worn by the attacker whose image                                      In contrast to domains previously explored, attackers who
+is supplied to a state-of-the-art face-recognition algorithm,                               aim to mislead facial biometric systems often do not have
+the eyeglasses allow her to evade being recognized or to im-                                precise control over the systems’ input. Rather, attackers
+personate another individual. Our investigation focuses on                                  may be able to control only their (physical) appearance. The
+white-box face-recognition systems, but we also demonstrate                                 process of converting the physical scene into a digital input is
+how similar techniques can be used in black-box scenarios,                                  not under the attackers’ control, and is additionally affected
+as well as to avoid face detection.                                                         by factors such as lighting conditions, pose, and distance. As
+                                                                                            a result, it is more difficult for attackers to manipulate or
+                                                                                            craft inputs that would cause misclassification than it would
+1.     INTRODUCTION                                                                         be, for example, in the domain of spam detection.
+   Machine learning (ML) is a technology that is profoundly                                    Another difficulty that attackers face in the case of facial
+changing the world. Some of the transformative innovations                                  biometric systems is that manipulating inputs to evade the
+that it enables, such as customized search results and au-                                  ML classifiers might be easily observed from outside the sys-
+tomated translations, might seem minor. Other innovations                                   tems. For example, attackers can wear an excessive amount
+are clearly revolutionary, enabling new applications or sig-                                of makeup in order to evade a surveillance system deployed
+nificantly increasing our quality of life—examples include                                  at banks [14]. However, these attackers may draw an in-
+algorithms for cancer diagnosis and self-driving vehicles.                                  creased attention from bystanders, and can be deterred by
+   The broad use of ML has also caused a rising interest to                                 traditional means, e.g., the police.
+understand the extent to which ML algorithms and applica-                                      In the light of these two challenges, we define and study
+tions are vulnerable to attacks. These attacks are especially                               a new class of attacks: attacks that are physically realizable
+worrisome due to humans’ increasing reliance on technol-                                    and at the same time are inconspicuous. In such attacks,
+                                                                                            the attacker manipulates the physical state that an ML al-
+                                                                                            gorithm is analyzing rather than the digitized representation
+Permission to make digital or hard copies of part or all of this work for personal or       of this state. At the same time, the manipulations of phys-
+classroom use is granted without fee provided that copies are not made or distributed       ical state needed by the attacks are sufficiently subtle that
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for third-party components of this work must be honored.      they are either imperceptible to humans or, if perceptible,
+For all other uses, contact the owner/author(s).                                            seem natural and not representative of an attack.
+CCS’16 October 24-28, 2016, Vienna, Austria                                                 Inconspicuousness We focus, unlike most related work
+c 2016 Copyright held by the owner/author(s).                                               (e.g., [7]), on attacks that are inconspicuous, i.e., a person
+ACM ISBN 978-1-4503-4139-4/16/10.                                                           who is physically present at a scene, or a person who looks at
+DOI: http://dx.doi.org/10.1145/2976749.2978392
+the input gathered by a sensor (e.g., by watching a camera        a Middle-Eastern male to impersonate Clive Owen, a white
+feed), should not notice that an attack is taking place.          male, 16.13% of the time. We also show various other results
+   We believe that this focus on attacks that are not read-       as extensions to our core methods, in accomplishing imper-
+ily apparent to humans is important for two reasons: First,       sonation with less information (so called black-box models,
+such attacks can be particularly pernicious, since they will      see Sec. 3) and in evading face detection.
+be resistant to at least cursory investigation. Hence, they are     Our contributions in this paper are threefold:
+a particularly important type of attacks to investigate and         I. We show how an attacker that knows the internals of
+learn how to defend against. Second, such attacks help the             a state-of-the-art FRS can physically realize imperson-
+perpetrators (whether malicious or benign) achieve plausible           ation and dodging attacks. We further show how these
+deniability; e.g., a person seeking merely to protect her pri-         attacks can be constrained to increase their inconspic-
+vacy against aggressive use of face recognition by merchants           uousness (Sec. 4–5).
+will plausibly be able to claim that any failure of an ML
+algorithm to recognize her is due to error or chance rather        II. Using a commercial FRS [25], we demonstrate how an
+than deliberate subterfuge.                                            attacker that is unaware of the system’s internals is
+                                                                       able to achieve inconspicuous impersonation (Sec. 6).
+Physical Realizability In this work, we are interested in
+                                                                  III. We show how an attacker can be invisible to facial
+attacks that can be physically implemented for the purpose
+                                                                       biometric systems by avoiding detection through the
+of fooling facial biometric systems. In addition, we focus
+                                                                       Viola-Jones face detector, the most popular face-detec-
+on attacks on state-of-the-art algorithms. Previous work
+                                                                       tion algorithm [42] (Sec. 7).
+on misleading ML algorithms often targets algorithms that
+are not as sophisticated or as well trained as the ones used         Sec. 2–3 survey related work and provide background. In
+in practice (see Sec. 2), leaving the real-world implications     Sec. 4 we describe our method for generating physically real-
+of possible attacks unclear. In contrast, we focus on those       izable white-box attacks, and detail experiments that show
+attacks that pose a realistic and practical threat to systems     its effectiveness in Sec. 5. We demonstrate that similar at-
+that already are or can easily be deployed.                       tacks can be carried out against black-box FRSs in Sec. 6,
+                                                                  and that they can additionally be used to evade face detec-
+  We divide the attacks we study into two categories, which       tion in Sec. 7. We discuss the implications and limitations
+differ both in the specific motivations of potential attackers    of our approach in Sec. 8 and conclude with Sec. 9.
+and in the technical approaches for implementing the at-
+tacks. The two categories of attacks we are interested in are     2.   RELATED WORK
+dodging and impersonation. Both dodging and imperson-
+ation target face recognition systems (FRSs) that perform            Face Detection Systems (FDSs) and FRSs are tradition-
+multi-class classification—in particular, they attempt to find    ally evaluated with the implicit assumption of zero-effort
+the person to whom a given face image belongs.                    attackers (i.e., the attackers do not actively attempt to fool
+                                                                  the system) [33, 42]. Nevertheless, there is extensive liter-
+Impersonation In an impersonation attack, the adversary           ature on attacks targeting FDSs and FRSs. In this section
+seeks to have a face recognized as a specific other face. For     we review the most noteworthy attempts. Broadly, how-
+example, an adversary may try to (inconspicuously) disguise       ever, existing work is different than ours in at least one of
+her face to be recognized as an authorized user of a lap-         the following ways: it does not attempt to achieve incon-
+top or phone that authenticates users via face recognition.       spicuousness and physical realizability; it tries to achieve
+Or, an attacker could attempt to confuse law enforcement          different goals than ours (e.g., compromising the privacy of
+by simultaneously tricking multiple geographically distant        the enrolled users); or the attacks target algorithms that are
+surveillance systems into “detecting” her presence in differ-     not as advanced as the state of the art.
+ent locations.
+                                                                  Face Detection Due to its high accuracy and speed, the
+Dodging In a dodging attack, the attacker seeks to have           object-detection algorithm proposed by Viola and Jones [42]
+her face misidentified as any other arbitrary face. From a        (VJ) has become widely used for general object detection,
+technical standpoint, this category of attack is interesting      and is by far the dominant face detector used in practice [19,
+because causing an ML system to arbitrarily misidentify a         26, 30]. Motivated by increasing privacy through invisibil-
+face should be easier to accomplish with minimal modifica-        ity to FRSs, Harvey attempted to design makeup and hair
+tions to the face, in comparison to misclassifying a face as      styles that can be used to evade detection by the VJ face de-
+a particular impersonation target. In addition to malicious       tector [14]. His approach was based on manually observing
+purposes, dodging attacks could be used by benign individ-        how the detector operates, and did not yield inconspicuous
+uals to protect their privacy against excessive surveillance.     results. With similar goals, Yamada et al. leveraged the fact
+   In this paper we demonstrate inconspicuous and physi-          that camera sensors are sensitive to near infra-red light to
+cally realizable dodging and impersonation attacks against        design light-emitting glasses that can help evade face detec-
+FRSs. We detail the design of eyeglass frames that, when          tion by adding significant noise to the captured image [44].
+printed and worn, permitted three subjects (specifically, the     While effective for evading detection, this technique is nei-
+first three authors) to succeed at least 80% of the time when     ther inconspicuous nor deniable.
+attempting dodging against state-of-the-art FRS models.           Face Recognition Previous work found that subjects can
+Other versions of eyeglass frames allowed subjects to imper-      be effectively impersonated to FRSs using 3d-printed masks
+sonate randomly chosen targets. For example, they allowed         or face images downloaded from online social networks [7,
+one subject, a white male, to impersonate Milla Jovovich,         22]. These attacks are not inconspicuous, and can largely
+a white female, 87.87% of the time; a South-Asian female          be thwarted by anti-spoofing mechanisms, such as liveness
+to impersonate a Middle-Eastern male 88% of the time; and         detection [7, 22].
+   Other work showed how to compromise the privacy of              works (DNNs) [16]. DNNs can generalize extremely well in
+users enrolled in FRSs [11, 12]. For example, Fredrikson           the presence of large training sets and can achieve state-
+et al. presented model inversion attacks, in which face im-        of-the-art results on many challenging ML problems. For
+ages of enrolled users are reconstructed from neural networks      example, DNNs were able to outperform humans in the face-
+trained to perform face recognition [11]. The goal of these        verification task—determining whether pairs of face images
+attacks is different than ours. While compromised images           belong to the same person [17].
+can be used to impersonate users, these impersonations will           Given their high generalization capability, Szegedy et al.
+not be inconspicuous, and can be detected via anti-spoofing        surprised the research community by finding that DNNs can
+mechanisms.                                                        be misled by mildly perturbing inputs [39]. More specifically,
+   Feng and Prabhakaran proposed a system to help artists          their work showed that adversarial examples that appear
+come up with makeup and hair designs that can be used to           visually indistinguishable from non-adversarial examples can
+prevent FRSs (including Eigenfaces [40] and Fisherfaces [1])       be systemically found under the white-box scenario.
+from recognizing subjects [10]. In their approach, they split         For an input x that is classified as f (x) by the DNN,
+the face image into seven components, and determined which         Szegedy et al.’s goal was to find a perturbation r of minimal
+components deviated most from the general population’s av-         norm (i.e., as imperceptible as possible) such that x + r
+erage. They hypothesized that these discriminative compo-          would be classified into a desired class ct . The objective of
+nents are the most significant for distinguishing one per-         finding the perturbation is modeled by:
+son from others, and showed that occluding, painting, or                                                         
+transforming the discriminative components could prevent                           argmin |f (x + r) − ht | + κ|r|
+                                                                                       r
+automated recognition. Their work is different than what is
+being proposed here in three main ways: First, inconspicu-         constrained on x + r ∈ [0, 1], where f produces a probabil-
+ousness and deniability of the attack were not part of their       ity distribution (an element of [0, 1]N ) over the N possible
+goals. Second, their attack does not enable the attacker to        classes, κ is a constant that can be tuned to balance the
+intentionally masquerade as a specific subject in the system.      misclassification and imperceptibility objectives, ht is the
+Finally, the algorithms on which they test their attack are        one-hot vector of class ct , and | · | is a norm function. Min-
+not considered the state-of-the-art in face recognition.           imizing |f (x + r) − ht | results in misclassification, whereas
+                                                                   minimizing |r| increases the imperceptibility of the perturba-
+Speech Recognition Carlini et al. recently demonstrated
+                                                                   tion. When f (·) and | · | are differentiable, this optimization
+physically realizable attacks on speech-recognition systems [5].
+                                                                   problem can be solved via first- or second-order optimization
+They showed how to craft sounds that are difficult or im-
+                                                                   algorithms, such as Gradient Descent [4] or Limited-memory
+possible for humans to understand, but are interpreted as
+                                                                   BFGS [29]. For DNNs, f (·) is differentiable, as this is nec-
+specific commands by speech-recognition systems. In con-
+                                                                   essary for training the network via back-propagation. The
+trast to their work, we focus on systems that receive visual
+                                                                   norm function usually used is the Euclidean norm, which is
+inputs through cameras.
+                                                                   also differentiable. Subsequent work proposed conceptually
+                                                                   similar algorithms for generating imperceptible adversarial
+3.    BACKGROUND                                                   examples [13, 31].
+                                                                      Initially, the existence of adversarial examples was at-
+3.1    Threat Model                                                tributed to the complexity of learning the high-dimensional
+                                                                   manifold necessary to separate the classes: it was conjec-
+   We assume an attacker who gains access to the FRS to
+                                                                   tured that adversarial examples are improbable to encounter
+mount a dodging or impersonation attack after the system
+                                                                   in training and hence remain as inevitable “blind spots”
+has been trained. That is, the adversary cannot “poison”
+                                                                   when learning from finite, although large, training sets [39].
+the FRS by altering training data, injecting mislabeled data,
+                                                                   This conjecture was supported by showing that injecting
+etc. Rather, our adversary can alter only the composition of
+                                                                   correctly labeled adversarial examples in the training phase
+inputs to be classified based on her knowledge of the classi-
+                                                                   slightly increases the norm of the adversarial perturbations
+fication model, potentially derived by examining the entire
+                                                                   needed to mislead a trained classifier [39]. Later work at-
+model or by observing its outputs for some inputs.
+                                                                   tributes adversarial examples to the non-flexibility of the
+   As Papernot et al. discuss, adversaries differ in the amount
+                                                                   classification models [9, 13]. According to this work, since
+of knowledge they have about the system they are attack-
+                                                                   each DNN unit (i.e., neuron) is activated on a linear combi-
+ing [31]. We typically assume that an adversary knows the
+                                                                   nation of its inputs, slight changes to each input accumulate
+algorithm used for classification. On the other hand, dif-
+                                                                   to large changes in the unit’s output, which results in mis-
+ferent assumptions can plausibly be made about the adver-
+                                                                   classification.
+sary’s knowledge of the feature space and the trained clas-
+                                                                      Previous work highlights an important difference between
+sification model. In this paper, we focus on adversaries who
+                                                                   human and machine vision: while humans are unaffected by
+know the feature space, since features used for image clas-
+                                                                   small changes to images, machines can be greatly affected.
+sification are usually considered to be publicly known [11].
+                                                                   Our research exploits this insight to fool FRSs with adapta-
+We also assume a white-box scenario: the attacker knows
+                                                                   tions to attacks that are both inconspicuous and physically
+the internals (architecture and parameters) of the system
+                                                                   realizable.
+being attacked [31]. We do, however, discuss extensions to
+the black-box scenario in Sec. 6.
+                                                                   4.   TECHNICAL APPROACH
+3.2    Deceiving Neural Networks                                     In this section we describe our approach to attacking white-
+  In this paper we focus our exploration on FRSs based             box FRSs. First, we provide the details of the state-of-the-
+on neural networks (NNs) and particularly deep neural net-         art FRSs we attack (Sec. 4.1). Then, we present how we
+build on previous work [13, 31, 39] to formalize how an at-        This is performed by copying an initial set of layers from the
+tacker can achieve impersonation, and how to generalize the        existing DNN, appending new layers to them, and training
+approach for dodging (Sec. 4.2). Finally, we discuss how the       the parameters of the new layers for the new task. Conse-
+attacker can conceptually and formally tweak her objective         quently, the layers copied from the old network serve for fea-
+to enable the physical realizability of the attack (Sec. 4.3).     ture extraction and the extracted features are fed to the new
+                                                                   layers for classification. Previous work has shown that trans-
+4.1      White-box DNNs for Face Recognition                       fer learning is effective in training high-performance DNNs
+   Using ML models and particularly DNNs, researchers have         from ones that have already been trained when they perform
+developed FRSs that can outperform humans in their ability         closely related tasks [45].
+to recognize faces [17]. Parkhi et al. recently developed a 39-       We followed the suggestion of Yosinski et al. [45] to train
+layer DNN for face recognition and verification that achieves      DNNB and DNNC . More specifically, we used the first 37
+state-of-the-art performance (and outperforms humans) [33]         layers of DNNA for feature extraction. Then, we appended
+on the Labeled Faces in the Wild (LFW) [17] challenge, a           a fully connected layer of neurons with a sigmoid activa-
+benchmark for testing FRSs’ ability to classify images taken       tion function followed by a softmax layer, and updated the
+under unconstrained conditions.                                    weights in the fully connected layer via the back-propagation
+   To demonstrate dodging and impersonation we use three           algorithm. The neurons in the fully-connected layers serve
+DNNs: First, we use the DNN developed by Parkhi et al.1 ,          as linear classifiers that classify the features extracted by
+which we refer to as DNNA . Second, we trained two DNNs            DNNA into identities, and the softmax layer transforms their
+(termed DNNB and DNNC ) based on the structure of Parkhi           output into a probability distribution. Training more lay-
+et al.’s to recognize celebrities as well as people who were       ers (i.e., more parameters to tune) was prohibitive, as the
+available to us in person for testing real attacks. The pur-       amount of data we could collect from people available for
+pose of using DNNB and DNNC is to test the physically re-          testing physically realizable attacks was limited. We used
+alized versions of our attacks, which require people to wear       about 40 images per subject for training—an amount of im-
+glasses designed by our algorithm. Testing dodging requires        ages that was small enough to collect, but high enough to
+the subjects to be known to the classifier (otherwise they         train highly performing DNNs. On images held aside for
+would always be misclassified). Similarly, testing imperson-       testing, DNNB achieved classification accuracy of 97.43%,
+ation is more realistic (and more difficult for the attacker) if   and DNNC achieved accuracy of 96.75%.
+the DNN is able to recognize the impersonator. The DNNs               Similarly to Parkhi et al., we used 2d affine alignment to
+we use in this work can be conceptualized as differentiable        align face images to a canonical pose at the input of the
+functions that map input images to probability distributions       DNNs [33]. Additionally, we resized input images to 224 ×
+over classes. An image is counted as belonging to the class        224 (the input dimensionality of the DNNs we use). We used
+that receives the highest probability, optionally only if that     MatConvNet, an NN toolbox for MATLAB, to train DNNB
+probability exceeds a predefined threshold.                        and DNNC , run the DNNs, and test our attacks [41].
+DNNA         Parkhi et al. trained DNNA to recognize 2622
+celebrities. They used roughly 1000 images per celebrity for
+                                                                   4.2    Attacking White-box FRSs
+training, for a total of about 2.6M images. Even though they          Following Parkhi et al. we adopt the softmaxloss score
+used much less data for training than previous work (e.g.,         to measure the correctness of classifications [33]. Formally,
+Google used 200M [38]), their DNN still achieves 98.95%            given an input x of class cx that is classified as f (x) (a vector
+accuracy, comparable to other state-of-the-art DNNs [17].          of probabilities), softmaxloss is defined as follows:
+DNNB and DNNC          Using DNNA for physical realizability                                             ehhcx ,f (x)i 
+experiments is not ideal, as it was not trained to recognize             softmaxloss(f (x), cx ) = − log PN
+                                                                                                                hhc ,f (x)i
+                                                                                                          c=1 e
+people available to us for testing physically realized attacks.
+Therefore, we trained two additional DNNs.                         where h·, ·i denotes inner product between two vectors, N is
+   DNNB was trained to recognize ten subjects: five peo-           the number of classes, and (as discussed in Section 3.2) hc is
+ple from our lab (the first three authors and two additional       the one-hot vector of class c. It follows that softmaxloss is
+researchers who volunteered images for training), and five         lower when the DNN classifies x correctly, and higher when
+celebrities for whom we picked images from the PubFig im-          the classification is incorrect. We use softmaxloss to define
+age dataset [21]. In total, the training set contained five        the impersonation and dodging objectives of attackers.
+females and five males of ages 20 to 53 years. The celebri-
+                                                                   Impersonation An attacker who wishes to impersonate
+ties we used for training were: Aaron Eckhart, Brad Pitt,
+                                                                   a target t needs to find how to perturb the input x via an
+Clive Owen, Drew Barrymore, and Milla Jovovich.
+                                                                   addition r to maximize the probability of class ct . Szegedy et
+   DNNC was trained to recognize a larger set of people,
+                                                                   al. defined this as minimizing the distance between f (x + r)
+arguably posing a tougher challenge for attackers attempt-
+                                                                   and ht (see Sec. 3.2). Similarly, we define the optimization
+ing impersonation attacks. In total, DNNC was trained to
+                                                                   problem to be solved for impersonation as:
+recognize 143 subjects: 140 celebrities from PubFig’s [21]
+evaluation set, and the first three authors.                                      argmin softmaxloss(f (x + r), ct )
+                                                                                       r
+   We trained DNNB and DNNC via transfer learning, a tra-
+ditional procedure to train DNNs from other, pre-trained,          In other words, we seek to find a modification r of image x
+DNNs [45]. Transfer learning reduces the need for large            that will minimize the distance of the modified image to the
+amounts of data for training a DNN by repurposing a pre-           target class ct .
+trained DNN for a different, but related, classification task.
+                                                                   Dodging In contrast to an attacker who wishes to imper-
+1
+    http://www.robots.ox.ac.uk/˜vgg/software/vgg face/             sonate a particular target, an attacker who wishes to dodge
+recognition is only interested in not being recognized as her-
+self. To accomplish this goal, the attacker needs to find how
+to perturb the input x to minimize the probability of the
+class cx . Such a perturbation r would maximize the value
+of softmaxloss(f (x + r), cx ). To this end, we define the op-    Figure 1: The eyeglass frames used to fool FRSs (before
+timization problem for dodging as:                                texture perturbation). By Clker-Free-Vector-Images / CC0
+                                                                 / https://goo.gl/3RHKZA.
+            argmin − softmaxloss(f (x + r), cx )
+                  r
+
+   To solve these optimizations, we use the Gradient Descent      the image of the subject attempting the attack and itera-
+(GD) algorithm [4]. GD is guaranteed to find a global min-        tively update their color through the GD process. In each
+imum only when the objective is convex, but in practice           iteration, we randomize the position of the frames around
+often finds useful solutions regardless. In a nutshell, GD is     a reference position by moving them by up to three pixels
+an iterative algorithm that takes an initial solution to r and    horizontally or vertically, and by rotating them up to four
+iteratively refines it to minimize the objective. GD itera-       degrees. The rationale behind doing so is to craft adversar-
+tively evaluates the gradient, g, and updates the solution        ial perturbations that are tolerant to slight movements that
+by r = r − αg, for a positive value α (i.e., r is updated         are natural when physically wearing the frames.
+by “stepping” in the direction of the steepest descent). GD       4.3.2    Enhancing Perturbations’ Robustness
+stops after convergence (i.e., changes in the objective func-
+tion become negligible) or after a fixed number of iterations.       Due to varying imaging conditions, such as changes in
+In our work, we fix the number of iterations.                     expression and pose, two images of the same face are unlikely
+                                                                  to be exactly the same. As a result, to successfully realize
+4.3      Facilitating Physical Realizability                      the attacks, attackers need to find perturbations that are
+                                                                  independent of the exact imaging conditions. In other words,
+  Accomplishing impersonation or dodging in a digital en-
+                                                                  an attacker would need to find perturbations that generalize
+vironment does not guarantee that the attack will be physi-
+                                                                  beyond a single image, and can be used to deceive the FRSs
+cally realizable, as our experiments in Sec. 5.1 show. There-
+                                                                  into misclassifying many images of the attacker’s face.
+fore, we take steps to enable physical realizability. The first
+                                                                     Thus far, the techniques to find perturbations were spe-
+step involves implementing the attacks purely with facial ac-
+                                                                  cific to a given input. To enhance the generality of the per-
+cessories (specifically, eyeglass frames), which are physically
+                                                                  turbations, we look for perturbations that can cause any
+realizable via 3d- or even 2d-printing technologies. The sec-
+                                                                  image in a set of inputs to be misclassified. To this end,
+ond step involves tweaking the mathematical formulation of
+                                                                  an attacker collects a set of images, X, and finds a single
+the attacker’s objective to focus on adversarial perturbations
+                                                                  perturbation that optimizes her objective for every image
+that are a) robust to small changes in viewing condition; b)
+                                                                  x ∈ X. For impersonation, we formalize this as the follow-
+smooth (as expected from natural images); and c) realiz-
+                                                                  ing optimization problem (dodging is analogous):
+able by affordable printing technologies. In what follows,
+we describe the details of each step.
+                                                                                       X
+                                                                                argmin     softmaxloss(f (x + r), l)
+                                                                                    r
+                                                                                        x∈X
+4.3.1      Utilizing Facial Accessories
+   While an attacker who perturbs arbitrary pixels that over-     4.3.3    Enhancing Perturbations’ Smoothness
+lay her face can accomplish impersonation and dodging at-            Natural images (i.e., those captured in reality) are known
+tacks, the perturbations may be impossible to implement           to comprise smooth and consistent patches, where colors
+successfully in practice (see Sec. 5.1). To address this, we      change only gradually within patches [24]. Therefore, to
+utilize perturbed facial accessories (in particular, eyeglass     enhance plausible deniability, it is desirable to find pertur-
+frames) to implement the attacks. One advantage of facial         bations that are smooth and consistent. In addition, due to
+accessories is that they can be easily implemented. In partic-    sampling noise, extreme differences between adjacent pixels
+ular, we use a commodity inkjet printer (Epson XP-830) to         in the perturbation are unlikely to be accurately captured by
+print the front plane of the eyeglass frames on glossy paper,     cameras. Consequently, perturbations that are non-smooth
+which we then affix to actual eyeglass frames when phys-          may not be physically realizable.
+ically realizing attacks. Moreover, facial accessories, such         To maintain the smoothness of perturbations, we update
+as eyeglasses, help make attacks plausibly deniable, as it is     the optimization to account for minimizing total variation
+natural for people to wear them.                                  (TV ) [24]. For a perturbation r, TV (r) is defined as:
+   Unless otherwise mentioned, in our experiments we use                         X                                         1
+                                                                                                                             2
+the eyeglass frames depicted in Fig. 1. These have a similar           TV (r) =       (ri,j − ri+1,j )2 + (ri,j − ri,j+1 )2
+design to frames called “geek” frames in the eyewear indus-                       i,j
+try.2 We select them because of the easy availability of a
+digital model. After alignment, the frames occupy about           where ri,j are is a pixel in r at coordinates (i, j). TV (r)
+6.5% of the pixels of the 224 × 224 face images, similarly to     is low when the values of adjacent pixels are close to each
+real frames we have tested. This implies that the attacks         other (i.e., the perturbation is smooth), and high otherwise.
+perturb at most 6.5% of the pixels in the image.                  Hence, by minimizing TV (r) we improve the smoothness of
+   To find the color of the frames necessary to achieve imper-    the perturbed image and improve physical realizability.
+sonation or dodging we first initialize their color to a solid
+                                                                  4.3.4    Enhancing Perturbations’ Printability
+color (e.g., yellow). Subsequently, we render the frames onto
+                                                                    The range of colors that devices such as printers and
+2
+    E.g., see: https://goo.gl/Nsd20I                              screens can reproduce (the color gamut) is only a subset
+of the [0, 1]3 RGB color space. Thus, to be able to success-
+fully use a printer to realize adversarial perturbations, it is
+desirable to craft perturbations that are comprised mostly
+of colors reproducible by the printer. To find such perturba-
+tions, we define the non-printability score (NPS ) of images
+to be high for images that contain unreproducible colors,
+and low otherwise. We then include minimizing the non-
+printability score as part of our optimization.                       Figure 2: A dodging attack by perturbing an entire face.
+   Let P ⊂ [0, 1]3 be the set of printable RGB triplets. We           Left: an original image of actress Eva Longoria (by Richard
+define the NPS of a pixel p̂ as:                                      Sandoval / CC BY-SA / cropped from https://goo.gl/
+                                Y                                     7QUvRq). Middle: A perturbed image for dodging. Right:
+                    NPS (p̂) =     |p̂ − p|                           The applied perturbation, after multiplying the absolute
+                                 p∈P
+                                                                      value of pixels’ channels ×20.
+If p̂ belongs to P , or if it is close to some p ∈ P , then NPS (p)
+will be low. Otherwise, NPS (p) will be high. We intuitively             We measured the attacker’s success (success rate) as the
+generalize the definition of NPS of a perturbation as the             fraction of attempts in which she was able to achieve her
+sum of NPS s of all the pixels in the perturbation.                   goal. For dodging, the goal is merely to be misclassified,
+   In practice, to approximate the color gamut of a printer,          i.e., the DNN, when computing the probability of the image
+we print a color palette that comprises a fifth of the RGB            belonging to each target class, should find that the most
+color space (with uniform spacing). Subsequently, we cap-             probable class is one that does not identify the attacker. For
+ture an image of the palette with a camera to acquire a set of        impersonation, the goal is to be classified as a specific target,
+RGB triplets that can be printed. As the number of unique             i.e., the DNN should compute that the most probable class
+triplets is large (≥ 10K), the computation of NPS becomes             for the input image is the class that identifies the target.
+computationally expensive. To this end, we quantize the set           In impersonation attempts, we picked the targets randomly
+of colors to a set of 30 RGB triplets that have a minimal             from the set of people the DNN recognizes.
+variance in distances from the complete set, and use only                To simulate attacks on DNNA and DNNC , we chose at
+those in the definition of NPS ; this is an optimization that         random 20 subjects for each experiment from the 2622 and
+we have found effective in practice.                                  143 subjects, respectively, that the DNNs were trained on.
+   In addition to having limited gamut, printers do not re-           We simulated attacks on DNNB with all ten subjects it was
+produce colors faithfully, i.e., the RGB values of a pixel re-        trained to recognize. To compute statistics that generalize
+quested to be printed do not correspond exactly to the RGB            beyond individual images, we performed each attack (e.g.,
+values of the printed pixel. To allow us to realize perturba-         each attempt for subject X to impersonate target Y) on
+tions with high fidelity, we create a map m that maps colors          three images of the subject and report the mean success
+(i.e., RGB triplets) requested to be printed to colors that           rate across those images. We ran the gradient descent pro-
+are actually printed. We then utilize this map to realize             cess for at most 300 iterations, as going beyond that limit
+perturbations with high fidelity. In particular, to print a           has diminishing returns in practice. A summary of the ex-
+perturbation as faithfully as possible, we replace the value          periments and their results is presented in Table 1.
+p of each pixel in the perturbation with p̃, such that the
+printing error, |p − m(p̃)|, is minimized. This process can be        Experiment Results.
+thought of as manual color management [20].                              In experiments 1 and 2 we simulated dodging and imper-
+                                                                      sonation attacks in which the attacker is allowed to perturb
+                                                                      any pixel on her face. The attacker successfully achieved
+5.    EVALUATION                                                      her goal in all attempts. Moreover, the adversarial exam-
+  We separately evaluate attacks that take place purely in            ples found under these settings are likely imperceptible to
+the digital domain (Sec. 5.1) and physically realized attacks         humans (similar to adversarial examples found by Szegedy
+(Sec. 5.2).                                                           et al. [39]): the mean perturbation of a pixel that overlaid
+                                                                      the face was 1.7, with standard deviation 0.93. An example
+5.1    Digital-Environment Experiments                                is shown in Fig. 2.
+   We first discuss experiments that assess the difficulty of            We believe that the types of attacks examined in exper-
+deceiving FRSs in a setting where the attacker can manipu-            iments 1 and 2 are far from practical. Because the pertur-
+late the digital input to the system, i.e., modify the images         bations are too subtle and lack structure, they may be too
+to be classified on a per-pixel level. Intuitively, an attacker       complicated to physically realize, e.g., it is likely to be im-
+who cannot fool FRSs successfully in such a setting will also         possible to modify a human face in exactly the way required
+struggle to do so physically in practice.                             by the attack. Moreover, the amount by which pixels are
+                                                                      perturbed is often much smaller than the error that occurs
+Experiment Description.                                               when printing a perturbation and then capturing it with a
+  We ran eight dodging and impersonation attacks (see Sec.            scanner or a camera. Our experiments show that the average
+4.2) on the white-box DNNs presented in Sec. 4.1. Be-                 error per pixel in a perturbation when printed and scanned
+tween experiments, we varied (1) the attacker’s goal (dodg-           is 22.9, and its standard deviation is 38.22. Therefore, even
+ing or impersonation), (2) the area the attacker can per-             if the attacker can successfully realize the perturbation, she
+turb (the whole face or just eyeglass frames that the subject         is still unlikely to be able to deceive the system.
+wears), and (3) the DNN that is attacked (DNNA , DNNB ,                  To this end, in experiments 3–8 we simulated dodging
+or DNNC ). The frames we use are depicted in Fig. 1.                  and impersonation attacks in which we perturbed only eye-
+                   Experiment #     Area perturbed          Goal        Model     # Attackers      Success rate
+                           1          Entire face        Dodging        DNNA            20           100.00%
+                           2          Entire face      Impersonation    DNNA            20           100.00%
+                           3        Eyeglass frames      Dodging        DNNA            20           100.00%
+                           4        Eyeglass frames      Dodging        DNNB            10           100.00%
+                           5        Eyeglass frames      Dodging        DNNC            20           100.00%
+                           6        Eyeglass frames    Impersonation    DNNA            20            91.67%
+                           7        Eyeglass frames    Impersonation    DNNB            10           100.00%
+                           8        Eyeglass frames    Impersonation    DNNC            20           100.00%
+
+Table 1: A summary of the digital-environment experiments attacking DNNA , DNNB , and DNNC under the white-box
+scenario. In each attack we used three images of the subject that we sought to misclassify; the reported success rate is the
+mean success rate across those images.
+
+
+                                                                   Experiment Description.
+                                                                      The first three authors, whom DNNB and DNNC were
+                                                                   trained to recognize, participated in the experiments;3 we
+                                                                   refer to them as subjects SC , SB , and SA , respectively. For
+                                                                   each subject we attempted two dodging attacks and two
+                                                                   impersonation attacks—one of each type of attack on each
+                                                                   of DNNB and DNNC . The targets in impersonation attacks
+Figure 3: An impersonation using frames. Left: Actress             were randomly selected (see Table 2).
+Reese Witherspoon (by Eva Rinaldi / CC BY-SA / cropped                We collected images of the subjects using a Canon T4i
+from https://goo.gl/a2sCdc). Image classified correctly with       camera. To prevent extreme lighting variations, we collected
+probability 1. Middle: Perturbing frames to impersonate            images in a room without exterior windows. Subjects stood
+(actor) Russel Crowe. Right: The target (by Eva Rinaldi /          a fixed distance from the camera and were told to main-
+CC BY-SA / cropped from https://goo.gl/AO7QYu).                    tain a neutral expression and to make slight pose changes
+                                                                   throughout the collection. While these collection conditions
+                                                                   are only a subset of what would be encountered in practice,
+glass frames of eyeglasses worn by each subject. With the          we believe they are realistic for some scenarios where FRS
+exception of experiment 6, the attacker was able to dodge          technology is used, e.g., within a building for access control.
+recognition or impersonate targets in all attempts. In exper-         For each subject, we collected 30–50 images in each of five
+iment 6 impersonators succeeded in about 91.67% of their           sessions. In the first session, we collected a set of images that
+attempts to fool DNNA using perturbed eyeglasses. We hy-           was used for generating the attacks (referred to as the set
+pothesize that due to the large number of classes DNNA             X in the mathematical representation). In this session, the
+recognizes, the image space between some attacker-target           subjects did not wear the eyeglass frames. In the second
+pairs is occupied by other classes. Therefore, impersonating       and third sessions, the subjects wore eyeglass frames to at-
+these targets requires evading several classification bound-       tempt dodging against DNNB and DNNC , respectively. In
+aries, making impersonation attacks more difficult.                the fourth and the fifth sessions, the subjects wore frames
+  Fig. 3 shows an example of a successful impersonation at-        to attempt impersonation against DNNB and DNNC .
+tempt using eyeglass frames.                                          We physically realized attacks by printing the eyeglass
+                                                                   frames with an Epson XP-830 printer on Epson Glossy photo
+5.2   Physical-Realizability Experiments                           paper. Realizing these attacks is cheap and affordable; the
+  As discussed in Sec. 4.3, to physically realize an attack,       approximate cost for printing an eyeglass frame is $0.22.
+we utilize a set of perturbed eyeglass frames, ensure that         Once printed, we cut out the frames and affixed them to the
+the perturbation is smooth and effective for misclassifying        frames of an actual pair of eyeglasses. Examples of realiza-
+more than one image, and enhance the reproducibility of            tions are shown in Fig. 4.
+the perturbation’s colors by the printing device. To achieve          To find the perturbation, the parameters κ1 and κ2 in the
+these goals and impersonate a target t, an attacker finds a        optimization were set to 0.15 and 0.25, respectively. The
+perturbation by solving the following optimization problem:        computational overhead of mounting attacks prohibited a
+                   X                                             broad exploration of the parameter space, but we found
+           argmin        softmaxloss(x + r , ct ) +                these values effective in practice. In addition, we limited
+               r
+                     x∈X                                           the number of iterations of the GD process to 300.
+                                             
+                   κ1 · TV (r) + κ2 · NPS (r)
+                                                                   Experiment Results.
+where κ1 and κ2 are constants for balancing the objectives            To evaluate DNNB and DNNC in a non-adversarial set-
+and X is a set of images of the attacker. The formulation          ting, we classified the non-adversarial images collected in the
+for dodging is analogous.                                          first session. All the face images of the three subjects were
+   In this section we report on experiments for evaluating the
+efficacy of this approach in fooling DNNB and DNNC under           3
+                                                                     The fourth author was excluded from the experiments due
+semi-controlled imaging conditions.                                to logistical challenges posed by physical distance.
+            Subject (attacker) info            Dodging results                         Impersonation results
+   DNN      Subject     Identity          SR      E(p(correct-class))       Target         SR        SRT        E(p(target))
+              SA       3rd author      100.00%            0.01           Milla Jovovich    87.87%    48.48%          0.78
+  DNNB        SB       2nd author       97.22%           0.03                  SC          88.00%    75.00%          0.75
+              SC       1st author       80.00%           0.35             Clive Owen       16.13%     0.00%          0.33
+              SA       3rd author      100.00%            0.03          John Malkovich    100.00%    100.00%         0.99
+  DNNC        SB       2nd author      100.00%           <0.01           Colin Powell      16.22%     0.00%          0.08
+              SC       1st author      100.00%           <0.01           Carson Daly      100.00%    100.00%         0.90
+
+Table 2: A summary of the physical realizability experiments. To the left, we report the DNN attacked and the identity of
+the subjects (the attackers in the simulation). When not attempting to fool both DNNs, the subjects were originally classified
+correctly with mean probability >0.85. SR is the success rate. SRT is the success rate when using a threshold. E(p(class)) is
+the mean (expected) probability of the class when classifying all images. Results for SC when attacking DNNB were achieved
+with glasses that occupy 10% of the area of the image being classified; results for the other experiments were achieved with
+glasses that occupy 6% of the image.
+
+classified correctly. The mean probability of the correct class    old white female, and John Malkovich, a 62-year-old white
+across the classification attempts was above 0.85, which im-       male; SB , a 24-year-old South Asian female, was assigned
+plies that naive attempts at impersonation or dodging are          to impersonate SC , a 24-year-old Middle Eastern male, and
+highly unlikely to succeed. In contrast, our experiments           Colin Powell, a 79-year-old white male; and SC was assigned
+showed that an attacker who intentionally attempts to de-          to impersonate Clive Owen, a 51-year-old male, and Carson
+ceive the system will usually succeed. Table 2 summarizes          Daly, a 43-year-old male.
+these results. Fig. 4 presents examples of successful dodging         Both of SA ’s impersonation attempts were successful: 87.87%
+attacks and impersonations.                                        of his images collected in the fourth session were misclassi-
+Dodging All three subjects successfully dodged face recog-         fied by DNNB as Milla Jovovich (the mean probability of the
+nition by wearing perturbed eyeglass frames. When wearing          target was 0.78), and all the images collected in the fifth ses-
+frames for dodging, as shown in Fig. 4a, all of SA ’s images       sion were misclassified as John Malkovich (mean probability
+collected in the second and the third sessions were misclassi-     of 0.99). In contrast, SB and SC had mixed success. On the
+fied by DNNB and DNNC , respectively. When dodging, the            one hand, SB misled DNNB by successfully impersonating
+mean probability DNNB assigned to the SA ’s class dropped          SC in 88% of her attempts (the mean probability of the tar-
+remarkably from 1 to 0.01. Similarly, the mean probability         get was 0.75), and SC misled DNNC into misclassifying him
+assigned to cSA by DNNC dropped from 0.85 to 0.03. Thus,           as Carson Daly in all of his attempts (mean probability of
+the dodging attempts made it highly unlikely that the DNNs         0.99). On the other hand, they were able to successfully im-
+would output cSA , the correct classification result. SB was       personate Colin Powell and Clive Owen4 (respectively) only
+able to dodge recognition in 97.22% of the attempts against        in about one of every six attempts. This success rate may
+DNNB and in 100% of the attempts against DNNC . When               be sufficient against, e.g., access-control systems that do not
+classifying SB ’s images, the mean probability assigned by         limit the number of recognition attempts, but may not be
+the DNNs to cSB became ≤ 0.03 as a result of the attack,           sufficient against systems that limit the number of attempts
+also making it unlikely to be the class assigned by the DNN.       or in surveillance applications. We hypothesize that some
+   SC ’s attempts in dodging recognition against DNNC were         targets are particularly difficult for some subjects to imper-
+also successful: all his images collected in the third session     sonate. We also believe, however, that even in those cases
+were misclassified, and the probability assigned to cSC was        further refinement of the attacks can lead to greater success
+low (<0.01). However, when wearing a perturbed version of          than we have so far measured.
+the frames shown in Fig. 1; none of SC ’s images collected            In practice, to tune the security of the FRS, system opera-
+as part of the second session misled DNNB . We conjecture          tors may set a minimum threshold that the maximum prob-
+that because SC was the only subject who wore eyeglasses           ability in the DNN’s output will have to exceed for a classifi-
+among the subjects used for training DNNB , cSC became             cation result to be accepted. Such a threshold balances secu-
+a likely class when classifying images showing people wear-        rity and usability: If the threshold is high, misclassification
+ing eyeglasses. Therefore, it became particularly hard for         occurs less often, but correct classifications may be rejected,
+SC to fool DNNB by perturbing only a small area of the             thus harming usability. On the other hand, for low thresh-
+image. Nevertheless, by increasing the size of the frames          olds, correct classifications will be accepted most of the time,
+such that they occupied 10% of the area of the aligned im-         but misclassifications are more likely to occur, which would
+age (frames shown in Fig. 5) it became possible for SC to          harm security. Therefore, system operators usually try to
+achieve physically realizable dodging at the cost of decreased     find a threshold that balances the usability and the security
+inconspicuousness. Using the larger frames, SC was able to         of the deployed FRS. Using the test data, we found that
+dodge recognition in 80% of the images (mean probability           by setting the threshold to 0.85, the false acceptance rate
+of cSC dropped to 0.35).                                           of DNNB became 0, while true acceptance became 92.31%.
+                                                                   This threshold strikes a good balance between usability and
+Impersonation To simulate impersonation attempts, each             security [18]; by using it, false acceptance (of zero-effort im-
+subject was assigned two random targets: one for fooling
+DNNB and one for fooling DNNC . SA , a 41-year-old white           4
+male, was assigned to impersonate Milla Jovovich, a 40-year-         Similarly to dodging, SC required larger frames to imper-
+                                                                   sonate the target.
+                      (a)                       (b)                    (c)                        (d)
+
+Figure 4: Examples of successful impersonation and dodging attacks. Fig. (a) shows SA (top) and SB (bottom) dodging
+against DNNB . Fig. (b)–(d) show impersonations. Impersonators carrying out the attack are shown in the top row and
+corresponding impersonation targets in the bottom row. Fig. (b) shows SA impersonating Milla Jovovich (by Georges Biard
+/ CC BY-SA / cropped from https://goo.gl/GlsWlC); (c) SB impersonating SC ; and (d) SC impersonating Carson Daly (by
+Anthony Quintano / CC BY / cropped from https://goo.gl/VfnDct).
+
+                                                               6.    EXTENSION TO BLACK-BOX MODELS
+                                                                 So far we have examined attacks where the adversary has
+                                                               access to the model she is trying to deceive. In general,
+                                                               previous work on fooling ML systems has assumed knowl-
+                                                               edge of the architecture of the system (see Sec. 2). In this
+                                                               section we demonstrate how similar attacks can be applied
+                                                               in a black-box scenario. In such a scenario, the adversary
+Figure 5: The eyeglass frames used by SC for dodging recog-    would typically have access only to an oracle O which out-
+nition against DNNB .                                          puts a result for a given input and allows a limited number of
+                                                               queries. The threat model we consider here is one in which
+                                                               the adversary has access only to the oracle.
+postors) never occurs, while true acceptance remains high.       We next briefly describe a commercial FRS that we use in
+Following a similar procedure, we found that a threshold of    our experiments (Sec. 6.1), and then describe and evaluate
+0.90 achieved a reasonable tradeoff between security and us-   preliminary attempts to carry out impersonation attacks in
+ability for DNNC ; the true acceptance rate became 92.01%      a black-box setting (Sec. 6.2–6.3).
+and the false acceptance rate became 4e−3. Attempting
+to decrease the false acceptance rate to 0 reduced the true    6.1   Face++: A Commercial FRS
+acceptance rate to 41.42%, making the FRS unusable.               Face++ is a cross-platform commercial state-of-the-art
+   Using thresholds changes the definition of successful im-   FRS that is widely used by applications for facial recog-
+personation: to successfully impersonate the target t, the     nition, detection, tracking, and analysis [46]. It has been
+probability assigned to ct must exceed the threshold. Eval-    shown to achieve accuracy over 97.3% on LFW [8]. Face++
+uating the previous impersonation attempts under this def-     allows users to upload training images and labels and trains
+inition, we found that success rates generally decreased but   an FRS that can be queried by applications. Given an im-
+remained high enough for the impersonations to be consid-      age, the output from Face++ is the top three most proba-
+ered a real threat (see Table 2). For example, SB ’s success   ble classes of the image along with their confidence scores.
+rate when attempting to fool DNNB and impersonate SC           Face++ is marketed as “face recognition in the cloud.” Users
+decreased from 88.00% without threshold to 75.00% when         have no access to the internals of the training process and
+using a threshold.                                             the model used, nor even to a precise explanation of the
+Time Complexity The DNNs we use in this work are               meaning of the confidence scores. Face++ is rate-limited to
+large, e.g., the number of connections in DNNB , the small-    50,000 free queries per month per user.
+est DNN, is about 3.86e8. Thus, the main overhead when            To train the Face++ model, we used the same training
+solving the optimization problem via GD is computing the       data used for DNNB in Sec. 4.1 to create a 10-class FRS.
+derivatives of the DNNs with respect to the input images.
+For NI images used in the optimizations and NC connec-         6.2   Impersonation Attacks on Face++
+tions in the DNN, the time complexity of each GD iteration        The goal of our black-box attack is for an adversary to
+is O(NI ∗NC ). In practice, when using about 30 images, one    alter an image to which she has access so that it is mis-
+iteration of GD on a MacBook Pro (equipped with 16GB of        classified. We attempted dodging attacks with randomly
+memory and a 2.2GHz Intel i7 CPU) takes about 52.72 sec-       colored glasses and found that it worked immediately for
+onds. Hence, running the optimization up to 300 iterations     several images. Therefore, in this section we focus on the
+may take about 4.39 hours.                                     problem of impersonation from a given source to a target.
+We treat Face++ as an example black-box FRS, with its               oracle O. The value of this objective at every particle is then
+query function modeled as the oracle O(x). The oracle re-           used to move the swarm in a new direction during the next
+turns candidates, an ordered list of three classes numbered         iteration of PSO. We experimented with several definitions
+from 1 to 3 in decreasing order of confidence.                      of f (·). In practice, we found the following to be the most
+   Our algorithm for attacking Face++ uses particle swarm           effective:
+optimization (PSO) [6] as a subroutine. We begin by sum-                           (         score top
+                                                                                     rank · score target if target ∈ candidates
+marizing this technique.                                                   f (x) =
+                                                                                      maxObjective if target ∈     / candidates
+Particle Swarm Optimization (PSO) Particle swarm
+optimization is a heuristic and stochastic algorithm for find-         The function uses the input x to query O for the candidates.
+ing solutions to optimization problems by mimicking the             The variable score top denotes the confidence score of the top-
+behavior of a swarm of birds [6]. It iterates on a set of           ranked item in candidates. If the target is in candidates
+candidate solutions, called particles, and collectively called      then score target is its confidence score and rank its rank
+a seed, that it updates based on the evaluation of an ob-           in candidates. When target is successfully impersonated,
+jective function. Each particle is a candidate solution and         f (·) receives its minimal value of 1. If target is not in
+occupies a position in the solution space. The value of a           the top three candidates, the function should evaluate to
+particle is the result of evaluating the objective function on      maxObjective, which we set to be a sufficiently large value
+that particle’s position in the solution space. In each iter-       to indicate a result far less optimal than Pbest or Gbest .
+ation, each particle is updated by adding a velocity to its
+position. The velocity is a weighted and randomized linear
+                                                                        Algorithm 1: Recursive Impersonation
+combination of the distance between (1) the current posi-
+tion of the particle and its best position thus far (Pbest ) and    1 Initialize epoch = 0, numParticles, epochs max and seed.
+                                                                    2 Set candidates = O(image original ).
+(2) the current position of the particle and the best position
+                                                                    3 if target ∈ candidates then target current = target;
+taken by any particle thus far (Gbest ), where “best” indicates
+                                                                    4 else target current = 2nd most probable class of candidates;
+that the objective function evaluates to the smallest value.        5 while epoch ≤ epoch max do
+Once a termination criterion is met, Gbest should hold the          6     Run PSO subroutine with target current and seed.
+solution for a local minimum.                                       7     if any particle impersonated target during PSO then
+   We choose this over other black-box optimization meth-           8         solution was found. exit.
+ods such as surrogate models [3]—which require that the             9     else if target ∈ candidates of any query during PSO then
+                                                                   10         target current = target. Clear seed.
+adversary has the training data and enough computational
+                                                                   11         seed ⊇ particles that produced this candidate from the
+resources to train an effective surrogate—and genetic algo-                    current PSO run.
+rithms [2]—which though similar to PSO are much less com-          12    else
+putationally efficient [15, 34].                                   13        if new candidate emerges from current PSO run then
+   Since Face++ only returns the top three classes, PSO can        14             target current = new candidate. Clear seed.
+                                                                   15             seed ⊇ particles that produced this candidate from
+make progress if target is in the top three results reported
+                                                                                   the current PSO run.
+for any particle in the first iteration. However, when target      16        else
+is not in the top three for any set of initial solutions, the      17             no solution was found. exit.
+algorithm does not get any feedback on appropriate direc-          18        end
+tions. To address this, we implement an algorithm we call          19    end
+recursive impersonation (Alg. 1). The goal of the algorithm        20    epoch = epoch + 1
+                                                                   21 end
+to is reach the final target by attempting multiple interme-
+diate impersonations on varying targets in successive runs
+of PSO. This is done in the hope that attempting an in-
+termediate impersonation will move the swarm away from              6.3     Results
+the previous solution space and toward candidate solutions
+that may result in the target being returned in the top three       Experiment Description To evaluate our methodology,
+classes. If the target does not initially appear in the can-        we picked four {source, target} pairs from among the sub-
+didate list that results from querying the oracle with the          jects on which Face++ was trained. Two of the pairs were
+original image, we select the class with the second highest         chosen at random. The other two pairs were chosen as chal-
+confidence to be the intermediate target. On subsequent             lenging impersonations by making sure that the target was
+PSO runs, the most commonly occurring class labels that             not one of the top three classes reported by Face++ for the
+have not yet been used as targets become the new interme-           source image. To make the attack realistic in terms of possi-
+diate targets.                                                      bility of physical realization, we restricted the perturbations
+   In our implementation, we modify the PSO subroutine              to a pair of glasses. We did not attempt to physically realize
+to globally keep track of all the particles used in the last        the attack, however.
+iteration of PSO as well as all particles throughout all PSO           We ran our experiments with 25 particles. The particles
+iterations for which invoking the oracle resulted in target         were initialized by randomly generating 25 distinct pairs of
+appearing in the candidate list. The invoking algorithm has         glasses with smooth color variations. We ran the algorithm
+access to these saved particles and uses them in order to           for a maximum of 15 epochs or attempts, and set the it-
+select a new intermediate impersonation target or to provide        eration limit of PSO to 50 and maxObjective to 50. We
+a seed for the next impersonation attempt.                          also assigned weights in computing the velocity such that a
+   On each run, PSO aims to minimize an objective function          higher weight was given to Gbest than Pbest .
+defined by f (x + r), where r is the perturbation applied to        Experiment Results The results from the experiments
+the image x. f (·) is computed based on the output from the         are shown in Table 3. All attempted impersonations suc-
+ceeded. Noteworthy is the low number of queries needed for
+the attacks, which shows that rate-limiting access to services
+will not always stop an online attack.
+
+7.    EXTENSION TO FACE DETECTION
+   In this section, we show how to generalize the basic ap-
+proach presented in Sec. 4.2 to achieve invisibility to facial
+                                                                     Figure 6: An example of an invisibility attack. Left: original
+biometric systems. In an invisibility attack, an adversary
+                                                                     image of actor Kiefer Sutherland. Middle: Invisibility by
+seeks to trick an ML system not into misclassifying one per-
+                                                                     perturbing pixels that overlay the face. Right: Invisibility
+son as another, but into simply failing to detect the presence
+                                                                     with the use of accessories.
+of a person.
+   We examine this category of attacks for two reasons. First,
+most ML systems for identifying faces have two phases: de-           in case one of its classifiers rejects it. Thus, to evade de-
+tecting the presence of a face and then identifying the de-          tection it is sufficient to fool one cascade stage. Since the
+tected face. The detection phase is typically less closely tied      trained VJ is an open source (i.e., white-box) classifier [19],
+to training data than the recognition phase. Hence, tech-            to find a minimal perturbation that can be used for eva-
+niques to circumvent detection have the potential to apply           sion, we could potentially adapt and utilize the solution
+more broadly across multiple systems.                                proposed by Szegedy et al. [39]. However, to solve the op-
+   Second, avoiding detection corresponds naturally to one           timization problem, we need the classification function to
+type of motivation—the desire to achieve privacy. In seeking         be differentiable—as previously explained in Section 3.2—
+to achieve privacy, a person may specifically want to avoid          which Classify(x) is not. Therefore, we utilize the sigmoid
+causing culpability to be placed on another person. Simi-            function, sig (as is often done in ML [37]), and formulate
+larly, a mislabeling of a face might be more likely to arouse        the optimization problem as:
+suspicion or alert authorities than would the failure to notice                X  C                                                !
+                                                                                                                             
+the presence of a face at all, as might occur at an airport           argmin            (a˜i −aˆi )·sig(k·(fi (x+r)−bi ))+aˆi −T +c|r|
+                                                                           r
+security checkpoint where faces detected by FDSs are con-                         i=1
+firmed against face images of passengers expected to travel,                                                               (1)
+or faces of people wanted by the authorities.                        where k is a positive real number that can be tuned to
+   In this work, we show how to perform invisibility attacks         control the precision of the approximation. With this ap-
+while attempting to maintain plausible deniability through           proximation, we can perform gradient descent to solve the
+the use of facial accessories. We defer the examination of           optimization problem.
+the physical realizability of these attacks to future work.
+                                                                     7.2       Experiment Results
+7.1    The Viola-Jones Face Detector                                    By generating a perturbation to evade a specific stage of
+   As mentioned in Sec. 2, the Viola-Jones (VJ) face detector        the detector via the above technique, we are able to learn
+was designed with efficiency and accuracy in mind. The key           how to tweak pixel intensities in specific regions to success-
+idea to achieve both goals is to use a cascade of classifiers        fully evade the whole cascade. To test this approach, we
+that have an ascending order of complexity. Each classifier          randomly selected 20 frontal images from the PubFig [21]
+is trained to detect the majority of the positive instances          face dataset, and tested whether each could be permuted to
+(presence of a face) and reject a large number of the negative       evade detection by fooling the first classifier in the cascade.
+instances. To detect an object in an image, several sub-             We generated perturbed images as follows: we limited the
+windows are taken from the image and are evaluated by the            perturbation to the area of the face, set c to 0.015 (as we
+detector. To be detected as a positive example, the sub-             found this to yield smaller perturbations in practice), and
+window needs to be classified as a positive example by all           then performed line search on k to find the minimal per-
+the classifiers in the cascade. On the other hand, being             turbation necessary to evade the classifier, using a Limited
+rejected by one classifier in the cascade results in classifying     BFGS [29] solver to solve the optimization (Eqn. 1).
+a sub-window as a negative example. Sub-windows that are                For 19 out of the 20 images it was possible to evade de-
+rejected by simple classifiers are not further evaluated by          tection. For the images that achieved evasion, the mean
+the more sophisticated classifiers.                                  perturbation—the aggregate change in the value of the R,
+   A classifier in the cascade is composed of a combination          G, and B channels—of a pixel that overlays the face was
+of weak classifiers. A weak classifier i is a simple classifier      16.06 (standard deviation 6.35), which is relatively high and
+that outputs one of two possible values, a˜i or aˆi , based on       noticeable. As Fig. 6 shows, in some cases even the minimal
+one feature value, fi (·), and a threshold bi . Given a classifier   perturbation necessary to evade detection required making
+that is composed of C weak classifiers, its decision function        changes to faces that could draw increased attention.
+is defined as:                                                          In another version of the attack, in which we sought to
+                                                                     increase both the success rate and plausible deniability, we
+                   X C                                           first added facial accessories specifically selected for their
+   Classify(x) =           (a˜i − aˆi )(fi (x) > bi ) + aˆi    >T    colors and contrast to the image; we then perturbed the im-
+                     i=1
+                                                                     age as in the previous attack. The accessories we used were:
+where T is the passing threshold of the classifier, x is the         eyeglasses, a blond wig, bright eye contacts, eye blacks, and
+sub-window, and fi (x) > bi evaluates to 1 if true and 0             a winter hat. With this approach, it was possible to evade
+otherwise.                                                           detection for all 20 face images. In addition, the amount by
+  As explained above, the VJ detector rejects a sub-window           which each pixel needed to be perturbed dropped remark-
+                                    Source             Target     Success rate   Avg. # queries
+                                  Clive Owen             SA          100%             109
+                                Drew Barrymore           SB          100%             134
+                                      SD                 SC          100%              25
+                                      SD             Clive Owen      100%              59
+
+Table 3: Results of four attempted impersonation attacks, each run three times. SA –SC are the same subjects from Sec. 5.2.
+SD is a 33-year-old Asian female. Each attempt had a different (randomized) initial seed and velocities. Number of queries
+is the total number of queries made of the oracle in the PSO iterations.
+
+ably, thus contributing to plausible deniability. The mean         deployed in the street for surveillance purposes. We plan to
+perturbation of a pixel to avoid detection was 3.01 (stan-         investigate such challenging scenarios in future work.
+dard deviation 2.12). An illustration of evasion attacks on          In addition, the notion of inconspicuousness is subjective,
+VJ that utilize accessories is shown in Fig. 6.                    and the only way to measure it adequately would include
+                                                                   performing human-subject studies. We believe that the at-
+                                                                   tacks demonstrated in this paper strongly suggest that it is
+                                                                   possible to generate attacks that will remain unnoticeable by
+8.   DISCUSSION AND LIMITATIONS                                    humans or will arouse no suspicion. We defer to future work
+Impact of Attacks As our reliance on technology in-                achieving and evaluating attacks that meet this high stan-
+creases, we sometimes forget that it can fail. In some cases,      dard for inconspicuousness. Furthermore, we will explore
+failures may be devastating and risk lives [36]. Our work and      new directions to improve the color consistency, contrast,
+previous work show that the introduction of ML to systems,         and texture-shape of the attacks we create, which is likely
+while bringing benefits, increases the attack surface of these     to enhance inconspicuousness.
+systems (e.g., [23, 35]). Therefore, we should advocate for
+the integration of only those ML algorithms that are robust        9.    CONCLUSION
+against evasion.                                                      In this paper, we demonstrated techniques for generat-
+   In this work we show that FRSs are vulnerable to a new          ing accessories in the form of eyeglass frames that, when
+type of attack: inconspicuous and physically realizable at-        printed and worn, can effectively fool state-of-the-art face-
+tacks that lead to dodging or impersonation. Such attacks          recognition systems. Our research builds on recent research
+can be especially pernicious as they can resist cursory inves-     in fooling machine-learning classifiers by perturbing inputs
+tigation (at the least) and can provide attackers with plau-       in an adversarial way, but does so with attention to two
+sible deniability. While we demonstrate the efficacy of these      novel goals: the perturbations must be physically realizable
+attacks on fooling one kind of DNN architecture, previous          and inconspicuous. We showed that our eyeglass frames en-
+work has shown that adversarial examples can generalize            abled subjects to both dodge recognition and to impersonate
+beyond one DNN [39, 13]. Therefore, we believe our results         others. We believe that our demonstration of techniques to
+imply that DNNs used for purposes beyond what we study             realize these goals through printed eyeglass frames is both
+may also be at risk.                                               novel and important, and should inform future deliberations
+Possible Defenses In future work, we plan to explore de-           on the extent to which ML can be trusted in adversarial set-
+fenses to ameliorate risks caused by these attacks. Defenses       tings. Finally, we extended our work in two additional direc-
+explored in previous work either were ineffective in pre-          tions, first, to so-called black-box FRSs that can be queried
+venting adversarial examples (although they slightly harmed        but for which the internals are not known, and, second, to
+their imperceptibility) [13, 39], or were tested only on sim-      defeat state-of-the-art face detection systems.
+ple tasks (hand-written digit recognition) or on DNNs that
+are not state of the art [32]. We propose to defend against        10.   ACKNOWLEDGEMENTS
+attacks differently. Adversarial attacks on vision systems           We would like to thank Ariel Rao and Aya Fukami for
+exploit the fact that systems are sensitive to small changes       volunteering their images and Matthew Fredrikson for dis-
+in images to which humans are not. To address this, we             cussions about adversarial machine learning.
+propose to develop algorithms that reason about images
+more similarly to humans. In particular, we believe that           11.   REFERENCES
+approaches that classify images based on their attributes           [1] P. N. Belhumeur, J. P. Hespanha, and D. J. Kriegman.
+rather than on the intensities of their pixels may be effec-            Eigenfaces vs. fisherfaces: Recognition using class
+tive (e.g., [21]).                                                      specific linear projection. IEEE Trans. Pattern
+Limitations The variations in imaging conditions that we                Analysis and Machine Intelligence, 19(7), 1997.
+investigate in this work are narrower than can be encoun-           [2] A. D. Bethke. Genetic Algorithms As Function
+tered in practice. For instance, we controlled lighting by tak-         Optimizers. PhD thesis, University of Michigan, 1980.
+ing images in a room that does not have external windows.           [3] A. J. Booker, J. Dennis Jr, P. D. Frank, D. B. Serafini,
+These conditions are applicable to some practical cases (e.g.,          V. Torczon, and M. W. Trosset. A rigorous framework
+an FRS deployed within a building). However, other practi-              for optimization of expensive functions by surrogates.
+cal scenarios are more challenging, and effective attacks may           Structural optimization, 17(1):1–13, 1999.
+have to be tolerant to a larger range of imaging conditions.        [4] L. Bottou. Large-scale machine learning with
+For example, an attacker may not be able to control the                 stochastic gradient descent. In Proc. COMPSTAT,
+lighting or her distance from the camera when an FRS is                 2010.
+ [5] N. Carlini, P. Mishra, T. Vaidya, Y. Zhang, M. Sherr,          Framework. https://github.com/mobilesec/
+     C. Shields, D. Wagner, and W. Zhou. Hidden voice               authentication-framework-module-face.
+     commands. In Proc. USENIX Security, 2016.                 [27] NEC. Face recognition.
+ [6] R. Eberhart and J. Kennedy. A new optimizer using              http://www.nec.com/en/global/solutions/biometrics/
+     particle swarm theory. In Proc. MHS, 1995.                     technologies/face recognition.html.
+ [7] N. Erdogmus and S. Marcel. Spoofing in 2d face            [28] NEURO Technology. SentiVeillance SDK.
+     recognition with 3d masks and anti-spoofing with               http://www.neurotechnology.com/sentiveillance.html.
+     kinect. In Proc. IEEE BTAS, 2013.                         [29] J. Nocedal. Updating quasi-newton matrices with
+ [8] H. Fan, Z. Cao, Y. Jiang, Q. Yin, and C. Doudou.               limited storage. Mathematics of computation,
+     Learning deep face representation. arXiv preprint              35(151):773–782, 1980.
+     arXiv:1403.2802, 2014.                                    [30] OpenALPR. OpenALPR - Automatic License Plate
+ [9] A. Fawzi, O. Fawzi, and P. Frossard. Fundamental               Recognition. http://www.openalpr.com/.
+     limits on adversarial robustness. In Proc. ICML,          [31] N. Papernot, P. McDaniel, S. Jha, M. Fredrikson,
+     Workshop on Deep Learning, 2015.                               Z. B. Celik, and A. Swami. The limitations of deep
+[10] R. Feng and B. Prabhakaran. Facilitating fashion               learning in adversarial settings. In Proc. IEEE Euro
+     camouflage art. In ACM MM, 2013.                               S&P, 2015.
+[11] M. Fredrikson, S. Jha, and T. Ristenpart. Model           [32] N. Papernot, P. McDaniel, X. Wu, S. Jha, and
+     inversion attacks that exploit confidence information          A. Swami. Distillation as a defense to adversarial
+     and basic countermeasures. In Proc. ACM CCS, 2015.             perturbations against deep neural networks. In Proc.
+[12] J. Galbally, C. McCool, J. Fierrez, S. Marcel, and             IEEE S&P, 2016.
+     J. Ortega-Garcia. On the vulnerability of face            [33] O. M. Parkhi, A. Vedaldi, and A. Zisserman. Deep
+     verification systems to hill-climbing attacks. Pattern         face recognition. In Proc. BMVC, 2015.
+     Recognition, 43(3):1027–1038, 2010.                       [34] L. M. Rios and N. V. Sahinidis. Derivative-free
+[13] I. J. Goodfellow, J. Shlens, and C. Szegedy. Explaining        optimization: a review of algorithms and comparison
+     and harnessing adversarial examples. In ICLR, 2015.            of software implementations. Journal of Global
+[14] A. Harvey. CV Dazzle: Camouflage from face                     Optimization, 56(3):1247–1293, 2013.
+     detection. Master’s thesis, New York University, 2010.    [35] N. Rndic and P. Laskov. Practical evasion of a
+     Available at: http://cvdazzle.com.                             learning-based classifier: A case study. In Proc. IEEE
+[15] R. Hassan, B. Cohanim, O. De Weck, and G. Venter.              S&P, 2014.
+     A comparison of particle swarm optimization and the       [36] P. Robinette, W. Li, R. Allen, A. M. Howard, and
+     genetic algorithm. In Proc. MDO, 2005.                         A. R. Wagner. Overtrust of robots in emergency
+[16] G. E. Hinton, S. Osindero, and Y. W. Teh. A fast               evacuation scenarios. In Proc. HRI, 2016.
+     learning algorithm for deep belief nets. Neural           [37] D. E. Rumelhart, G. E. Hinton, and R. J. Williams.
+     Computation, 18(7):1527–1554, 2006.                            Learning internal representations by error
+[17] G. B. Huang, M. Ramesh, T. Berg, and                           propagation. Technical report, DTIC Document, 1985.
+     E. Learned-Miller. Labeled faces in the wild: A           [38] F. Schroff, D. Kalenichenko, and J. Philbin. Facenet:
+     database for studying face recognition in                      A unified embedding for face recognition and
+     unconstrained environments. Technical Report 07-49,            clustering. In Proc. CVPR, 2015.
+     University of Massachusetts, Amherst, October 2007.       [39] C. Szegedy, W. Zaremba, I. Sutskever, J. Bruna,
+[18] L. Introna and H. Nissenbaum. Facial recognition               D. Erhan, I. J. Goodfellow, and R. Fergus. Intriguing
+     technology: A survey of policy and implementation              properties of neural networks. In Proc. ICLR, 2014.
+     issues. 2010. https://goo.gl/eIrldb.                      [40] M. Turk and A. Pentland. Eigenfaces for recognition.
+[19] Itseez. OpenCV: Open Source Computer Vision.                   Journal of cognitive neuroscience, 3(1):71–86, 1991.
+     http://opencv.org/.                                       [41] A. Vedaldi and K. Lenc. MatConvNet – Convolutional
+[20] N. Koren. Color management and color science. http:            neural networks for MATLAB. In Proc. ACM MM,
+     //www.normankoren.com/color management.html.                   2015.
+[21] N. Kumar, A. C. Berg, P. N. Belhumeur, and S. K.          [42] P. Viola and M. Jones. Rapid object detection using a
+     Nayar. Attribute and simile classifiers for face               boosted cascade of simple features. In Proc. CVPR,
+     verification. In Proc. ICCV, 2009.                             2001.
+[22] Y. Li, K. Xu, Q. Yan, Y. Li, and R. H. Deng.              [43] G. L. Wittel and S. F. Wu. On attacking statistical
+     Understanding OSN-based facial disclosure against              spam filters. In Proc. CEAS, 2004.
+     face authentication systems. In Proc. AsiaCCS, 2014.      [44] T. Yamada, S. Gohshi, and I. Echizen. Privacy visor:
+[23] B. Liang, M. Su, W. You, W. Shi, and G. Yang.                  Method based on light absorbing and reflecting
+     Cracking classifiers for evasion: A case study on the          properties for preventing face image detection. In
+     Google’s phishing pages filter. In Proc. WWW, 2016.            Proc. SMC, 2013.
+[24] A. Mahendran and A. Vedaldi. Understanding deep           [45] J. Yosinski, J. Clune, Y. Bengio, and H. Lipson. How
+     image representations by inverting them. In Proc.              transferable are features in deep neural networks? In
+     CVPR, 2015.                                                    Proc. NIPS, 2014.
+[25] Megvii Inc. Face++. http://www.faceplusplus.com/.         [46] E. Zhou, Z. Cao, and Q. Yin. Naive-deep face
+[26] MobileSec. Mobilesec Android Authentication                    recognition: Touching the limit of LFW benchmark or
+                                                                    not? arXiv preprint arXiv:1501.04690, 2015.
+

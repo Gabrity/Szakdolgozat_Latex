@@ -394,7 +394,89 @@ A NIST 2025-ös, ellenfél alapú gépi tanulásról szóló átfogó jelentése
 az optimalizáció-alapú korai módszerektől (Szegedy és társai) az FGSM-en és Kurakin és társai iteratív FGSM-változatán át egészen a 
 PGD-ig~\cite{nist2025aml}. 
 
+\subsection{Univerzális perturbációk}
+Az eddigi módszerek mindegyike digitális támadás, a $\delta$ perturbációt egyetlen konkrét $x$ bemenetre 
+számolja ki, tehát minden új képhez elvégzi a gradiensszámítást. 
+Moosavi-Dezfooli és társai ezzel szemben megmutatták, hogy képek egy adott halmazára létezik egyetlen, kép-független 
+(\textit{image-agnostic}) perturbációs vektor is, amely a képek jelentős részére alkalmazva önmagában téves osztályozást eredményez~\cite{moosavidezfooli2017universal}. 
+Az ilyen perturbációt univerzálisnak nevezik. 
+Formálisan, ha $\mu$ a bemeneti képek eloszlása és $\hat{y}(x)$ a modell által adott predikció, akkor egy $v$ perturbációs vektort keresnek, 
+amelyre 
+\[
+  \|v\|_p \leq \xi \qquad \text{és} \qquad \Pr_{x\sim\mu}\big[\hat{y}(x+v) \neq \hat{y}(x)\big] \geq 1-\delta,
+\]
+ahol $\xi$ a megengedett perturbáció nagyságát korlátozza, $\delta$ pedig a kívánt tévesztési arányt (\textit{fooling rate}) határozza meg. 
+
+A szerzők egy iteratív algoritmust javasolnak a $v$ vektor előállítására, amely a tanítóképek egy $X$ részhalmazán dolgozik, és képenként 
+addig módosítja a már felhalmozott perturbációt, amíg az adott kép át nem kerül a döntési határ túloldalára, minden lépés után visszavetítve az 
+eredményt a $\xi$ sugarú $\ell_p$ gömbre. 
+Az eljárás lényegi újdonsága, hogy a $v$ vektort elég egyszer kiszámítani egy viszonylag kis képhalmazon, ezt követően új bemenetekre való 
+alkalmazásához elegendő a vektor egyszerű hozzáadása, gradiensszámítás vagy újabb optimalizálás nélkül. 
+
+Kísérleteik szerint egy, néhány ezer (akár csak néhány száz) képen számolt univerzális perturbáció a validációs halmaz eddig nem látott 
+képeinek túlnyomó részén, esetenként 80--90 százalék felett is, téves osztályozást eredményez, annak ellenére, hogy szemmel alig észrevehető. 
+%Emellett a korábban bemutatott transzferálhatóság egy erősebb változatát is mutatja: egy adott architektúrára (például VGG-19-re) számolt 
+%perturbáció más, jelentősen eltérő architektúrájú hálókon (GoogLeNet, ResNet) is számottevő tévesztési arányt ér el, tehát nemcsak a képek, 
+%hanem a modellarchitektúrák között is általánosít, ami a szerzők szerint a döntési határok közötti geometriai hasonlóságra, és így a korábban 
+%bemutatott linearitási hipotézisre vezethető vissza.
+
+\subsection{Fizikailag megvalósítható támadások}
+Az eddig tárgyalt módszerek digitális támadások, a perturbációt közvetlenül a modellnek átadott kép pixeleire számolják ki. 
+A fizikailag megvalósítható támadások ezzel szemben olyan perturbációkat állítanak elő, amelyek a valós környezetben is kivitelezhetőek.
+
+Sharif és társai egy nyomtatott szemüvegkeret mintázatát optimalizálták úgy, hogy azt viselve a támadó elkerülje a felismerést, vagy más 
+személynek adja ki magát~\cite{sharif2016accessorize}. 
+A perturbációt egy gradiens alapú optimalizálással, egy simasági (\textit{total variation}) megszorítással kiegészítve állították elő, amely 
+biztosítja, hogy a mintázat nyomtatható és kamerával visszafényképezhető maradjon. 
+Ezt a nyomtatott szemüveget felvéve a résztvevők az esetek nagy részében sikeresen elkerülték a felismerést, egyes célszemélyeknél a megszemélyesítés is 
+jelentős arányban sikerült. 
+
+Eykholt és társai egy hasonló elven működő, közlekedési táblák elleni támadást dolgoztak ki, Robust Physical Perturbations (RP2) néven~\cite{eykholt2018robust}. 
+A perturbációt nem egy kép pixeleire, hanem a fizikai környezet változatosságát (eltolás, elforgatás, megvilágítás, távolság) modellező 
+eloszlásra optimalizálják, így az a különböző körülmények között készült felvételeken is robusztus marad. 
+Fekete-fehér matricák formájában egy valódi Stop táblára helyezett ilyen formájú perturbáció tábla típusát tévesen azonosította be. 
+Laboratóriumi teszteken teljes, a mozgó járműből rögzített videón pedig igen magas sikerességi arányt értek ezzel el.  
+
+Chen és társai a fizikailag megvalósítható támadások körét objektumdetektorokra terjesztették ki, ShapeShifter néven~\cite{chen2018shapeshifter}. 
+Ez nehezebb feladat, mert a detektornak egyszerre több, különböző méretű régióban (\textit{bounding box}) kell tévesen felismernie az objektumot. 
+A szerzők az úgynevezett várható érték a transzformáció felett (\textit{Expectation over Transformation}) technikát adaptálták erre a feladatra, 
+és az így létrehozott, nyomtatott Stop táblák a Faster R-CNN detektort a valóságban, különböző távolságokból és szögekből felvéve is 
+következetesen megtévesztették. 
+
+A közös tanulság, hogy itt a robusztusságot nem elegendő egyetlen rögzített bemenetre biztosítani, a perturbációnak a fizikai körülmények 
+(nézőpont, távolság, megvilágítás, kamera- és nyomtatási torzítás) teljes változatosságával szemben is meg kell maradnia, ami a támadási 
+felületet a valós, fizikai környezetbe is kiterjeszti, és az önvezető járművek vagy beléptető rendszerek biztonságát közvetlenül érinti. 
+
 \section{Védekezési stratégiák áttekintése}
+Most pár egyszerűbb védekezési stratégiát nézünk, amelyek a bemeneti képet alakítják át pont a klasszifikáció előtt, remélve, hogy az átalakítás 
+eltávolítja, de legalább csökkenti a perturbáció hatását. 
+A szoftver védekezési moduljában két ilyen módszert, a JPEG-tömörítést és a Gauss-elmosást nézzük itt át. 
+Közös bennük, hogy egyszerűek, nem igényelnek újratanítást vagy hozzáférést a modell gradienseihez, viszont csak kisebb perturbáiójú támadások 
+ellen biztsítanak védelmet. 
+Céljuk elsősorban szemléltető, illetve a perturbáció utólagos csökkentésének demonstrálására szolgáló eszközként tekintendő, 
+nem pedig egy megbízható, önmagában elégséges védelmi mechanizmusként. 
+
+\subsection{A JPEG-tömörítés mint védekezés}
+Dziugaite és társai kifejezetten a JPEG-tömörítés ellenfél alapú perturbációkra gyakorolt hatását vizsgálták~\cite{dziugaite2016jpeg}. 
+Hipotézisük szerint a természetes képek egy alacsony dimenziós altérben, az adataltérben helyezkednek el, egy ellenfél alapú perturbáció 
+viszont jellemzően kimozdítja a képet ebből az altérből. 
+Mivel a képosztályozási adathalmazok szinte kivétel nélkül JPEG formátumú képekből állnak, egy újratömörítés a perturbált képet visszavetítheti egy, 
+az adataltérnél tágabb, de azt magába foglaló altérbe, az úgynevezett JPEG-altérbe. 
+Feltételezésük szerint ez az újratömörítés legalábbis részben visszaállíthatja a klasszifikáció helyességét. 
+
+Eredményeik szerint kis magnitúdójú perturbáció ($\epsilon=1/255$) esetén a JPEG-tömörítés jelentős mértékben, bár nem teljesen, visszaállította a 
+klasszifikációs pontosságot. 
+Nagyobb magnitúdójú perturbációk ($\epsilon=5/255$ és $\epsilon=10/255$) esetén az újratömörítés hatása elenyésző volt, a pontosság nem tért vissza a 
+tiszta képekre jellemző szintre. 
+Ebből azt a következtetést vonták le, hogy a JPEG-tömörítés önmagában nem nyújt megbízható védelmet az ellenfél alapú perturbációkkal szemben, 
+hatékonysága erősen függ a perturbáció nagyságától. 
+
+\subsection{A Gauss-elmosás mint védekezés}
+A Gauss-elmosás egy szűrő, aminél minden pixel értéket a szomszédos pixelek átlagaként állítjuk elő, azaz letompítjuk azt. 
+Dziugaite és társai megemlítik, hogy Kurakin és társai egy korábbi munkájukban a JPEG-tömörítés mellett vizsgálták a Gauss-elmosást, valamint 
+a fényerő és a kontraszt módosítását is, vagy akár a fizikai világban (nyomtatás és újrafényképezés) átalakított módszereket, mint lehetséges 
+védekezési módszereket~\cite{dziugaite2016jpeg}. 
+Ez a hivatkozott vizsgálat azt találta, hogy az FGSM-perturbációk viszonylag ellenállóak az ilyen képtranszformációkkal szemben. 
 
 \section{A rendszer architektúrája}
 
