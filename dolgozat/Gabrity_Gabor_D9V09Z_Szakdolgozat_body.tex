@@ -140,7 +140,7 @@ Az ilyen módosításokat ellenfél alapú perturbációknak nevezzük.
 Ezeknek a támadásoknak két algoritmusát fogjuk itt átvenni, melyek a taxonómiában a korábban említett white-box támadások közé tartoznak. 
 A következő fejezetekben egy egylépéses ellenfél alapú támadást mutatunk be (FGSM), utána erre építve egy többlépéses algoritmust (PGD). 
 
-\section{FGSM (Fast Gradient Sign Method)}
+\subsection{FGSM (Fast Gradient Sign Method)}
 Az FGSM algoritmust Goodfellow és szerzőtársai a Google-nél végzett kutatásaik alapján javasolták~\cite{goodfellow2015explaining}. 
 Az előző fejezetben megjegyeztem, hogy a $\nabla_x J(\theta, x, y)$ veszteségfüggvény gradiense az input értékre való érzékenységet jelenti. 
 Természetes ötlet, hogy a bemenetet a gradienssel ellentétes irányba mozdítsuk el, ami várhatóan növeli a veszteségfüggvény értékét, azaz rontja a 
@@ -156,7 +156,7 @@ Tehát az FGSM ellenfél alapú példát a következő módon kapjuk meg:
   x_{\mathrm{adv}} = x + \epsilon \cdot \mathrm{sign}\big(\nabla_x J(\theta, x, y)\big).
 \]
 
-\subsection{Célzott változat}
+\subsubsection{Célzott változat}
 Az alapváltozat a megadott helyes osztály veszteségét igyekszik maximalizálni, tehát minél inkább mást mutasson, mint ami a képen van. 
 A célzott változatnál egy $y_{\mathrm{target}}$ célosztályt adunk meg, és azt szeretnénk, hogy a modell ebbe az osztályba sorolja az ellenfél alapú képet. 
 \[
@@ -164,12 +164,12 @@ A célzott változatnál egy $y_{\mathrm{target}}$ célosztályt adunk meg, és 
 \]
 Tehát a képlet csak annyiban változik, hogy távolodás helyett az $y_{\mathrm{target}}$-hoz tartozó veszteség minimuma felé közeledni szeretnénk, és $y$ helyett $y_{\mathrm{target}}$-ot használjuk. 
 
-\subsection{Előnyök és korlátok}
+\subsubsection{Előnyök és korlátok}
 Mivel a gradienst a tanításban is használt hiba-visszaterjesztés segítségével hatékonyan tudjuk kiszámolni, ezért a támadás gyors. 
 Hátránya, hogy csak egyetlen, durva lépést tesz a megfelelő irányba, ezért -- főleg az iteratív módszerekhez, például a PGD-hez képest -- 
 kevésbé hatékonyan képes megtéveszteni az osztályozót. 
 
-\section{PGD (Projected Gradient Descent)}
+\subsection{PGD (Projected Gradient Descent)}
 Ezt a módszert Madry és társai vezették be~\cite{madry2018towards}, és lényegében az FGSM egylépéses ötletének iteratív általánosítása. 
 Nem egyetlen nagy lépést teszünk a gradiens előjele irányába, hanem ugyanabba az irányba több, kisebb lépést hajtunk végre egymás után. 
 A motiváció emögött az, hogy az FGSM linearitási feltevése csak $x$ kellően kis környezetében állja meg a helyét, ezért előnyösebb, ha $T$ darab 
@@ -185,13 +185,13 @@ Az algoritmus formális definíciója tehát
 \]
 ahol $\Pi_{x+S}$ az $x+S$ halmazra való projekció.
 
-\subsection{Célzott változat}
+\subsubsection{Célzott változat}
 Az FGSM-hez hasonlóan itt is definiálunk egy célzott változatot, amely az ottanival analóg módon adható meg: 
 \[
   x^{t+1} = \Pi_{x+S}\big(x^t - \alpha \cdot \mathrm{sign}(\nabla_x J(\theta, x^t, y_{\mathrm{target}}))\big).
 \]
 
-\subsection{Véletlen kiindulási pont}
+\subsubsection{Véletlen kiindulási pont}
 Madry és társai kísérletileg mutatták meg, hogy a veszteségfelszín lokális maximumai jól koncentráltak, így egy véletlen kezdőpontból indított PGD 
 is megbízhatóan jó megoldást talál~\cite{madry2018towards} (a jelenség hátterét a \ref{sec:saddle-point-landscape}. alfejezet tárgyalja részletesen). 
 Ennek a modellek robusztusságának tesztelésében is van szerepe: mivel a veszteségfelszínnek több, egymástól távol eső lokális maximuma is lehet, egy 
@@ -202,14 +202,14 @@ Ezért a véletlen kezdőpontot az $\epsilon$ sugarú gömbben egyenletes eloszl
   x^0 = \Pi_{x+S}(x + \eta), \qquad \eta \sim \mathcal{U}(-\epsilon, \epsilon)^d.
 \]
 
-\subsection{Az $\alpha$ és $T$ paraméterek megválasztása}
+\subsubsection{Az $\alpha$ és $T$ paraméterek megválasztása}
 A PGD viselkedését az $\epsilon$ perturbációs korláton felül két további paraméter határozza meg. 
 $T$ az iterációk számát jelöli, ez adja meg az algoritmus számítási költségét, ugyanakkor több iteráció jellemzően erősebb támadást eredményez. 
 Az $\alpha$ lépésnagyságot úgy kell megválasztani, hogy túl kicsi érték esetén lassú a konvergencia, túl nagy érték esetén pedig instabilitáshoz 
 vezethet. 
 Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2{,}5 \cdot \epsilon / T$~\cite{madry2018towards}.
 
-\subsection{Előnyök és korlátok}
+\subsubsection{Előnyök és korlátok}
 A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti a lokális optimumot. 
 A véletlen kezdőponttal kombinálva különösen hatékony a robusztusság kiértékelésében. 
 Hátránya, hogy $T$-szer annyi gradiens-számítást igényel, mint az FGSM, így nagyobb a számítási költsége. 
