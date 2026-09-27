@@ -590,29 +590,29 @@ gradiensszámítását.
 A kódban a modellt és a normalizációs paramétereket (\texttt{AttackContext}), a betöltött modellt
 (\texttt{ModelBundle}) és egy támadás eredményét (\texttt{AttackResult}) tiszta adatstruktúrák (\texttt{dataclass}) reprezentálják, a 
 műveletek pedig ezeken dolgoznak, állapot és mellékhatás nélkül. 
-Ez a szétválasztás lehetővé teszi, hogy az egységtesztek a felhasználói felület és a valódi modellek használata nélkül, mockolva fussanak. 
+Ez a szétválasztás lehetővé teszi, hogy az egységtesztek a felhasználói felület és a valódi modellek mockolása nélkül fussanak. 
 
 \subsubsection{Támadás végrehajtása háttérszálon}
 Az ,,Attack'' gomb megnyomása egy \texttt{threading.Thread} példányon indítja el a támadást, mivel egy PGD-támadás már
 másodperces nagyságrendű futást jelenthet, ami alatt a GUI főszál lefagyna. 
 
 \subsubsection{FGSM interaktív epsilon-előnézet}
-Egy sikeres FGSM-támadás után a felület elmenti cache tárba a gradiens előjelét (\texttt{attack\_engine.fgsm\_sign()}), mivel az FGSM képlete ezt az
+Egy sikeres FGSM-támadás után a felület elcache-eli a gradiens előjelét (\texttt{attack\_engine.fgsm\_sign()}), mivel az FGSM képlete ezt az
 előjelet csak $\epsilon$-nal szorozza meg. 
-Így az $\epsilon$ csúszka mozgatásakor csak újraskálázás történik a már kiszámolt gradiensnek. 
+Ezzel az $\epsilon$ csúszka mozgatásakor csak a már kiszámított előjelet kell újraskálázni, új gradienszámítás nélkül. 
 
 \subsubsection{Modell-cache és lusta betöltés}
-A \texttt{ModelManager} csak az első ténylegesen kért modellt tölti be, az eredményt cache memóriába helyezi.
-Mivel egy modell letöltése és felépítése másodperces nagyságrendű művelet, amit így elég egyszer elvégezni. 
+A \texttt{ModelManager} csak az első ténylegesen kért modellt tölti be, az eredményt egy belső cache-ben tárolja el. 
+Ennek oka, hogy egy modell letöltése és felépítése másodperces nagyságrendű művelet, amit elég egyszer elvégezni. 
 
 \subsubsection{Kiterjeszthető modellarchitektúra}
 A \texttt{ModelManager.SUPPORTED} lista és a \texttt{\_build()} metódus egyetlen helyen tartja a rendelkezésre álló modelleket, így egy új
-torchvision-modell hozzáadása bármi egyéb módosítása nélkül megoldható. 
+torchvision-modell integrálása más kód módosítása nélkül megoldható. 
 
 \subsubsection{A bemeneti kép 224×224-es mérete}
-A betöltött kép $256$ pixeles átméretezésre, majd $224\times224$-re középre vágásra kerül (\texttt{Resize(256)} + \texttt{CenterCrop(224)}), mivel
+A betöltött kép mérete előbb $256$ pixelre kerül átméretezésre, majd $224\times224$-re középre vágásra (\texttt{Resize(256)} + \texttt{CenterCrop(224)}), mivel
 mind a ResNet50, mind a MobileNetV2 erre a méretre lett előtanítva. 
-Erre azért van szükség, mert a nyers képek aránya általában nem négyzetes, egy közvetlen torzítás vizuálisan eltorzítaná a képet. 
+Erre azért van szükség, mert a nyers képek aránya általában nem négyzetes, egy közvetlen $224\times224$-re történő átméretezés vizuálisan eltorzítaná a képet. 
 Emiatt viszont a kép szélén lévő tartalom elveszhet. 
 
 \section{Az egyes komponensek megvalósítási részletei}
