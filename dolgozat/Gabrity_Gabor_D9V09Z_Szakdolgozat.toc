@@ -50,11 +50,11 @@
 \select@language {hungarian} \contentsline {section}{\numberline {3.7}A rendszer architektúrája}{21}{section.3.7}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.7.1}Az adatfolyam}{22}{subsection.3.7.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.8}A felhasznált technológiák}{23}{section.3.8}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.8.1}Gépi tanulási keretrendszer}{23}{subsection.3.8.1}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.8.2}Grafikus felület}{23}{subsection.3.8.2}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.8.3}Képfeldolgozás}{23}{subsection.3.8.3}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.8.4}Tesztelési eszközök}{24}{subsection.3.8.4}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.8.5}Fejlesztői környezet}{24}{subsection.3.8.5}%
+\select@language {hungarian} \contentsline {subsubsection}{Gépi tanulási keretrendszer}{23}{section*.11}%
+\select@language {hungarian} \contentsline {subsubsection}{Grafikus felület}{23}{section*.12}%
+\select@language {hungarian} \contentsline {subsubsection}{Képfeldolgozás}{24}{section*.13}%
+\select@language {hungarian} \contentsline {subsubsection}{Tesztelési eszközök}{24}{section*.14}%
+\select@language {hungarian} \contentsline {subsubsection}{Fejlesztői környezet}{24}{section*.15}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.9}Tervezési döntések és indoklásuk}{24}{section.3.9}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.10}Az egyes komponensek megvalósítási részletei}{24}{section.3.10}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{25}{chapter.4}%
@@ -69,4 +69,4 @@
 \select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{33}{section.5.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{33}{section.5.2}%
 \select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{33}{section.5.3}%
-\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{34}{section*.11}%
+\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{34}{section*.16}%
