@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  27 SEP 2026 23:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  28 SEP 2026 00:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1796,12 +1796,19 @@ l.80 \cleardoublepage
 
 
 ]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
+4.
+
+(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.70 ...e {5.2}KÃ¶vetkeztetÃ©sek}{33}{section.5.2}
-                                                  % [2])
+l.70 ...utomatizÃ¡lt GUI tesztek}{30}{section.4.3}
+                                                  % [2{C:/Users/User/AppData/Lo
+cal/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}])
 \tf@toc=\write7
 \openout7 = `Gabrity_Gabor_D9V09Z_Szakdolgozat.toc'.
 
@@ -1835,16 +1842,9 @@ l.83 \tableofcontents
 
 {C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{
 C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
-4.
-
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [8{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}
-] [9{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.e
-nc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.en
-c}] [10]
-[11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
+[8] [9{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy
+.enc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.
+enc}] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
 87.
 
@@ -1862,82 +1862,101 @@ Underfull \hbox (badness 2237) in paragraph at lines 536--538
 meg-hív-ja az
  []
 
-[22] [23] [24]
+[22] [23]
+Underfull \hbox (badness 1584) in paragraph at lines 590--594
+[]\T1/lmr/m/n/12 Az \T1/lmtt/m/n/12 attack_engine.py \T1/lmr/m/n/12 mo-dul-ban 
+a mo-dellt és a nor-ma-li-zá-ci-ós pa-ra-mé-te-re-ket
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 590--594
+\T1/lmr/m/n/12 (\T1/lmtt/m/n/12 AttackContext\T1/lmr/m/n/12 ), a be-töl-tött mo
+-dellt (\T1/lmtt/m/n/12 ModelBundle\T1/lmr/m/n/12 ) és egy tá-ma-dás ered-mé-ny
+ét
+ []
+
+[24]
+Underfull \hbox (badness 6284) in paragraph at lines 600--604
+[]\T1/lmr/m/n/12 Egy si-ke-res FGSM-támadás után a fe-lü-let elcache-eli a gra-
+di-ens el®-je-lét
+ []
+
+[25]
 4. fejezet.
 
-Underfull \hbox (badness 10000) in paragraph at lines 608--613
+Underfull \hbox (badness 10000) in paragraph at lines 639--644
 []\T1/lmr/m/n/12 Minden vé-let-lent fel-hasz-ná-ló fix-tu-re (pl. a be-me-ne-ti
  ké-pet ge-ne-rá-ló
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 608--613
+Underfull \hbox (badness 2343) in paragraph at lines 639--644
 \T1/lmtt/m/n/12 sample_image_tensor\T1/lmr/m/n/12 ) ma-ga hív-ja meg a \T1/lmtt
 /m/n/12 torch.manual_seed\T1/lmr/m/n/12 -et köz-vet-le-nül az
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 608--613
+Underfull \hbox (badness 1221) in paragraph at lines 639--644
 \T1/lmr/m/n/12 sta-tisz-ti-kai ki-ér-té-ke-lés kel-le-ne), ha-nem az al-go-rit-
 mu-sok tu-laj-don-sá-ga-it el-len-®riz-zük
  []
 
-[25
+[26
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 619.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 650.
 
-Underfull \hbox (badness 1112) in paragraph at lines 622--624
+Underfull \hbox (badness 1112) in paragraph at lines 653--655
 \T1/lmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/lmr/m/n/12 : Ellen®rzi, ho
 gy \T1/lmtt/m/n/12 topk=3 \T1/lmr/m/n/12 ese-tén a vissza-adott
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 654--658
+Underfull \hbox (badness 3849) in paragraph at lines 685--689
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 nnak el-le-né-re, hogy a hí-vó
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 671--676
+Underfull \hbox (badness 10000) in paragraph at lines 702--707
 \T1/lmtt/m/n/12 test_attack_fgsm_dis-patches_only_to_fgsm\T1/lmr/m/n/12 : \T1/l
 mtt/m/n/12 mocker.patch(..., wraps=_fgsm)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 671--676
+Underfull \hbox (badness 10000) in paragraph at lines 702--707
 \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 wraps=_pgd \T1/lmr/m/n/12 spy-okkal fi-gye-li
  a hí-vá-so-kat: \T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tén
  []
 
 
-Underfull \hbox (badness 5756) in paragraph at lines 671--676
+Underfull \hbox (badness 5756) in paragraph at lines 702--707
 \T1/lmtt/m/n/12 _fgsm.assert_called_once() \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 _p
 gd.assert_not_called() \T1/lmr/m/n/12 tel-je-sül. A \T1/lmtt/m/n/12 wraps
  []
 
-[26] [27]
-Underfull \hbox (badness 10000) in paragraph at lines 773--777
+[27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 804--808
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyanaz a
 z er®s \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyíték
  []
 
-[28]
-Underfull \hbox (badness 5133) in paragraph at lines 790--793
+[29]
+Underfull \hbox (badness 5133) in paragraph at lines 821--824
 \T1/lmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/lmr/m
 /n/12 : Viselkedési bi-zo-nyí-ték
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 798--802
+Underfull \hbox (badness 1558) in paragraph at lines 829--833
 \T1/lmtt/m/n/12 test_pgd_tar-geted_in-creases_confidence_in_target_label\T1/lmr
 /m/n/12 : A tar-ge-ted PGD a
  []
 
-[29] [30] [31] [32]
+[30] [31] [32] [33]
 5. fejezet.
-) [33
+) [34
 
 ]
 Underfull \hbox (badness 2065) in paragraph at lines 100--100
@@ -1957,7 +1976,7 @@ Underfull \hbox (badness 1147) in paragraph at lines 100--100
 he-Art Face
  []
 
-[34
+[35
 
 
 
@@ -1968,7 +1987,7 @@ t-in-fow-ler.com. 2012. \T1/lmr/m/sc/12 url\T1/lmr/m/n/12 : []$\T1/lmtt/m/n/12
 https : / /
  []
 
-[35] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[36] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
@@ -1979,11 +1998,11 @@ Package logreq Info: Writing requests to 'Gabrity_Gabor_D9V09Z_Szakdolgozat.run
 
  ) 
 Here is how much of TeX's memory you used:
- 50670 strings out of 467682
- 1121598 string characters out of 5415184
- 2089637 words of memory out of 5000000
- 78773 multiletter control sequences out of 15000+600000
- 714381 words of font info for 100 fonts, out of 8000000 for 9000
+ 50686 strings out of 467682
+ 1121776 string characters out of 5415184
+ 2089635 words of memory out of 5000000
+ 78781 multiletter control sequences out of 15000+600000
+ 714757 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  124i,13n,145p,1146b,2384s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb
@@ -2003,10 +2022,10 @@ pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (37 pages, 616326 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (38 pages, 626225 bytes
 ).
 PDF statistics:
- 709 PDF objects out of 1000 (max. 8388607)
- 126 named destinations out of 1000 (max. 500000)
- 602 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 748 PDF objects out of 1000 (max. 8388607)
+ 133 named destinations out of 1000 (max. 500000)
+ 650 words of extra memory for PDF output out of 10000 (max. 10000000)
 
