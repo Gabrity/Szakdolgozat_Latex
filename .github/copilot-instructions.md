@@ -43,6 +43,7 @@ Lásd [code/tests/conftest.py](../code/tests/conftest.py) és [code/pytest.ini](
 Lásd a [repo memóriát](/memories/repo/thesis-requirements.md) is: kötelező önálló `Bevezetes`, `Felhasznaloi dokumentacio`, `Fejlesztoi dokumentacio`, `Teszteles` fejezetek, formai/tartalmi elvárások az `input/kovetelmenyek/` fájlokban.
 - LaTeX forrásban minden mondat új sorban kezdődjön; egy mondaton belül sortörés megengedett, ha a sor túllóg egy ésszerű hosszon. Minden mondat végén szerepeljen egy darab szóköz karakter
 - A dolgozat szövegében ne használj kettőspontot (`:`), pontosvesszőt (`;`) vagy gondolatjeles (`--`) tagmondat-elválasztást; helyettük bontsd a mondatot külön, önálló mondatokra.
+- Igyekezz mindehol a kifejezések magyar nyelvű megfelelőit használni, pl targeted helyett célzott. Kivételt képeznek ezek az esetek: mockolás.
 
 ## ELTE LaTeX referencia
 
