@@ -62,11 +62,11 @@
 \select@language {hungarian} \contentsline {subsubsection}{Modell-cache és lusta betöltés}{25}{section*.19}%
 \select@language {hungarian} \contentsline {subsubsection}{Kiterjeszthető modellarchitektúra}{25}{section*.20}%
 \select@language {hungarian} \contentsline {subsubsection}{A bemeneti kép 224×224-es mérete}{25}{section*.21}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.10}Az egyes komponensek megvalósítási részletei}{26}{section.3.10}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.1}\texttt {model\_manager.py} — modellbetöltés}{26}{subsection.3.10.1}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.2}\texttt {attack\_engine.py} — a diszpécser és az FGSM implementáció}{26}{subsection.3.10.2}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.3}\texttt {defense\_module.py} — a szűrők implementációja}{27}{subsection.3.10.3}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.4}\texttt {utils.py} — a perturbáció vizualizációja}{27}{subsection.3.10.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.10}Az egyes komponensek megvalósítási részletei}{25}{section.3.10}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.1}\texttt {model\_manager.py} modul}{26}{subsection.3.10.1}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.2}\texttt {attack\_engine.py} modul}{26}{subsection.3.10.2}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.3}\texttt {defense\_module.py} modul}{27}{subsection.3.10.3}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.4}\texttt {utils.py} modul}{27}{subsection.3.10.4}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{28}{chapter.4}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{28}{section.4.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.2}Integrációs tesztek}{32}{section.4.2}%

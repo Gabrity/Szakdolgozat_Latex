@@ -616,19 +616,23 @@ Erre azért van szükség, mert a nyers képek aránya általában nem négyzete
 Emiatt viszont a kép szélén lévő tartalom elveszhet. 
 
 \section{Az egyes komponensek megvalósítási részletei}
-A megvalósítási részletek alatt nem célom felfedni az egész program belős működését, csak bemutatok pár érdekesebb részletet és az fgsm 
+A megvalósítási részletek alatt nem célom felfedni az egész program belső működését, csak bemutatok pár érdekesebb részletet és példának az fgsm 
 metódus teljes kódját. 
 
 \subsection{\texttt{model\_manager.py} modul}
-A \texttt{ModelBundle} a betöltött hálón (\texttt{model}) kívül az ImageNet-1k normalizációs átlagot és szórást is $(1, 3, 1, 1)$ alakú
-tenzorként tárolja, hogy a támadás során a csatornánkénti normalizálás egyetlen elemenkénti művelettel elvégezhető legyen
-tetszőleges méretű bemeneti képen. 
-A betöltés után a modell minden paraméterén explicit módon \texttt{requires\_grad\_(False)} hívás történik, mivel a támadáshoz kizárólag a bemeneti
-kép szerinti gradiens ($\nabla_x J$) szükséges, a modell súlyai szerinti gradienst sosem számoljuk ki. 
+\begin{itemize}
+  \item A \texttt{ModelBundle} a betöltött hálón (\texttt{model}) kívül az ImageNet-1k normalizációs átlagot és szórást is $(1, 3, 1, 1)$ alakú
+        tenzorként tárolja, hogy a támadás során a csatornánkénti normalizálás egyetlen elemenkénti művelettel elvégezhető legyen
+        tetszőleges méretű bemeneti képen. 
+  \item A betöltés után a modell minden paraméterén explicit módon \texttt{requires\_grad\_(False)} hívás történik, mivel a támadáshoz kizárólag a bemeneti
+        kép szerinti gradiens ($\nabla_x J$) szükséges, a modell súlyai szerinti gradienst sosem számoljuk ki. 
+  \item Ha az eszköz nem explicit adott, akkor a konstruktor \texttt{"cuda"}-t választ, amennyiben elérhető CUDA-képes GPU 
+        (\texttt{torch.cuda.is\_available()}), egyébként \texttt{"cpu"} lesz az érték. 
+\end{itemize}
 
 \subsection{\texttt{attack\_engine.py} modul}
 Először összeállítja a támadást aszerint, hogy melyik algoritmus szükséges és hogy célzott-e a támadás. 
-Eztán hívja meg a tényleges \texttt{\_fgsm} vagy \texttt{\_pgd} implementációt, végül az eredményt egységesen egy \texttt{AttackResult}-ba
+Ezután hívja meg a tényleges \texttt{\_fgsm} vagy \texttt{\_pgd} implementációt, végül az eredményt egységesen egy \texttt{AttackResult}-ba
 csomagolja. 
 A \ref{lst:fgsm}. kódrészlet az FGSM implementációját mutatja. 
 
@@ -649,8 +653,9 @@ def _fgsm(ctx, x, y, epsilon, targeted):
     return x_adv.detach()
 \end{lstlisting}
 
-A metódusban mindenenk előtt a bemeneti kép tenzorát leválasztjuk a bemeneti tenzor számítási gráfjáról a (\texttt{detach()}) segítségével, majd 
-\texttt{requires\_grad\_(True)} hívás történik, %(amely mit csinál?) 
+A metódusban mindenek előtt a bemeneti kép tenzorát a \texttt{detach()} hívással leválasztjuk a számítási gráfról, majd a
+\texttt{requires\_grad\_(True)} hívás a tenzort a gráf új levelévé teszi és bekapcsolja rá a gradienskövetést, hogy a következő forward lépés
+után a bemeneti kép szerint is deriválható legyen. 
 A \texttt{torch.autograd.grad} hívás a veszteség bemeneti kép szerinti gradiensét adja vissza egyetlen hátrafelé irányuló lépésben, ez a korábban használt 
 jelölés szerinti $\nabla_x J(\theta, x, y)$-t. 
 Ezután a célzott és normál támadás közti elágazás következik, ahol a kifejezés csak egy előjelben különbözik. 
@@ -658,17 +663,21 @@ A visszatérési értéket a \texttt{clamp} alkalmazásával szorítjuk vissza a
 biztosítja, hogy a visszaadott tenzor ne hordozzon további autograd-gráf hivatkozást. 
 
 \subsection{\texttt{defense\_module.py} modul}
-A védekezés PIL-alapú műveletekből áll, ezért a modul minden hívás előtt és után evégez egy a pixeltér-tenzor és a PIL kép közötti konverziót. 
-A JPEG-tömörítés egy memóriában tartott bájtpuffert (\texttt{io.BytesIO}) használ, ebbe kódolja be a képet a adott minőséggel, majd
-ugyaninnen dekódolja azt vissza. 
-Tehát nem történik lemezre írás, így ténylegesen egy veszteséges tömörítés-visszafejtés történik, nem csak annak szimulációja. 
-A Gauss-elmosás a PIL \texttt{ImageFilter.GaussianBlur} szűrőjét alkalmazza a megadott sugárral. 
+A védekezés PIL-alapú műveletekből áll, ezért a modul minden hívás előtt és után elvégez egy, a pixeltér-tenzor és a PIL kép közötti konverziót. 
+\begin{itemize}
+  \item A JPEG-tömörítés egy memóriában tartott bájtpuffert (\texttt{io.BytesIO}) használ, ebbe kódolja be a képet a megadott minőséggel, majd
+        ugyaninnen dekódolja azt vissza. Tehát nem történik lemezre írás, így ténylegesen egy veszteséges tömörítés-visszafejtés történik, nem csak
+        annak szimulációja. 
+  \item A Gauss-elmosás a PIL \texttt{ImageFilter.GaussianBlur} szűrőjét alkalmazza a megadott sugárral. 
+\end{itemize}
 
 \subsection{\texttt{utils.py} modul}
-Mivel a nyers $\delta$ perturbáció értékei jellemzően nagyon kis abszolút értékűek, ennek bemutatása a felhasználói felületen gyakorlatilag egyszínű,
+A nyers $\delta$ perturbáció ábrázolásához pár érdekesség. 
+Mivel értékei jellemzően nagyon kis abszolút értékűek, ennek megjelenítése a felhasználói felületen gyakorlatilag egyszínű,
 szemmel kivehetetlen képet adna. 
 A \texttt{perturbation\_to\_pil} függvény ezért a perturbációt egy \texttt{magnify} szorzóval felnagyítja, majd $0{,}5$-tel eltolja, mielőtt a
-$[0, 1]$ tartományra vágná. %(miért kell az elttolás?)
+$[0, 1]$ tartományra vágná. 
+Az eltolás azért szükséges, hogy ábrázoljuk a negatív előjelű változást, különben azok a $[0, 1]$ tartományra vágásnál elvesznének. 
 Az eltolás miatt egy nulla közeli (gyakorlatilag változatlan) pixel középszürkeként jelenik meg, míg a pozitív és negatív irányú változások
 világosabb, illetve sötétebb árnyalatként válnak láthatóvá. 
 
