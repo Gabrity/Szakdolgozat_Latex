@@ -47,10 +47,10 @@ Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az er
 viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a referenciacímkétől eltér, vagy a 
 klasszifikáció elbizonytalanodik. 
 
-\subsection{Targeted és non-targeted mód}
-Alapvetően két támadási módot különböztetünk meg, az ún. targeted és non-targeted módot. 
-Non-targeted esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson. 
-Targeted módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk (pl.\ a komodói varánusz osztálya felé). 
+\subsection{Célzott és nem célzott mód}
+Alapvetően két támadási módot különböztetünk meg, az ún. célzott és nem célzott módot. 
+Nem célzott esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást mutasson. 
+Célzott módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk (pl.\ a komodói varánusz osztálya felé). 
 
 \subsection{A white-box hozzáférési feltétel}
 A támadás feltétele, hogy az $f_\theta$ modell gradienseihez és paramétereihez teljes hozzáférésünk legyen. 
@@ -64,7 +64,7 @@ bővíthető. Jelenleg kettő van integrálva (ResNet50, MobileNetV2). Beállít
   \item modell: ResNet50 vagy MobileNetV2, amelyen a támadást végrehajtjuk,
   \item $\epsilon$, mely meghatározza a perturbáció maximális mértékét, tehát azt, hogy egy pixelen legfeljebb mekkora
         változást tapasztalhatunk, azaz a változás felső határát,
-  \item célosztály, $y_{\mathrm{target}}$, ha a mód targeted,
+  \item célosztály, $y_{\mathrm{target}}$, ha a mód célzott,
   \item iterációszám (PGD esetén hány lépésig engedjük futtatni az algoritmust).
 \end{itemize}
 
@@ -511,9 +511,9 @@ A \ref{fig:architecture-layers}. ábra ezt a rétegződést és a fő adatfolyá
     arr/.style={-{Latex}, thick},
 ]
 \node[box, fill=blue!8] (main) {\texttt{main.py}\\ belépési pont};
-\node[box, fill=orange!12, below=0.55cm of main] (gui)
+\node[box, fill=blue!8, below=0.55cm of main] (gui)
   {\texttt{gui/app\_interface.py}\\ prezentációs réteg};
-\node[box, fill=green!10, below=0.55cm of gui] (logic)
+\node[box, fill=blue!8, below=0.55cm of gui] (logic)
   {\texttt{model\_manager.py} / \texttt{attack\_engine.py} /\\
    \texttt{defense\_module.py} / \texttt{utils.py}\\ alkalmazáslogikai réteg};
 \node[box, fill=gray!12, below=0.55cm of logic] (weights)
@@ -672,8 +672,8 @@ A védekezés PIL-alapú műveletekből áll, ezért a modul minden hívás elő
 \end{itemize}
 
 \subsection{\texttt{utils.py} modul}
-A nyers $\delta$ perturbáció ábrázolásához pár érdekesség. 
-Mivel értékei jellemzően nagyon kis abszolút értékűek, ennek megjelenítése a felhasználói felületen gyakorlatilag egyszínű,
+A nyers $\delta$ perturbáció felhasználói felületen ábrázolásához pár részlet. 
+Mivel értékei jellemzően nagyon kis abszolút értékűek, ennek megjelenítése gyakorlatilag egyszínű,
 szemmel kivehetetlen képet adna. 
 A \texttt{perturbation\_to\_pil} függvény ezért a perturbációt egy \texttt{magnify} szorzóval felnagyítja, majd $0{,}5$-tel eltolja, mielőtt a
 $[0, 1]$ tartományra vágná. 
@@ -780,8 +780,8 @@ zárja ki, hogy a diszpécser valamelyik ágon ,,átcsorogva'' mindkét algoritm
 
 \medskip
 \noindent\texttt{test\_fgsm\_targeted\_steps\_opposite\_direction\_of\_untargeted}: Azonos bemeneten és
-$\epsilon$ mellett a targeted és non-targeted perturbáció pontosan ellentétes előjelű
-($x_{\text{untargeted}} - x = -(x_{\text{targeted}} - x)$), ami közvetlenül a matematikai definícióból (a
+$\epsilon$ mellett a célzott és nem célzott perturbáció pontosan ellentétes előjelű
+($x_{\text{nem célzott}} - x = -(x_{\text{célzott}} - x)$), ami közvetlenül a matematikai definícióból (a
 gradiens előjelének megfordításából) következik.
 
 \medskip
@@ -829,9 +829,9 @@ a modell kimenetére.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_fgsm\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A targeted változat
+\noindent\texttt{test\_fgsm\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A célzott változat
 tükörpárja: a mesterségesen kiválasztott célosztály konfidenciája nő a támadás hatására, alátámasztva, hogy a
-targeted mód valóban a célosztály felé tereli a predikciót, nem csupán ,,valamerre'' téveszti meg a modellt.
+célzott mód valóban a célosztály felé tereli a predikciót, nem csupán ,,valamerre'' téveszti meg a modellt.
 
 \bigskip
 \noindent\textbf{A PGD implementáció (\texttt{\_pgd}) tesztjei}
@@ -888,8 +888,8 @@ elv, mint FGSM-nél, de itt azt is igazolja, hogy az iteratív frissítés nem ,
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_pgd\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A targeted PGD a célosztály
-konfidenciáját növeli -- ugyanazon tulajdonságpár (non-targeted csökkenti/targeted növeli a releváns
+\noindent\texttt{test\_pgd\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A célzott PGD a célosztály
+konfidenciáját növeli -- ugyanazon tulajdonságpár (nem célzott csökkenti/célzott növeli a releváns
 konfidenciát) FGSM-re és PGD-re is parametrizált formában lett tesztelve
 (\texttt{@pytest.mark.parametrize}), elkerülve, hogy csak az egyik algoritmusra íródjon le a viselkedés.
 
@@ -936,7 +936,7 @@ felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső
     \textsc{Then}: az ,,Original'' predikciók újraszámolódnak az új modellel; ha korábban már
       futott támadás, az ,,Adversarial'' predikciók is frissülnek
 
-  \item \textbf{Non-targeted támadás végrehajtása}\\
+  \item \textbf{Nem célzott támadás végrehajtása}\\
     AS A: felhasználó \textsc{I want to}: általános tévesztést előidézni a modellben\\
     \textsc{Given}: kép betöltve, ,,Targeted attack'' jelölőnégyzet kikapcsolva, $\epsilon$ és
       iterációszám csúszkák beállítva\\
@@ -945,7 +945,7 @@ felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső
       a felnagyított perturbáció és a támadott kép, és az ,,Adversarial'' predikciós panelen az
       eredeti top-1 osztály konfidenciája jellemzően csökken
 
-  \item \textbf{Targeted támadás célosztály kereséssel}\\
+  \item \textbf{Célzott támadás célosztály kereséssel}\\
     AS A: felhasználó \textsc{I want to}: egy konkrét osztályra rávenni a modellt\\
     \textsc{Given}: kép betöltve, a célosztály-kereső mezőbe elkezd gépelni egy osztálynevet\\
     \textsc{When}: a szűrt listából kiválaszt egy osztályt, majd az ,,Attack'' gombra kattint\\

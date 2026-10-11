@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  28 SEP 2026 21:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  28 SEP 2026 21:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1946,12 +1946,6 @@ Underfull \hbox (badness 5133) in paragraph at lines 883--886
 /n/12 : Viselkedési bi-zo-nyí-ték
  []
 
-
-Underfull \hbox (badness 1558) in paragraph at lines 891--895
-\T1/lmtt/m/n/12 test_pgd_tar-geted_in-creases_confidence_in_target_label\T1/lmr
-/m/n/12 : A tar-ge-ted PGD a
- []
-
 [32] [33] [34] [35]
 5. fejezet.
 ) [36
@@ -1996,10 +1990,10 @@ Package logreq Info: Writing requests to 'Gabrity_Gabor_D9V09Z_Szakdolgozat.run
 
  ) 
 Here is how much of TeX's memory you used:
- 51139 strings out of 467682
- 1126134 string characters out of 5415184
+ 51135 strings out of 467682
+ 1126074 string characters out of 5415184
  2153718 words of memory out of 5000000
- 79210 multiletter control sequences out of 15000+600000
+ 79206 multiletter control sequences out of 15000+600000
  715075 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  124i,13n,145p,1146b,2384s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2021,7 +2015,7 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (40 pages, 660978 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (40 pages, 662433 bytes
 ).
 PDF statistics:
  777 PDF objects out of 1000 (max. 8388607)
