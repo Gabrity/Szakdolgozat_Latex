@@ -1,58 +1,41 @@
 \documentclass[
-	%parspace, % Add vertical space between paragraphs
-	%noindent, % No indentation of first lines in each paragraph
-	%nohyp, % No hyphenation of words
-	%twoside, % Double sided format
-	%draft, % Quicker draft compilation without rendering images
-	%final, % Set final to hide todos
 ]{elteikthesis}[2024/04/26]
 
 \usepackage{lmodern}
 
-% Local formatting requirement: 2.5 cm margin on all sides (overrides the
-% template's default 35mm inner margin)
 \usepackage{geometry}
 \geometry{margin=2.5cm}
 
-% Schematic plots (e.g. loss landscape illustration)
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{arrows.meta,positioning}
 
-% Document's metadata
 \title{Ellenfél alapú támadások (FGSM, PGD) implementációja\\
 konvolúciós neurális hálózatokhoz\\
 interaktív tesztkörnyezetben}
 \date{2026}
 
-% Author's metadata
 \author{Gabrity Gábor}
 \degree{Programtervező Informatikus BSc}
 
-% Superivsor(s)' metadata
-\supervisor{Varga Zsófia}
+\supervisor{Dr Varga Zsófia}
 \affiliation{adjunktus}
 \extsupervisor{Szabó András Miklós}
 \extaffiliation{tanársegéd}
 
-% University's metadata
 \university{Eötvös Loránd Tudományegyetem}
 \faculty{Informatikai Kar}
 \department{Térképtudományi és Geoinformatikai Intézet}
 \city{Budapest}
 \logo{elte_cimer_szines}
 
-% Add bibliography file
 \addbibresource{Gabrity_Gabor_D9V09Z_Szakdolgozat.bib}
-% Show full author lists instead of truncating to "et al."
 \ExecuteBibliographyOptions{maxnames=99}
 
 \begin{document}
 
-% Set document language
 \documentlang{hungarian}
 
-% Title page (mandatory)
 \maketitle
 
 \newpage
@@ -79,7 +62,6 @@ hallgató aláírása
 
 \cleardoublepage
 
-% Table of contents (mandatory)
 \tableofcontents
 \cleardoublepage
 
@@ -87,13 +69,9 @@ hallgató aláírása
 \addcontentsline{toc}{chapter}{Rövidítés- és jelölésjegyzék}
 \cleardoublepage
 
-% Main content
 \input{Gabrity_Gabor_D9V09Z_Szakdolgozat_body.tex}
 \cleardoublepage
 
-% Bibliography (mandatory)
-% dziugaite2016jpeg is not yet cited in the text (relevant to the still-empty
-% "Védekezési stratégiák áttekintése" section), kept visible via \nocite
 \nocite{dziugaite2016jpeg}
 \phantomsection
 \addcontentsline{toc}{chapter}{\biblabel}
