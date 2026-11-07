@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  7 NOV 2026 21:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  7 NOV 2026 21:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1947,9 +1947,21 @@ Underfull \hbox (badness 5133) in paragraph at lines 885--888
 /n/12 : Viselkedési bi-zo-nyí-ték
  []
 
-[33] [34] [35] [36] [37]
+
+Underfull \hbox (badness 3199) in paragraph at lines 913--917
+[]\T1/lmr/m/n/12 A gra-fi-kus fe-lü-let el-len-®r-zé-sé-re öt au-to-ma-ti-zált 
+tesz-tet ké-szí-tet-tem. Ezek a
+ []
+
+[33] [34] [35] [36]
+<images/test_run.PNG, id=436, 914.66719pt x 254.45062pt>
+File: images/test_run.PNG Graphic file (type png)
+<use images/test_run.PNG>
+Package pdftex.def Info: images/test_run.PNG  used on input line 1064.
+(pdftex.def)             Requested size: 455.24411pt x 126.64261pt.
+ [37] [38 <./images/test_run.PNG>]
 5. fejezet.
-) [38
+) [39
 
 ]
 Underfull \hbox (badness 2065) in paragraph at lines 78--78
@@ -1969,7 +1981,7 @@ Underfull \hbox (badness 1147) in paragraph at lines 78--78
 he-Art Face
  []
 
-[39
+[40
 
 
 
@@ -1980,7 +1992,7 @@ t-in-fow-ler.com. 2012. \T1/lmr/m/sc/12 url\T1/lmr/m/n/12 : []$\T1/lmtt/m/n/12
 https : / /
  []
 
-[40] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[41] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
@@ -1991,10 +2003,10 @@ Package logreq Info: Writing requests to 'Gabrity_Gabor_D9V09Z_Szakdolgozat.run
 
  ) 
 Here is how much of TeX's memory you used:
- 51135 strings out of 467682
- 1126018 string characters out of 5415184
- 2145721 words of memory out of 5000000
- 79205 multiletter control sequences out of 15000+600000
+ 51145 strings out of 467682
+ 1126242 string characters out of 5415184
+ 2145817 words of memory out of 5000000
+ 79213 multiletter control sequences out of 15000+600000
  715075 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  124i,13n,145p,1146b,2401s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2016,10 +2028,10 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (42 pages, 665738 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (43 pages, 682701 bytes
 ).
 PDF statistics:
- 780 PDF objects out of 1000 (max. 8388607)
- 155 named destinations out of 1000 (max. 500000)
- 626 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 791 PDF objects out of 1000 (max. 8388607)
+ 157 named destinations out of 1000 (max. 500000)
+ 631 words of extra memory for PDF output out of 10000 (max. 10000000)
 

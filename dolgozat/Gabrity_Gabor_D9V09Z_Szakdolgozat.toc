@@ -74,8 +74,8 @@
 \select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{34}{section.4.4}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.5}Teszteredmények és értelmezésük}{37}{section.4.5}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{37}{section.4.6}%
-\select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{38}{chapter.5}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{38}{section.5.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{38}{section.5.2}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{38}{section.5.3}%
-\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{39}{section*.22}%
+\select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{39}{chapter.5}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{39}{section.5.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{39}{section.5.2}%
+\select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{39}{section.5.3}%
+\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{40}{section*.23}%

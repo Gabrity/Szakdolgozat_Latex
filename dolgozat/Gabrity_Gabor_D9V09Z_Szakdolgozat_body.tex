@@ -910,13 +910,10 @@ Hogy mindenképp gyors legyen, a teszt csak akkor fut le, ha a modell súlyai m�
 
 \section{Automatizált GUI tesztek}
 
-A grafikus felület ellenőrzésére öt automatizált tesztet készítettem a \texttt{pytest} segítségével. 
-Ezek a CustomTkinter valódi felületi elemeit hozzák létre, és a gombok programozott meghívásával vizsgálják a felület reakcióját. 
-Az ablak a tesztek idejére rejtett, de a futtatáshoz grafikus környezet szükséges. 
-A felhasznált modell helyett a $224\times224$ pixeles bemenetet kezelő kis tesztmodell működik, így nincs szükség előtanított súlyok letöltésére. 
-A fájlválasztó és az üzenetablak helyettesítésével a tesztek felhasználói beavatkozás nélkül futnak. 
-A támadást ellenőrző tesztben a háttérszál helyett szinkron fut a munkafüggvény, ezért a szálkezelés helyességét ez a teszt nem vizsgálja. 
-A részletes algoritmikus ellenőrzés az egységtesztek feladata marad. 
+A grafikus felület ellenőrzésére öt automatizált tesztet készítettem. 
+Ezek a CustomTkinter valódi felületi elemeit hozzák létre, majd a gombok programozott interakcióival vizsgálják a felület reakcióját. 
+Az ablak a tesztek idejére rejtett, de a futtatáshoz szükséges a grafikus környezet. 
+Az élesben használt modellek helyett kis tesztmodell működik, így nincs szükség súlyok letöltésére, tehát a teszt gyors marad.
 
 \bigskip
 \noindent\textbf{A felület kezdeti állapota}
@@ -1057,6 +1054,17 @@ felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső
 \end{itemize}
 
 \section{Teszteredmények és értelmezésük}
+
+A \ref{fig:tesztfuttatas}. ábra a teljes teszt csomag futtatásának eredményét mutatja. 
+A futtatás a $76$ teszt sikeresen lefutott, köztük $68$ egységteszt, $3$ integrációs teszt és $5$ grafikus felületi teszt. 
+Az eredmény a vizsgált esetek sikerességét mutatja, ám önmagában nem igazolja a program teljes hibamentességét. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\linewidth]{images/test_run.PNG}
+\caption{Az automatizált tesztek sikeres futtatásának kimenete}
+\label{fig:tesztfuttatas}
+\end{figure}
 
 \section{A tesztelés korlátai}
 

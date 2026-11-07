@@ -41,9 +41,13 @@ python main.py
 ## Tesztelés
 
 A tesztek futtatásához a virtuális környezetben a `pytest` és a `pytest-mock`
-csomag is szükséges.
+csomag is szükséges. A parancsokat a `code` könyvtárban kell kiadni, mert
+itt található a tesztek importálásához szükséges `pytest.ini`.
+Ha a repó gyökérkönyvtárában vagy, előbb válts könyvtárat.
 
 ```powershell
+Set-Location .\code
+.\.venv\Scripts\Activate.ps1
 python -m pytest -q
 python -m pytest -m gui -q
 ```
