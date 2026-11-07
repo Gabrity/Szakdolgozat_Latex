@@ -77,7 +77,8 @@ A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvet
   \item megjelenítjük az eredeti képet, a perturbációt és az ellenfél alapú képet, továbbá mindkét (eredeti és
         ellenfél alapú) képet osztályozzuk is,
   \item a védekezési modulban JPEG-tömörítést vagy más képfeldolgozási szűrőt alkalmazhatunk az ellenfél alapú perturbáció 
-  hatásának utólagos csökkentésére vagy semlegesítésére.
+  hatásának utólagos csökkentésére vagy semlegesítésére,
+  \item az eredeti és az ellenfél alapú kép PNG formátumban letölthető, a mentett képek pedig visszatölthetőek.
 \end{itemize}
 
 \section{Elméleti háttér és a használt fogalmak definíciója}
@@ -614,6 +615,7 @@ A betöltött kép mérete előbb $256$ pixelre kerül átméretezésre, majd $2
 mind a ResNet50, mind a MobileNetV2 erre a méretre lett előtanítva. 
 Erre azért van szükség, mert a nyers képek aránya általában nem négyzetes, egy közvetlen $224\times224$-re történő átméretezés vizuálisan eltorzítaná a képet. 
 Emiatt viszont a kép szélén lévő tartalom elveszhet. 
+Azt az elvárt felhasználói esetet, hogy a támadott képet visszatöltve ugyanazt az osztályozást kapjuk, az átméretezés és a vágás pontosan $224\times224$ méretű képre elmarad. 
 
 \section{Az egyes komponensek megvalósítási részletei}
 A megvalósítási részletek alatt nem célom felfedni az egész program belső működését, csak bemutatok pár érdekesebb részletet és példának az fgsm 
@@ -980,6 +982,24 @@ felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső
     \textsc{When}: valamelyik ,,Defend'' gombra kattint\\
     \textsc{Then}: egy ,,No adversarial'' információs párbeszédablak jelenik meg, semmilyen kép
       nem változik
+
+  \item \textbf{Az eredeti kép letöltése}\\
+    AS A: felhasználó \textsc{I want to}: az eredeti képet fájlba menteni\\
+    \textsc{Given}: egy kép be van töltve\\
+    \textsc{When}: a ,,Download original'' gombra kattint\\
+    \textsc{Then}: mekapja a mentett $224\times224$ pixeles fájlt
+
+  \item \textbf{A támadott kép letöltése és visszatöltése}\\
+    AS A: felhasználó \textsc{I want to}: az ellenfél alapú képet elmenteni és újra feltölteni\\
+    \textsc{Given}: egy sikeres támadás után az ,,Adversarial'' kép létrejön\\
+    \textsc{When}: a ,,Download adversarial'' gombra kattint, elmenti PNG-ben, majd a ,,Load Image'' gombbal visszatölti\\
+    \textsc{Then}: a visszatöltött kép ugyanazt a top-1 osztályozást adja, a konfidencia pedig csak minimálisan tér el
+
+  \item \textbf{Letöltés kép vagy támadás nélkül}\\
+    AS A: felhasználó \textsc{I want to}: (véletlenül) letöltést kérni, mielőtt volna mit menteni\\
+    \textsc{Given}: nincs betöltött kép, illetve van kép, de még nem futott támadás\\
+    \textsc{When}: a ,,Download original'' vagy a ,,Download adversarial'' gombra kattint\\
+    \textsc{Then}: egy ,,No image'' vagy ,,No adversarial'' információs párbeszédablak jelenik meg, fájl nem készül
 
   \item \textbf{Reset gomb}\\
     AS A: felhasználó \textsc{I want to}: új kísérletet kezdeni ugyanazzal a képpel\\

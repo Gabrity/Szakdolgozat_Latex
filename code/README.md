@@ -34,6 +34,9 @@ python main.py
    a felnagyított zajt és az adversarial képet.
 6. A **Defend** gombbal a támadott képet Gaussian Blur / JPEG kompresszióval szűröd
    és újra osztályozod.
+7. A **Download original** és **Download adversarial** gombbal elmentheted az eredeti
+   (224×224-re vágott) és a támadott képet. A veszteségmentes PNG formátum ajánlott,
+   mert a JPEG-mentés megváltoztatná a perturbációt.
 
 ## Mappastruktúra
 

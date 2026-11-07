@@ -16,7 +16,12 @@ from src.attack_engine import AttackContext, AttackResult
 from src.defense_module import DefenseModule
 from src.imagenet_classes import get_imagenet_classes
 from src.model_manager import ModelManager
-from src.utils import load_image_as_tensor, perturbation_to_pil, tensor_to_pil
+from src.utils import (
+    build_adversarial_filename,
+    load_image_as_tensor,
+    perturbation_to_pil,
+    tensor_to_pil,
+)
 
 
 IMAGE_DISPLAY_SIZE = (260, 260)
@@ -50,6 +55,9 @@ class AppInterface(ctk.CTk):
         self.original_pil: Optional[Image.Image] = None
         self.adversarial_tensor: Optional[torch.Tensor] = None
         self.last_result: Optional[AttackResult] = None
+        # Parameters of the attack that produced the current adversarial image
+        # (the UI controls may change after the attack has run).
+        self._attack_meta: Optional[dict] = None
         # Cached sign-gradient (FGSM only) for live epsilon adjustment.
         self._fgsm_sign: Optional[torch.Tensor] = None
         self._fgsm_targeted: bool = False
@@ -186,7 +194,7 @@ class AppInterface(ctk.CTk):
         main.grid(row=0, column=1, sticky="nsew", padx=12, pady=12)
         main.grid_columnconfigure((0, 1, 2), weight=1)
         main.grid_rowconfigure(1, weight=0)
-        main.grid_rowconfigure(3, weight=1)
+        main.grid_rowconfigure(4, weight=1)
 
         # Image labels
         titles = ("Original", "Perturbation (×10)", "Adversarial")
@@ -201,16 +209,24 @@ class AppInterface(ctk.CTk):
             lbl.grid(row=1, column=col, padx=8, sticky="n")
             self.image_labels.append(lbl)
 
+        # Download buttons under the original and adversarial images.
+        ctk.CTkButton(
+            main, text="Download original", command=self._on_download_original,
+        ).grid(row=2, column=0, padx=8, pady=(8, 0))
+        ctk.CTkButton(
+            main, text="Download adversarial", command=self._on_download_adversarial,
+        ).grid(row=2, column=2, padx=8, pady=(8, 0))
+
         # Prediction panels
         ctk.CTkLabel(main, text="Predictions",
                      font=ctk.CTkFont(size=14, weight="bold")
-                     ).grid(row=2, column=0, columnspan=3, pady=(16, 4), sticky="w", padx=8)
+                     ).grid(row=3, column=0, columnspan=3, pady=(16, 4), sticky="w", padx=8)
 
         self.pred_frames: list[ctk.CTkFrame] = []
         self.pred_widgets: list[list[tuple[ctk.CTkLabel, ctk.CTkProgressBar, ctk.CTkLabel]]] = []
         for col, header in enumerate(("Original", "Perturbation N/A", "Adversarial")):
             frame = ctk.CTkFrame(main)
-            frame.grid(row=3, column=col, padx=8, pady=4, sticky="nsew")
+            frame.grid(row=4, column=col, padx=8, pady=4, sticky="nsew")
             frame.grid_columnconfigure(0, weight=1)
             ctk.CTkLabel(frame, text=header, font=ctk.CTkFont(size=12, weight="bold")
                          ).grid(row=0, column=0, padx=8, pady=(8, 4), sticky="w")
@@ -361,6 +377,7 @@ class AppInterface(ctk.CTk):
         self.original_tensor = tensor
         self.original_pil = pil
         self.adversarial_tensor = None
+        self._attack_meta = None
         self.last_result = None
         self._fgsm_sign = None
 
@@ -395,13 +412,22 @@ class AppInterface(ctk.CTk):
         iters = int(self.iterations_var.get())
         target = self._selected_target_idx if self.target_enabled.get() else None
 
+        meta = {
+            "model": self.current_model_name.get(),
+            "method": method,
+            "epsilon": eps,
+            "iterations": iters,
+            "target_idx": target,
+            "target_name": self.classes[target] if target is not None else None,
+        }
+
         self._refresh_status(f"Running {method} (ε={eps:.3f}, iters={iters})...")
         self.update_idletasks()
 
         # Run on a worker thread to keep the UI responsive.
         threading.Thread(
             target=self._attack_worker,
-            args=(method, eps, iters, target),
+            args=(method, eps, iters, target, meta),
             daemon=True,
         ).start()
 
@@ -411,6 +437,7 @@ class AppInterface(ctk.CTk):
         epsilon: float,
         iterations: int,
         target_label: Optional[int],
+        meta: dict,
     ) -> None:
         try:
             bundle = self.model_manager.get(self.current_model_name.get())
@@ -439,10 +466,11 @@ class AppInterface(ctk.CTk):
         else:
             self._fgsm_sign = None
 
-        self.after(0, lambda: self._apply_attack_result(result))
+        self.after(0, lambda: self._apply_attack_result(result, meta))
 
-    def _apply_attack_result(self, result: AttackResult) -> None:
+    def _apply_attack_result(self, result: AttackResult, meta: Optional[dict] = None) -> None:
         self.last_result = result
+        self._attack_meta = meta
         self.adversarial_tensor = result.adversarial
         self._set_image(1, perturbation_to_pil(result.perturbation, magnify=10.0))
         self._set_image(2, tensor_to_pil(result.adversarial))
@@ -464,6 +492,8 @@ class AppInterface(ctk.CTk):
         adv = adv.clamp(0.0, 1.0)
         delta = adv - self.original_tensor
         self.adversarial_tensor = adv
+        if self._attack_meta is not None:
+            self._attack_meta["epsilon"] = eps
         self._set_image(1, perturbation_to_pil(delta, magnify=10.0))
         self._set_image(2, tensor_to_pil(adv))
         self._update_predictions(2, adv)
@@ -485,10 +515,45 @@ class AppInterface(ctk.CTk):
         self._refresh_status(f"Applied defense: {method}.")
 
     # ====================================================================
+    # Download
+    # ====================================================================
+    def _save_image(self, pil_img: Image.Image, default_name: str) -> None:
+        path = filedialog.asksaveasfilename(
+            title="Save image",
+            defaultextension=".png",
+            initialfile=default_name,
+            filetypes=[("PNG (lossless)", "*.png"), ("JPEG", "*.jpg *.jpeg")],
+        )
+        if not path:
+            return
+        try:
+            pil_img.save(path)
+        except Exception as exc:
+            messagebox.showerror("Save error", str(exc))
+            return
+        self._refresh_status(f"Saved: {os.path.basename(path)}")
+
+    def _on_download_original(self) -> None:
+        if self.original_pil is None:
+            messagebox.showinfo("No image", "Please load an image first.")
+            return
+        self._save_image(self.original_pil, "original.png")
+
+    def _on_download_adversarial(self) -> None:
+        if self.adversarial_tensor is None:
+            messagebox.showinfo("No adversarial", "Run an attack first.")
+            return
+        name = "adversarial"
+        if self._attack_meta is not None:
+            name = build_adversarial_filename(**self._attack_meta)
+        self._save_image(tensor_to_pil(self.adversarial_tensor), f"{name}.png")
+
+    # ====================================================================
     # Reset
     # ====================================================================
     def _on_reset(self) -> None:
         self.adversarial_tensor = None
+        self._attack_meta = None
         self.last_result = None
         self._fgsm_sign = None
         self._set_image(1, None)
