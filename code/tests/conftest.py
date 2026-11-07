@@ -45,6 +45,18 @@ def tiny_model(device: torch.device) -> nn.Module:
 
 
 @pytest.fixture()
+def tiny_model_224(device: torch.device) -> nn.Module:
+    """Same single-layer classifier, but for the real 224x224 input size that
+    ``utils.load_image_as_tensor`` produces (used by integration tests)."""
+    torch.manual_seed(0)
+    model = _TinyLogitsModel(input_hw=224).to(device)
+    model.eval()
+    for p in model.parameters():
+        p.requires_grad_(False)
+    return model
+
+
+@pytest.fixture()
 def attack_ctx(tiny_model: nn.Module, device: torch.device):
     from src.attack_engine import AttackContext
 

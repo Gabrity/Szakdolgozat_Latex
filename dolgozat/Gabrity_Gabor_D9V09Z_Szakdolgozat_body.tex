@@ -899,13 +899,14 @@ konfidenciát) FGSM-re és PGD-re is parametrizált formában lett tesztelve
 
 \section{Integrációs tesztek}
 
-\subsection{GUI és támadási motor összekötése}
+Az integrációs tesztek a képbetöltő, a modellkezelő és a támadómotor együttműködését ellenőrzik. 
+A \texttt{test\_image\_loading\_and\_attack} teszt az FGSM és a PGD módszert is ellenőrzi. 
+A modellkezelőben a MobileNetV2 hálót egy kis méretű tesztmodell helyettesíti, de a képbetöltés, a modellkezelés és a támadás mockolás nélkül fut. 
+Továbbá a teszt ellenőrzi, hogy a támadás megváltoztatja a képet, az eredmény $\epsilon$ korláton és az érvényes pixeltartományon belül marad, illetve osztályozható. 
 
-Az integrációs réteg feladata annak ellenőrzése, hogy az \texttt{app\_interface.py} eseménykezelői helyesen
-építik-e fel az \texttt{AttackContext}-et a ténylegesen betöltött \texttt{ModelBundle}-ből, és a
-\texttt{attack\_engine.attack()} hívás eredménye helyesen jelenik-e meg a felületen (kép- és
-predikció-frissítés). Ez a réteg már nem mockolja a modellt, de a valódi felhasználói interakciót
-(egérkattintás, csúszka-mozgatás) sem szimulálja még -- azt a GUI-tesztek rétege végzi.
+A \texttt{test\_cached\_mobilenet\_pgd} teszt ugyanezeknek a moduloknak az együttműködését az előtanított MobileNetV2 modellen vizsgálja. 
+Hogy mindenképp gyors legyen, a teszt csak akkor fut le, ha a modell súlyai már megtalálhatók a helyi gyorsítótárban. 
+
 
 \section{Automatizált GUI tesztek}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  28 SEP 2026 21:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  7 NOV 2026 18:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1571,7 +1571,7 @@ File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 50
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 35
 .
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
@@ -1580,24 +1580,24 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
 \openout1 = `Gabrity_Gabor_D9V09Z_Szakdolgozat.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1659,7 +1659,7 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 50.
+Package hyperref Info: Link coloring OFF on input line 35.
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 
@@ -1704,10 +1704,10 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Gabrity_Gabor_D9V09Z_Szakdolgozat.bbl' found.
  (Gabrity_Gabor_D9V09Z_Szakdolgozat.bbl)
-Package biblatex Info: Reference section=0 on input line 50.
-Package biblatex Info: Reference segment=0 on input line 50.
+Package biblatex Info: Reference section=0 on input line 35.
+Package biblatex Info: Reference segment=0 on input line 35.
 \c@lstlisting=\count530
-Package tocbasic Info: setting babel extension for `lol' on input line 50.
+Package tocbasic Info: setting babel extension for `lol' on input line 35.
 
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
@@ -1717,44 +1717,44 @@ LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
 Package babel Info: 'hungarian' activates 'hungarian' shorthands.
-(babel)             Reported on input line 50.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
-6.
+(babel)             Reported on input line 35.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
+9.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-6.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
+9.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-56.
+39.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-56.
+39.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 56.
+(Font)              <12> on input line 39.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 56.
+(Font)              <8> on input line 39.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 56.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
+(Font)              <6> on input line 39.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
 
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
 
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1766,21 +1766,21 @@ on: found PDF version <1.7>, but at most version <1.5> allowed
 <./images/elte_cimer_szines.pdf, id=30, 399.44232pt x 399.45235pt>
 File: ./images/elte_cimer_szines.pdf Graphic file (type pdf)
 <use ./images/elte_cimer_szines.pdf>
-Package pdftex.def Info: ./images/elte_cimer_szines.pdf  used on input line 56.
+Package pdftex.def Info: ./images/elte_cimer_szines.pdf  used on input line 39.
 
 (pdftex.def)             Requested size: 113.81102pt x 113.81462pt.
 
-Overfull \vbox (37.23152pt too high) detected at line 56
+Overfull \vbox (37.23152pt too high) detected at line 39
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 56.
+(Font)              <17.28> on input line 39.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 56.
+(Font)              <10> on input line 39.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 56.
+(Font)              <14.4> on input line 39.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 56.
+(Font)              <7> on input line 39.
 [1
 
 
@@ -1791,7 +1791,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.80 \cleardoublepage
+l.63 \cleardoublepage
                       [1] (Gabrity_Gabor_D9V09Z_Szakdolgozat.toc [1
 
 
@@ -1806,7 +1806,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.76 ...nyek Ã©s Ã©rtelmezÃ©sÃ¼k}{35}{section.4.5}
+l.76 ...6}A tesztelÃ©s korlÃ¡tai}{37}{section.4.6}
                                                   % [2])
 \tf@toc=\write7
 \openout7 = `Gabrity_Gabor_D9V09Z_Szakdolgozat.toc'.
@@ -1816,7 +1816,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.83 \tableofcontents
+l.65 \tableofcontents
                       [3]
 \c@conpageno=\count531
  [4
@@ -1851,27 +1851,28 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 nc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.en
 c}] [10]
 [11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
-Underfull \hbox (badness 10000) in paragraph at lines 493--496
+Underfull \hbox (badness 10000) in paragraph at lines 494--497
 []\T1/lmr/bx/n/12 Alkalmazáslogikai ré-teg \T1/lmr/m/n/12 (\T1/lmtt/m/n/12 mode
 l_manager.py\T1/lmr/m/n/12 , \T1/lmtt/m/n/12 attack_engine.py\T1/lmr/m/n/12 ,
  []
 
 [21]
-Underfull \hbox (badness 2237) in paragraph at lines 536--538
+Underfull \hbox (badness 2237) in paragraph at lines 537--539
 []\T1/lmr/m/n/12 Az ,,Attack'' gomb meg-nyo-má-sa-kor a GUI egy kü-lön szá-lon 
 meg-hív-ja az
  []
 
 [22] [23] [24]
-Underfull \hbox (badness 6284) in paragraph at lines 600--603
+Underfull \hbox (badness 6284) in paragraph at lines 601--604
 []\T1/lmr/m/n/12 Egy si-ke-res FGSM-támadás után a fe-lü-let elcache-eli a gra-
 di-ens el®-je-lét
  []
 
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 622.
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 627--629
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 624.
+
+Underfull \hbox (badness 10000) in paragraph at lines 629--631
 []\T1/lmr/m/n/12 A be-töl-tés után a mo-dell min-den pa-ra-mé-te-rén exp-li-cit
  mó-don
  []
@@ -1879,107 +1880,125 @@ Underfull \hbox (badness 10000) in paragraph at lines 627--629
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
-[26] [27]
+[26] [27] [28]
 4. fejezet.
 
-Underfull \hbox (badness 10000) in paragraph at lines 701--706
+Underfull \hbox (badness 10000) in paragraph at lines 703--708
 []\T1/lmr/m/n/12 Minden vé-let-lent fel-hasz-ná-ló fix-tu-re (pl. a be-me-ne-ti
  ké-pet ge-ne-rá-ló
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 701--706
+Underfull \hbox (badness 2343) in paragraph at lines 703--708
 \T1/lmtt/m/n/12 sample_image_tensor\T1/lmr/m/n/12 ) ma-ga hív-ja meg a \T1/lmtt
 /m/n/12 torch.manual_seed\T1/lmr/m/n/12 -et köz-vet-le-nül az
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 701--706
+Underfull \hbox (badness 1221) in paragraph at lines 703--708
 \T1/lmr/m/n/12 sta-tisz-ti-kai ki-ér-té-ke-lés kel-le-ne), ha-nem az al-go-rit-
 mu-sok tu-laj-don-sá-ga-it el-len-®riz-zük
  []
 
-[28
+[29
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 712.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 714.
 
-Underfull \hbox (badness 1112) in paragraph at lines 715--717
+Underfull \hbox (badness 1112) in paragraph at lines 717--719
 \T1/lmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/lmr/m/n/12 : Ellen®rzi, ho
 gy \T1/lmtt/m/n/12 topk=3 \T1/lmr/m/n/12 ese-tén a vissza-adott
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 747--751
+Underfull \hbox (badness 3849) in paragraph at lines 749--753
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 nnak el-le-né-re, hogy a hí-vó
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 764--769
+Underfull \hbox (badness 10000) in paragraph at lines 766--771
 \T1/lmtt/m/n/12 test_attack_fgsm_dis-patches_only_to_fgsm\T1/lmr/m/n/12 : \T1/l
 mtt/m/n/12 mocker.patch(..., wraps=_fgsm)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 764--769
+Underfull \hbox (badness 10000) in paragraph at lines 766--771
 \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 wraps=_pgd \T1/lmr/m/n/12 spy-okkal fi-gye-li
  a hí-vá-so-kat: \T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tén
  []
 
 
-Underfull \hbox (badness 5756) in paragraph at lines 764--769
+Underfull \hbox (badness 5756) in paragraph at lines 766--771
 \T1/lmtt/m/n/12 _fgsm.assert_called_once() \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 _p
 gd.assert_not_called() \T1/lmr/m/n/12 tel-je-sül. A \T1/lmtt/m/n/12 wraps
  []
 
-[29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 866--870
+[30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 868--872
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyanaz a
 z er®s \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyíték
  []
 
-[31]
-Underfull \hbox (badness 5133) in paragraph at lines 883--886
+[32]
+Underfull \hbox (badness 5133) in paragraph at lines 885--888
 \T1/lmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/lmr/m
 /n/12 : Viselkedési bi-zo-nyí-ték
  []
 
-[32] [33] [34] [35]
+
+Underfull \hbox (badness 10000) in paragraph at lines 923--928
+\T1/lmtt/m/n/12 test_saved_adversarial_image_survives_disk_roundtrip\T1/lmr/m/n
+/12 : Az FGSM tá-ma-
+ []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 923--928
+\T1/lmr/m/n/12 dás ered-mé-nyét a fe-lü-let men-té-si fo-lya-ma-tá-nak meg-fe-l
+e-l®-en PNG fájl-ba ír-ja (a
+ []
+
+[33]
+Underfull \hbox (badness 1675) in paragraph at lines 933--940
+\T1/lmr/m/n/12 tal be-töl-tött va-ló-di MobileNetV2 mo-dell-b®l a \T1/lmtt/m/n/
+12 ModelBundle \T1/lmr/m/n/12 ada-ta-i-val fel-épí-ti az
+ []
+
+[34] [35] [36] [37]
 5. fejezet.
-) [36
+) [38
 
 ]
-Underfull \hbox (badness 2065) in paragraph at lines 100--100
+Underfull \hbox (badness 2065) in paragraph at lines 78--78
 []\T1/lmr/m/n/12 Ian J. Goodfellow, Jonathon Shlens és Christian Szegedy. \T1/l
 mr/m/it/12 Explaining and
  []
 
 
-Underfull \hbox (badness 4181) in paragraph at lines 100--100
+Underfull \hbox (badness 4181) in paragraph at lines 78--78
 []\T1/lmr/m/n/12 Mahmood Sharif, Sruti Bhagavatula, Lujo Bauer és Michael K. Re
 iter.
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 100--100
+Underfull \hbox (badness 1147) in paragraph at lines 78--78
 \T1/lmr/m/it/12 Accessorize to a Crime: Real and Stealthy Attacks on State-of-t
 he-Art Face
  []
 
-[37
+[39
 
 
 
 ]
-Underfull \hbox (badness 5592) in paragraph at lines 100--100
+Underfull \hbox (badness 5592) in paragraph at lines 78--78
 []\T1/lmr/m/n/12 Martin Fowler. \T1/lmr/m/it/12 TestPyramid\T1/lmr/m/n/12 . mar
 t-in-fow-ler.com. 2012. \T1/lmr/m/sc/12 url\T1/lmr/m/n/12 : []$\T1/lmtt/m/n/12 
 https : / /
  []
 
-[38] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[40] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
@@ -1991,12 +2010,12 @@ Package logreq Info: Writing requests to 'Gabrity_Gabor_D9V09Z_Szakdolgozat.run
  ) 
 Here is how much of TeX's memory you used:
  51135 strings out of 467682
- 1126074 string characters out of 5415184
- 2153718 words of memory out of 5000000
- 79206 multiletter control sequences out of 15000+600000
+ 1126018 string characters out of 5415184
+ 2145721 words of memory out of 5000000
+ 79205 multiletter control sequences out of 15000+600000
  715075 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 124i,13n,145p,1146b,2384s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 124i,13n,145p,1146b,2401s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb
 ><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb
 ><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb>
@@ -2015,10 +2034,10 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (40 pages, 662433 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (42 pages, 666647 bytes
 ).
 PDF statistics:
- 777 PDF objects out of 1000 (max. 8388607)
- 154 named destinations out of 1000 (max. 500000)
- 634 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 780 PDF objects out of 1000 (max. 8388607)
+ 155 named destinations out of 1000 (max. 500000)
+ 626 words of extra memory for PDF output out of 10000 (max. 10000000)
 
