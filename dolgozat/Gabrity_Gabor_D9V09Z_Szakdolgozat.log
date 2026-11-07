@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  7 NOV 2026 18:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  7 NOV 2026 21:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1947,25 +1947,7 @@ Underfull \hbox (badness 5133) in paragraph at lines 885--888
 /n/12 : Viselkedési bi-zo-nyí-ték
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 923--928
-\T1/lmtt/m/n/12 test_saved_adversarial_image_survives_disk_roundtrip\T1/lmr/m/n
-/12 : Az FGSM tá-ma-
- []
-
-
-Underfull \hbox (badness 1953) in paragraph at lines 923--928
-\T1/lmr/m/n/12 dás ered-mé-nyét a fe-lü-let men-té-si fo-lya-ma-tá-nak meg-fe-l
-e-l®-en PNG fájl-ba ír-ja (a
- []
-
-[33]
-Underfull \hbox (badness 1675) in paragraph at lines 933--940
-\T1/lmr/m/n/12 tal be-töl-tött va-ló-di MobileNetV2 mo-dell-b®l a \T1/lmtt/m/n/
-12 ModelBundle \T1/lmr/m/n/12 ada-ta-i-val fel-épí-ti az
- []
-
-[34] [35] [36] [37]
+[33] [34] [35] [36] [37]
 5. fejezet.
 ) [38
 
@@ -2034,7 +2016,7 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (42 pages, 666647 bytes
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (42 pages, 665738 bytes
 ).
 PDF statistics:
  780 PDF objects out of 1000 (max. 8388607)

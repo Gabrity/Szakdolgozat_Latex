@@ -38,6 +38,21 @@ python main.py
    (224×224-re vágott) és a támadott képet. A veszteségmentes PNG formátum ajánlott,
    mert a JPEG-mentés megváltoztatná a perturbációt.
 
+## Tesztelés
+
+A tesztek futtatásához a virtuális környezetben a `pytest` és a `pytest-mock`
+csomag is szükséges.
+
+```powershell
+python -m pytest -q
+python -m pytest -m gui -q
+```
+
+A GUI-tesztek valódi CustomTkinter-widgeteket hoznak létre, ezért grafikus
+környezetet igényelnek. Linuxon kijelző nélküli futtatáshoz például Xvfb
+szükséges. A tesztablak rejtett, a modell egy kis tesztmodell, a támadási
+háttérszál működését pedig ezek a tesztek nem ellenőrzik.
+
 ## Mappastruktúra
 
 ```

@@ -70,8 +70,8 @@
 \select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{29}{chapter.4}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{29}{section.4.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.2}Integrációs tesztek}{33}{section.4.2}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{34}{section.4.3}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{35}{section.4.4}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{33}{section.4.3}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{34}{section.4.4}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.5}Teszteredmények és értelmezésük}{37}{section.4.5}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{37}{section.4.6}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{38}{chapter.5}%
