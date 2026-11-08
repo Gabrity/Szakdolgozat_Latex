@@ -922,9 +922,6 @@ Az élesben használt modellek helyett kis tesztmodell működik, így nincs sz�
 \noindent A \texttt{test\_initial\_state} ellenőrzi, hogy induláskor nincs betöltött eredeti vagy támadott kép, a képmezők üresek, és az alapértelmezett támadási módszer az FGSM. 
 
 \medskip
-\noindent\rule{\linewidth}{0.3pt}
-
-\medskip
 \noindent A \texttt{test\_attack\_without\_image\_shows\_message} az \texttt{Attack} gombot kép betöltése nélkül hívja meg. 
 Ellenőrzi, hogy a felület a megfelelő tájékoztató üzenetet kéri, és nem indít támadási szálat. 
 
@@ -934,9 +931,6 @@ Ellenőrzi, hogy a felület a megfelelő tájékoztató üzenetet kéri, és nem
 \medskip
 \noindent A \texttt{test\_load\_image\_updates\_display\_and\_predictions} a \texttt{Load Image} gombbal egy tesztképet tölt be. 
 Ellenőrzi a betöltött tenzor méretét, a képmező és a három predikció frissülését, valamint a státuszüzenetet. 
-
-\medskip
-\noindent\rule{\linewidth}{0.3pt}
 
 \medskip
 \noindent A \texttt{test\_select\_target\_updates\_checkbox\_and\_status} a szűrt célosztálylistából kiválaszt egy osztályt. 
@@ -1067,6 +1061,16 @@ Az eredmény a vizsgált esetek sikerességét mutatja, ám önmagában nem igaz
 \end{figure}
 
 \section{A tesztelés korlátai}
+
+Az automatizált tesztek néhány kiválasztott bemeneten ellenőrzik a szoftver működésének egyes tulajdonságait, de nem garantálják a szoftver hibamentességét. 
+A modellt igénylő tesztek többségében a gyorsaság és a megismételhetőség érdekében kisméretű tesztmodellt használunk. 
+Egyetlen integrációs teszt használja az előtanított MobileNetV2 hálót, ez a teszt a modell súlyainak hiányában kimarad. 
+A tesztekben felhasznált bemenetek között véletlenszerűen előállított tenzorok és egyszínű tesztképek szerepelnek. 
+Ezek alkalmasak a működés egyes tulajdonságainak ellenőrzésére, de nem elegendők ahhoz, hogy általános következtetéseket vonjunk le a modellek vagy a támadások sikerességéről. 
+
+A grafikus felület tesztjei valódi felületi elemeket hoznak létre, de a gombokat programozottan hívják meg, nem felhasználói interakcióval. 
+A támadást ellenőrző tesztben a munkafüggvény nem külön háttérszálon fut, így a teszt nem vizsgálja a párhuzamos futásból eredő eseteket. 
+A tesztek nem fedik le a felület minden funkcióját, és a megjelenés vizuális helyességét sem ellenőrzik. 
 
 \chapter{Összefoglalás}
 
