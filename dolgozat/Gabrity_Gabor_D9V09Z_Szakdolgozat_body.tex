@@ -15,11 +15,28 @@
 A képosztályozó neurális hálók megtéveszthetők olyan módon, hogy egy kép alig észrevehető módosítása után az eredetitől eltérő 
 eredményt adnak. 
 Az így kapott képeket ellenfél alapú példáknak nevezzük. 
-Az alkalmazás célja, hogy szemléltesse ezt a jelenséget, és így lehetőséget adjon a felhasználónak, neurális hálók tesztelésére, vizsgálja a azoknak támaddhatóságát, generáljon ellenfél alapú példákat. 
+Az alkalmazás célja, hogy szemléltesse ezt a jelenséget, és így lehetőséget adjon a felhasználónak, neurális hálók tesztelésére, 
+vizsgálja a azoknak támaddhatóságát, generáljon ellenfél alapú példákat. 
 A felhasználó továbbá egyszerű képfeldolgozási módszerekkel, vizsgálhatja a perturbáció 
 hatásának csökkentését. 
 
 \section{A felhasznált módszerek rövid áttekintése}
+A program előtanított képosztályozó neurális hálókkal vizsgálja a betöltött képeket. 
+Jelenlegi formájában a ResNet50 és a MobileNetV2 használható. 
+Ezek a képeket az ImageNet-1k osztályai közé sorolják, és megadják az egyes osztályokhoz tartozó valószínűségeket. 
+
+Ellenfél alapú példák előállításához két támadási módszer áll rendelkezésre. 
+Az FGSM egylépéses módszer, míg a PGD több lépésben hajtja végre a támadást, és jellemzően erősebb az FGSM-nél. 
+Mindkét esetben az $\epsilon$ paraméter korlátozza a képpontok színcsatornáinak maximális változását. 
+Támdási módszerek közül választhatunk nem célzott és célzott közül 
+Az utóbbinál egy a felhasználó egy célosztályt is kijelöl. 
+Nem célzott esetben az algoritmus a modell által az eredeti képhez rendelt osztálytól eltérő osztályozásra törekszik. 
+Célzott esetben pedig azt igyekszik elérni, hogy a modell a képet a célosztályba sorolja. 
+A támadás sikere egyik támadási mód esetén sem garantált. 
+
+Egy végrehajtott támadás után Gauss-elmosással és JPEG-tömörítéssel való védekezés is vizsgálható. 
+Ezek a módszerek módosítják a támadott képet, így alkalmazásuk után megfigyelhető, hogyan változik a kép osztályozása. 
+Az eredeti osztályozás visszaállítása ezekkel a védekezési módszerekkel nem garantálható. 
 
 \section{Rendszerkövetelmények}
 
