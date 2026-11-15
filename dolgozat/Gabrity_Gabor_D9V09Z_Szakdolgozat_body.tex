@@ -39,6 +39,20 @@ Ezek a módszerek módosítják a támadott képet, így alkalmazásuk után meg
 Az eredeti osztályozás visszaállítása ezekkel a védekezési módszerekkel nem garantálható. 
 
 \section{Rendszerkövetelmények}
+A futtatáshoz grafikus környezettel rendelkező számítógép és Python szükséges. 
+A programot Python 3.13.2 verzióval teszteltem. 
+A szükséges könyvtárak a PyTorch, a torchvision, a CustomTkinter, a Pillow és a NumPy. 
+Ezek telepítésére a következő fejezetben térek ki. 
+
+A futtatás hardverigényesebb része az ellenfél alapú kép generálása. 
+Ez processzoron is elvégezhető, de CUDA-képes NVIDIA videókártyával gyorsítható. 
+Ennek kiválasztása a szoftveren belül törtnéik, olyan módon, hogy ellenőrzi GPU meglétét és ha van akkor használja. 
+A program futtatásához a tesztelt környezetben körülbelül 689 MB tárhely szükséges, a két modell mérete együttesen 
+pedig 117 MB tárhelyet igényel. 
+Pontos memóriaigény nem került meghatározásra. 
+
+A modellek első használatakor a súlyok letöltéséhez internetkapcsolat szükséges. 
+Ezeket a program később újra felhasználja. 
 
 \section{Telepítés és első indítás}
 
