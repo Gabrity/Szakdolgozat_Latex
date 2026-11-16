@@ -55,6 +55,32 @@ A modellek első használatakor a súlyok letöltéséhez internetkapcsolat szü
 Ezeket a program később újra felhasználja. 
 
 \section{Telepítés és első indítás}
+A zip formátumú programcsomagot először ki kell csomagolni egy tetszőleges könyvtárba. 
+A következő lépések a kicsomagolt könyvtáron belüli \texttt{code} mappában történnek. 
+
+\subsection{A Python telepítése}
+A program futtatásához Python szükséges, amely a Python hivatalos oldaláról tölthető le. 
+Telepítéskor ügyelni kell arra, hogy a grafikus felület működéséhez szükséges Tcl/Tk komponens is feltelepüljön, amelyet a 
+telepítő alapértelmezetten tartalmaz. 
+Telepítés után a \texttt{python --version} paranccsal ellenőrizhető, hogy a telepítés sikeres, és megfelelő-e a verzió. 
+
+\subsection{A függőségek telepítése}
+A függőségeket érdemes egy virtuális környezetben telepíteni, így azok nem keverednek más Python-projektek csomagjaival. 
+A \ref{lst:install}. kódrészlet a \texttt{code} könyvtárban kiadandó PowerShell parancsokat mutatja. 
+Az első parancs létrehozza a virtuális környezetet, a második aktiválja azt, az utolsó pedig telepíti a szükséges könyvtárakat a 
+\texttt{requirements.txt} fájl alapján. 
+
+\begin{lstlisting}[caption={A virtuális környezet létrehozása és a függőségek telepítése}, label={lst:install}]
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+\end{lstlisting}
+
+Videókártyás gyorsítás használatához a PyTorch telepítési oldalán a videókártyának megfelelő telepítési parancs 
+választható. 
+Ha a gyorsítás nem szükséges, ez a lépés kihagyható, és a program processzoron fut. 
+
+\subsection{Az első indítás}
 
 \section{A grafikus felhasználói felület bemutatása}
 
