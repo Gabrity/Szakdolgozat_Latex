@@ -1,4 +1,4 @@
-\chapter{Bevezetés}
+﻿\chapter{Bevezetés}
 
 \section{Motiváció és a témaválasztás indoklása}
 
@@ -81,12 +81,169 @@ választható.
 Ha a gyorsítás nem szükséges, ez a lépés kihagyható, és a program processzoron fut. 
 
 \subsection{Az első indítás}
+Az alkalmazást a \texttt{code} könyvtárban kiadott \texttt{python main.py} paranccsal indíthatjuk. 
+Indításkor automatikusan kiválasztja a számításokhoz használt eszközt, és ezt jelzi az ablak alján lévő állapotsorban 
+(\texttt{Device: cuda} videókártya esetén, \texttt{Device: cpu} processzor esetén). 
+
+A modellek súlyainak letöltése az első kép betöltésekor történik. 
+Ha a kiválasztott modell súlyai még nincsenek meg a \texttt{models} mappában, a program ekkor tölti le őket. 
+A leöltés ideje alatt lehetséges, hogy a felhasználói felület nem reagál, ez normális működés. 
+A modellek ettől kezdve már internetkapcsolat nélkül is elérhetők. 
+A \ref{fig:gui-kezdo}. ábra az alkalmazás ablakát mutatja közvetlenül az indítás után. 
+A képterületeken a \texttt{(no image)} felirat látható, mivel még nincs betöltve kép. 
+
+\providecommand{\kepernyokep}[1]{%
+  \IfFileExists{images/#1}%
+    {\includegraphics[width=\linewidth]{images/#1}}%
+    {\fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering Helyőrző a következő képernyőképnek: \texttt{images/#1}}}}}
+\begin{figure}[htb]
+\centering
+\kepernyokep{gui-kezdo.png}
+\caption{Az alkalmazás ablaka az első indítás után}
+\label{fig:gui-kezdo}
+\end{figure}
 
 \section{A grafikus felhasználói felület bemutatása}
+Az alkalmazás ablaka három részből áll. 
+A bal oldalon a vezérlőpanel látható, amelyen a kép betöltése, a támadás és a védekezés beállításai érhetők el. 
+A jobb oldalon az eredeti, ellenfél alapú képek és felnagyított perturbáció számára fentartott terület van, alatta 
+pedig a predikciós panelek helyezkednek el. 
+Az ablak alján az állapotsor van, mely az utolsó művelet eredményéről tájékoztat. 
+A \ref{fig:gui-attekintes}. ábra egy betöltött képpel mutatja a felületet. 
+
+\begin{figure}[htb]
+\centering
+\kepernyokep{gui-attekintes.png}
+\caption{A grafikus felület egy betöltött képpel}
+\label{fig:gui-attekintes}
+\end{figure}
+
+\subsection{A vezérlőpanel}
+A vezérlőpanel elemei fentről lefelé haladva a következők. 
+\begin{description}
+  \item[Load Image] Megnyit egy fájlválasztó ablakot, amelyben PNG, JPEG, BMP vagy WebP formátumú kép választható. 
+  \item[Model] A az osztályozáshoz használt modell, \texttt{ResNet50} vagy \texttt{MobileNetV2}.
+        A kiválasztás egy lenyíló ablakban történik.  
+        Váltáskor a program újraszámolja az eredeti és az ellenfél alapú kép predikcióit. 
+        Az ellenfél alapú képet ekkor még nem generálja újra. 
+  \item[Attack] A támadási algoritmus, \texttt{FGSM} vagy \texttt{PGD} lenyíló ablakban történik.
+  \item[$\epsilon$ csúszka] A perturbáció maximális mértékét, epsilon-t állítja $0{,}00$ és $0{,}30$ között $0{,}01$-es lépésközzel. 
+        Az alapértéke $0{,}030$.
+  \item[Iterations] Az iterációk száma $1$ és $100$ között, alapértelmezetten $10$. 
+        Csak a PGD algoritmusra van hatása. 
+  \item[Targeted attack] A célzott mód kapcsolója. 
+        Alatta a \texttt{search class...} mezőbe írva az ImageNet osztályai szűrhetők, a találati listában pedig 
+        legfeljebb $200$ osztály jelenik meg. 
+        Egy osztályra kattintva az kiválasztódik célosztálynak, és a jelölőnégyzet automatikusan bekapcsol. 
+  \item[Attack] Ez a gomb elindítja a kiválasztott támadást a betöltött képen. 
+  \item[Defend (Blur) és Defend (JPEG)] A két gomb az ellenfél alapú képre alkalmazza a Gauss-elmosást, illetve a 
+        JPEG-tömörítést, és megjeleníti új kép predikcióit. 
+  \item[Reset] Alaphelyzetbe állítja a felhasználói felületet, a betöltött eredeti képet meghagyva. 
+\end{description}
+
+\subsection{A képterület és a predikciós panelek}
+A képterület három képet jelenít meg egymás mellett. 
+Az \texttt{Original} a betöltött, eredeti kép. 
+A \texttt{Perturbation (×10)} a támadás által hozzáadott zaj, amelyet a jobb láthatóság érdekében tízszeresére nagyítva 
+ábrázolunk.
+Az \texttt{Adversarial} az előálló ellenfél alapú kép. 
+
+A képek alatt a modell három legvalószínűbbnek ítélt osztálya látható 
+az osztály nevével és a valószínűség százalékos értékével. 
+A perturbációhoz nem tartozik predikciós panel. 
+
+\subsection{A kép és az eredmény mentése}
+A képek alatti két gomb az eredeti, illetve az ellenfél alapú kép mentésére szolgál. 
+A \texttt{Download original} gomb az eredeti képet menti, alapértelmezetten \texttt{original.png} néven. 
+A \texttt{Download adversarial} gomb a támadás kimenetét menti, melynek a nevét a támadás paramétereiből állítja össze. 
+Egy nem célzott FGSM támadás alapértelmezett neve például \texttt{ResNet50\_FGSM\_eps0.030\_untargeted.png}, egy célzott PGD 
+támadásé pedig tartalmazza az iterációk számát, a célosztály indexét és nevét is. 
+A \texttt{Download adversarial} gomb mindig a védekezés nélküli ellenfél alapú képet menti.
+
+A mentéshez PNG formátumot érdemes választani, mert az veszteségmentes. 
+A veszteséges JPEG formátum a perturbáció apró értékeit is módosítja, így a mentett kép már nem feltétlenül tévesztené meg a 
+modellt. 
 
 \section{Tipikus felhasználási forgatókönyvek}
+Az alábbi forgatókönyvek a program leggyakoribb használati módjait mutatják be lépésenként. 
+
+\subsection{Nem célzott támadás FGSM módszerrel}
+Ez a legegyszerűbb forgatókönyv, amellyel a program működése gyorsan kipróbálható. 
+\begin{enumerate}
+  \item A \texttt{Load Image} gombbal töltsünk be egy képet, amely egy ImageNet-osztályba tartozó tárgyat vagy állatot ábrázol. 
+  \item Ellenőrizzük az \texttt{Original} panelen, hogy a modell helyesen ismeri-e fel a képet. 
+  \item Válasszuk ki a modellt és az \texttt{FGSM} módszert és hagyjuk kikapcsolva a célzott módot. 
+  \item Állítsuk a csúszkát $\epsilon = 0{,}030$ körüli értékre, majd kattintsunk az \texttt{Attack} gombra. 
+  \item Hasonlítsuk össze az \texttt{Original} és az \texttt{Adversarial} panel predikcióit. 
+\end{enumerate}
+A \ref{fig:gui-fgsm}. ábra egy ilyen támadás eredményét mutatja. 
+
+\begin{figure}[htb]
+\centering
+\kepernyokep{gui-fgsm.png}
+\caption{Nem célzott FGSM támadás eredménye}
+\label{fig:gui-fgsm}
+\end{figure}
+
+\subsection{Célzott támadás PGD módszerrel}
+Ha azt szeretnénk, hogy a modell egy általunk választott osztályba sorolja a képet, célzott támadást kell indítani. 
+\begin{enumerate}
+  \item Töltsünk be egy képet, és válasszuk ki a modellt. 
+  \item Állítsuk az \texttt{Attack} menüt \texttt{PGD} módszerre, és növeljük az \texttt{Iterations} értékét például $20$-ra. 
+  \item A \texttt{search class...} mezőbe kezdjük el beírni a célosztály nevét, majd a listából kattintással válasszuk ki. 
+  \item Ellenőrizzük, hogy a \texttt{Targeted attack} jelölőnégyzet be van kapcsolva, és az állapotsor a kiválasztott 
+        célosztályt mutatja. 
+  \item Kattintsunk az \texttt{Attack} gombra, és várjuk meg az állapotsorban a támadás befejezését jelző üzenetet. 
+\end{enumerate}
+A \ref{fig:gui-pgd-celzott}. ábra egy célzott PGD támadás beállításait és eredményét mutatja. 
+A támadás sikere függ az eredeti és a célosztály hasonlóságától, ezért egymástól távoli osztályok esetén nagyobb 
+$\epsilon$ értékre vagy több iterációra lehet szükség. 
+
+\begin{figure}[htb]
+\centering
+\kepernyokep{gui-pgd-celzott.png}
+\caption{Célzott PGD támadás beállításai és eredménye}
+\label{fig:gui-pgd-celzott}
+\end{figure}
+
+\subsection{A védekezések hatásának összehasonlítása}
+Ez a forgatókönyv azt vizsgálja, hogy egyszerű képfeldolgozási védekezések képesek-e semlegesíteni a perturbációt. 
+\begin{enumerate}
+  \item Hajtsunk végre egy támadást az előző forgatókönyvek valamelyike szerint. 
+  \item Kattintsunk a \texttt{Defend (Blur)} gombra, és jegyezzük fel az \texttt{Adversarial} panel predikcióit. 
+  \item Kattintsunk a \texttt{Defend (JPEG)} gombra, és hasonlítsuk össze az eredményt az előzővel. 
+  \item Az \texttt{Original} panellel összevetve állapítsuk meg, hogy az eredeti osztály visszatért-e a lista elejére. 
+\end{enumerate}
+A \ref{fig:gui-vedekezes}. ábra egy JPEG-tömörítéssel védett kép eredményét mutatja. 
+Az ablakban megjelenő védett kép a program felületén kívül nem menthető, a mentés gomb a védekezés nélküli képet menti. 
+
+\begin{figure}[htb]
+\centering
+\kepernyokep{gui-vedekezes.png}
+\caption{Az ellenfél alapú kép predikciói JPEG-védekezés után}
+\label{fig:gui-vedekezes}
+\end{figure}
 
 \section{Hibaüzenetek és gyakori problémák}
+A program a hibákat felugró ablakban, a műveletek állapotát pedig az állapotsorban jelzi. 
+
+\subsection{Hibaüzenetek}
+\begin{description}
+  \item[Load error] A kiválasztott fájl nem olvasható be képként. 
+        Az ablak a hiba okát is megjeleníti. 
+        Érdemes másik fájlt vagy másik képformátumot választani. 
+  \item[No image] Támadást vagy az eredeti kép mentését kezdeményeztük kép betöltése nélkül. 
+        Először a \texttt{Load Image} gombbal be kell tölteni egy képet. 
+  \item[No adversarial] Védekezést vagy az ellenfél alapú kép mentését kezdeményeztük támadás futtatása nélkül, vagy a 
+        \texttt{Reset} gomb után. 
+        Előbb az \texttt{Attack} gombbal új támadást kell indítani. 
+  \item[Attack failed] A támadás futása közben hiba történt. 
+        Az ablak a teljes hibaleírást mutatja, az állapotsorban pedig az \texttt{Attack failed.} felirat jelenik meg. 
+        A hibaleírás a hibakereséshez használható. 
+  \item[Defense failed] A védekezés alkalmazása nem sikerült. 
+  \item[Save error] A kép mentése nem sikerült, például mert a célmappába nincs írási jog. 
+        Másik helyre kell menteni. 
+\end{description}
 
 \chapter{Fejlesztői dokumentáció}
 Ebben a fejezetben a megvalósítandó szoftver célját és funkcióit formális, matematikai keretben definiálom, mivel a későbbi 
