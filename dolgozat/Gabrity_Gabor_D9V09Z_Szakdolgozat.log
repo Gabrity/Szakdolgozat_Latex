@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  17 NOV 2026 00:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  17 NOV 2026 22:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1819,7 +1819,19 @@ een already used, duplicate ignored
 l.65 \tableofcontents
                       [3]
 \c@conpageno=\count531
- [4
+
+Underfull \hbox (badness 2050) in paragraph at lines 82--83
+[]|\T1/lmr/m/n/12 veszteségmentes kép-tö-mö-rí-té-si el-já-rás és fájl-for-má-t
+um (\T1/lmr/m/it/12 Portable
+ []
+
+
+Underfull \hbox (badness 7291) in paragraph at lines 83--84
+[]|\T1/lmr/m/n/12 régióalapú kon-vo-lú-ci-ós ne-urá-lis há-ló-zat ob-jek-tum-de
+-tek-tá-lás-hoz
+ []
+
+[4
 
 
 
@@ -1837,12 +1849,12 @@ l.65 \tableofcontents
 
 {C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
  [7]
-<images/gui-kezdo.png, id=239, 965.10562pt x 641.39626pt>
+<images/gui-kezdo.png, id=241, 965.10562pt x 641.39626pt>
 File: images/gui-kezdo.png Graphic file (type png)
 <use images/gui-kezdo.png>
 Package pdftex.def Info: images/gui-kezdo.png  used on input line 101.
 (pdftex.def)             Requested size: 455.24411pt x 302.54262pt.
-<images/gui-attekintes.png, id=242, 965.10562pt x 641.39626pt>
+<images/gui-attekintes.png, id=244, 965.10562pt x 641.39626pt>
 File: images/gui-attekintes.png Graphic file (type png)
 <use images/gui-attekintes.png>
 Package pdftex.def Info: images/gui-attekintes.png  used on input line 116.
@@ -1862,18 +1874,18 @@ LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [10{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc
 } <./images/gui-attekintes.png>]
-<images/gui-fgsm.png, id=268, 965.10562pt x 641.39626pt>
+<images/gui-fgsm.png, id=270, 965.10562pt x 641.39626pt>
 File: images/gui-fgsm.png Graphic file (type png)
 <use images/gui-fgsm.png>
 Package pdftex.def Info: images/gui-fgsm.png  used on input line 184.
 (pdftex.def)             Requested size: 455.24411pt x 302.54262pt.
  [11] [12 <./images/gui-fgsm.png>]
-<images/gui-pgd-celzott.png, id=291, 965.10562pt x 641.39626pt>
+<images/gui-pgd-celzott.png, id=293, 965.10562pt x 641.39626pt>
 File: images/gui-pgd-celzott.png Graphic file (type png)
 <use images/gui-pgd-celzott.png>
 Package pdftex.def Info: images/gui-pgd-celzott.png  used on input line 205.
 (pdftex.def)             Requested size: 455.24411pt x 302.54262pt.
-<images/gui-vedekezes.png, id=293, 965.10562pt x 641.39626pt>
+<images/gui-vedekezes.png, id=295, 965.10562pt x 641.39626pt>
 File: images/gui-vedekezes.png Graphic file (type png)
 <use images/gui-vedekezes.png>
 Package pdftex.def Info: images/gui-vedekezes.png  used on input line 223.
@@ -1994,7 +2006,7 @@ tesz-tet ké-szí-tet-tem. Ezek a
  []
 
 [42] [43] [44] [45]
-<images/test_run.PNG, id=532, 914.66719pt x 254.45062pt>
+<images/test_run.PNG, id=534, 914.66719pt x 254.45062pt>
 File: images/test_run.PNG Graphic file (type png)
 <use images/test_run.PNG>
 Package pdftex.def Info: images/test_run.PNG  used on input line 1328.
@@ -2004,19 +2016,19 @@ Package pdftex.def Info: images/test_run.PNG  used on input line 1328.
 ) [48
 
 ]
-Underfull \hbox (badness 2065) in paragraph at lines 78--78
+Underfull \hbox (badness 2065) in paragraph at lines 95--95
 []\T1/lmr/m/n/12 Ian J. Goodfellow, Jonathon Shlens és Christian Szegedy. \T1/l
 mr/m/it/12 Explaining and
  []
 
 
-Underfull \hbox (badness 4181) in paragraph at lines 78--78
+Underfull \hbox (badness 4181) in paragraph at lines 95--95
 []\T1/lmr/m/n/12 Mahmood Sharif, Sruti Bhagavatula, Lujo Bauer és Michael K. Re
 iter.
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 78--78
+Underfull \hbox (badness 1147) in paragraph at lines 95--95
 \T1/lmr/m/it/12 Accessorize to a Crime: Real and Stealthy Attacks on State-of-t
 he-Art Face
  []
@@ -2026,7 +2038,7 @@ he-Art Face
 
 
 ]
-Underfull \hbox (badness 5592) in paragraph at lines 78--78
+Underfull \hbox (badness 5592) in paragraph at lines 95--95
 []\T1/lmr/m/n/12 Martin Fowler. \T1/lmr/m/it/12 TestPyramid\T1/lmr/m/n/12 . mar
 t-in-fow-ler.com. 2012. \T1/lmr/m/sc/12 url\T1/lmr/m/n/12 : []$\T1/lmtt/m/n/12 
 https : / /
@@ -2043,10 +2055,10 @@ Package logreq Info: Writing requests to 'Gabrity_Gabor_D9V09Z_Szakdolgozat.run
 
  ) 
 Here is how much of TeX's memory you used:
- 51277 strings out of 467682
- 1128632 string characters out of 5415184
- 2146312 words of memory out of 5000000
- 79300 multiletter control sequences out of 15000+600000
+ 51282 strings out of 467682
+ 1128718 string characters out of 5415184
+ 2146349 words of memory out of 5000000
+ 79303 multiletter control sequences out of 15000+600000
  715381 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  124i,13n,145p,1146b,2401s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2068,10 +2080,10 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (52 pages, 2752871 byte
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (52 pages, 2754462 byte
 s).
 PDF statistics:
- 922 PDF objects out of 1000 (max. 8388607)
- 198 named destinations out of 1000 (max. 500000)
+ 925 PDF objects out of 1000 (max. 8388607)
+ 200 named destinations out of 1000 (max. 500000)
  728 words of extra memory for PDF output out of 10000 (max. 10000000)
 
