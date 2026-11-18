@@ -87,5 +87,4 @@
 \select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{50}{chapter.5}%
 \select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{50}{section.5.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{50}{section.5.2}%
-\select@language {hungarian} \contentsline {section}{\numberline {5.3}Továbbfejlesztési lehetőségek}{50}{section.5.3}%
-\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{51}{section*.31}%
+\select@language {hungarian} \contentsline {chapter}{Irodalomjegyzék}{52}{section*.31}%

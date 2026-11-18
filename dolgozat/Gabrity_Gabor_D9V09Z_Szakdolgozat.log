@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  18 NOV 2026 19:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  18 NOV 2026 22:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1820,17 +1820,17 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.70 \tableofcontents
+l.81 \tableofcontents
                       [3]
 \c@conpageno=\count531
 
-Underfull \hbox (badness 2050) in paragraph at lines 87--88
+Underfull \hbox (badness 2050) in paragraph at lines 98--99
 []|\T1/lmr/m/n/12 veszteségmentes kép-tö-mö-rí-té-si el-já-rás és fájl-for-má-t
 um (\T1/lmr/m/it/12 Portable
  []
 
 
-Underfull \hbox (badness 7291) in paragraph at lines 88--89
+Underfull \hbox (badness 7291) in paragraph at lines 99--100
 []|\T1/lmr/m/n/12 régióalapú kon-vo-lú-ci-ós ne-urá-lis há-ló-zat ob-jek-tum-de
 -tek-tá-lás-hoz
  []
@@ -1879,12 +1879,12 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 {C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
  [9]
-<images/gui-kezdo.png, id=266, 965.10562pt x 641.39626pt>
+<images/gui-kezdo.png, id=264, 965.10562pt x 641.39626pt>
 File: images/gui-kezdo.png Graphic file (type png)
 <use images/gui-kezdo.png>
 Package pdftex.def Info: images/gui-kezdo.png  used on input line 182.
 (pdftex.def)             Requested size: 455.24411pt x 302.54262pt.
-<images/gui-attekintes.png, id=269, 965.10562pt x 641.39626pt>
+<images/gui-attekintes.png, id=267, 965.10562pt x 641.39626pt>
 File: images/gui-attekintes.png Graphic file (type png)
 <use images/gui-attekintes.png>
 Package pdftex.def Info: images/gui-attekintes.png  used on input line 197.
@@ -1903,18 +1903,18 @@ LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [12 <./images/gui-attekintes.png>]
-<images/gui-fgsm.png, id=296, 965.10562pt x 641.39626pt>
+<images/gui-fgsm.png, id=294, 965.10562pt x 641.39626pt>
 File: images/gui-fgsm.png Graphic file (type png)
 <use images/gui-fgsm.png>
 Package pdftex.def Info: images/gui-fgsm.png  used on input line 265.
 (pdftex.def)             Requested size: 455.24411pt x 302.54262pt.
  [13] [14 <./images/gui-fgsm.png>]
-<images/gui-pgd-celzott.png, id=318, 965.10562pt x 641.39626pt>
+<images/gui-pgd-celzott.png, id=316, 965.10562pt x 641.39626pt>
 File: images/gui-pgd-celzott.png Graphic file (type png)
 <use images/gui-pgd-celzott.png>
 Package pdftex.def Info: images/gui-pgd-celzott.png  used on input line 286.
 (pdftex.def)             Requested size: 455.24411pt x 302.54262pt.
-<images/gui-vedekezes.png, id=320, 965.10562pt x 641.39626pt>
+<images/gui-vedekezes.png, id=318, 965.10562pt x 641.39626pt>
 File: images/gui-vedekezes.png Graphic file (type png)
 <use images/gui-vedekezes.png>
 Package pdftex.def Info: images/gui-vedekezes.png  used on input line 304.
@@ -1926,28 +1926,28 @@ Package pdftex.def Info: images/gui-vedekezes.png  used on input line 304.
 ] [19] [20{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ma
 thsy.enc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mat
 hex.enc}] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 844--847
+Underfull \hbox (badness 10000) in paragraph at lines 840--843
 []\T1/lmr/bx/n/12 Alkalmazáslogikai ré-teg \T1/lmr/m/n/12 (\T1/lmtt/m/n/12 mode
 l_manager.py\T1/lmr/m/n/12 , \T1/lmtt/m/n/12 attack_engine.py\T1/lmr/m/n/12 ,
  []
 
 [32]
-Underfull \hbox (badness 2237) in paragraph at lines 886--888
+Underfull \hbox (badness 2237) in paragraph at lines 882--884
 []\T1/lmr/m/n/12 Az ,,Attack'' gomb meg-nyo-má-sa-kor a GUI egy kü-lön szá-lon 
 meg-hív-ja az
  []
 
 [33] [34] [35]
-Underfull \hbox (badness 6284) in paragraph at lines 954--957
+Underfull \hbox (badness 6284) in paragraph at lines 950--953
 []\T1/lmr/m/n/12 Egy si-ke-res FGSM-támadás után a fe-lü-let elcache-eli a gra-
 di-ens el®-je-lét
  []
 
 [36]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 979.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 975.
 
-Underfull \hbox (badness 10000) in paragraph at lines 984--987
+Underfull \hbox (badness 10000) in paragraph at lines 980--983
 []\T1/lmr/m/n/12 A be-töl-tés után a mo-dell min-den pa-ra-mé-te-rén exp-li-cit
  mó-don
  []
@@ -1958,19 +1958,19 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 [37] [38] [39]
 4. fejezet.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1064--1069
+Underfull \hbox (badness 10000) in paragraph at lines 1060--1065
 []\T1/lmr/m/n/12 Minden vé-let-lent fel-hasz-ná-ló fix-tu-re (pl. a be-me-ne-ti
  ké-pet ge-ne-rá-ló
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 1064--1069
+Underfull \hbox (badness 2343) in paragraph at lines 1060--1065
 \T1/lmtt/m/n/12 sample_image_tensor\T1/lmr/m/n/12 ) ma-ga hív-ja meg a \T1/lmtt
 /m/n/12 torch.manual_seed\T1/lmr/m/n/12 -et köz-vet-le-nül az
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 1064--1069
+Underfull \hbox (badness 1221) in paragraph at lines 1060--1065
 \T1/lmr/m/n/12 sta-tisz-ti-kai ki-ér-té-ke-lés kel-le-ne), ha-nem az al-go-rit-
 mu-sok tu-laj-don-sá-ga-it el-len-®riz-zük
  []
@@ -1979,101 +1979,101 @@ mu-sok tu-laj-don-sá-ga-it el-len-®riz-zük
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1075.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1071.
 
-Underfull \hbox (badness 1112) in paragraph at lines 1078--1080
+Underfull \hbox (badness 1112) in paragraph at lines 1074--1076
 \T1/lmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/lmr/m/n/12 : Ellen®rzi, ho
 gy \T1/lmtt/m/n/12 topk=3 \T1/lmr/m/n/12 ese-tén a vissza-adott
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 1110--1113
+Underfull \hbox (badness 3849) in paragraph at lines 1106--1109
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 nnak el-le-né-re, hogy a hí-vó
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1131
+Underfull \hbox (badness 10000) in paragraph at lines 1122--1127
 \T1/lmtt/m/n/12 test_attack_fgsm_dis-patches_only_to_fgsm\T1/lmr/m/n/12 : \T1/l
 mtt/m/n/12 mocker.patch(..., wraps=_fgsm)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1126--1131
+Underfull \hbox (badness 10000) in paragraph at lines 1122--1127
 \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 wraps=_pgd \T1/lmr/m/n/12 spy-okkal fi-gye-li
  a hí-vá-so-kat: \T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tén
  []
 
 
-Underfull \hbox (badness 5756) in paragraph at lines 1126--1131
+Underfull \hbox (badness 5756) in paragraph at lines 1122--1127
 \T1/lmtt/m/n/12 _fgsm.assert_called_once() \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 _p
 gd.assert_not_called() \T1/lmr/m/n/12 tel-je-sül. A \T1/lmtt/m/n/12 wraps
  []
 
 [41] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 1222--1226
+Underfull \hbox (badness 10000) in paragraph at lines 1218--1222
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyanaz a
 z er®s \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyíték
  []
 
 [43]
-Underfull \hbox (badness 5133) in paragraph at lines 1239--1242
+Underfull \hbox (badness 5133) in paragraph at lines 1235--1238
 \T1/lmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/lmr/m
 /n/12 : Viselkedési bi-zo-nyí-ték
  []
 
 
-Underfull \hbox (badness 3199) in paragraph at lines 1270--1275
+Underfull \hbox (badness 3199) in paragraph at lines 1265--1270
 []\T1/lmr/m/n/12 A gra-fi-kus fe-lü-let el-len-®r-zé-sé-re öt au-to-ma-ti-zált 
 tesz-tet ké-szí-tet-tem. Ezek a
  []
 
 [44] [45] [46] [47]
-<images/test_run.PNG, id=557, 914.66719pt x 254.45062pt>
+<images/test_run.PNG, id=555, 914.66719pt x 254.45062pt>
 File: images/test_run.PNG Graphic file (type png)
 <use images/test_run.PNG>
-Package pdftex.def Info: images/test_run.PNG  used on input line 1409.
+Package pdftex.def Info: images/test_run.PNG  used on input line 1404.
 (pdftex.def)             Requested size: 455.24411pt x 126.64261pt.
  [48] [49 <./images/test_run.PNG>]
 5. fejezet.
-) [50
+[50
 
-]
-Underfull \hbox (badness 1092) in paragraph at lines 100--100
+]) [51]
+Underfull \hbox (badness 1092) in paragraph at lines 111--111
 []\T1/lmr/m/n/12 MITRE Corporation. \T1/lmr/m/it/12 MITRE ATLAS: Adversarial Th
 reat Landscape for AI
  []
 
 
-Underfull \hbox (badness 2065) in paragraph at lines 100--100
+Underfull \hbox (badness 2065) in paragraph at lines 111--111
 []\T1/lmr/m/n/12 Ian J. Goodfellow, Jonathon Shlens és Christian Szegedy. \T1/l
 mr/m/it/12 Explaining and
  []
 
 
-Underfull \hbox (badness 4181) in paragraph at lines 100--100
+Underfull \hbox (badness 4181) in paragraph at lines 111--111
 []\T1/lmr/m/n/12 Mahmood Sharif, Sruti Bhagavatula, Lujo Bauer és Michael K. Re
 iter.
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 100--100
+Underfull \hbox (badness 1147) in paragraph at lines 111--111
 \T1/lmr/m/it/12 Accessorize to a Crime: Real and Stealthy Attacks on State-of-t
 he-Art Face
  []
 
-[51
+[52
 
 
 
 ]
-Underfull \hbox (badness 5592) in paragraph at lines 100--100
+Underfull \hbox (badness 5592) in paragraph at lines 111--111
 []\T1/lmr/m/n/12 Martin Fowler. \T1/lmr/m/it/12 TestPyramid\T1/lmr/m/n/12 . mar
 t-in-fow-ler.com. 2012. \T1/lmr/m/sc/12 url\T1/lmr/m/n/12 : []$\T1/lmtt/m/n/12 
 https : / /
  []
 
-[52] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
+[53] (Gabrity_Gabor_D9V09Z_Szakdolgozat.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
@@ -2084,10 +2084,10 @@ Package logreq Info: Writing requests to 'Gabrity_Gabor_D9V09Z_Szakdolgozat.run
 
  ) 
 Here is how much of TeX's memory you used:
- 51301 strings out of 467682
- 1129216 string characters out of 5415184
+ 51300 strings out of 467682
+ 1129206 string characters out of 5415184
  2146564 words of memory out of 5000000
- 79315 multiletter control sequences out of 15000+600000
+ 79314 multiletter control sequences out of 15000+600000
  715381 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  124i,13n,145p,1146b,2401s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2109,10 +2109,10 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (55 pages, 2767386 byte
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (56 pages, 2770642 byte
 s).
 PDF statistics:
- 955 PDF objects out of 1000 (max. 8388607)
+ 954 PDF objects out of 1000 (max. 8388607)
  207 named destinations out of 1000 (max. 500000)
- 736 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 728 words of extra memory for PDF output out of 10000 (max. 10000000)
 

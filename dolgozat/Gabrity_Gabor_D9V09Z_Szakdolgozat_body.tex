@@ -85,7 +85,7 @@ A dolgozat hozzájárulásai a következők.
 \begin{itemize}
   \item Az FGSM~\cite{goodfellow2015explaining} és a PGD~\cite{madry2018towards} módszer megvalósítása. 
   \item Két előtanított modell (ResNet50, MobileNetV2) egységes kezelése, a támadások modellek közötti összehasonlításához. 
-  \item Egy védekezési modul, amely Gauss-elmosással és JPEG-tömörítéssel vizsgálja a perturbáció hatásának csökkentését. 
+  \item Egy védekezési modul, amely Gauss-elmosással és JPEG-tömörítéssel csökkenti a perturbáció hatását. 
   \item Egy grafikus felület, amelyen a támadás paraméterei állíthatók, és az eredmény azonnal megfigyelhető. 
 \end{itemize}
 
@@ -759,10 +759,6 @@ bemenetekre való alkalmazásához elegendő a vektor egyszerű hozzáadása, gr
 Kísérleteik szerint egy, néhány ezer (akár csak néhány száz) képen számolt univerzális perturbáció a validációs halmaz eddig nem 
 látott képeinek túlnyomó részén, esetenként 80--90 százalék felett is, téves osztályozást eredményez, annak ellenére, hogy 
 szemmel alig észrevehető. 
-%Emellett a korábban bemutatott transzferálhatóság egy erősebb változatát is mutatja: egy adott architektúrára (például
-%VGG-19-re) számolt perturbáció más, jelentősen eltérő architektúrájú hálókon (GoogLeNet, ResNet) is számottevő tévesztési
-%arányt ér el, tehát nemcsak a képek, hanem a modellarchitektúrák között is általánosít, ami a szerzők szerint a döntési
-%határok közötti geometriai hasonlóságra, és így a korábban bemutatott linearitási hipotézisre vezethető vissza.
 
 \subsection{Fizikailag megvalósítható támadások}
 Az eddig tárgyalt módszerek digitális támadások, a perturbációt közvetlenül a modellnek átadott kép pixeleire számolják ki. 
@@ -801,8 +797,8 @@ rendszerek biztonságát közvetlenül érinti.
 Most pár egyszerűbb védekezési stratégiát nézünk, amelyek a bemeneti képet alakítják át pont a klasszifikáció előtt, remélve, 
 hogy az átalakítás eltávolítja, de legalább csökkenti a perturbáció hatását. 
 A szoftver védekezési moduljában két ilyen módszert, a JPEG-tömörítést és a Gauss-elmosást nézzük itt át. 
-Közös bennük, hogy egyszerűek, és nem igényelnek újratanítást vagy hozzáférést a modell gradienseihez. 
-Hatásuk függ a támadástól és a perturbáció nagyságától, de kisebb perturbáció esetén sem garantálnak védelmet. 
+Közös bennük, hogy egyszerűek, nem igényelnek újratanítást vagy hozzáférést a modell gradienseihez, viszont csak kisebb 
+perturbációjú támadások ellen biztosítanak védelmet. 
 Céljuk elsősorban szemléltető, illetve a perturbáció utólagos csökkentésének demonstrálására szolgáló eszközként tekintendő, nem 
 pedig egy megbízható, önmagában elégséges védelmi mechanizmusként. 
 
@@ -1264,7 +1260,6 @@ A \texttt{test\_cached\_mobilenet\_pgd} teszt ugyanezeknek a moduloknak az együ
 vizsgálja. 
 Hogy mindenképp gyors legyen, a teszt csak akkor fut le, ha a modell súlyai már megtalálhatók a helyi gyorsítótárban. 
 
-
 \section{Automatizált GUI tesztek}
 
 A grafikus felület ellenőrzésére öt automatizált tesztet készítettem. 
@@ -1433,14 +1428,14 @@ A tesztek nem fedik le a felület minden funkcióját, és a megjelenés vizuál
 
 A dolgozat célja egy olyan interaktív tesztkörnyezet létrehozása volt, amely képosztályozó modellek ellenfél alapú 
 támadásokkal szembeni viselkedésének vizsgálatát segíti. 
-Ennek eredményeként egy grafikus felülettel rendelkező asztali alkalmazás készült, amely a ResNet50 és a MobileNetV2 előtanított 
-modelljeivel használható. 
+Eredménye egy grafikus felülettel rendelkező asztali alkalmazás, amely a felületén állítható paraméterekkel használható 
+támadások kivitelezésére. 
 
-Az alkalmazás az FGSM és a PGD módszerrel képes ellenfél alapú képeket előállítani. 
+Az alkalmazás az FGSM és a PGD algoritmusokkal képes ellenfél alapú képeket előállítani. 
 A felhasználó célzott és nem célzott támadás között választhat, beállíthatja a perturbáció maximális mértékét, valamint PGD 
 esetén az iterációk számát is. 
 A felület az eredeti és a módosított kép mellett a felnagyított perturbációt, továbbá a képekhez tartozó osztályozási 
-eredményeket is megjeleníti. 
+eredményeket is megjeleníti, továbbá lehetővé teszi a képek letöltését. 
 A Gauss-elmosás és a JPEG-tömörítés alkalmazásával az egyszerű képfeldolgozási védekezések hatása is megvizsgálható. 
 
 A program működését egységtesztek, integrációs tesztek és automatizált grafikus felületi tesztek ellenőrzik. 
@@ -1452,27 +1447,9 @@ Ezek a tesztek a megvalósítás kiválasztott tulajdonságait ellenőrzik, és 
 Az elkészült alkalmazás lehetőséget ad arra, hogy a felhasználó egyedi képeken, különböző támadási beállítások mellett 
 vizsgálja a támogatott modellek viselkedését. 
 A modellhez és annak gradienséhez való hozzáférésre épülő támadások ezért szemléltethetők és tesztelési céllal is 
-alkalmazhatók a támogatott modelleken. 
+alkalmazhatók. 
 Egy adott kép esetén kapott eredmény ugyanakkor nem általánosítható a modell teljes működésére vagy más bemenetekre. 
 
-A Gauss-elmosás és a JPEG-tömörítés megváltoztathatja a támadott kép osztályozását, de nem garantálja az eredeti osztályozás 
-visszaállítását. 
+A Gauss-elmosás és a JPEG-tömörítés megváltoztathatja a támadott kép osztályozását, de nem garantálja teljes bizonyossággal az 
+eredeti osztályozás visszaállítását. 
 Ezek a módszerek a programban elsősorban szemléltetési célt szolgálnak, nem tekinthetők önmagukban elegendő védelemnek. 
-A tesztek korlátai közé tartozik, hogy a grafikus felület párhuzamos működését és vizuális helyességét nem vizsgálják teljes 
-körűen. 
-
-\section{Továbbfejlesztési lehetőségek}
-
-Az alkalmazás további képosztályozó modellekkel és támadási módszerekkel bővíthető. 
-Ez lehetővé tenné, hogy a felhasználó többféle modell és eljárás viselkedését hasonlítsa össze. 
-Új védekezési módszerek beépítésével az egyszerű képfeldolgozási eljárások mellett más megközelítések is vizsgálhatók lennének. 
-
-A jelenlegi, egyedi képeken végzett vizsgálatot képcsoportok feldolgozása és az eredmények összesítése egészíthetné ki. 
-Megfelelően kiválasztott és címkézett adathalmazon mérhető lenne például a támadások sikerességi aránya, illetve a védekezések 
-hatása a képek osztályozására. 
-Az eredmények és a beállítások mentése megkönnyítené a kísérletek megismétlését és összehasonlítását. 
-
-A felület továbbfejlesztéseként a védekezés után megjelenített kép mentése is lehetővé válhatna, mivel a jelenlegi mentési 
-funkció a védekezés nélküli ellenfél alapú képet menti. 
-A tesztelés a grafikus felület további funkcióinak, a tényleges felhasználói interakcióknak és a háttérszál működésének 
-ellenőrzésével is bővíthető. 

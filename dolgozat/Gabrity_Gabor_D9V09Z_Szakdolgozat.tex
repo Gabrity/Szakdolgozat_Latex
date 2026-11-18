@@ -65,22 +65,16 @@ hallgató aláírása
 \chapter*{Kivonat}
 \addcontentsline{toc}{chapter}{Kivonat}
 
-A képosztályozó neurális hálózatok működését kis mértékben módosított bemenetek is befolyásolhatják. 
-Az ilyen ellenfél alapú példák segítségével a támadó téves osztályozást idézhet elő, ami a gépi tanulást alkalmazó rendszerek 
-biztonsági vizsgálata során is figyelmet érdemel. 
-A dolgozat célja egy olyan interaktív tesztkörnyezet megvalósítása, amelyben a felhasználó képeken vizsgálhatja ezt a jelenséget. 
+A konvolúciós neurális hálózatokra épülő képosztályozók megtéveszthetők olyan, szemmel alig észrevehető módosításokkal, amelyeket ellenfél alapú perturbációnak nevezünk. 
+A jelenség megértése és a modellek sérülékenységének vizsgálata ezért fontos kérdés a gépi tanulás biztonsága szempontjából. 
+A dolgozat egy interaktív tesztkörnyezetet mutat be, amellyel ellenfél alapú támadások állíthatók elő előtanított képosztályozó modellekre. 
+Az alkalmazás a gyors gradiensjel-módszert (FGSM) és a projektált gradiensalapú módszert (PGD) valósítja meg célzott és nem célzott változatban is. 
+A támadások a ResNet50 és a MobileNetV2 modellen próbálhatók ki, a perturbáció mértéke és a PGD iterációinak száma pedig a felhasználó által állítható. 
+A program egy védekezési modult is tartalmaz, amely Gauss-elmosással és JPEG-tömörítéssel csökkenti a perturbáció hatását. 
+A bemutatott módszerek ismertek, a dolgozat új tudományos eredményt nem állít. 
 
-Az elkészített asztali alkalmazás két előtanított képosztályozó modellt, a ResNet50-et és a MobileNetV2-t támogatja. 
-Az ellenfél alapú képek előállításához az FGSM és a PGD módszert használja, célzott és nem célzott támadási módban. 
-A grafikus felületen a felhasználó beállíthatja a támadás paramétereit, és összehasonlíthatja az eredeti kép, a felnagyított 
-perturbáció és a módosított kép megjelenését, valamint a modell osztályozási eredményeit. 
-A program a Gauss-elmosás és a JPEG-tömörítés hatásának vizsgálatát is lehetővé teszi. 
-
-Az alkalmazás működését egységtesztek, integrációs tesztek és automatizált grafikus felületi tesztek ellenőrzik. 
-A bemutatott tesztfuttatásban a vizsgált esetek sikeresen teljesültek, de a tesztek nem fedik le a szoftver minden lehetséges 
-működési helyzetét. 
-Az elkészült környezet a támadások és az egyszerű védekezések szemléltetésére, valamint a támogatott modellek egyedi képeken 
-történő vizsgálatára alkalmas. 
+\vspace{0.5em}
+\noindent\textbf{Kulcsszavak}\quad ellenfél alapú példák, konvolúciós neurális hálózatok, FGSM, PGD, képosztályozás, interaktív tesztkörnyezet
 
 \cleardoublepage
 
