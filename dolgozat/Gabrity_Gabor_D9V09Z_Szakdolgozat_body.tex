@@ -1,12 +1,93 @@
 ﻿\chapter{Bevezetés}
 
 \section{Motiváció és a témaválasztás indoklása}
+A mesterséges intelligencia az elmúlt években természetes részévé vált a mindennapi eszközeinknek, és ez a tendencia 
+csak fokozódni látszik. 
+Képfelismerő modellek hajtják meg az önvezető autókat, elemeznek szövetmintákat, rendezik a fotóalbumainkat 
+és egyre gyakrabban hoznak olyan döntéseket is, amelyek biztonsági következményekkel járnak. 
+A felhasználók közben hajlamosak úgy tekinteni ezekre a modellekre, mint megbízhatóan, hibátlanul működő eszközökre. 
+Ez a bizalom azonban nem minden esetben indokolt. 
+
+Jó példa erre az Egyesült Királyság kormányának 2026 júniusában bejelentett terve. 
+A kormány azt várja el az olyan nagy technológiai cégektől, mint az Apple és a Google, hogy az okostelefonokon és a 
+táblagépeken a gyermekek számára alapértelmezetten blokkolják a meztelen képek készítését, megosztását és megtekintését. 
+A felnőttek ezt életkor-ellenőrzés után kapcsolhatják ki~\cite{govuk2026nudity}. 
+A szándék a gyermekvédelem szempontjából fontos, a megoldás működése azonban sok mindenen múlik, például azon, 
+hogy a képeket automatikusan osztályozó modell megbízhatóan működik-e. 
+Egy rendszer biztonsága mindig a leggyengébb láncszemtől függ. 
+Ha például a modellt kiszolgáló infrastruktúrán nem a kor színvonalának megfelelő fizikai és kiberbiztonsági kontrollok működnek, akkor 
+a rendszer ennél jóval egyszerűbben is támadható. 
+Egy támadó nem vesződik a modell belső működésére épülő, összetett támadással, ha olcsóbban és egyszerűbben hozzáférhet a 
+rendszerhez, például egy rosszul védett szerveren, egy megszerzett hozzáférésen vagy az eszköz fizikai birtoklásán keresztül. 
+Az ellenfél alapú példák tehát a védelmi lánc egyik láncszemét jelentik. 
+Ennek a láncszemnek a vizsgálata viszont azért értékes, mert a modell szintjén pontosan mérhető, hogy mennyire sebezhető 
+a rendszer, függetlenül a körülötte lévő infrastruktúrától. 
+
+A témaválasztást ezért az indokolja, hogy az ellenfél alapú támadások szemléltetik a gépi tanulási rendszerek biztonsági 
+korlátait. 
+Egy ilyen környezet az oktatásban és az AI red teaming gyakorlatában is hasznos eszköz lehet. 
 
 \section{A megoldandó feladat rövid, közérthető leírása}
+A képeket osztályozó neurális hálók a képet pixelek soraként kapják meg, és eredményül minden osztályhoz valószínűséget rendelnek. 
+A dolgozat alapfeltevése, hogy ha egy kép pixeleit nagyon kis mértékben megváltoztatjuk, a modell hibásan, vagy nagy 
+biztonsággal tévesen is osztályozhat. 
+Az így előállított képet ellenfél alapú képnek nevezzük. 
+A feladat egy olyan program elkészítése, amellyel ilyen támadások indíthatók és a felhasználó tesztelheti a kiválasztott 
+képfelismerő modellt, hogy feltárja annak gyengeségeit. 
+
+A program egy betöltött képhez két ismert támadási módszerrel (FGSM, PGD) állít elő ellenfél alapú képet. 
+A felhasználó grafikus felületen állíthatja a támadás paramétereit, vizsgálhatja az eredeti és az ellenfél alapú kép 
+osztályozását. 
+Továbbá kipróbálhat egyszerű védekezéseket is, mint a Gauss-elmosás vagy a JPEG-tömörítés. 
+
+\subsection{A téma elhelyezése a fenyegetési térképen}
+A MITRE ATLAS a mesterséges intelligencia rendszereit célzó támadói taktikák és technikák nyilvános tudásbázisa, amely 
+valós támadások és kutatási eredmények alapján készül, a MITRE ATT\&CK mintájára~\cite{mitre2026atlas}. 
+A dolgozatban az ATLAS 2026.10-es verzióját használom. 
+A \ref{tab:atlas}. táblázat azt mutatja, hogy a szoftver mely ATLAS-technikákhoz kapcsolódik, és milyen módon. 
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|p{3cm}|p{2.9cm}|p{7.6cm}|}
+\hline
+\textbf{Technika} & \textbf{Azonosító} & \textbf{Kapcsolat a dolgozattal} \\
+\hline
+Craft Adversarial Data & AML.T0043 & A szoftver központi funkciója, az ellenfél alapú bemenet előállítása. \\
+\hline
+White-Box Optimization & AML.T0043.000 & Az FGSM és a PGD a modell teljes ismeretét, vagyis a gradiensét használja. \\
+\hline
+Verify Attack & AML.T0042 & A felületen azonnal látható, hogy az előállított kép megváltoztatta-e a modell predikcióját. \\
+\hline
+Evade AI Model & AML.T0015 & A támadás célja. A szoftver ennek a lehetőségét méri, de kijátszást éles rendszeren nem végez. \\
+\hline
+\end{tabular}
+\caption{A szoftver kapcsolata a MITRE ATLAS technikáival}
+\label{tab:atlas}
+\end{table}
+
+A táblázat alapján a szoftver a támadás három, egymásra épülő lépéséhez kapcsolódik. 
+Az első lépés az ellenfél alapú bemenet előállítása (\textit{Craft Adversarial Data}). 
+Ezt a white-box optimalizáláson alapuló altechnikával (\textit{White-Box Optimization}) valósítja meg, mivel a módszer a modell 
+gradiensét használja. 
+A második lépés az előállított bemenet ellenőrzése (\textit{Verify Attack}). 
+Ezt is megvalósítja a szoftver, mert a támadó a felületen azonnal látja, hogy az új kép megváltoztatta-e a modell predikcióját. 
+A harmadik lépés a modell tényleges kijátszása (\textit{Evade AI Model}). 
+Ez a támadó végső célja, amelyet a szoftver nem hajt végre, csak a lehetőségét méri a modell sebezhetőségének vizsgálatával. 
+A program offline tesztkörnyezet, éles rendszer ellen ebben a formájában nem alkalmazható. 
 
 \section{A dolgozat célja és hozzájárulásai}
+A dolgozat célja egy interaktív tesztkörnyezet megtervezése, megvalósítása és bemutatása, amellyel ellenfél alapú támadások 
+állíthatók elő előtanított képosztályozó modellekre. 
+A program továbbá lehetővé teszi a támadások hatásának és az egyszerű védekezések eredményességének vizsgálatát. 
+A dolgozat ismert módszereket valósít meg, új tudományos eredményt nem állít. 
 
-\section{A dolgozat felépítése}
+A dolgozat hozzájárulásai a következők. 
+\begin{itemize}
+  \item Az FGSM~\cite{goodfellow2015explaining} és a PGD~\cite{madry2018towards} módszer megvalósítása. 
+  \item Két előtanított modell (ResNet50, MobileNetV2) egységes kezelése, a támadások modellek közötti összehasonlításához. 
+  \item Egy védekezési modul, amely Gauss-elmosással és JPEG-tömörítéssel vizsgálja a perturbáció hatásának csökkentését. 
+  \item Egy grafikus felület, amelyen a támadás paraméterei állíthatók, és az eredmény azonnal megfigyelhető. 
+\end{itemize}
 
 \chapter{Felhasználói dokumentáció}
 
@@ -720,8 +801,8 @@ rendszerek biztonságát közvetlenül érinti.
 Most pár egyszerűbb védekezési stratégiát nézünk, amelyek a bemeneti képet alakítják át pont a klasszifikáció előtt, remélve, 
 hogy az átalakítás eltávolítja, de legalább csökkenti a perturbáció hatását. 
 A szoftver védekezési moduljában két ilyen módszert, a JPEG-tömörítést és a Gauss-elmosást nézzük itt át. 
-Közös bennük, hogy egyszerűek, nem igényelnek újratanítást vagy hozzáférést a modell gradienseihez, viszont csak kisebb 
-perturbációjú támadások ellen biztosítanak védelmet. 
+Közös bennük, hogy egyszerűek, és nem igényelnek újratanítást vagy hozzáférést a modell gradienseihez. 
+Hatásuk függ a támadástól és a perturbáció nagyságától, de kisebb perturbáció esetén sem garantálnak védelmet. 
 Céljuk elsősorban szemléltető, illetve a perturbáció utólagos csökkentésének demonstrálására szolgáló eszközként tekintendő, nem 
 pedig egy megbízható, önmagában elégséges védelmi mechanizmusként. 
 
@@ -1350,6 +1431,48 @@ A tesztek nem fedik le a felület minden funkcióját, és a megjelenés vizuál
 
 \section{Elért eredmények}
 
+A dolgozat célja egy olyan interaktív tesztkörnyezet létrehozása volt, amely képosztályozó modellek ellenfél alapú 
+támadásokkal szembeni viselkedésének vizsgálatát segíti. 
+Ennek eredményeként egy grafikus felülettel rendelkező asztali alkalmazás készült, amely a ResNet50 és a MobileNetV2 előtanított 
+modelljeivel használható. 
+
+Az alkalmazás az FGSM és a PGD módszerrel képes ellenfél alapú képeket előállítani. 
+A felhasználó célzott és nem célzott támadás között választhat, beállíthatja a perturbáció maximális mértékét, valamint PGD 
+esetén az iterációk számát is. 
+A felület az eredeti és a módosított kép mellett a felnagyított perturbációt, továbbá a képekhez tartozó osztályozási 
+eredményeket is megjeleníti. 
+A Gauss-elmosás és a JPEG-tömörítés alkalmazásával az egyszerű képfeldolgozási védekezések hatása is megvizsgálható. 
+
+A program működését egységtesztek, integrációs tesztek és automatizált grafikus felületi tesztek ellenőrzik. 
+A bemutatott futtatás során mind a $76$ teszt sikeresen lefutott. 
+Ezek a tesztek a megvalósítás kiválasztott tulajdonságait ellenőrzik, és nem jelentik a program hibamentességének bizonyítását. 
+
 \section{Következtetések}
 
+Az elkészült alkalmazás lehetőséget ad arra, hogy a felhasználó egyedi képeken, különböző támadási beállítások mellett 
+vizsgálja a támogatott modellek viselkedését. 
+A modellhez és annak gradienséhez való hozzáférésre épülő támadások ezért szemléltethetők és tesztelési céllal is 
+alkalmazhatók a támogatott modelleken. 
+Egy adott kép esetén kapott eredmény ugyanakkor nem általánosítható a modell teljes működésére vagy más bemenetekre. 
+
+A Gauss-elmosás és a JPEG-tömörítés megváltoztathatja a támadott kép osztályozását, de nem garantálja az eredeti osztályozás 
+visszaállítását. 
+Ezek a módszerek a programban elsősorban szemléltetési célt szolgálnak, nem tekinthetők önmagukban elegendő védelemnek. 
+A tesztek korlátai közé tartozik, hogy a grafikus felület párhuzamos működését és vizuális helyességét nem vizsgálják teljes 
+körűen. 
+
 \section{Továbbfejlesztési lehetőségek}
+
+Az alkalmazás további képosztályozó modellekkel és támadási módszerekkel bővíthető. 
+Ez lehetővé tenné, hogy a felhasználó többféle modell és eljárás viselkedését hasonlítsa össze. 
+Új védekezési módszerek beépítésével az egyszerű képfeldolgozási eljárások mellett más megközelítések is vizsgálhatók lennének. 
+
+A jelenlegi, egyedi képeken végzett vizsgálatot képcsoportok feldolgozása és az eredmények összesítése egészíthetné ki. 
+Megfelelően kiválasztott és címkézett adathalmazon mérhető lenne például a támadások sikerességi aránya, illetve a védekezések 
+hatása a képek osztályozására. 
+Az eredmények és a beállítások mentése megkönnyítené a kísérletek megismétlését és összehasonlítását. 
+
+A felület továbbfejlesztéseként a védekezés után megjelenített kép mentése is lehetővé válhatna, mivel a jelenlegi mentési 
+funkció a védekezés nélküli ellenfél alapú képet menti. 
+A tesztelés a grafikus felület további funkcióinak, a tényleges felhasználói interakcióknak és a háttérszál működésének 
+ellenőrzésével is bővíthető. 

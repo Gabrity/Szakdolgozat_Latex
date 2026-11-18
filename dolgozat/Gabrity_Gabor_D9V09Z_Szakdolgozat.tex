@@ -62,6 +62,28 @@ hallgató aláírása
 
 \cleardoublepage
 
+\chapter*{Kivonat}
+\addcontentsline{toc}{chapter}{Kivonat}
+
+A képosztályozó neurális hálózatok működését kis mértékben módosított bemenetek is befolyásolhatják. 
+Az ilyen ellenfél alapú példák segítségével a támadó téves osztályozást idézhet elő, ami a gépi tanulást alkalmazó rendszerek 
+biztonsági vizsgálata során is figyelmet érdemel. 
+A dolgozat célja egy olyan interaktív tesztkörnyezet megvalósítása, amelyben a felhasználó képeken vizsgálhatja ezt a jelenséget. 
+
+Az elkészített asztali alkalmazás két előtanított képosztályozó modellt, a ResNet50-et és a MobileNetV2-t támogatja. 
+Az ellenfél alapú képek előállításához az FGSM és a PGD módszert használja, célzott és nem célzott támadási módban. 
+A grafikus felületen a felhasználó beállíthatja a támadás paramétereit, és összehasonlíthatja az eredeti kép, a felnagyított 
+perturbáció és a módosított kép megjelenését, valamint a modell osztályozási eredményeit. 
+A program a Gauss-elmosás és a JPEG-tömörítés hatásának vizsgálatát is lehetővé teszi. 
+
+Az alkalmazás működését egységtesztek, integrációs tesztek és automatizált grafikus felületi tesztek ellenőrzik. 
+A bemutatott tesztfuttatásban a vizsgált esetek sikeresen teljesültek, de a tesztek nem fedik le a szoftver minden lehetséges 
+működési helyzetét. 
+Az elkészült környezet a támadások és az egyszerű védekezések szemléltetésére, valamint a támogatott modellek egyedi képeken 
+történő vizsgálatára alkalmas. 
+
+\cleardoublepage
+
 \tableofcontents
 \cleardoublepage
 

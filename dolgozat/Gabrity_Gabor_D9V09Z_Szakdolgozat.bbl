@@ -19,6 +19,70 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
+    \entry{govuk2026nudity}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=587ef03e1a39fee2f9606fd2e11e8533}{%
+           family={{Home Office}},
+           familyi={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{587ef03e1a39fee2f9606fd2e11e8533}
+      \strng{fullhash}{587ef03e1a39fee2f9606fd2e11e8533}
+      \strng{fullhashraw}{587ef03e1a39fee2f9606fd2e11e8533}
+      \strng{bibnamehash}{587ef03e1a39fee2f9606fd2e11e8533}
+      \strng{authorbibnamehash}{587ef03e1a39fee2f9606fd2e11e8533}
+      \strng{authornamehash}{587ef03e1a39fee2f9606fd2e11e8533}
+      \strng{authorfullhash}{587ef03e1a39fee2f9606fd2e11e8533}
+      \strng{authorfullhashraw}{587ef03e1a39fee2f9606fd2e11e8533}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{GOV.UK, 2026. június 8.}
+      \field{title}{New plans to stop children taking, sharing or viewing nude images}
+      \field{urlday}{17}
+      \field{urlmonth}{11}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.gov.uk/government/news/new-plans-to-stop-children-taking-sharing-or-viewing-nude-images
+      \endverb
+      \verb{url}
+      \verb https://www.gov.uk/government/news/new-plans-to-stop-children-taking-sharing-or-viewing-nude-images
+      \endverb
+    \endentry
+    \entry{mitre2026atlas}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=74ba159b7a793d67eb4e566a38793238}{%
+           family={{MITRE Corporation}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{74ba159b7a793d67eb4e566a38793238}
+      \strng{fullhash}{74ba159b7a793d67eb4e566a38793238}
+      \strng{fullhashraw}{74ba159b7a793d67eb4e566a38793238}
+      \strng{bibnamehash}{74ba159b7a793d67eb4e566a38793238}
+      \strng{authorbibnamehash}{74ba159b7a793d67eb4e566a38793238}
+      \strng{authornamehash}{74ba159b7a793d67eb4e566a38793238}
+      \strng{authorfullhash}{74ba159b7a793d67eb4e566a38793238}
+      \strng{authorfullhashraw}{74ba159b7a793d67eb4e566a38793238}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Craft Adversarial Data (AML.T0043) technika}
+      \field{title}{MITRE ATLAS: Adversarial Threat Landscape for AI Systems, 2026.10 verzió}
+      \field{urlday}{17}
+      \field{urlmonth}{11}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://atlas.mitre.org/v/2026.10/techniques/AML.T0043
+      \endverb
+      \verb{url}
+      \verb https://atlas.mitre.org/v/2026.10/techniques/AML.T0043
+      \endverb
+    \endentry
     \entry{goodfellow2015explaining}{misc}{}{}
       \name{author}{3}{}{%
         {{hash=d4f74ef4c79f3bb1e51e378184d8850e}{%
@@ -45,8 +109,8 @@
       \strng{authornamehash}{07b2928cf9addb6cf2d09332e9d7ce18}
       \strng{authorfullhash}{07b2928cf9addb6cf2d09332e9d7ce18}
       \strng{authorfullhashraw}{07b2928cf9addb6cf2d09332e9d7ce18}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}
@@ -149,8 +213,8 @@
       \strng{authornamehash}{c8c3e9b8f095d055ce92294b35ff475c}
       \strng{authorfullhash}{c8c3e9b8f095d055ce92294b35ff475c}
       \strng{authorfullhashraw}{c8c3e9b8f095d055ce92294b35ff475c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}
@@ -201,8 +265,8 @@
       \strng{authornamehash}{b11b93d2126ca64b779a54c49fad29b3}
       \strng{authorfullhash}{b11b93d2126ca64b779a54c49fad29b3}
       \strng{authorfullhashraw}{b11b93d2126ca64b779a54c49fad29b3}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{NIST AI 100-2e2025}
@@ -246,8 +310,8 @@
       \strng{authornamehash}{b4fd72231bc6a5341283b8803d1bcdb2}
       \strng{authorfullhash}{b4fd72231bc6a5341283b8803d1bcdb2}
       \strng{authorfullhashraw}{b4fd72231bc6a5341283b8803d1bcdb2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{eprinttype}{arXiv}
