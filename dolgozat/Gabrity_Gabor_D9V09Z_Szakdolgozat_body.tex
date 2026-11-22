@@ -765,28 +765,33 @@ Az eddig tárgyalt módszerek digitális támadások, a perturbációt közvetle
 A fizikailag megvalósítható támadások ezzel szemben olyan perturbációkat állítanak elő, amelyek a valós környezetben is 
 kivitelezhetőek. 
 
-Sharif és társai egy nyomtatott szemüvegkeret mintázatát optimalizálták úgy, hogy azt viselve a támadó elkerülje a felismerést, 
-vagy más személynek adja ki magát~\cite{sharif2016accessorize}. 
-A perturbációt egy gradiens alapú optimalizálással, egy simasági (\textit{total variation}) megszorítással kiegészítve 
-állították elő, amely biztosítja, hogy a mintázat nyomtatható és kamerával visszafényképezhető maradjon. 
-Ezt a nyomtatott szemüveget felvéve a résztvevők az esetek nagy részében sikeresen elkerülték a felismerést, egyes 
-célszemélyeknél a megszemélyesítés is jelentős arányban sikerült. 
+Például Yang és társai arcfelismerő rendszerek ellen fejlesztettek ki támadást, amelyben a támadó egy másik személynek adja ki 
+magát (megszemélyesítés)~\cite{yang2023at3d}. 
+A támadás egy háromdimenziós, textúrázott háló (\textit{adversarial textured 3D mesh}, AT3D), amely kinyomtatható, és a támadó 
+arcára ragasztható. 
+A hálót nem közvetlenül a pontjainak módosításával optimalizálják, hanem a háromdimenziós arcmodell (\textit{3D Morphable Model}) 
+együtthatóinak módosításával. 
+Ez egy statisztikai arcmodell, amely az arc alakját és textúráját néhány együtthatóval írja le, ezért az optimalizálás kevés 
+paraméterre szűkül. 
+Ez gyorsítja a keresést, és javítja az átvihetőséget más modellekre. 
+A szerzők szerint a korábbi fizikai támadások többsége vagy hatástalan volt kereskedelmi rendszerek ellen, vagy könnyen 
+észrevehető volt. 
+Az AT3D három arcfelismerő és négy hamisításvédelmi (\textit{anti-spoofing}) szolgáltatás, két okostelefon és két automatikus 
+beléptető rendszer ellen is hatásosnak bizonyult. 
 
-Eykholt és társai egy hasonló elven működő, közlekedési táblák elleni támadást dolgoztak ki, Robust Physical Perturbations (RP2) 
-néven~\cite{eykholt2018robust}. 
-A perturbációt nem egy kép pixeleire, hanem a fizikai környezet változatosságát (eltolás, elforgatás, megvilágítás, távolság) 
-modellező eloszlásra optimalizálják, így az a különböző körülmények között készült felvételeken is robusztus marad. 
-Fekete-fehér matricák formájában egy valódi Stop táblára helyezett ilyen formájú perturbáció tábla típusát tévesen azonosította 
-be. 
-Laboratóriumi teszteken teljes, a mozgó járműből rögzített videón pedig igen magas sikerességi arányt értek ezzel el. 
+Zhu és társai hőkamerás detektorok ellen hőszigetelő aerogélből álló ruházatot készítettek~\cite{zhu2022infrared}. 
+A ruhán egy periodikusan ismétlődő, QR-kód jellegű mintázat látható, amelyet úgy optimalizáltak, hogy véletlen vágás és 
+deformáció után is megtévessze a detektort. 
+Így ebből az anyagból tetszőleges alakú ruházat készíthető, amely több szögből nézve is működik. 
+A YOLOv3 detektor átlagos pontosságát (\textit{Average Precision}, AP) a fizikai kísérletekben $64{,}6$ százalékkal csökkentette, 
+míg a véletlenszerű mintázatú és a teljesen hőszigetelt ruha csak $28{,}3$, illetve $22{,}8$ százalékos csökkenést okozott. 
 
-Chen és társai a fizikailag megvalósítható támadások körét objektumdetektorokra terjesztették ki, ShapeShifter 
-néven~\cite{chen2018shapeshifter}. 
-Ez nehezebb feladat, mert a detektornak egyszerre több, különböző méretű régióban (\textit{bounding box}) kell tévesen 
-felismernie az objektumot. 
-A szerzők az úgynevezett várható érték a transzformáció felett (\textit{Expectation over Transformation}) technikát adaptálták 
-erre a feladatra, és az így létrehozott, nyomtatott Stop táblák a Faster R-CNN detektort a valóságban, különböző távolságokból 
-és szögekből felvéve is következetesen megtévesztették. 
+Felülnézeti, légi felvételeken működő detektorok ellen Du és társai az elsők között valósítottak meg fizikai támadást~\cite{du2022aerial}. 
+Autók tetejére, illetve közvetlenül melléjük helyezett, kinyomtatott javításokat optimalizáltak. 
+A tetőre helyezett javítás mozgó járművek ellen is használható, a jármű mellé helyezett pedig álló járműveknél alkalmazható. 
+A tervezésnél figyelembe kellett venni a megvilágítást, az időjárást és a megfigyelő távolságát. 
+A nyomtatott javítások a detektor objektumjelenlétet jelző pontszámát (\textit{objectness score}) a vizsgált körülmények között 
+$25$ és $85$ százalék között csökkentették. 
 
 A közös tanulság, hogy itt a robusztusságot nem elegendő egyetlen rögzített bemenetre biztosítani, a perturbációnak a fizikai 
 körülmények (nézőpont, távolság, megvilágítás, kamera- és nyomtatási torzítás) teljes változatosságával szemben is meg kell 

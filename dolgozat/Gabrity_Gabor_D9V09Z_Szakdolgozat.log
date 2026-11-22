@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  18 NOV 2026 22:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.5.25)  19 NOV 2026 23:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1926,28 +1926,28 @@ Package pdftex.def Info: images/gui-vedekezes.png  used on input line 304.
 ] [19] [20{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ma
 thsy.enc}{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mat
 hex.enc}] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 840--843
+Underfull \hbox (badness 10000) in paragraph at lines 845--848
 []\T1/lmr/bx/n/12 Alkalmazáslogikai ré-teg \T1/lmr/m/n/12 (\T1/lmtt/m/n/12 mode
 l_manager.py\T1/lmr/m/n/12 , \T1/lmtt/m/n/12 attack_engine.py\T1/lmr/m/n/12 ,
  []
 
 [32]
-Underfull \hbox (badness 2237) in paragraph at lines 882--884
+Underfull \hbox (badness 2237) in paragraph at lines 887--889
 []\T1/lmr/m/n/12 Az ,,Attack'' gomb meg-nyo-má-sa-kor a GUI egy kü-lön szá-lon 
 meg-hív-ja az
  []
 
 [33] [34] [35]
-Underfull \hbox (badness 6284) in paragraph at lines 950--953
+Underfull \hbox (badness 6284) in paragraph at lines 955--958
 []\T1/lmr/m/n/12 Egy si-ke-res FGSM-támadás után a fe-lü-let elcache-eli a gra-
 di-ens el®-je-lét
  []
 
 [36]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 975.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 980.
 
-Underfull \hbox (badness 10000) in paragraph at lines 980--983
+Underfull \hbox (badness 10000) in paragraph at lines 985--988
 []\T1/lmr/m/n/12 A be-töl-tés után a mo-dell min-den pa-ra-mé-te-rén exp-li-cit
  mó-don
  []
@@ -1958,19 +1958,19 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 [37] [38] [39]
 4. fejezet.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1060--1065
+Underfull \hbox (badness 10000) in paragraph at lines 1065--1070
 []\T1/lmr/m/n/12 Minden vé-let-lent fel-hasz-ná-ló fix-tu-re (pl. a be-me-ne-ti
  ké-pet ge-ne-rá-ló
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 1060--1065
+Underfull \hbox (badness 2343) in paragraph at lines 1065--1070
 \T1/lmtt/m/n/12 sample_image_tensor\T1/lmr/m/n/12 ) ma-ga hív-ja meg a \T1/lmtt
 /m/n/12 torch.manual_seed\T1/lmr/m/n/12 -et köz-vet-le-nül az
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 1060--1065
+Underfull \hbox (badness 1221) in paragraph at lines 1065--1070
 \T1/lmr/m/n/12 sta-tisz-ti-kai ki-ér-té-ke-lés kel-le-ne), ha-nem az al-go-rit-
 mu-sok tu-laj-don-sá-ga-it el-len-®riz-zük
  []
@@ -1979,51 +1979,51 @@ mu-sok tu-laj-don-sá-ga-it el-len-®riz-zük
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1071.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1076.
 
-Underfull \hbox (badness 1112) in paragraph at lines 1074--1076
+Underfull \hbox (badness 1112) in paragraph at lines 1079--1081
 \T1/lmtt/m/n/12 test_predict_re-turns_topk_shapes\T1/lmr/m/n/12 : Ellen®rzi, ho
 gy \T1/lmtt/m/n/12 topk=3 \T1/lmr/m/n/12 ese-tén a vissza-adott
  []
 
 
-Underfull \hbox (badness 3849) in paragraph at lines 1106--1109
+Underfull \hbox (badness 3849) in paragraph at lines 1111--1114
 \T1/lmtt/m/n/12 test_attack_fgsm_ig-nores_iterations_argument\T1/lmr/m/n/12 : A
 nnak el-le-né-re, hogy a hí-vó
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1122--1127
+Underfull \hbox (badness 10000) in paragraph at lines 1127--1132
 \T1/lmtt/m/n/12 test_attack_fgsm_dis-patches_only_to_fgsm\T1/lmr/m/n/12 : \T1/l
 mtt/m/n/12 mocker.patch(..., wraps=_fgsm)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1122--1127
+Underfull \hbox (badness 10000) in paragraph at lines 1127--1132
 \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 wraps=_pgd \T1/lmr/m/n/12 spy-okkal fi-gye-li
  a hí-vá-so-kat: \T1/lmtt/m/n/12 method="FGSM" \T1/lmr/m/n/12 ese-tén
  []
 
 
-Underfull \hbox (badness 5756) in paragraph at lines 1122--1127
+Underfull \hbox (badness 5756) in paragraph at lines 1127--1132
 \T1/lmtt/m/n/12 _fgsm.assert_called_once() \T1/lmr/m/n/12 és \T1/lmtt/m/n/12 _p
 gd.assert_not_called() \T1/lmr/m/n/12 tel-je-sül. A \T1/lmtt/m/n/12 wraps
  []
 
 [41] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 1218--1222
+Underfull \hbox (badness 10000) in paragraph at lines 1223--1227
 \T1/lmtt/m/n/12 test_pgd_re-sult_has_no_graph_history\T1/lmr/m/n/12 : Ugyanaz a
 z er®s \T1/lmtt/m/n/12 detach\T1/lmr/m/n/12 -bizonyíték
  []
 
 [43]
-Underfull \hbox (badness 5133) in paragraph at lines 1235--1238
+Underfull \hbox (badness 5133) in paragraph at lines 1240--1243
 \T1/lmtt/m/n/12 test_pgd_un-targeted_re-duces_confidence_in_true_label\T1/lmr/m
 /n/12 : Viselkedési bi-zo-nyí-ték
  []
 
 
-Underfull \hbox (badness 3199) in paragraph at lines 1265--1270
+Underfull \hbox (badness 3199) in paragraph at lines 1270--1275
 []\T1/lmr/m/n/12 A gra-fi-kus fe-lü-let el-len-®r-zé-sé-re öt au-to-ma-ti-zált 
 tesz-tet ké-szí-tet-tem. Ezek a
  []
@@ -2032,7 +2032,7 @@ tesz-tet ké-szí-tet-tem. Ezek a
 <images/test_run.PNG, id=555, 914.66719pt x 254.45062pt>
 File: images/test_run.PNG Graphic file (type png)
 <use images/test_run.PNG>
-Package pdftex.def Info: images/test_run.PNG  used on input line 1404.
+Package pdftex.def Info: images/test_run.PNG  used on input line 1409.
 (pdftex.def)             Requested size: 455.24411pt x 126.64261pt.
  [48] [49 <./images/test_run.PNG>]
 5. fejezet.
@@ -2048,18 +2048,6 @@ reat Landscape for AI
 Underfull \hbox (badness 2065) in paragraph at lines 111--111
 []\T1/lmr/m/n/12 Ian J. Goodfellow, Jonathon Shlens és Christian Szegedy. \T1/l
 mr/m/it/12 Explaining and
- []
-
-
-Underfull \hbox (badness 4181) in paragraph at lines 111--111
-[]\T1/lmr/m/n/12 Mahmood Sharif, Sruti Bhagavatula, Lujo Bauer és Michael K. Re
-iter.
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 111--111
-\T1/lmr/m/it/12 Accessorize to a Crime: Real and Stealthy Attacks on State-of-t
-he-Art Face
  []
 
 [52
@@ -2085,8 +2073,8 @@ Package logreq Info: Writing requests to 'Gabrity_Gabor_D9V09Z_Szakdolgozat.run
  ) 
 Here is how much of TeX's memory you used:
  51300 strings out of 467682
- 1129206 string characters out of 5415184
- 2146564 words of memory out of 5000000
+ 1129130 string characters out of 5415184
+ 2146526 words of memory out of 5000000
  79314 multiletter control sequences out of 15000+600000
  715381 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2109,7 +2097,7 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/User/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/User/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/User/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (56 pages, 2770642 byte
+Output written on Gabrity_Gabor_D9V09Z_Szakdolgozat.pdf (56 pages, 2771834 byte
 s).
 PDF statistics:
  954 PDF objects out of 1000 (max. 8388607)
