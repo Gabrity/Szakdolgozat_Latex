@@ -52,7 +52,7 @@ A \ref{tab:atlas}. táblázat azt mutatja, hogy a szoftver mely ATLAS-technikák
 \hline
 \textbf{Technika} & \textbf{Azonosító} & \textbf{Kapcsolat a dolgozattal} \\
 \hline
-Craft Adversarial Data & AML.T0043 & A szoftver központi funkciója, az ellenfél alapú bemenet előállítása. \\
+Craft Adversarial Data & AML.T0043 & A szoftver központi funkciója, a szándékosan megtévesztő bemenet előállítása. \\
 \hline
 White-Box Optimization & AML.T0043.000 & Az FGSM és a PGD a modell teljes ismeretét, vagyis a gradiensét használja. \\
 \hline
@@ -66,7 +66,7 @@ Evade AI Model & AML.T0015 & A támadás célja. A szoftver ennek a lehetőség�
 \end{table}
 
 A táblázat alapján a szoftver a támadás három, egymásra épülő lépéséhez kapcsolódik. 
-Az első lépés az ellenfél alapú bemenet előállítása (\textit{Craft Adversarial Data}). 
+Az első lépés a szándékosan megtévesztő bemenet előállítása (\textit{Craft Adversarial Data}). 
 Ezt a white-box optimalizáláson alapuló altechnikával (\textit{White-Box Optimization}) valósítja meg, mivel a módszer a modell 
 gradiensét használja. 
 A második lépés az előállított bemenet ellenőrzése (\textit{Verify Attack}). 
@@ -97,7 +97,7 @@ A képosztályozó neurális hálók megtéveszthetők olyan módon, hogy egy k�
 eredményt adnak. 
 Az így kapott képeket ellenfél alapú példáknak nevezzük. 
 Az alkalmazás célja, hogy szemléltesse ezt a jelenséget, és így lehetőséget adjon a felhasználónak, neurális hálók tesztelésére, 
-vizsgálja a azoknak támaddhatóságát, generáljon ellenfél alapú példákat. 
+vizsgálja azok támadhatóságát, generáljon ellenfél alapú példákat. 
 A felhasználó továbbá egyszerű képfeldolgozási módszerekkel, vizsgálhatja a perturbáció 
 hatásának csökkentését. 
 
@@ -109,7 +109,7 @@ Ezek a képeket az ImageNet-1k osztályai közé sorolják, és megadják az egy
 Ellenfél alapú példák előállításához két támadási módszer áll rendelkezésre. 
 Az FGSM egylépéses módszer, míg a PGD több lépésben hajtja végre a támadást, és jellemzően erősebb az FGSM-nél. 
 Mindkét esetben az $\epsilon$ paraméter korlátozza a képpontok színcsatornáinak maximális változását. 
-Támdási módszerek közül választhatunk nem célzott és célzott közül 
+Támadási módszerek közül választhatunk nem célzott és célzott közül. 
 Az utóbbinál egy a felhasználó egy célosztályt is kijelöl. 
 Nem célzott esetben az algoritmus a modell által az eredeti képhez rendelt osztálytól eltérő osztályozásra törekszik. 
 Célzott esetben pedig azt igyekszik elérni, hogy a modell a képet a célosztályba sorolja. 
@@ -692,7 +692,7 @@ Madry és társai megmutatták, hogy PGD-vel is alkalmazható az ellenfél alap�
 eredményez~\cite{madry2018towards}. 
 Itt azonban a tiszta és ellenfél alapú veszteséget kombináló FGSM-formulával ellentétben nincs szó keverésről. 
 A tanítás során a tiszta $x$ kép helyett kizárólag a hozzá tartozó, PGD-vel előállított $x_{\mathrm{adv}}$-on számolják a 
-veszteséget, tehát a modell csak az ellenfél alapú bemeneteken tanul. 
+veszteséget, tehát a modell csak a szándékosan megtévesztő bemeneteken tanul. 
 Mivel a PGD erősebb támadás, mint az FGSM, az ellene edzett modell a gyengébb, egylépéses támadásokkal szemben is ellenállóbb 
 marad, míg a fordítottja nem feltétlenül igaz. 
 
@@ -1050,7 +1050,9 @@ A program tesztkészletének felépítésénél a szakirodalomból ismert \texti
 követtem~\cite{fowler2012testpyramid}. 
 Ennek alapját a gyorsabb és kevés komponenst érintő tesztek, az egységtesztek képezik, melyek a lehető legkisebb elkülöníthető 
 egységek tesztelését valósítják meg. 
-Futási idejük jellemzően ezredmásodperces tartományban mozog és akár lefedhetik az input paraméterek teljes értékkészletét. 
+Futási idejük jellemzően ezredmásodperces tartományban mozog. 
+A bemenetek értékkészlete (a folytonos pixelértékek és a paraméterek) végtelen, ezért az egységtesztek nem fedik le a teljes értékkészletet. 
+Ehelyett a kiválasztott, jellemző és határesetnek számító értékeket vizsgálják (pl. $\epsilon = 0$, szélsőséges pixelértékek, irreálisan nagy lépésméret). 
 Az elkészítésüknél fontos szempont a többi egységtől való függetlenség (izoláció) és az perifériáktól való függetlenség, I/O, 
 adatbázis, hálózat, stb. 
 Ezeknek a teszteknek az elkészítésére érdemes nagy figyelmet fordítani, mivel a korai szakaszban feltárt hibák javítása 
