@@ -27,7 +27,7 @@ A témaválasztást ezért az indokolja, hogy az ellenfél alapú támadások sz
 korlátait. 
 Egy ilyen környezet az oktatásban és az AI red teaming gyakorlatában is hasznos eszköz lehet. 
 
-\section{A megoldandó feladat rövid, közérthető leírása}
+\section{A megoldandó probléma rövid, közérthető leírása}
 A képeket osztályozó neurális hálók a képet pixelek soraként kapják meg, és eredményül minden osztályhoz valószínűséget rendelnek. 
 A dolgozat alapfeltevése, hogy ha egy kép pixeleit nagyon kis mértékben megváltoztatjuk, a modell hibásan, vagy nagy 
 biztonsággal tévesen is osztályozhat. 
@@ -75,7 +75,7 @@ A harmadik lépés a modell tényleges kijátszása (\textit{Evade AI Model}).
 Ez a támadó végső célja, amelyet a szoftver nem hajt végre, csak a lehetőségét méri a modell sebezhetőségének vizsgálatával. 
 A program offline tesztkörnyezet, éles rendszer ellen ebben a formájában nem alkalmazható. 
 
-\section{A dolgozat célja és hozzájárulásai}
+\section{A dolgozat célja és eredményei}
 A dolgozat célja egy interaktív tesztkörnyezet megtervezése, megvalósítása és bemutatása, amellyel ellenfél alapú támadások 
 állíthatók elő előtanított képosztályozó modellekre. 
 A program továbbá lehetővé teszi a támadások hatásának és az egyszerű védekezések eredményességének vizsgálatát. 
@@ -568,8 +568,8 @@ elég nagy dimenziójú bemenet esetén sok, egyenként elhanyagolhatóan kicsi 
 elmozdítás összegződve tetszőlegesen nagy kimeneti változást okozhat. 
 Ez azt mutatja, hogy már egy egyszerű lineáris modellnek is lehetnek ellenfél alapú példái, ha a bemenete elég nagy dimenziójú. 
 
-Goodfellow és társai szerint a modern neurális hálók (pl.\ ReLU, maxout, LSTM) tudatosan lineáris viselkedésre vannak tervezve, 
-mivel ez megkönnyíti az optimalizálásukat. 
+Goodfellow és társai szerint a modern neurális hálók egyes elemei (pl.\ a ReLU és a maxout aktivációs függvény, valamint az 
+LSTM architektúra) tudatosan lineáris viselkedésre vannak tervezve, mivel ez megkönnyíti az optimalizálásukat. 
 Emiatt ezek a hálók, megfogalmazásuk szerint "túl lineárisak" ahhoz, hogy ellenálljanak egy lineáris ellenfél alapú 
 perturbációnak. 
 Ez a megfigyelés adja a korábban bemutatott FGSM elméleti alapját. 
