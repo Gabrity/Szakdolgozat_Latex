@@ -353,7 +353,7 @@ referenciacímkétől eltér, vagy a klasszifikáció elbizonytalanodik.
 Alapvetően két támadási módot különböztetünk meg, az ún. célzott és nem célzott módot. 
 Nem célzott esetben a támadás célja minél jobban elbizonytalanítani a helyes osztályozást, tehát hogy agáma helyett bármi mást 
 mutasson. 
-Célzott módban azt szeretnénk, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk (pl.\ a komodói 
+Célzott módban azt szeretnénk például, hogy egy kijelölt $y_{\mathrm{target}}$ osztály irányába változzon a képünk (pl.\ a komodói 
 varánusz osztálya felé). 
 
 \subsection{A white-box hozzáférési feltétel}
@@ -706,7 +706,7 @@ eszközökkel is elérhetőek.
 Kísérleti eredményeik ugyanakkor azt is megmutatták, hogy ez a robusztusság adathalmaz-függő. 
 MNIST adathalmazon (szürkeárnyalatos kézzel írott számjegyek) a hálóik igen robusztusnak bizonyultak, és nagy pontosságukat erős 
 $\ell_\infty$-korlátos ellenfelek és nagy perturbációk esetén is megtartották. 
-A bonyolultabb CIFAR10 adathalmazon (színes, természetes fényképek 10 kategóiában) a kísérleteik ezt a szintet még nem érték el. 
+A bonyolultabb CIFAR10 adathalmazon (színes, természetes fényképek 10 kategóriában) a kísérleteik ezt a szintet még nem érték el. 
 Az eredményeik azonban itt is jelentős javulást mutattak a robusztusságban. 
 
 \section{Kapcsolódó munkák és további támadási módszerek}
@@ -787,10 +787,10 @@ A YOLOv3 detektor átlagos pontosságát (\textit{Average Precision}, AP) a fizi
 míg a véletlenszerű mintázatú és a teljesen hőszigetelt ruha csak $28{,}3$, illetve $22{,}8$ százalékos csökkenést okozott. 
 
 Felülnézeti, légi felvételeken működő detektorok ellen Du és társai az elsők között valósítottak meg fizikai támadást~\cite{du2022aerial}. 
-Autók tetejére, illetve közvetlenül melléjük helyezett, kinyomtatott javításokat optimalizáltak. 
-A tetőre helyezett javítás mozgó járművek ellen is használható, a jármű mellé helyezett pedig álló járműveknél alkalmazható. 
+Autók tetejére, illetve közvetlenül melléjük helyezett, papírra nyomtatott támadó foltokat optimalizáltak. 
+A tetőre helyezett folt mozgó járművek ellen is használható, a jármű mellé helyezett pedig álló járműveknél alkalmazható. 
 A tervezésnél figyelembe kellett venni a megvilágítást, az időjárást és a megfigyelő távolságát. 
-A nyomtatott javítások a detektor objektumjelenlétet jelző pontszámát (\textit{objectness score}) a vizsgált körülmények között 
+A nyomtatott foltok a detektor objektumjelenlétet jelző pontszámát (\textit{objectness score}) a vizsgált körülmények között 
 $25$ és $85$ százalék között csökkentették. 
 
 A közös tanulság, hogy itt a robusztusságot nem elegendő egyetlen rögzített bemenetre biztosítani, a perturbációnak a fizikai 
@@ -945,7 +945,8 @@ mind a támadások gradiensszámítását.
 A kódban a modellt és a normalizációs paramétereket (\texttt{AttackContext}), a betöltött modellt (\texttt{ModelBundle}) és egy 
 támadás eredményét (\texttt{AttackResult}) tiszta adatstruktúrák (\texttt{dataclass}) reprezentálják, a műveletek pedig ezeken 
 dolgoznak, állapot és mellékhatás nélkül. 
-Ez a szétválasztás lehetővé teszi, hogy az egységtesztek a felhasználói felület és a valódi modellek mockolása nélkül fussanak. 
+Ez a szétválasztás lehetővé teszi, hogy az egységtesztek a felhasználói felület és a valódi modellek helyettesítő objektumok 
+(mock) nélkül fussanak. 
 
 \subsubsection{Támadás végrehajtása háttérszálon}
 Az ,,Attack'' gomb megnyomása egy \texttt{threading.Thread} példányon indítja el a támadást, mivel egy PGD-támadás már 
@@ -1259,7 +1260,7 @@ a viselkedés.
 Az integrációs tesztek a képbetöltő, a modellkezelő és a támadómotor együttműködését ellenőrzik. 
 A \texttt{test\_image\_loading\_and\_attack} teszt az FGSM és a PGD módszert is ellenőrzi. 
 A modellkezelőben a MobileNetV2 hálót egy kis méretű tesztmodell helyettesíti, de a képbetöltés, a modellkezelés és a támadás 
-mockolás nélkül fut. 
+helyettesítő objektumok (mock) nélkül fut. 
 Továbbá a teszt ellenőrzi, hogy a támadás megváltoztatja a képet, az eredmény $\epsilon$ korláton és az érvényes 
 pixeltartományon belül marad, illetve osztályozható. 
 
