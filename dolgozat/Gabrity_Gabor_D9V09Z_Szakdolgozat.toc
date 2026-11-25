@@ -2,9 +2,9 @@
 \select@language {hungarian} \contentsline {chapter}{Rövidítés- és jelölésjegyzék}{4}{chapter*.3}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {1}Bevezetés}{5}{chapter.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {1.1}Motiváció és a témaválasztás indoklása}{5}{section.1.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {1.2}A megoldandó feladat rövid, közérthető leírása}{6}{section.1.2}%
+\select@language {hungarian} \contentsline {section}{\numberline {1.2}A megoldandó probléma rövid, közérthető leírása}{6}{section.1.2}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {1.2.1}A téma elhelyezése a fenyegetési térképen}{6}{subsection.1.2.1}%
-\select@language {hungarian} \contentsline {section}{\numberline {1.3}A dolgozat célja és hozzájárulásai}{7}{section.1.3}%
+\select@language {hungarian} \contentsline {section}{\numberline {1.3}A dolgozat célja és eredményei}{7}{section.1.3}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {2}Felhasználói dokumentáció}{8}{chapter.2}%
 \select@language {hungarian} \contentsline {section}{\numberline {2.1}A megoldott probléma rövid megfogalmazása}{8}{section.2.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {2.2}A felhasznált módszerek rövid áttekintése}{8}{section.2.2}%
@@ -50,40 +50,40 @@
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.4.3}A nyeregpont (saddle point) optimalizálási keret és a lokális maximumok koncentrációja}{26}{subsection.3.4.3}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.4.4}Ellenfél alapú tanítás}{27}{subsection.3.4.4}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.4.5}Madry és társai következtetései}{28}{subsection.3.4.5}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.5}Kapcsolódó munkák és további támadási módszerek}{28}{section.3.5}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.5.1}Optimalizáció-alapú korai módszerek}{28}{subsection.3.5.1}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.5}Kapcsolódó munkák és további támadási módszerek}{29}{section.3.5}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.5.1}Optimalizáció-alapú korai módszerek}{29}{subsection.3.5.1}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.5.2}Univerzális perturbációk}{29}{subsection.3.5.2}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.5.3}Fizikailag megvalósítható támadások}{30}{subsection.3.5.3}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.6}Védekezési stratégiák áttekintése}{31}{section.3.6}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.6.1}A JPEG-tömörítés mint védekezés}{31}{subsection.3.6.1}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.6.1}A JPEG-tömörítés mint védekezés}{32}{subsection.3.6.1}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.6.2}A Gauss-elmosás mint védekezés}{32}{subsection.3.6.2}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.7}A rendszer architektúrája}{32}{section.3.7}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.7.1}Az adatfolyam}{33}{subsection.3.7.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.8}A felhasznált technológiák}{34}{section.3.8}%
 \select@language {hungarian} \contentsline {subsubsection}{Gépi tanulási keretrendszer}{34}{section*.19}%
-\select@language {hungarian} \contentsline {subsubsection}{Grafikus felület}{34}{section*.20}%
+\select@language {hungarian} \contentsline {subsubsection}{Grafikus felület}{35}{section*.20}%
 \select@language {hungarian} \contentsline {subsubsection}{Képfeldolgozás}{35}{section*.21}%
 \select@language {hungarian} \contentsline {subsubsection}{Tesztelési eszközök}{35}{section*.22}%
 \select@language {hungarian} \contentsline {subsubsection}{Fejlesztői környezet}{35}{section*.23}%
-\select@language {hungarian} \contentsline {section}{\numberline {3.9}Tervezési döntések és indoklásuk}{35}{section.3.9}%
-\select@language {hungarian} \contentsline {subsubsection}{Adatstruktúrák elválasztása a funkcionális egységektől}{35}{section*.24}%
+\select@language {hungarian} \contentsline {section}{\numberline {3.9}Tervezési döntések és indoklásuk}{36}{section.3.9}%
+\select@language {hungarian} \contentsline {subsubsection}{Adatstruktúrák elválasztása a funkcionális egységektől}{36}{section*.24}%
 \select@language {hungarian} \contentsline {subsubsection}{Támadás végrehajtása háttérszálon}{36}{section*.25}%
 \select@language {hungarian} \contentsline {subsubsection}{FGSM interaktív epsilon-előnézet}{36}{section*.26}%
-\select@language {hungarian} \contentsline {subsubsection}{Modell-cache és lusta betöltés}{36}{section*.27}%
+\select@language {hungarian} \contentsline {subsubsection}{Modell-gyorsítótár és lusta betöltés}{36}{section*.27}%
 \select@language {hungarian} \contentsline {subsubsection}{Kiterjeszthető modellarchitektúra}{36}{section*.28}%
 \select@language {hungarian} \contentsline {subsubsection}{A bemeneti kép 224×224-es mérete}{36}{section*.29}%
 \select@language {hungarian} \contentsline {section}{\numberline {3.10}Az egyes komponensek megvalósítási részletei}{37}{section.3.10}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.10.1}\texttt {model\_manager.py} modul}{37}{subsection.3.10.1}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.10.2}\texttt {attack\_engine.py} modul}{37}{subsection.3.10.2}%
 \select@language {hungarian} \contentsline {subsection}{\numberline {3.10.3}\texttt {defense\_module.py} modul}{38}{subsection.3.10.3}%
-\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.4}\texttt {utils.py} modul}{38}{subsection.3.10.4}%
+\select@language {hungarian} \contentsline {subsection}{\numberline {3.10.4}\texttt {utils.py} modul}{39}{subsection.3.10.4}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {4}Tesztelés}{40}{chapter.4}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.1}Egységtesztek}{40}{section.4.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.2}Integrációs tesztek}{44}{section.4.2}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{44}{section.4.3}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.3}Automatizált GUI tesztek}{45}{section.4.3}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.4}Funkcionális tesztek és felhasználói validáció}{45}{section.4.4}%
 \select@language {hungarian} \contentsline {section}{\numberline {4.5}Teszteredmények és értelmezésük}{48}{section.4.5}%
-\select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{48}{section.4.6}%
+\select@language {hungarian} \contentsline {section}{\numberline {4.6}A tesztelés korlátai}{49}{section.4.6}%
 \select@language {hungarian} \contentsline {chapter}{\numberline {5}Összefoglalás}{50}{chapter.5}%
 \select@language {hungarian} \contentsline {section}{\numberline {5.1}Elért eredmények}{50}{section.5.1}%
 \select@language {hungarian} \contentsline {section}{\numberline {5.2}Következtetések}{50}{section.5.2}%

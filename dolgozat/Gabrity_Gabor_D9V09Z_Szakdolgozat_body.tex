@@ -29,8 +29,8 @@ Egy ilyen környezet az oktatásban és az AI red teaming gyakorlatában is hasz
 
 \section{A megoldandó probléma rövid, közérthető leírása}
 A képeket osztályozó neurális hálók a képet pixelek soraként kapják meg, és eredményül minden osztályhoz valószínűséget rendelnek. 
-A dolgozat alapfeltevése, hogy ha egy kép pixeleit nagyon kis mértékben megváltoztatjuk, a modell hibásan, vagy nagy 
-biztonsággal tévesen is osztályozhat. 
+A dolgozat alapfeltevése, hogy ha egy kép pixeleit nagyon kis mértékben megváltoztatjuk, a modell hibásan vagy akár nagy 
+biztonsággal tévesen osztályozhat. 
 Az így előállított képet ellenfél alapú képnek nevezzük. 
 A feladat egy olyan program elkészítése, amellyel ilyen támadások indíthatók és a felhasználó tesztelheti a kiválasztott 
 képfelismerő modellt, hogy feltárja annak gyengeségeit. 
@@ -38,7 +38,7 @@ képfelismerő modellt, hogy feltárja annak gyengeségeit.
 A program egy betöltött képhez két ismert támadási módszerrel (FGSM, PGD) állít elő ellenfél alapú képet. 
 A felhasználó grafikus felületen állíthatja a támadás paramétereit, vizsgálhatja az eredeti és az ellenfél alapú kép 
 osztályozását. 
-Továbbá kipróbálhat egyszerű védekezéseket is, mint a Gauss-elmosás vagy a JPEG-tömörítés. 
+Emellett kipróbálhat egyszerű védekezéseket is, például a Gauss-elmosást vagy a JPEG-tömörítést. 
 
 \subsection{A téma elhelyezése a fenyegetési térképen}
 A MITRE ATLAS a mesterséges intelligencia rendszereit célzó támadói taktikák és technikák nyilvános tudásbázisa, amely 
@@ -96,9 +96,9 @@ A dolgozat hozzájárulásai a következők.
 A képosztályozó neurális hálók megtéveszthetők olyan módon, hogy egy kép alig észrevehető módosítása után az eredetitől eltérő 
 eredményt adnak. 
 Az így kapott képeket ellenfél alapú példáknak nevezzük. 
-Az alkalmazás célja, hogy szemléltesse ezt a jelenséget, és így lehetőséget adjon a felhasználónak, neurális hálók tesztelésére, 
-vizsgálja azok támadhatóságát, generáljon ellenfél alapú példákat. 
-A felhasználó továbbá egyszerű képfeldolgozási módszerekkel, vizsgálhatja a perturbáció 
+Az alkalmazás célja, hogy szemléltesse ezt a jelenséget, és így lehetőséget adjon a felhasználónak neurális hálók tesztelésére, 
+vizsgálja azok támadhatóságát, és ellenfél alapú példákat generáljon. 
+A felhasználó továbbá egyszerű képfeldolgozási módszerekkel vizsgálhatja a perturbáció 
 hatásának csökkentését. 
 
 \section{A felhasznált módszerek rövid áttekintése}
@@ -110,7 +110,7 @@ Ellenfél alapú példák előállításához két támadási módszer áll rend
 Az FGSM egylépéses módszer, míg a PGD több lépésben hajtja végre a támadást, és jellemzően erősebb az FGSM-nél. 
 Mindkét esetben az $\epsilon$ paraméter korlátozza a képpontok színcsatornáinak maximális változását. 
 Támadási módszerek közül választhatunk nem célzott és célzott közül. 
-Az utóbbinál egy a felhasználó egy célosztályt is kijelöl. 
+Az utóbbi esetben a felhasználó egy célosztályt is kijelöl. 
 Nem célzott esetben az algoritmus a modell által az eredeti képhez rendelt osztálytól eltérő osztályozásra törekszik. 
 Célzott esetben pedig azt igyekszik elérni, hogy a modell a képet a célosztályba sorolja. 
 A támadás sikere egyik támadási mód esetén sem garantált. 
@@ -123,11 +123,11 @@ Az eredeti osztályozás visszaállítása ezekkel a védekezési módszerekkel 
 A futtatáshoz grafikus környezettel rendelkező számítógép és Python szükséges. 
 A programot Python 3.13.2 verzióval teszteltem. 
 A szükséges könyvtárak a PyTorch, a torchvision, a CustomTkinter, a Pillow és a NumPy. 
-Ezek telepítésére a következő fejezetben térek ki. 
+Ezek telepítésére a következő szakaszban térek ki. 
 
 A futtatás hardverigényesebb része az ellenfél alapú kép generálása. 
 Ez processzoron is elvégezhető, de CUDA-képes NVIDIA videókártyával gyorsítható. 
-Ennek kiválasztása a szoftveren belül törtnéik, olyan módon, hogy ellenőrzi GPU meglétét és ha van akkor használja. 
+Ennek kiválasztása a szoftveren belül automatikusan történik, a program ellenőrzi a GPU meglétét, és ha van, akkor használja. 
 A program futtatásához a tesztelt környezetben körülbelül 689 MB tárhely szükséges, a két modell mérete együttesen 
 pedig 117 MB tárhelyet igényel. 
 Pontos memóriaigény nem került meghatározásra. 
@@ -328,7 +328,7 @@ A program a hibákat felugró ablakban, a műveletek állapotát pedig az állap
 
 \chapter{Fejlesztői dokumentáció}
 Ebben a fejezetben a megvalósítandó szoftver célját és funkcióit formális, matematikai keretben definiálom, mivel a későbbi 
-fejezetekben tárgyalt algoritmusok (FGSM, PGD) és a védekezési modul is ugyanerre a jelölésrendszerre épülnek majd. 
+fejezetekben tárgyalt algoritmusok (FGSM, PGD) és a védekezési modul is ugyanerre a jelölésrendszerre épülnek. 
 Először a probléma szereplőit, a modellt, a bemenetet és a hozzá tartozó címkét vezetem be, majd ezek segítségével pontosan 
 megfogalmazom, mit is jelent az ellenfél alapú perturbáció. 
 Ezután az itt bevezetett jelölésrendszerre épülve sorra bemutatom a két megvalósított támadási algoritmust (FGSM, PGD), a 
@@ -339,7 +339,7 @@ felhasznált technológiákat és az egyes komponensek megvalósítását.
 
 \subsection{A modell, a bemenet és a címke}
 Legyen adott egy $f_\theta$ neurális háló alapú osztályozó modell, melynek $x$ egy bemenete és $y$ annak helyes címkéje. 
-Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely három színű kódolása, vektoriális formában, az $y$ pedig a kép 
+Az $x$ bemenet ebben az esetben egy kép pixeleinek valamely háromcsatornás színkódolása, vektoriális formában, az $y$ pedig a kép 
 helyes osztályának indexe (például $y=42$ az agámák ImageNet-1k osztályát reprezentálja). 
 Amennyiben a képhez tartozó $y$ helyes címke nem ismert, úgy a modell által meghatározott legvalószínűbb címkét $\hat{y}$-nal 
 jelöljük, és ezt használjuk referenciacímkeként. 
@@ -347,7 +347,7 @@ jelöljük, és ezt használjuk referenciacímkeként.
 \subsection{A támadás célja}
 Célunk az $x$ képre egy $x_{\mathrm{adv}}$ bemenet előállítása, mely az eredeti $x$-től szemmel csak alig látható perturbációban 
 különbözik, viszont a modell által adott $\hat{y}_{\mathrm{adv}} = \arg\max_i f_\theta(x_{\mathrm{adv}})_i$ predikció a 
-referenciacímkétől eltér, vagy a klasszifikáció elbizonytalanodik. 
+referenciacímkétől eltér, vagy az osztályozás elbizonytalanodik. 
 
 \subsection{Célzott és nem célzott mód}
 Alapvetően két támadási módot különböztetünk meg, az ún. célzott és nem célzott módot. 
@@ -378,20 +378,20 @@ Beállíthatóak a futás paraméterei:
 
 A fenti specifikációt a szoftver az alábbi, a felhasználó számára közvetlenül elérhető funkciókkal valósítja meg: 
 \begin{itemize}
-  \item a fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel klasszifikáljuk, 
+  \item a fájlrendszerről kiválasztott képet legördülő menüből kiválasztott modellel osztályozzuk, 
   \item támadási algoritmus és paraméterek meghatározásával perturbációt és ellenfél alapú képet generálunk, 
   \item megjelenítjük az eredeti képet, a perturbációt és az ellenfél alapú képet, továbbá mindkét (eredeti és ellenfél alapú) 
         képet osztályozzuk is, 
   \item a védekezési modulban JPEG-tömörítést vagy más képfeldolgozási szűrőt alkalmazhatunk az ellenfél alapú perturbáció 
         hatásának utólagos csökkentésére vagy semlegesítésére, 
-  \item az eredeti és az ellenfél alapú kép PNG formátumban letölthető, a mentett képek pedig visszatölthetőek. 
+  \item az eredeti és az ellenfél alapú kép PNG formátumban letölthető, a mentett képek pedig visszatölthetők. 
 \end{itemize}
 
 \section{Elméleti háttér és a használt fogalmak definíciója}
 
 \subsection{Az osztályozó modell és a logitok}
 
-Jelöljük $f_\theta(x) = z$-vel a modell outputjaként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok 
+Jelöljük $f_\theta(x) = z$-vel a modell kimeneteként előállt valós számok tömbjét, ahol $z \in \mathbb{R}^C$ és $C$ az osztályok 
 száma (ImageNet-1k esetén $C=1000$). 
 Ezt logitvektornak is nevezzük, mely elnevezés a logisztikus regresszióból származik, ahol a $\mathrm{logit}(p) = 
 \ln\frac{p}{1-p}$ függvény egy $p \in (0, 1)$ valószínűséget képez le a valós számegyenesre. 
@@ -428,8 +428,8 @@ algoritmusok leírásában.
 
 \subsection{Perturbáció és normakorlát}
 
-Az ellenfél alapú képek definíciójánál szokás a perturbáció nagyságát valamely $\ell_p$ normával jellemezni; ebben a dolgozatban 
-a $\ell_\infty$ normát használjuk. 
+Az ellenfél alapú képek definíciójánál szokás a perturbáció nagyságát valamely $\ell_p$ normával jellemezni. 
+Ebben a dolgozatban a $\ell_\infty$ normát használjuk. 
 Egy perturbált kép általában az 
 \[
   x_{\mathrm{adv}} = x + \delta
@@ -459,7 +459,7 @@ algoritmust (PGD).
 \subsection{FGSM (Fast Gradient Sign Method)}
 Az FGSM algoritmust Goodfellow és szerzőtársai a Google-nél végzett kutatásaik alapján 
 javasolták~\cite{goodfellow2015explaining}. 
-Az előző fejezetben megjegyeztem, hogy a $\nabla_x J(\theta, x, y)$ veszteségfüggvény gradiense az input értékre való 
+Az előző fejezetben megjegyeztem, hogy a $\nabla_x J(\theta, x, y)$ veszteségfüggvény gradiense a bemeneti értékre való 
 érzékenységet jelenti. 
 Természetes ötlet, hogy a bemenetet a gradienssel ellentétes irányba mozdítsuk el, ami várhatóan növeli a veszteségfüggvény 
 értékét, azaz rontja a helyes osztályra adott predikciót. 
@@ -501,8 +501,9 @@ egymás után.
 A motiváció emögött az, hogy az FGSM linearitási feltevése csak $x$ kellően kis környezetében állja meg a helyét, ezért 
 előnyösebb, ha $T$ darab kisebb, $\alpha$ nagyságú lépéssel dolgozunk, és a gradienst minden lépésben újraszámoljuk. 
 Legyen $S = \{\delta : \|\delta\|_\infty \leq \epsilon\}$ a megengedett perturbációk halmaza; ekkor $x+S$ adja meg az $x$ 
-körüli, $\epsilon$ sugarú gömbbe eső, engedélyezett bemenetek halmazát. ($\ell_\infty$ norma esetén ez geometriailag valójában 
-egy kocka, de általános $\ell_p$ értelemben vett gömbként hivatkozunk rá.) Mivel az iteráció túlléphet $x+S$ korlátján, az 
+körüli, $\epsilon$ sugarú gömbbe eső, engedélyezett bemenetek halmazát. 
+($\ell_\infty$ norma esetén ez geometriailag valójában egy kocka, de általános $\ell_p$ értelemben vett gömbként hivatkozunk rá.) 
+Mivel az iteráció túlléphet $x+S$ korlátján, az 
 algoritmus minden lépés után egy projekcióval visszavetíti az eredményt erre a halmazra. 
 Ez FGSM esetén a $\mathrm{sign}$ függvény miatt automatikusan teljesült, itt viszont $T$ és $\alpha$ megválasztásától függően 
 külön biztosítani kell. 
@@ -536,7 +537,7 @@ $T$ az iterációk számát jelöli, ez adja meg az algoritmus számítási köl
 támadást eredményez. 
 Az $\alpha$ lépésnagyságot úgy kell megválasztani, hogy túl kicsi érték esetén lassú a konvergencia, túl nagy érték esetén pedig 
 instabilitáshoz vezethet. 
-Tipikus választás: $\alpha = \epsilon / T$ vagy $\alpha = 2{,}5 \cdot \epsilon / T$~\cite{madry2018towards}. 
+Madry és társai az $\alpha = 2{,}5 \cdot \epsilon / T$ választást alkalmazták~\cite{madry2018towards}, és a szoftver is ezt használja. 
 
 \subsubsection{Előnyök és korlátok}
 A PGD az FGSM-nél lényegesen erősebb támadásokat képes generálni, mivel több kis lépésben közelíti a lokális optimumot. 
@@ -554,7 +555,7 @@ túltanulásán alapuló magyarázatot adnak.
 Ehelyett ennek éppen az ellenkezőjét állítják. 
 Szerintük a jelenség hátterében a modern modellek meglepően lineáris viselkedése áll~\cite{goodfellow2015explaining}. 
 
-A legegyszerűbb esetben tekintsünk egy lineáris klasszifikátort $w$ súlyvektorral, tehát egy egyrétegű modellt. 
+A legegyszerűbb esetben tekintsünk egy lineáris osztályozót $w$ súlyvektorral, tehát egy egyrétegű modellt. 
 Vizsgáljuk az ellenfél alapú $\tilde{x} = x + \eta$ bemenet aktivációját. 
 \[
   w^\top \tilde{x} = w^\top x + w^\top \eta.
@@ -570,7 +571,7 @@ Ez azt mutatja, hogy már egy egyszerű lineáris modellnek is lehetnek ellenfé
 
 Goodfellow és társai szerint a modern neurális hálók egyes elemei (pl.\ a ReLU és a maxout aktivációs függvény, valamint az 
 LSTM architektúra) tudatosan lineáris viselkedésre vannak tervezve, mivel ez megkönnyíti az optimalizálásukat. 
-Emiatt ezek a hálók, megfogalmazásuk szerint "túl lineárisak" ahhoz, hogy ellenálljanak egy lineáris ellenfél alapú 
+Emiatt ezek a hálók, megfogalmazásuk szerint ,,túl lineárisak'' ahhoz, hogy ellenálljanak egy lineáris ellenfél alapú 
 perturbációnak. 
 Ez a megfigyelés adja a korábban bemutatott FGSM elméleti alapját. 
 
@@ -628,7 +629,7 @@ sávban koncentrálódnak, extrém kiugró érték nélkül.
 A veszteség emellett viszonylag kevés iteráció után platóra ér, tehát a PGD gyorsan konvergál egy, a globálishoz közeli 
 értékhez, függetlenül a konkrét kezdőponttól. 
 Ez a jelenség rokon azzal a tapasztalati megfigyeléssel, hogy a neurális hálók tanítása azért működik jól annak ellenére, hogy a 
-veszteségfelszín is sok lokális minimumot tartalmaz. 
+veszteségfelszín sok lokális minimumot tartalmaz. 
 Ezek a lokális minimumok ugyanis szintén hasonló értékűek egymáshoz. 
 Ugyanez a regularitás jelentkezik itt a bemeneti perturbáció szerinti belső maximalizálásra vonatkozóan is. 
 Ez azt mutatja, hogy a belső feladat a nem konkávsága ellenére is jól kezelhető, ,,szelíd'' szerkezetű 
@@ -658,7 +659,7 @@ Ez azt mutatja, hogy a belső feladat a nem konkávsága ellenére is jól kezel
 \node[red!70!black, anchor=west, font=\footnotesize] at (axis cs:4.05,2.35) {koncentrált sáv};
 \end{axis}
 \end{tikzpicture}
-\caption{Sematikus ábra a veszteségfüggvény $\delta$ perturbáció szerinti. 
+\caption{Sematikus ábra a veszteségfüggvény $\delta$ perturbáció szerinti alakulásáról. 
 Sok, egymástól távol eső lokális maximum létezik, ezek értékei egy szűk sávban koncentrálódnak.}
 \label{fig:loss-landscape-local-maxima}
 \end{figure}
@@ -681,12 +682,14 @@ javasolták~\cite{goodfellow2015explaining}:
 \[
 \tilde{J}(\theta, x, y) = \lambda \, J(\theta, x, y) + (1-\lambda)\, J(\theta, x_{\mathrm{adv}}, y), \qquad \lambda = 0{,}5.
 \]
+Itt $\lambda$ a tiszta minta veszteségének súlya. 
 Az új veszteségfüggvény tehát a tiszta és az ellenfél alapú minta hibáját egyaránt bünteti, méghozzá úgy, hogy 
-$x_{\mathrm{adv}}$-ot minden tanítási lépésben a modell aktuális $\theta$ paramétereivel újraszámolják. Így tehát a modell a 
-tanítás során folyamatosan fejlődik, és az aktuális állapota által generált ellenfél alapú példákon tanul tovább dinamikusan, 
-nem pedig egy előre legyártott, statikus ellenfél alapú halmazon. 
+$x_{\mathrm{adv}}$-ot minden tanítási lépésben a modell aktuális $\theta$ paramétereivel újraszámolják. 
+Így tehát a modell a tanítás során folyamatosan fejlődik, és az aktuális állapota által generált ellenfél alapú példákon 
+tanul tovább dinamikusan, nem pedig egy előre legyártott, statikus ellenfél alapú halmazon. 
 Kísérleteik megmutatták, hogy ez egy hatékony módszer. 
-Az FGSM-mel előállított ellenfél alapú példákon mért hibaarány 89,4\%-ról 17,9\%-ra csökkent. 
+Az MNIST adathalmazon, maxout hálóval végzett kísérletben az FGSM-mel előállított ellenfél alapú példákon mért hibaarány 
+89,4\%-ról 17,9\%-ra csökkent. 
 
 Madry és társai megmutatták, hogy PGD-vel is alkalmazható az ellenfél alapú tanítás, és erősebb védekezést 
 eredményez~\cite{madry2018towards}. 
@@ -745,9 +748,9 @@ Az ilyen perturbációt univerzálisnak nevezik.
 Formálisan, ha $\mu$ a bemeneti képek eloszlása és $\hat{y}(x)$ a modell által adott predikció, akkor egy $v$ perturbációs 
 vektort keresnek, amelyre 
 \[
-  \|v\|_p \leq \xi \qquad \text{és} \qquad \Pr_{x\sim\mu}\big[\hat{y}(x+v) \neq \hat{y}(x)\big] \geq 1-\delta,
+  \|v\|_p \leq \xi \qquad \text{és} \qquad \Pr_{x\sim\mu}\big[\hat{y}(x+v) \neq \hat{y}(x)\big] \geq 1-\gamma,
 \]
-ahol $\xi$ a megengedett perturbáció nagyságát korlátozza, $\delta$ pedig a kívánt tévesztési arányt (\textit{fooling rate}) 
+ahol $\xi$ a megengedett perturbáció nagyságát korlátozza, $\gamma$ pedig a kívánt tévesztési arányt (\textit{fooling rate}) 
 határozza meg. 
 
 A szerzők egy iteratív algoritmust javasolnak a $v$ vektor előállítására, amely a tanítóképek egy $X$ részhalmazán dolgozik, és 
@@ -758,12 +761,12 @@ bemenetekre való alkalmazásához elegendő a vektor egyszerű hozzáadása, gr
 
 Kísérleteik szerint egy, néhány ezer (akár csak néhány száz) képen számolt univerzális perturbáció a validációs halmaz eddig nem 
 látott képeinek túlnyomó részén, esetenként 80--90 százalék felett is, téves osztályozást eredményez, annak ellenére, hogy 
-szemmel alig észrevehető. 
+a perturbáció szemmel alig észrevehető. 
 
 \subsection{Fizikailag megvalósítható támadások}
 Az eddig tárgyalt módszerek digitális támadások, a perturbációt közvetlenül a modellnek átadott kép pixeleire számolják ki. 
 A fizikailag megvalósítható támadások ezzel szemben olyan perturbációkat állítanak elő, amelyek a valós környezetben is 
-kivitelezhetőek. 
+kivitelezhetők. 
 
 Például Yang és társai arcfelismerő rendszerek ellen fejlesztettek ki támadást, amelyben a támadó egy másik személynek adja ki 
 magát (megszemélyesítés)~\cite{yang2023at3d}. 
@@ -801,7 +804,7 @@ rendszerek biztonságát közvetlenül érinti.
 \section{Védekezési stratégiák áttekintése}
 Most pár egyszerűbb védekezési stratégiát nézünk, amelyek a bemeneti képet alakítják át pont a klasszifikáció előtt, remélve, 
 hogy az átalakítás eltávolítja, de legalább csökkenti a perturbáció hatását. 
-A szoftver védekezési moduljában két ilyen módszert, a JPEG-tömörítést és a Gauss-elmosást nézzük itt át. 
+A szoftver védekezési moduljában két ilyen módszert, a JPEG-tömörítést és a Gauss-elmosást nézzük át. 
 Közös bennük, hogy egyszerűek, nem igényelnek újratanítást vagy hozzáférést a modell gradienseihez, viszont csak kisebb 
 perturbációjú támadások ellen biztosítanak védelmet. 
 Céljuk elsősorban szemléltető, illetve a perturbáció utólagos csökkentésének demonstrálására szolgáló eszközként tekintendő, nem 
@@ -814,10 +817,10 @@ Hipotézisük szerint a természetes képek egy alacsony dimenziós altérben, a
 perturbáció viszont jellemzően kimozdítja a képet ebből az altérből. 
 Mivel a képosztályozási adathalmazok szinte kivétel nélkül JPEG formátumú képekből állnak, egy újratömörítés a perturbált képet 
 visszavetítheti egy, az adataltérnél tágabb, de azt magába foglaló altérbe, az úgynevezett JPEG-altérbe. 
-Feltételezésük szerint ez az újratömörítés legalábbis részben visszaállíthatja a klasszifikáció helyességét. 
+Feltételezésük szerint ez az újratömörítés legalábbis részben visszaállíthatja az osztályozás helyességét. 
 
 Eredményeik szerint kis magnitúdójú perturbáció ($\epsilon=1/255$) esetén a JPEG-tömörítés jelentős mértékben, bár nem teljesen, 
-visszaállította a klasszifikációs pontosságot. 
+visszaállította a helyes osztályra adott valószínűséget. 
 Nagyobb magnitúdójú perturbációk ($\epsilon=5/255$ és $\epsilon=10/255$) esetén az újratömörítés hatása elenyésző volt, a 
 pontosság nem tért vissza a tiszta képekre jellemző szintre. 
 Ebből azt a következtetést vonták le, hogy a JPEG-tömörítés önmagában nem nyújt megbízható védelmet az ellenfél alapú 
@@ -904,7 +907,7 @@ A szoftver Python nyelven készült, amely napjaink egyik legelterjedtebb nyelve
 épült könyvtárak (PyTorch, TensorFlow, NumPy) ökoszisztémája miatt. 
 
 \subsubsection{Gépi tanulási keretrendszer}
-Az FGSM és a PGD algoritmus egyaránt a bemeneti kép szerinti gradiensre épül, amit PyTorch deriválási mechanizmusa számol ki. 
+Az FGSM és a PGD algoritmus egyaránt a bemeneti kép szerinti gradiensre épül, amit a PyTorch automatikus deriválási mechanizmusa számol ki. 
 Emiatt és számos más felhasznált metódus miatt a keretrendszer választása lényegében adott volt. 
 A \textbf{torchvision} biztosítja az előtanított ResNet50 és MobileNetV2 modelleket, valamint az ehhez tartozó, ImageNet-1k-n 
 megszokott előfeldolgozó lépéseit (átméretezés, középre vágás, normalizálás). 
@@ -914,13 +917,13 @@ előtanítva.
 \subsubsection{Grafikus felület}
 A felület a \textbf{CustomTkinter} könyvtárra épül, amely a Tkinter, Python beépített GUI keretrendszerének egy modernizált 
 rétege. 
-Azért esett erre a választásom, modernebb funciókat (pl sötét témát, lekerekített gombokat és csúszkákat) ad, miközben a 
+Azért esett erre a választásom, mert modernebb funkciókat (pl.\ sötét témát, lekerekített gombokat és csúszkákat) ad, miközben a 
 mögöttes eseménykezelési modell megegyezik a natív Tkinterével, így a Python standard könyvtárán kívül nem igényel súlyosabb 
 GUI-függőséget. 
 
 \subsubsection{Képfeldolgozás}
 A \textbf{Pillow} könyvtár a klasszikus PIL csomag karbantartott továbbfejlesztése. 
-Ez a de facto szabvány képkezelő könyvtár Pythonban, támogat minden elterjedt képformátumot támogat és jól integrálódik a 
+Ez a de facto szabvány képkezelő könyvtár Pythonban, támogat minden elterjedt képformátumot és jól integrálódik a 
 NumPy/PyTorch tenzorokkal. 
 Ez felelős a tenzor és a képfájl közötti átalakításokért, valamint a védekezési modul JPEG-tömörítés és Gauss-elmosás szűrőinek 
 megvalósításáért. 
@@ -934,9 +937,9 @@ a valódi implementációt burkoló (\textit{wraps}) helyettesítő objektumok (
 
 \subsubsection{Fejlesztői környezet}
 A függőségek izolálására Python virtuális környezet (\texttt{.venv}) szolgál. 
-Ez azért kell, mert a csomagok egymással kompatibilis verziói szükségesek, egy virtuális környezet biztosítja az verzióütközések 
+Ez azért kell, mert a csomagok egymással kompatibilis verziói szükségesek, egy virtuális környezet biztosítja a verzióütközések 
 elkerülését, illetve a működés reprodukálhatóságát. 
-NVIDIA GPU esetén a PyTorch és torchvision CUDA-alapú buildje segítségével opcionálisan tovább gyorsítja mind a klasszifikációt, 
+NVIDIA GPU esetén a PyTorch és a torchvision CUDA-alapú buildje opcionálisan tovább gyorsíthatja mind az osztályozást, 
 mind a támadások gradiensszámítását. 
 
 \section{Tervezési döntések és indoklásuk}
@@ -945,20 +948,20 @@ mind a támadások gradiensszámítását.
 A kódban a modellt és a normalizációs paramétereket (\texttt{AttackContext}), a betöltött modellt (\texttt{ModelBundle}) és egy 
 támadás eredményét (\texttt{AttackResult}) tiszta adatstruktúrák (\texttt{dataclass}) reprezentálják, a műveletek pedig ezeken 
 dolgoznak, állapot és mellékhatás nélkül. 
-Ez a szétválasztás lehetővé teszi, hogy az egységtesztek a felhasználói felület és a valódi modellek helyettesítő objektumok 
-(mock) nélkül fussanak. 
+Ez a szétválasztás lehetővé teszi, hogy az egységtesztek a felhasználói felület és a valódi modellek helyettesítő objektumokkal 
+(mock) fussanak. 
 
 \subsubsection{Támadás végrehajtása háttérszálon}
 Az ,,Attack'' gomb megnyomása egy \texttt{threading.Thread} példányon indítja el a támadást, mivel egy PGD-támadás már 
 másodperces nagyságrendű futást jelenthet, ami alatt a GUI főszál lefagyna. 
 
 \subsubsection{FGSM interaktív epsilon-előnézet}
-Egy sikeres FGSM-támadás után a felület elcache-eli a gradiens előjelét (\texttt{attack\_engine.fgsm\_sign()}), mivel az FGSM 
+Egy sikeres FGSM-támadás után a felület kiszámolja és eltárolja a gradiens előjelét a támadás perturbációjából (\texttt{result.perturbation.sign()}), mivel az FGSM 
 képlete ezt az előjelet csak $\epsilon$-nal szorozza meg. 
 Ezzel az $\epsilon$ csúszka mozgatásakor csak a már kiszámított előjelet kell újraskálázni, új gradienszámítás nélkül. 
 
-\subsubsection{Modell-cache és lusta betöltés}
-A \texttt{ModelManager} csak az első ténylegesen kért modellt tölti be, az eredményt egy belső cache-ben tárolja el. 
+\subsubsection{Modell-gyorsítótár és lusta betöltés}
+A \texttt{ModelManager} csak az első ténylegesen kért modellt tölti be, az eredményt egy belső gyorsítótárban tárolja. 
 Ennek oka, hogy egy modell letöltése és felépítése másodperces nagyságrendű művelet, amit elég egyszer elvégezni. 
 
 \subsubsection{Kiterjeszthető modellarchitektúra}
@@ -971,13 +974,12 @@ A betöltött kép mérete előbb $256$ pixelre kerül átméretezésre, majd $2
 Erre azért van szükség, mert a nyers képek aránya általában nem négyzetes, egy közvetlen $224\times224$-re történő átméretezés 
 vizuálisan eltorzítaná a képet. 
 Emiatt viszont a kép szélén lévő tartalom elveszhet. 
-Azt az elvárt felhasználói esetet, hogy a támadott képet visszatöltve ugyanazt az osztályozást kapjuk, az átméretezés és a vágás 
-pontosan $224\times224$ méretű képre elmarad. 
+A már pontosan $224\times224$ méretű képeken az átméretezés és a vágás elmarad. 
+Így a letöltött kép visszatöltve pixelpontosan megegyezik az eredetivel, tehát ugyanazt az osztályozást adja. 
 
 \section{Az egyes komponensek megvalósítási részletei}
 A megvalósítási részletek alatt nem célom felfedni az egész program belső működését, csak bemutatok pár érdekesebb részletet és 
-példának az fgsm metódus teljes kódját. 
-
+példaként az \texttt{\_fgsm} függvény teljes kódját.
 \subsection{\texttt{model\_manager.py} modul}
 \begin{itemize}
   \item A \texttt{ModelBundle} a betöltött hálón (\texttt{model}) kívül az ImageNet-1k normalizációs átlagot és szórást is $(1, 
@@ -1027,14 +1029,14 @@ A védekezés PIL-alapú műveletekből áll, ezért a modul minden hívás elő
 közötti konverziót. 
 \begin{itemize}
   \item A JPEG-tömörítés egy memóriában tartott bájtpuffert (\texttt{io.BytesIO}) használ, ebbe kódolja be a képet a megadott 
-        minőséggel, majd ugyaninnen dekódolja azt vissza. 
+        minőséggel, majd ugyanonnan dekódolja azt vissza. 
         Tehát nem történik lemezre írás, így ténylegesen egy veszteséges tömörítés-visszafejtés történik, nem csak annak 
         szimulációja. 
   \item A Gauss-elmosás a PIL \texttt{ImageFilter.GaussianBlur} szűrőjét alkalmazza a megadott sugárral. 
 \end{itemize}
 
 \subsection{\texttt{utils.py} modul}
-A nyers $\delta$ perturbáció felhasználói felületen ábrázolásához pár részlet. 
+A nyers $\delta$ perturbáció felhasználói felületen ábrázolásának pár részlete. 
 Mivel értékei jellemzően nagyon kis abszolút értékűek, ennek megjelenítése gyakorlatilag egyszínű, szemmel kivehetetlen képet 
 adna. 
 A \texttt{perturbation\_to\_pil} függvény ezért a perturbációt egy \texttt{magnify} szorzóval felnagyítja, majd $0{,}5$-tel 
@@ -1054,8 +1056,8 @@ egységek tesztelését valósítják meg.
 Futási idejük jellemzően ezredmásodperces tartományban mozog. 
 A bemenetek értékkészlete (a folytonos pixelértékek és a paraméterek) végtelen, ezért az egységtesztek nem fedik le a teljes értékkészletet. 
 Ehelyett a kiválasztott, jellemző és határesetnek számító értékeket vizsgálják (pl. $\epsilon = 0$, szélsőséges pixelértékek, irreálisan nagy lépésméret). 
-Az elkészítésüknél fontos szempont a többi egységtől való függetlenség (izoláció) és az perifériáktól való függetlenség, I/O, 
-adatbázis, hálózat, stb. 
+Az elkészítésüknél fontos szempont a többi egységtől való függetlenség (izoláció) és a perifériáktól való függetlenség (I/O, 
+adatbázis, hálózat stb.). 
 Ezeknek a teszteknek az elkészítésére érdemes nagy figyelmet fordítani, mivel a korai szakaszban feltárt hibák javítása 
 általában lényegesen olcsóbb, mint a később, integráció vagy éles környezetben felfedezetteké. 
 
@@ -1259,8 +1261,8 @@ a viselkedés.
 
 Az integrációs tesztek a képbetöltő, a modellkezelő és a támadómotor együttműködését ellenőrzik. 
 A \texttt{test\_image\_loading\_and\_attack} teszt az FGSM és a PGD módszert is ellenőrzi. 
-A modellkezelőben a MobileNetV2 hálót egy kis méretű tesztmodell helyettesíti, de a képbetöltés, a modellkezelés és a támadás 
-helyettesítő objektumok (mock) nélkül fut. 
+A modellkezelőben a MobileNetV2 hálót egy kis méretű tesztmodell helyettesíti, a képbetöltés, a modellkezelés és a támadás viszont 
+valódi implementációval fut. 
 Továbbá a teszt ellenőrzi, hogy a támadás megváltoztatja a képet, az eredmény $\epsilon$ korláton és az érvényes 
 pixeltartományon belül marad, illetve osztályozható. 
 
@@ -1310,7 +1312,7 @@ Ezután a \texttt{Reset} gomb hatására a támadott kép és predikciói törl�
 
 A grafikus felület funkcionális, ,,fekete doboz'' teszteseteit a felhasználói forgatókönyvek alapján, \textit{Given--When--Then} 
 formában fogalmazom meg. 
-Az alábbi esetek a tényleges felhasználói felületének elemeihez (gombok, csúszkák, célosztály-kereső) igazodnak, és kézi 
+Az alábbi esetek a tényleges felhasználói felület elemeihez (gombok, csúszkák, célosztály-kereső) igazodnak, és kézi 
 (manuális) végrehajtásra tervezettek. 
 
 \begin{itemize}
@@ -1344,9 +1346,9 @@ Az alábbi esetek a tényleges felhasználói felületének elemeihez (gombok, c
 
   \item \textbf{Epsilon csúszka élő előnézete FGSM módban}\\ 
     AS A: felhasználó \textsc{I want to}: interaktívan látni, hogyan változik a perturbáció erőssége\\ 
-    \textsc{Given}: FGSM módszerrel már lefutott egy támadás (a gradiens előjele cache-elve van)\\ 
+    \textsc{Given}: FGSM módszerrel már lefutott egy támadás (a gradiens előjele el van tárolva)\\ 
     \textsc{When}: az $\epsilon$ csúszkát új értékre húzza, PGD-re váltás nélkül\\ 
-    \textsc{Then}: a perturbáció és az ellenfél alapú kép új gradiens-számítás \emph{nélkül}, azonnal újraszámolódik a cache-elt 
+    \textsc{Then}: a perturbáció és az ellenfél alapú kép új gradiens-számítás \emph{nélkül}, azonnal újraszámolódik az eltárolt 
     előjel alapján 
 
   \item \textbf{Attack gomb kép nélkül}\\ 
@@ -1372,7 +1374,7 @@ Az alábbi esetek a tényleges felhasználói felületének elemeihez (gombok, c
     AS A: felhasználó \textsc{I want to}: az eredeti képet fájlba menteni\\ 
     \textsc{Given}: egy kép be van töltve\\ 
     \textsc{When}: a ,,Download original'' gombra kattint\\ 
-    \textsc{Then}: mekapja a mentett $224\times224$ pixeles fájlt 
+    \textsc{Then}: megkapja a mentett $224\times224$ pixeles fájlt 
 
   \item \textbf{A támadott kép letöltése és visszatöltése}\\ 
     AS A: felhasználó \textsc{I want to}: az ellenfél alapú képet elmenteni és újra feltölteni\\ 
@@ -1390,22 +1392,22 @@ Az alábbi esetek a tényleges felhasználói felületének elemeihez (gombok, c
     AS A: felhasználó \textsc{I want to}: új kísérletet kezdeni ugyanazzal a képpel\\ 
     \textsc{Given}: egy támadás és esetleg egy védekezés már lefutott\\ 
     \textsc{When}: a ,,Reset'' gombra kattint\\ 
-    \textsc{Then}: a perturbáció és az ,,Adversarial'' képmező üresre vált, az ,,Adversarial'' predikciós panel névtelen 
+    \textsc{Then}: a perturbáció és az ,,Adversarial'' képmező üresre vált, az ,,Adversarial'' predikciós panel üres 
     (,,---'') állapotba áll vissza, az ,,Original'' kép és predikciói változatlanok maradnak 
 
   \item \textbf{Hibakezelés támadás közben}\\ 
     AS A: felhasználó \textsc{I want to}: érthető visszajelzést kapni, ha a támadás valamiért meghiúsul\\ 
     \textsc{Given}: kép betöltve, a háttérszálon futó \texttt{\_attack\_worker} kivételt dob (pl. eszközhiba miatt)\\ 
     \textsc{When}: az ,,Attack'' gombra kattint\\ 
-    \textsc{Then}: egy ,,Attack failed'' hibaablak jelenik meg a teljes veremkiíratással, a státuszsor ,,Attack failed.'' 
+    \textsc{Then}: egy ,,Attack failed'' hibaablak jelenik meg a teljes hibaleírással, a státuszsor ,,Attack failed.'' 
     szöveget mutat, az alkalmazás nem fagy le 
 \end{itemize}
 
 \section{Teszteredmények és értelmezésük}
 
-A \ref{fig:tesztfuttatas}. ábra a teljes teszt csomag futtatásának eredményét mutatja. 
-A futtatás a $76$ teszt sikeresen lefutott, köztük $68$ egységteszt, $3$ integrációs teszt és $5$ grafikus felületi teszt. 
-Az eredmény a vizsgált esetekben a program helyesen működik.
+A \ref{fig:tesztfuttatas}. ábra a teljes tesztcsomag futtatásának eredményét mutatja. 
+A futtatás során mind a $76$ teszt sikeresen lefutott, köztük $68$ egységteszt, $3$ integrációs teszt és $5$ grafikus felületi teszt. 
+Az eredmény szerint a program a vizsgált esetekben helyesen működik.
 
 \begin{figure}[htb]
 \centering
@@ -1436,14 +1438,14 @@ A tesztek nem fedik le a felület minden funkcióját, és a megjelenés vizuál
 
 A dolgozat célja egy olyan interaktív tesztkörnyezet létrehozása volt, amely képosztályozó modellek ellenfél alapú 
 támadásokkal szembeni viselkedésének vizsgálatát segíti. 
-Eredménye egy grafikus felülettel rendelkező asztali alkalmazás, amely a felületén állítható paraméterekkel használható 
-támadások kivitelezésére. 
+Eredménye egy grafikus felületű asztali alkalmazás, amelyben a támadások a felületen állítható paraméterekkel 
+hajthatók végre. 
 
 Az alkalmazás az FGSM és a PGD algoritmusokkal képes ellenfél alapú képeket előállítani. 
 A felhasználó célzott és nem célzott támadás között választhat, beállíthatja a perturbáció maximális mértékét, valamint PGD 
 esetén az iterációk számát is. 
 A felület az eredeti és a módosított kép mellett a felnagyított perturbációt, továbbá a képekhez tartozó osztályozási 
-eredményeket is megjeleníti, továbbá lehetővé teszi a képek letöltését. 
+eredményeket is megjeleníti, és lehetővé teszi a képek letöltését. 
 A Gauss-elmosás és a JPEG-tömörítés alkalmazásával az egyszerű képfeldolgozási védekezések hatása is megvizsgálható. 
 
 A program működését egységtesztek, integrációs tesztek és automatizált grafikus felületi tesztek ellenőrzik. 
