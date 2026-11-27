@@ -1,9 +1,3 @@
-"""FGSM and PGD adversarial attacks operating in pixel space [0, 1].
-
-The model expects normalized input, so the attack normalizes internally and
-keeps the adversarial example in raw pixel space — this makes the
-``epsilon`` budget intuitive (e.g. ``8/255``).
-"""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -16,7 +10,6 @@ from torch import nn
 
 @dataclass
 class AttackResult:
-    """Container for the output of an attack."""
 
     adversarial: torch.Tensor
     perturbation: torch.Tensor
@@ -25,7 +18,6 @@ class AttackResult:
 
 @dataclass
 class AttackContext:
-    """Model and normalization data needed to run an attack. Pure data, no behavior."""
 
     model: nn.Module
     mean: torch.Tensor
@@ -37,14 +29,12 @@ class AttackContext:
 
 
 def _forward(context: AttackContext, x: torch.Tensor) -> torch.Tensor:
-    """Normalize and run a forward pass returning unnormalized_scores."""
     x_norm = (x - context.mean) / context.std
     return context.model(x_norm)
 
 
 @torch.no_grad()
 def predict(context: AttackContext, x_pixels: torch.Tensor, topk: int = 3) -> tuple[torch.Tensor, torch.Tensor]:
-    """Return top-k probabilities and indices."""
     unnormalized_scores = _forward(context, x_pixels)
     probs = F.softmax(unnormalized_scores, dim=1)
     return probs.topk(topk, dim=1)
@@ -60,27 +50,6 @@ def attack(
     target_label: Optional[int] = None,
     step_size: Optional[float] = None,
 ) -> AttackResult:
-    """Run the requested attack.
-
-    Parameters
-    ----------
-    ctx : AttackContext
-        Model and normalization data to attack against.
-    image_tensor : torch.Tensor
-        Image in pixel space, shape (1, 3, H, W), values in [0, 1].
-    label : int
-        Ground truth (or current top-1) class index.
-    method : {"FGSM", "PGD"}
-        Case-sensitive; must match exactly.
-    epsilon : float
-        L_inf perturbation budget in pixel space.
-    iterations : int
-        Number of PGD steps. Ignored for FGSM.
-    target_label : int, optional
-        If given, performs a targeted attack (minimize loss w.r.t. target).
-    step_size : float, optional
-        PGD step size. Defaults to ``epsilon / max(1, iterations) * 2.5``.
-    """
 
     if method not in ("FGSM", "PGD"):
         raise ValueError(f"Unknown attack method '{method}'.")
