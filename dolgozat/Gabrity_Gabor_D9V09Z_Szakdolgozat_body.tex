@@ -958,6 +958,16 @@ elkerülését, illetve a működés reprodukálhatóságát.
 NVIDIA GPU esetén a PyTorch és a torchvision CUDA-alapú buildje opcionálisan tovább gyorsíthatja mind az osztályozást, 
 mind a támadások gradiensszámítását. 
 
+\subsubsection{Típusjelölések használata}
+A Python dinamikusan típusos nyelv, a típusjelölések (\textit{type hints}) futás közben nem kényszerítik ki a típusokat. 
+A kódban mégis szisztematikusan használom őket: a függvények paramétereinek és visszatérési értékének leírására, valamint az 
+osztályattribútumok típusának deklarálására. 
+Például a \texttt{predict()} függvény \texttt{torch.Tensor} bemenetet és \texttt{tuple[torch.Tensor, torch.Tensor]} visszatérési 
+értéket vár, az \texttt{AttackResult} osztály pedig \texttt{int} és \texttt{torch.Tensor} mezőket tartalmaz. 
+A szándékom az volt, hogy a kód olvasója és a fejlesztőeszközök (pl.\ a Pylance) már a futtatás előtt jelezzék a típushibákat, 
+és a függvények interfésze egyértelmű legyen. 
+Az \texttt{Optional[...]} jelölés azt rögzíti, hogy egy paraméter elhagyható, vagy \texttt{None} értéket is felvehet. 
+
 \section{Tervezési döntések és indoklásuk}
 
 \subsubsection{Adatstruktúrák elválasztása a funkcionális egységektől}
