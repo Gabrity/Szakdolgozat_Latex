@@ -1,5 +1,3 @@
-"""Model lifecycle: lazy-loads pretrained ImageNet classifiers and exposes
-the matching pre-processing pipeline."""
 from __future__ import annotations
 
 import os
@@ -11,14 +9,14 @@ from torch import nn
 from torchvision import models, transforms
 
 
-# ImageNet normalization constants (used by all torchvision pretrained models).
+# ImageNet normalizaciós konstansok
 _IMAGENET_MEAN = [0.485, 0.456, 0.406]
 _IMAGENET_STD = [0.229, 0.224, 0.225]
+_DEFAULT_CACHE_DIR = "./models"
 
 
 @dataclass
 class ModelBundle:
-    """A loaded model together with its preprocessing pipeline."""
 
     name: str
     model: nn.Module
@@ -28,20 +26,12 @@ class ModelBundle:
 
 
 class ModelManager:
-    """Loads and caches pretrained image classifiers.
 
-    Weights are downloaded into ``./models`` on first use and reused on
-    subsequent runs. All models are moved onto the chosen device and put into
-    ``eval()`` mode (gradients are still computed w.r.t. the input image
-    during the attack).
-    """
+    SUPPORTED = ("ResNet50", "MobileNetV2") # modell bővítés
 
-    SUPPORTED = ("ResNet50", "MobileNetV2")
-
-    def __init__(self, cache_dir: str = "./models", device: str | None = None) -> None:
+    def __init__(self, cache_dir: str = _DEFAULT_CACHE_DIR, device: str | None = None) -> None:
         self.cache_dir = os.path.abspath(cache_dir)
         os.makedirs(self.cache_dir, exist_ok=True)
-        # Torch hub will store the downloaded checkpoints here.
         os.environ.setdefault("TORCH_HOME", self.cache_dir)
 
         if device is None:
@@ -50,11 +40,7 @@ class ModelManager:
 
         self._cache: Dict[str, ModelBundle] = {}
 
-    # ------------------------------------------------------------------ #
-    # Public API
-    # ------------------------------------------------------------------ #
     def get(self, name: str) -> ModelBundle:
-        """Return a ``ModelBundle`` for the requested architecture."""
         if name not in self._cache:
             self._cache[name] = self._build(name)
         return self._cache[name]
@@ -63,9 +49,6 @@ class ModelManager:
     def mean_std(self) -> tuple[list[float], list[float]]:
         return _IMAGENET_MEAN, _IMAGENET_STD
 
-    # ------------------------------------------------------------------ #
-    # Internal
-    # ------------------------------------------------------------------ #
     def _build(self, name: str) -> ModelBundle:
         if name == "ResNet50":
             weights = models.ResNet50_Weights.IMAGENET1K_V2
@@ -79,8 +62,6 @@ class ModelManager:
             )
 
         net.eval().to(self.device)
-        # Disable gradient flow through model parameters; we only need
-        # gradients with respect to the input image during attacks.
         for p in net.parameters():
             p.requires_grad_(False)
 
