@@ -121,15 +121,21 @@ Az eredeti osztályozás visszaállítása ezekkel a védekezési módszerekkel 
 
 \section{Rendszerkövetelmények}
 A futtatáshoz grafikus környezettel rendelkező számítógép és Python szükséges. 
-A programot Python 3.13.2 verzióval teszteltem. 
+A programot Python 3.13.2 és 3.15.2 verzióval teszteltem. 
 A szükséges könyvtárak a PyTorch, a torchvision, a CustomTkinter, a Pillow és a NumPy. 
 Ezek telepítésére a következő szakaszban térek ki. 
 
 A futtatás hardverigényesebb része az ellenfél alapú kép generálása. 
 Ez processzoron is elvégezhető, de CUDA-képes NVIDIA videókártyával gyorsítható. 
-Ennek kiválasztása a szoftveren belül automatikusan történik, a program ellenőrzi a GPU meglétét, és ha van, akkor használja. 
-A program futtatásához a tesztelt környezetben körülbelül 689 MB tárhely szükséges, a két modell mérete együttesen 
-pedig 117 MB tárhelyet igényel. 
+Az eszköz kiválasztása automatikus: a program akkor használja a GPU-t, ha a telepített PyTorch számára a CUDA elérhető. 
+Ehhez megfelelő NVIDIA-illesztőprogram és CUDA-támogatású PyTorch szükséges. 
+A tesztelt 64 bites Windows- és Python 3.15.2-környezetben a függőségek letöltése processzoros telepítés esetén 
+körülbelül 159 MB, CUDA-s telepítés esetén 2153 MB volt. 
+Ezek a letöltött csomagok méretei, nem a telepítés utáni tárhelyigények; a CUDA-s virtuális környezet a tesztelt gépen 
+körülbelül 3390 MB helyet foglalt. 
+A tényleges méretek a platformtól, a csomagverzióktól és a már telepített függőségektől is függenek. 
+A ResNet50 és MobileNetV2 súlyfájljok együtt 116,80 MB-t tesznek ki.
+A teljes telepítés maximális mérete ezek alapján a CUDA-s virtuális környezet és a súlyfájlok együttes mérete, vagyis körülbelül 3506 MB.
 Pontos memóriaigény nem került meghatározásra. 
 
 A modellek első használatakor a súlyok letöltéséhez internetkapcsolat szükséges. 
@@ -141,30 +147,40 @@ A következő lépések a kicsomagolt könyvtáron belüli \texttt{code} mappáb
 
 \subsection{A Python telepítése}
 A program futtatásához Python szükséges, amely a Python hivatalos oldaláról tölthető le. 
-Telepítéskor ügyelni kell arra, hogy a grafikus felület működéséhez szükséges Tcl/Tk komponens is feltelepüljön, amelyet a 
-telepítő alapértelmezetten tartalmaz. 
-Telepítés után a \texttt{python --version} paranccsal ellenőrizhető, hogy a telepítés sikeres, és megfelelő-e a verzió. 
+Telepítés után a \verb|python --version| paranccsal ellenőrizhető, hogy a telepítés sikeres, és megfelelő-e a verzió. 
 
 \subsection{A függőségek telepítése}
 A függőségeket érdemes egy virtuális környezetben telepíteni, így azok nem keverednek más Python-projektek csomagjaival. 
-A \ref{lst:install}. kódrészlet a \texttt{code} könyvtárban kiadandó PowerShell parancsokat mutatja. 
-Az első parancs létrehozza a virtuális környezetet, a második aktiválja azt, az utolsó pedig telepíti a szükséges könyvtárakat a 
-\texttt{requirements.txt} fájl alapján. 
+A következő Windows-parancsokat a \texttt{code} könyvtárban, PowerShellben vagy a parancssorban kell kiadni. 
+Először hozzuk létre a virtuális környezetet: 
 
-\begin{lstlisting}[caption={A virtuális környezet létrehozása és a függőségek telepítése}, label={lst:install}]
+\begin{lstlisting}[caption={A virtuális környezet létrehozása}, label={lst:install}]
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
 \end{lstlisting}
 
-Videókártyás gyorsítás használatához a PyTorch telepítési oldalán a videókártyának megfelelő telepítési parancs 
-választható. 
-Ha a gyorsítás nem szükséges, ez a lépés kihagyható, és a program processzoron fut. 
+Ezután a két telepítési lehetőség közül az egyiket kell választani. 
+CUDA-képes NVIDIA videókártya nélkül, vagy ha nincs szükség GPU-gyorsításra, a tesztelt Windows-környezetben a 
+processzoros változatot a következő paranccsal telepíthetjük: 
+\begin{lstlisting}
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+\end{lstlisting}
+
+CUDA-képes NVIDIA videókártya és megfelelő illesztőprogram esetén a CUDA 13.2-t használó PyTorch-változatot a 
+következő paranccsal telepíthetjük: 
+\begin{lstlisting}
+.\.venv\Scripts\python.exe -m pip install -r requirements-cuda.txt
+\end{lstlisting}
+A CUDA-s követelménylista a többi függőséget is tartalmazó \texttt{requirements.txt} fájlra hivatkozik. 
 
 \subsection{Az első indítás}
-Az alkalmazást a \texttt{code} könyvtárban kiadott \texttt{python main.py} paranccsal indíthatjuk. 
+Az alkalmazást ugyanazzal a virtuális környezetben található Python-értelmezővel indítsuk, amelybe a függőségeket telepítettük: 
+\begin{lstlisting}
+.\.venv\Scripts\python.exe main.py
+\end{lstlisting}
+Az önmagában kiadott \texttt{python main.py} másik Python-környezetet is használhat, amelyből a telepített függőségek vagy 
+a CUDA-támogatás hiányozhatnak. 
 Indításkor az alkalmazás automatikusan kiválasztja a számításokhoz használt eszközt, és ezt az ablak alján lévő 
-állapotsorban jelzi (\texttt{Device: cuda} videókártya esetén, \texttt{Device: cpu} processzor esetén). 
+állapotsorban jelzi (\texttt{Device: cuda} elérhető CUDA esetén, \texttt{Device: cpu} egyébként). 
 
 A modellek súlyainak letöltése az első kép betöltésekor történik. 
 Ha a kiválasztott modell súlyai még nincsenek meg a \texttt{models} mappában, a program ekkor tölti le őket. 
@@ -1081,14 +1097,14 @@ modult mivel ez valósítja meg az alkalmazás lényegi logikáját (az FGSM és
 \noindent\textbf{A \texttt{predict()} és a diszpécser (\texttt{attack()}) tesztjei}
 
 \medskip
-\noindent\texttt{test\_predict\_re\-turns\_topk\_shapes}: Ellenőrzi, hogy \texttt{topk=3} esetén a visszaadott valószínűség- és 
+\noindent\texttt{test\_predict\_returns\_topk\_shapes}: Ellenőrzi, hogy \texttt{topk=3} esetén a visszaadott valószínűség- és 
 index-tenzor alakja $(1, 3)$, azaz a batch- és $k$-dimenzió megfelel a kérésnek. 
 
 \medskip
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_predict\_re\-turns\_valid\_distribution}: A \texttt{topk=5} valószínűségek mindegyike a $[0, 1]$ 
+\noindent\texttt{test\_predict\_returns\_valid\_distribution}: A \texttt{topk=5} valószínűségek mindegyike a $[0, 1]$ 
 intervallumba esik, és -- mivel az 5 osztályos \texttt{tiny\_model} minden osztálya lekérdezésre kerül -- összegük $1{,}0$-ra 
 \texttt{allclose}. 
 Ez a softmax kimenet valódi valószínűségi eloszlás voltát igazolja. 
@@ -1097,7 +1113,7 @@ Ez a softmax kimenet valódi valószínűségi eloszlás voltát igazolja.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_predict\_top\-k\_returns\_highest\_first}: A visszaadott valószínűségek csökkenő sorrendben szerepelnek 
+\noindent\texttt{test\_predict\_topk\_returns\_highest\_first}: A visszaadott valószínűségek csökkenő sorrendben szerepelnek 
 ($\mathrm{probs}[0, i] \geq \mathrm{probs}[0, i+1]$), vagyis a \texttt{topk} valóban a legnagyobb konfidenciájú osztályokat adja 
 vissza, méghozzá rendezetten. 
 
@@ -1105,7 +1121,7 @@ vissza, méghozzá rendezetten.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_attack\_unk\-nown\_method\_raises}: Határeset: egy nem létező módszernév (\texttt{"NEM VALID"}) 
+\noindent\texttt{test\_attack\_unknown\_method\_raises}: Határeset: egy nem létező módszernév (\texttt{"NEM VALID"})
 megadásakor \texttt{ValueError}-t vár, mielőtt bármilyen gradiensszámítás történne -- a bemenet-validáció a drága számítás előtt 
 fut le. 
 
@@ -1113,7 +1129,7 @@ fut le.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_attack\_fgsm\_ig\-nores\_iterations\_argument}: Annak ellenére, hogy a hívó \texttt{iterations=99}-et ad 
+\noindent\texttt{test\_attack\_fgsm\_ignores\_iterations}: Annak ellenére, hogy a hívó \texttt{iterations=99}-et ad 
 át, FGSM esetén a visszaadott \texttt{AttackResult.iterations\_run} értéke $1$ -- igazolva, hogy az FGSM valóban egylépéses, és 
 a paramétert a diszpécser figyelmen kívül hagyja erre a módszerre. 
 
@@ -1121,7 +1137,7 @@ a paramétert a diszpécser figyelmen kívül hagyja erre a módszerre.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_attack\_pgd\_re\-ports\_requested\_iteration\_count}: PGD esetén a kért iterációszám ($4$) változatlanul 
+\noindent\texttt{test\_attack\_pgd\_reports\_requested\_iteration}: PGD esetén a kért iterációszám ($4$) változatlanul
 megjelenik az \texttt{iterations\_run} mezőben, alátámasztva, hogy a diszpécser a paramétert továbbadja a \texttt{\_pgd} 
 implementációnak. 
 
@@ -1129,7 +1145,7 @@ implementációnak.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_attack\_fgsm\_dis\-patches\_only\_to\_fgsm}: \texttt{mocker.patch(..., wraps=\_fgsm)} és 
+\noindent\texttt{test\_attack\_fgsm\_calls\_fgsm}: \texttt{mocker.patch(..., wraps=\_fgsm)} és 
 \texttt{wraps=\_pgd} spy-okkal figyeli a hívásokat: \texttt{method="FGSM"} esetén \texttt{\_fgsm.assert\_called\_once()} és 
 \texttt{\_pgd.assert\_not\_called()} teljesül. 
 A \texttt{wraps} paraméter miatt a valódi implementáció is lefut, tehát az \texttt{AttackResult} összeállítása is ellenőrzött 
@@ -1139,7 +1155,7 @@ marad.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_attack\_pgd\_dis\-patches\_only\_to\_pgd}: Az előző teszt tükörképe: \texttt{method="PGD"} esetén 
+\noindent\texttt{test\_attack\_pgd\_calls\_pgd}: Az előző teszt tükörképe: \texttt{method="PGD"} esetén
 kizárólag \texttt{\_pgd} hívódik meg, \texttt{\_fgsm} nem. 
 A két teszt együtt zárja ki, hogy a diszpécser valamelyik ágon ,,átcsorogva'' mindkét algoritmust lefuttassa. 
 
@@ -1147,7 +1163,7 @@ A két teszt együtt zárja ki, hogy a diszpécser valamelyik ágon ,,átcsorogv
 \noindent\textbf{Az FGSM implementáció (\texttt{\_fgsm}) tesztjei}
 
 \medskip
-\noindent\texttt{test\_fgsm\_targeted\_steps\_opposite\_direction\_of\_untargeted}: Azonos bemeneten és $\epsilon$ mellett a 
+\noindent\texttt{test\_fgsm\_targeted\_steps\_opposite\_dir}: Azonos bemeneten és $\epsilon$ mellett a 
 célzott és nem célzott perturbáció pontosan ellentétes előjelű ($x_{\text{nem célzott}} - x = -(x_{\text{célzott}} - x)$), ami 
 közvetlenül a matematikai definícióból (a gradiens előjelének megfordításából) következik. 
 
@@ -1155,7 +1171,7 @@ közvetlenül a matematikai definícióból (a gradiens előjelének megfordít�
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_fgsm\_clamps\_to\_valid\_pixel\_range}: Szélsőséges bemenet (csupa nulla pixel) és nagy $\epsilon=0{,}5$ 
+\noindent\texttt{test\_fgsm\_clamps\_to\_valid}: Szélsőséges bemenet (csupa nulla pixel) és nagy $\epsilon=0{,}5$
 mellett is a kimenet minden eleme a $[0, 1]$ tartományban marad -- igazolva, hogy a \texttt{clamp} lépés ténylegesen érvényesül, 
 nem csak elméletben szerepel a specifikációban. 
 
@@ -1163,14 +1179,14 @@ nem csak elméletben szerepel a specifikációban.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_fgsm\_re\-sult\_is\_de\-tached\_from\_autograd}: A visszaadott tenzor \texttt{requires\_grad} attribútuma 
+\noindent\texttt{test\_fgsm\_result\_is\_detached}: A visszaadott tenzor \texttt{requires\_grad} attribútuma 
 \texttt{False}. 
 
 \medskip
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_fgsm\_re\-sult\_has\_no\_graph\_history}: Szigorúbb bizonyíték az előzőnél: \texttt{grad\_fn is None} 
+\noindent\texttt{test\_fgsm\_result\_no\_history}: Szigorúbb bizonyíték az előzőnél: \texttt{grad\_fn is None} 
 \emph{és} \texttt{is\_leaf is True} egyszerre teljesül, ami kizárja azt az esetet is, amikor egy tenzor \texttt{requires\_grad} 
 értéke hamis, de mégis egy számítási gráf levele marad rejtett hivatkozásokkal. 
 
@@ -1178,14 +1194,14 @@ nem csak elméletben szerepel a specifikációban.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_fgsm\_ze\-ro\_epsi\-lon\_re\-turns\_original}: Határeset: $\epsilon=0$ esetén a perturbáció nulla, a 
+\noindent\texttt{test\_fgsm\_zero\_epsilon\_returns\_original}: Határeset: $\epsilon=0$ esetén a perturbáció nulla, a 
 kimenet \texttt{allclose} az eredeti képpel -- az algoritmus degenerált esetben identitásként viselkedik. 
 
 \medskip
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_fgsm\_un\-targeted\_re\-duces\_confidence\_in\_true\_label}: Viselkedési bizonyíték: a 
+\noindent\texttt{test\_fgsm\_untargeted\_reduces\_confidence}: Viselkedési bizonyíték: a 
 \texttt{predict()}-en keresztül lekérdezett, a valódi címkéhez tartozó konfidencia a támadás \emph{után} szigorúan kisebb, mint 
 előtte -- ez nem csak a perturbáció létezését, hanem annak tényleges hatását igazolja a modell kimenetére. 
 
@@ -1193,7 +1209,7 @@ előtte -- ez nem csak a perturbáció létezését, hanem annak tényleges hat�
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_fgsm\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A célzott változat tükörpárja: a 
+\noindent\texttt{test\_fgsm\_targeted\_increases\_confidence}: A célzott változat tükörpárja: a 
 mesterségesen kiválasztott célosztály konfidenciája nő a támadás hatására, alátámasztva, hogy a célzott mód valóban a célosztály 
 felé tereli a predikciót, nem csupán ,,valamerre'' téveszti meg a modellt. 
 
@@ -1201,7 +1217,7 @@ felé tereli a predikciót, nem csupán ,,valamerre'' téveszti meg a modellt.
 \noindent\textbf{A PGD implementáció (\texttt{\_pgd}) tesztjei}
 
 \medskip
-\noindent\texttt{test\_pgd\_re\-sult\_stays\_within\_epsilon\_ball}: Mérsékelt lépésméret ($\alpha=0{,}02$) mellett a végső 
+\noindent\texttt{test\_pgd\_result\_stays\_within\_epsilon}: Mérsékelt lépésméret ($\alpha=0{,}02$) mellett a végső 
 perturbáció minden pixelre $|\delta| \leq \epsilon + 10^{-6}$ (a tolerancia a lebegőpontos kerekítést kompenzálja) -- ez az 
 $\ell_\infty$-gömbbe való projekció alapvető helyességét igazolja. 
 
@@ -1209,7 +1225,7 @@ $\ell_\infty$-gömbbe való projekció alapvető helyességét igazolja.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_pgd\_hits\_ball\_when\_step\_too\_large}: Szándékosan irreálisan nagy lépésméretet ($\alpha=10{,}0 \gg 
+\noindent\texttt{test\_pgd\_hits\_ball}: Szándékosan irreálisan nagy lépésméretet ($\alpha=10{,}0 \gg 
 \epsilon=0{,}02$) ad meg, ami minden iterációban túllövést okoz; ilyenkor a projekciós \texttt{clamp}-nek kell egyedül 
 biztosítania a korlátot, ezért a tesztben a végső $|\delta|$ pontosan (nem csak $\leq$) $\epsilon$-nak adódik minden pixelen -- 
 ez a projekció, nem a lépésméret helyes megválasztása általi korlátozottságot bizonyítja. 
@@ -1218,14 +1234,14 @@ ez a projekció, nem a lépésméret helyes megválasztása általi korlátozott
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_pgd\_clamps\_to\_valid\_pixel\_range}: A pixeltartomány-korlátozás ugyanúgy teljesül PGD esetén is, mint 
+\noindent\texttt{test\_pgd\_clamps\_to\_valid}: A pixeltartomány-korlátozás ugyanúgy teljesül PGD esetén is, mint
 FGSM-nél: szélsőséges (nulla) bemeneten és nagy $\epsilon$ mellett a kimenet a $[0, 1]$ tartományban marad. 
 
 \medskip
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_pgd\_re\-sult\_has\_no\_graph\_history}: Ugyanaz az erős \texttt{detach}-bizonyíték (\texttt{grad\_fn is 
+\noindent\texttt{test\_pgd\_result\_has\_no\_graph\_history}: Ugyanaz az erős \texttt{detach}-bizonyíték (\texttt{grad\_fn is 
 None} és \texttt{is\_leaf is True}), mint FGSM esetén -- fontos, mert a PGD több iterációt is végez, minden lépésben új 
 \texttt{requires\_grad\_(True)} hívással, így könnyebben ,,elszivároghatna'' egy hivatkozás a gráfra, ha a ciklus végén 
 elmaradna a leválasztás. 
@@ -1234,7 +1250,7 @@ elmaradna a leválasztás.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_pgd\_ze\-ro\_epsi\-lon\_re\-turns\_original}: Határeset: $\epsilon=0$ esetén -- annak ellenére, hogy több 
+\noindent\texttt{test\_pgd\_zero\_epsilon\_returns\_original}: Határeset: $\epsilon=0$ esetén -- annak ellenére, hogy több 
 iteráció is lefut -- a projekció minden lépésben nulla szélességű intervallumra szorítja a perturbációt, így a végeredmény 
 megegyezik az eredeti képpel. 
 
@@ -1242,7 +1258,7 @@ megegyezik az eredeti képpel.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_pgd\_un\-targeted\_re\-duces\_confidence\_in\_true\_label}: Viselkedési bizonyíték \texttt{predict()}-en 
+\noindent\texttt{test\_pgd\_untargeted\_reduces\_confidence}: Viselkedési bizonyíték \texttt{predict()}-en 
 keresztül: a valódi címke konfidenciája több iteráció után is csökken -- ugyanaz az elv, mint FGSM-nél, de itt azt is igazolja, 
 hogy az iteratív frissítés nem ,,rontja el'' a kumulatív hatást. 
 
@@ -1250,7 +1266,7 @@ hogy az iteratív frissítés nem ,,rontja el'' a kumulatív hatást.
 \noindent\rule{\linewidth}{0.3pt}
 
 \medskip
-\noindent\texttt{test\_pgd\_tar\-geted\_in\-creases\_confidence\_in\_target\_label}: A célzott PGD a célosztály konfidenciáját 
+\noindent\texttt{test\_pgd\_targeted\_increases\_confidence}: A célzott PGD a célosztály konfidenciáját 
 növeli -- ugyanazon tulajdonságpár (nem célzott csökkenti/célzott növeli a releváns konfidenciát) FGSM-re és PGD-re is 
 parametrizált formában lett tesztelve (\texttt{@pytest.mark.parametrize}), elkerülve, hogy csak az egyik algoritmusra íródjon le 
 a viselkedés. 

@@ -40,6 +40,7 @@ def test_attack_fgsm_ignores_iterations(attack_ctx, sample_image_tensor):
     assert result.iterations_run == 1
 
 
+
 def test_attack_pgd_reports_requested_iteration(attack_ctx, sample_image_tensor):
     result = attack(attack_ctx, sample_image_tensor, label=0, method="PGD", epsilon=0.08, iterations=4)
 
@@ -48,7 +49,6 @@ def test_attack_pgd_reports_requested_iteration(attack_ctx, sample_image_tensor)
 
 
 def test_attack_fgsm_calls_fgsm(mocker, attack_ctx, sample_image_tensor):
-    # wraps= keeps the real implementation running so AttackResult assembly still works.
     fgsm_spy = mocker.patch("src.attack_engine._fgsm", wraps=_fgsm)
     pgd_spy = mocker.patch("src.attack_engine._pgd", wraps=_pgd)
 
@@ -99,7 +99,7 @@ def test_fgsm_result_is_detached(attack_ctx, sample_image_tensor):
     assert x_adv.requires_grad is False
 
 
-def test_fgsm_result_has_no_history(attack_ctx, sample_image_tensor):
+def test_fgsm_result_no_history(attack_ctx, sample_image_tensor):
     x = sample_image_tensor
     y = torch.tensor([0])
 
